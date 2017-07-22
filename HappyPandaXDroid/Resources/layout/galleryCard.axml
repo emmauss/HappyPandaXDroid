@@ -3,7 +3,7 @@
     xmlns:gallerycard="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
               android:id="@+id/gallercard"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
               android:clickable="true" >
     <android.support.v7.widget.CardView
@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:layout_width="48dp"
+                android:layout_width="72dp"
                 android:src="@drawable/ic_search"
-                android:layout_height="64dp"
+                android:layout_height="100dp"
                 android:id="@+id/imageView"
                 android:scaleType="centerCrop" />
             <LinearLayout
@@ -31,17 +31,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#333333"
                     android:text="placeholder"
+                    android:maxLines = "2"
+                    android:minLines = "1"
                     android:id="@+id/textViewholder"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="5dp" />
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines = "2"
+                    android:minLines = "1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#333333"
                     android:text="placeholder2"

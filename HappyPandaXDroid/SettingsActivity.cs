@@ -15,6 +15,7 @@ using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Support.V7.View;
+using Plugin.Settings;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace HappyPandaXDroid
@@ -50,7 +51,7 @@ namespace HappyPandaXDroid
         public  class SettingsFragments : PreferenceFragment, 
             ISharedPreferencesOnSharedPreferenceChangeListener
         {
-            Core.App.Settings set = new Core.App.Settings();
+            //Core.App.Settings set = new Core.App.Settings();
             ISharedPreferences sharedPreferences;
             ISharedPreferencesOnSharedPreferenceChangeListener listener;
             Preference pref;
@@ -61,7 +62,6 @@ namespace HappyPandaXDroid
                 AddPreferencesFromResource(Resource.Xml.preferences);
                 
                 sharedPreferences = PreferenceScreen.SharedPreferences;
-                set.RetrieveSettings(sharedPreferences);
                 for (int i = 0; i < PreferenceScreen.PreferenceCount; i++)
                 {
                     setSummary(PreferenceScreen.GetPreference(i));
@@ -117,7 +117,6 @@ namespace HappyPandaXDroid
 
             public override void OnDestroy()
             {
-                set.RetrieveSettings(sharedPreferences);
                 base.OnDestroy();
             }
 

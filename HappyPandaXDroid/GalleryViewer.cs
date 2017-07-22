@@ -11,7 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using FFImageLoading;
+using Com.Bumptech.Glide;
 
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
@@ -32,8 +32,8 @@ namespace HappyPandaXDroid
         Toolbar toolbar;
         RecyclerViewPager galleryPager;
         bool overlayVisible = true;
-        List<FFImageLoading.Views.ImageViewAsync> ImageViewList =
-            new List<FFImageLoading.Views.ImageViewAsync>();
+        List<string> ImageList =
+            new List<string>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -51,16 +51,18 @@ namespace HappyPandaXDroid
             galleryPager = FindViewById<RecyclerViewPager>(Resource.Id.galleryViewPager);
             LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
             galleryPager.SetLayoutManager(layout);
-            ImageAdapter adapter = new ImageAdapter(ImageViewList,this);
+            ImageAdapter adapter = new ImageAdapter(ImageList,this);
             galleryPager.SetAdapter(new RecyclerViewPagerAdapter(galleryPager, adapter));
            // SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             imageHandler = new Core.Media.ImageViewer();
             var list = GetPictureList(data);
             imageHandler.SetList(list);
+            
+            galleryPager.GetAdapter().NotifyDataSetChanged();
             int pos = list.IndexOf(data);
             if (pos < 0)
                 pos = 0;
-            imageHandler.StartReader(galleryPager, this, pos);
+            imageHandler.StartReader(galleryPager, this, pos, galleryPager);
             
          }
 
@@ -95,7 +97,29 @@ namespace HappyPandaXDroid
             
         }
 
-        
+        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+        {
+            if (e.Action == KeyEventActions.Up)
+            {
+                int pos = galleryPager.CurrentPosition;
+                switch (keyCode)
+                {
+                    case Keycode.VolumeUp:
+                        if (pos > -1)
+                            galleryPager.SmoothScrollToPosition(pos - 1);
+                        return true;
+                        //break;
+                    case Keycode.VolumeDown:
+                        if (pos < galleryPager.ItemCount)
+                            galleryPager.SmoothScrollToPosition(pos + 1);
+                        return true;
+                        //break;
+                }
+            }
+            return base.OnKeyDown(keyCode, e);
+        }
+
+
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -130,20 +154,20 @@ namespace HappyPandaXDroid
 
         public  class ImageAdapter : RecyclerView.Adapter , IOnItemChangedListener
         {
-            public List<FFImageLoading.Views.ImageViewAsync> ImageViewList;
+            public List<string> ImageList;
             Context context;
             IOnRecyclerViewItemClickListener mOnItemClickListener;
-            public ImageAdapter(List<FFImageLoading.Views.ImageViewAsync> imagelist, Context context)
+            public ImageAdapter(List<string> imagelist, Context context)
             {
                 this.context = context;
-                ImageViewList = imagelist;
+                ImageList = imagelist;
             }
 
             public override int ItemCount
             {
                 get
                 {
-                    return ImageViewList.Count;
+                    return ImageList.Count;
                 }
             }
 
@@ -156,14 +180,18 @@ namespace HappyPandaXDroid
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
+                string uri = ImageList[position];
                 ImageViewHolder vh = holder as ImageViewHolder;
-                vh.imageView = ImageViewList[position];
+                Glide.With(context)
+                    .Load(new Java.IO.File(uri))
+                    .Into(vh.imageView);
+                //vh.imageView = ImageList[position];
                 
             }
 
-            public int indexOf(FFImageLoading.Views.ImageViewAsync item)
+            public int indexOf(string item)
             {
-                return ImageViewList.IndexOf(item);
+                return ImageList.IndexOf(item);
             }
 
             public class Onclick : Java.Lang.Object,View.IOnClickListener
@@ -188,31 +216,31 @@ namespace HappyPandaXDroid
                 }
             }
 
-            public ImageAdapter Add(FFImageLoading.Views.ImageViewAsync item)
+            public ImageAdapter Add(string item)
             {
-                ImageViewList.Add(item);
+                ImageList.Add(item);
 
                 return this;
             }
 
-            public ImageAdapter Insert(int position,FFImageLoading.Views.ImageViewAsync item)
+            public ImageAdapter Insert(int position,string item)
             {
-                ImageViewList.Insert(position,item);
+                ImageList.Insert(position,item);
                 NotifyItemInserted(position);
                 return this;
             }
 
-            public ImageAdapter Set(int index, FFImageLoading.Views.ImageViewAsync item)
+            public ImageAdapter Set(int index, string item)
             {
                 if (index > -1)
-                    ImageViewList[index] = item;
+                    ImageList[index] = item;
                 NotifyItemChanged(index);
                 return this;
             }
 
             public ImageAdapter Remove(int index)
             {
-                ImageViewList.RemoveAt(index);
+                ImageList.RemoveAt(index);
                 if (index == 0)
                 {
                     NotifyDataSetChanged();
@@ -224,10 +252,10 @@ namespace HappyPandaXDroid
                 return this;
             }
 
-            public ImageAdapter Remove(FFImageLoading.Views.ImageViewAsync item)
+            public ImageAdapter Remove(string item)
             {
-                int position = ImageViewList.IndexOf(item);
-                ImageViewList.Remove(item);
+                int position = ImageList.IndexOf(item);
+                ImageList.Remove(item);
                 if (position == 0)
                 {
                     NotifyDataSetChanged();
@@ -241,8 +269,8 @@ namespace HappyPandaXDroid
 
             public ImageAdapter Clear()
             {
-                int size = ImageViewList.Count;
-                ImageViewList.Clear();
+                int size = ImageList.Count;
+                ImageList.Clear();
                 NotifyItemRangeRemoved(0, size);
                 return this;
             }
@@ -255,15 +283,15 @@ namespace HappyPandaXDroid
 
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
             {
-                var imageview = Android.Views.LayoutInflater.From(parent.Context).
-                    Inflate(Resource.Layout.ImageViewTemplate, parent,false);
-               //var imageview = new FFImageLoading.Views.ImageViewAsync(context);
-                return new ImageViewHolder(imageview);
+                /*var imageview = Android.Views.LayoutInflater.From(parent.Context).
+                    Inflate(Resource.Layout.ImageViewTemplate, parent,false);*/
+                ImageView img = new ImageView(context);
+                return new ImageViewHolder(img);
             }
 
-            public void Swap(List<FFImageLoading.Views.ImageViewAsync> list, int p1, int p2)
+            public void Swap(List<string> list, int p1, int p2)
             {
-                FFImageLoading.Views.ImageViewAsync temp = list[p1];
+                string temp = list[p1];
                 list[p1] = list[p2];
                 list[p2] = temp;
             }
@@ -275,14 +303,14 @@ namespace HappyPandaXDroid
                     for (int i = fromPosition; i < toPosition; i++)
                     {
                         
-                        Swap(ImageViewList, i, i + 1);
+                        Swap(ImageList, i, i + 1);
                     }
                 }
                 else
                 {
                     for (int i = fromPosition; i > toPosition; i--)
                     {
-                        Swap(ImageViewList, i, i - 1);
+                        Swap(ImageList, i, i - 1);
                     }
                 }
                 NotifyItemMoved(fromPosition, toPosition);
@@ -309,10 +337,10 @@ namespace HappyPandaXDroid
 
         public class ImageViewHolder : RecyclerView.ViewHolder
         {
-            public FFImageLoading.Views.ImageViewAsync imageView;
+            public ImageView imageView;
             public ImageViewHolder(View itemView) : base(itemView)
             {
-                imageView = itemView.FindViewById<FFImageLoading.Views.ImageViewAsync>(Resource.Id.ffimage);
+                imageView = (ImageView)itemView;
 
             }
         }
@@ -330,22 +358,22 @@ namespace HappyPandaXDroid
         /*public class ImageAdapter : RecyclerViewPagerAdapter
         {
             
-            public List<FFImageLoading.Views.ImageViewAsync> ImageViewList;
+            public List<Custom_Views.ImageViewHolder> ImageList;
             Context context;
             public override int Count
             {
                 get
                 {
-                    return ImageViewList.Count;
+                    return ImageList.Count;
                 }
             }
 
             /*public override int GetItemPosition(Java.Lang.Object objectValue)
             {
-                /*var obj = (FFImageLoading.Views.ImageViewAsync)objectValue;
-                if (ImageViewList.Contains(obj))
+                /*var obj = (Custom_Views.ImageViewHolder)objectValue;
+                if (ImageList.Contains(obj))
                 {
-                    return ImageViewList.IndexOf(obj);
+                    return ImageList.IndexOf(obj);
                 }
                 return PositionNone;
             }
@@ -356,10 +384,10 @@ namespace HappyPandaXDroid
                 return view == objectValue;
             }
 
-            public ImageAdapter(List<FFImageLoading.Views.ImageViewAsync> imageViewList, Context context)
+            public ImageAdapter(List<Custom_Views.ImageViewHolder> ImageList, Context context)
             {
                 this.context = context;
-                ImageViewList = imageViewList;
+                ImageList = ImageList;
             }
             public override void DestroyItem(View container, int position, Java.Lang.Object view)
             {
@@ -368,8 +396,8 @@ namespace HappyPandaXDroid
             }
             public override Java.Lang.Object InstantiateItem(View container, int position)
             {
-                var imageView = new FFImageLoading.Views.ImageViewAsync(context);
-                imageView = ImageViewList[position];
+                var imageView = new Custom_Views.ImageViewHolder(context);
+                imageView = ImageList[position];
                 var viewPager = container.JavaCast<ViewPager>();
                 viewPager.AddView(imageView);
                 return imageView;

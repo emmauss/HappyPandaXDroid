@@ -192,6 +192,7 @@ namespace HappyPandaXDroid
             }
             toolbar.Title = current_path;
             adapter.NotifyDataSetChanged();
+            mRecyclerView.ScrollToPosition(0);
         }
 
 
@@ -215,6 +216,7 @@ namespace HappyPandaXDroid
                     StartActivity(intent);
                 }
             }
+            
         }
         
         public class ListViewAdapter : RecyclerView.Adapter 

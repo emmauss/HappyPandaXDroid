@@ -14,7 +14,7 @@ using Android.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 
-using FFImageLoading;
+using Com.Bumptech.Glide;
 using Emmaus.Widget;
 
 namespace HappyPandaXDroid.Core
@@ -29,7 +29,7 @@ namespace HappyPandaXDroid.Core
             int ImagePosition = 0, preloadPositionRight = 0, preloadPositionLeft;
             Context mcontext;
             GalleryViewer.ImageAdapter madapter;
-            public IImageService GalleryService = ImageService.Instance;
+           
             public ImageViewer()
             {
             }
@@ -37,33 +37,31 @@ namespace HappyPandaXDroid.Core
             public void SetList(List<string> list)
             {
                 ImageList = list;
+
             }
 
-            public async void StartReader(RecyclerViewPager viewpager,Context context,int pos)
+            public async void StartReader(RecyclerViewPager viewpager,Context context,int pos, RecyclerViewPager pager)
             {
                 if(ImageList == null || ImageList.Count == 0)
                 {
                     throw new ImageListEmptyException("Image List not initiallized or empty");
                 }
 
+
                 //start reader
-                GalleryService.Initialize();
+
                 mcontext = context;
                 this.madapter = (GalleryViewer.ImageAdapter)viewpager.GetAdapter();
-                var ImageView = new FFImageLoading.Views.ImageViewAsync(mcontext);
+                var ImageView = new Custom_Views.ImageViewHolder(mcontext);
                 ImagePosition = pos;
-                try
-                {
-                    await GalleryService
-                        .LoadFile(ImageList[ImagePosition]).Retry(0, 1000)
-                        .IntoAsync(ImageView);
-                }catch(Exception ex)
-                {
+                
 
-                }
-                madapter.Add(ImageView);
+                //madapter.Add(ImageView);
                 viewpager.AddOnPageChangedListener(new OnPageChange(this));
+                madapter.ImageList = ImageList;
+                
                 madapter.NotifyDataSetChanged();
+                pager.ScrollToPosition(ImagePosition);
                 preloadPositionLeft = pos;
                 /*PreloadImages();
                 PreloadLeft();                
@@ -83,11 +81,11 @@ namespace HappyPandaXDroid.Core
                         preloadPositionRight = ImagePosition + 1;
                     if (preloadPositionRight >= ImageList.Count)
                         return;
-                    var ImageView = new FFImageLoading.Views.ImageViewAsync(mcontext);                    
-                    GalleryService
+                    var ImageView = new Custom_Views.ImageViewHolder(mcontext);                    
+                    /*GalleryService
                         .LoadFile(ImageList[preloadPositionRight]).Retry(3, 1000)
-                        .Into(ImageView);
-                    madapter.Add(ImageView);
+                        .Into(ImageView);*/
+                    //madapter.Add(ImageView);
                     //int posn = madapter.GetItemPosition(ImageView);
                     madapter.NotifyDataSetChanged();
                     
@@ -105,11 +103,11 @@ namespace HappyPandaXDroid.Core
                         preloadPositionLeft = ImagePosition - 1;
                     if (preloadPositionLeft < 0)
                         return;
-                    var ImageView = new FFImageLoading.Views.ImageViewAsync(mcontext);
-                    GalleryService
+                    var ImageView = new Custom_Views.ImageViewHolder(mcontext);
+                    /*GalleryService
                         .LoadFile(ImageList[preloadPositionLeft]).Retry(3, 1000)
-                        .Into(ImageView);
-                    madapter.Insert(0,ImageView);
+                        .Into(ImageView);*/
+                    //madapter.Insert(0,ImageView);
                     //int posn = madapter.GetItemPosition(ImageView);
                     madapter.NotifyDataSetChanged();
                 }
@@ -128,11 +126,11 @@ namespace HappyPandaXDroid.Core
                         preloadPositionRight = ImagePosition + 1;
                     if (preloadPositionRight >= ImageList.Count)
                         return;
-                    var ImageView = new FFImageLoading.Views.ImageViewAsync(mcontext);
-                    GalleryService
+                    var ImageView = new Custom_Views.ImageViewHolder(mcontext);
+                    /*GalleryService
                         .LoadFile(ImageList[preloadPositionRight]).Retry(3, 1000)
-                        .Into(ImageView);
-                    madapter.ImageViewList.Add(ImageView);
+                        .Into(ImageView);*/
+                    //madapter.ImageViewList.Add(ImageView);
 
                     madapter.NotifyDataSetChanged();
                 }
