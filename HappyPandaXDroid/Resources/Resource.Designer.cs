@@ -4640,9 +4640,6 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0900a9
 			public const int action_divider = 2131296425;
 			
-			// aapt resource value: 0x7f0900c2
-			public const int action_filemanager = 2131296450;
-			
 			// aapt resource value: 0x7f0900c1
 			public const int action_home = 2131296449;
 			
@@ -4661,8 +4658,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f090042
 			public const int action_mode_close_button = 2131296322;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int action_setting = 2131296451;
+			// aapt resource value: 0x7f0900c2
+			public const int action_setting = 2131296450;
 			
 			// aapt resource value: 0x7f090043
 			public const int activity_chooser_view_content = 2131296323;
@@ -4916,8 +4913,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0900a8
 			public const int media_actions = 2131296424;
 			
-			// aapt resource value: 0x7f0900c4
-			public const int menu_preferences = 2131296452;
+			// aapt resource value: 0x7f0900c3
+			public const int menu_preferences = 2131296451;
 			
 			// aapt resource value: 0x7f09001e
 			public const int middle = 2131296286;
