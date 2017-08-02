@@ -571,8 +571,6 @@ namespace HappyPandaXDroid.Core
                                 if (HighestPriorityThread == null)
                                     break;
                                 count = ThreadPool.Count;
-                               // Thread[] threadslist = new Thread[100];
-                                //threadslist = ThreadPool.ToArray();
 
 
                                 foreach (var thread in ThreadPool)

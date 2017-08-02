@@ -14,7 +14,6 @@ using System.Threading;
 using Android.Support.V7.View;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
-
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
@@ -28,10 +27,12 @@ namespace HappyPandaXDroid
         public static string searchQuery = string.Empty;
         //ArrayAdapter<string> adapter;
         Toolbar toolbar;
+        bool RootActivity = true;
         bool IsLoading = false;
         Custom_Views.PageSelector mpageSelector;
         string current_query = "";
         RecyclerView mRecyclerView;
+        
         ProgressView.MaterialProgressBar mProgressView;
        
         RefreshLayout.RefreshLayout mRefreshLayout;
@@ -127,12 +128,20 @@ namespace HappyPandaXDroid
 
         private void MRefreshLayout_OnFooterRefresh(object sender, EventArgs e)
         {
+            
             SetBottomLoading(true);
             ThreadStart load = new ThreadStart(NextPage);
             Thread thread = new Thread(load);
             thread.Start();
         }
 
+        protected override void OnDestroy()
+        {
+           
+            base.OnDestroy();
+            Android.Support.V4.App.ActivityCompat.FinishAffinity(this);
+            
+        }
         private void MRefreshLayout_OnHeaderRefresh(object sender, EventArgs e)
         {
             Task.Run(async () =>

@@ -117,6 +117,7 @@ namespace HappyPandaXDroid
 
             public override void OnDestroy()
             {
+                Core.Net.Connect();
                 base.OnDestroy();
             }
 
