@@ -12,7 +12,10 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using System.Threading;
 using Android.Support.V7.View;
-using Toolbar = Android.Support.V7.Widget.Toolbar; 
+using Toolbar = Android.Support.V7.Widget.Toolbar;
+using ProgressView = XamarinBindings.MaterialProgressBar;
+
+using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
 {
@@ -20,19 +23,21 @@ namespace HappyPandaXDroid
     public class MainActivity : AppCompatActivity , Android.Support.V7.Widget.SearchView.IOnQueryTextListener
     {
         
-        public int count = 1,lastindex = 0;
+        public int count = 0,lastindex = 0;
         //public List<string> lists = new List<string>();
         public static string searchQuery = string.Empty;
         //ArrayAdapter<string> adapter;
         Toolbar toolbar;
         bool IsLoading = false;
+        Custom_Views.PageSelector mpageSelector;
         string current_query = "";
         RecyclerView mRecyclerView;
-        SwipeRefreshLayout mSwipeLayout;
-        ProgressBar mProgressCircle;
-        ProgressBar mBottomProgressBar;
+        ProgressView.MaterialProgressBar mProgressView;
+       
+        RefreshLayout.RefreshLayout mRefreshLayout;
+        //ProgressBar mBottomProgressBar;
         int page = 0;
-        int CurrentPage
+        public int CurrentPage
         {
             get
             {
@@ -44,82 +49,164 @@ namespace HappyPandaXDroid
             }
         }
         RecyclerView.LayoutManager mLayoutManager;
-        FloatingActionButton fab;
+        Clans.Fab.FloatingActionMenu fam;
+        Clans.Fab.FloatingActionButton mRefreshFab;
+        Clans.Fab.FloatingActionButton mJumpFab;
         ListViewAdapter adapter;
         DrawerLayout navDrawer;
+        public DialogEventListener dialogeventlistener;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-
+            ThreadHandler.InitScheduler();
             toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
 
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Library";
-            
+
 
             string[] array = { "hey", "eh" };
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
             adapter = new ListViewAdapter(this);
 
-
-            //set default drawer
-            /*mSwipeLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout);
-            mProgressCircle = FindViewById<ProgressBar>(Resource.Id.progress_bar);
-            */mBottomProgressBar = FindViewById<ProgressBar>(Resource.Id.progress_bar_bottom);
+            mRefreshLayout = FindViewById<RefreshLayout.RefreshLayout>(Resource.Id.refresh_layout);
+            mProgressView = FindViewById<ProgressView.MaterialProgressBar>(Resource.Id.progress_view);
+            mProgressView.Visibility = ViewStates.Gone;
             navDrawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            //fab = FindViewById<FloatingActionButton>(Resource.Id.floatingActionButton1);
+            mRefreshFab = FindViewById<Clans.Fab.FloatingActionButton>(Resource.Id.fabRefresh);
+            mJumpFab = FindViewById<Clans.Fab.FloatingActionButton>(Resource.Id.fabJumpTo);
+            mJumpFab.SetImageResource(Resource.Drawable.v_go_to_dark_x24);
+            mRefreshFab.SetImageResource(Resource.Drawable.v_refresh_dark_x24);
+            fam = FindViewById<Clans.Fab.FloatingActionMenu>(Resource.Id.fam);
             var navView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navView.NavigationItemSelected += NavView_NavigationItemSelected;
+            FABClickListener fabclick = new FABClickListener(this);
+            mJumpFab.SetOnClickListener(fabclick);
+            mRefreshFab.SetOnClickListener(fabclick);
             var navToggle = new ActionBarDrawerToggle
-                (this, navDrawer, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
+               (this, navDrawer, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
             navDrawer.AddDrawerListener(navToggle);
             SetBottomLoading(false);
             navToggle.SyncState();
-            mLayoutManager = new GridLayoutManager(this,2);
+            mLayoutManager = new GridLayoutManager(this, 2);
             mRecyclerView.SetAdapter(adapter);
+            mRefreshLayout.OnHeaderRefresh += MRefreshLayout_OnHeaderRefresh;
+            mRefreshLayout.OnFooterRefresh += MRefreshLayout_OnFooterRefresh;
             mRecyclerView.SetLayoutManager(mLayoutManager);
             mRecyclerView.AddOnScrollListener(new ScrollListener(this, toolbar));
-            //mRecyclerView.SetOnScrollChangeListener(new ScrollChangeListener(this));
-           // mSwipeLayout.Refresh += MSwipeLayout_Refresh;
-            SetMainLoading(true);
-            ThreadStart thrds = new ThreadStart(() =>
+            if (!Core.Net.Connect().Contains("fail"))
             {
-                Core.Net.Connect();
-                GetTotalCount();
-                GetLib();
-                RunOnUiThread(() =>
+                SetMainLoading(true);
+                ThreadStart thrds = new ThreadStart(() =>
                 {
-                    SetMainLoading(false);
-                    adapter.ResetList();
-                    lastindex = Core.Gallery.CurrentList.Count - 1;
+                    Core.Net.Connect();
                     GetTotalCount();
+                    GetLib();
+                    RunOnUiThread(() =>
+                    {
+                        SetMainLoading(false);
+                        adapter.ResetList();
+                        SetMainLoading(false);
+                        lastindex = Core.Gallery.CurrentList.Count - 1;
+                        GetTotalCount();
+                    });
                 });
-            });
-            Thread thread = new Thread(thrds);
+                Thread thread = new Thread(thrds);
+                thread.Start();
+            }
+
+            mpageSelector = new Custom_Views.PageSelector();
+            dialogeventlistener = new DialogEventListener();
+
+            // adapter.ItemClick += OnItemClick;
+            
+        }
+
+        private void MRefreshLayout_OnFooterRefresh(object sender, EventArgs e)
+        {
+            SetBottomLoading(true);
+            ThreadStart load = new ThreadStart(NextPage);
+            Thread thread = new Thread(load);
             thread.Start();
+        }
 
+        private void MRefreshLayout_OnHeaderRefresh(object sender, EventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(100);
+                Refresh();
+                mRefreshLayout.HeaderRefreshing = false;
+                mRefreshLayout.FooterRefreshing = false;
+            });
+        }
 
+        public class DialogEventListener : Custom_Views.PageSelector.NoticeDialogListener
+        {
+            public void OnDialogNegativeClick(DialogFragment dialog)
+            {
+                //close dialog
+            }
 
+            public void OnDialogPositiveClick(DialogFragment dialog)
+            {
+                //jump to page
+            }
         }
 
         class FABClickListener : Java.Lang.Object, View.IOnClickListener
         {
+            MainActivity main;
+            public FABClickListener(MainActivity main)
+            {
+                this.main = main;
+            }
             public void OnClick(View v)
             {
-                
+                var fab = (Clans.Fab.FloatingActionButton)v;
+                switch (fab.Id)
+                {
+                    case Resource.Id.fabJumpTo:
+                        main.mpageSelector.Show(main.FragmentManager,"PageSelecter");
+                        break;
+                    case Resource.Id.fabRefresh:
+                        main.Refresh();
+                        break;
+                }
             }
         }
 
-        public class ScrollChangeListener : Java.Lang.Object, RecyclerView.IOnScrollChangeListener
+        public async void Refresh()
         {
-            MainActivity activity;
-            public ScrollChangeListener(MainActivity activity)
+            RunOnUiThread(() =>
             {
-                this.activity = activity;
+                SetMainLoading(true);
+            });
+            bool success = await Core.Gallery.SearchGallery(current_query);
+            if (!success)
+                //TODO : create error screen
+                CurrentPage = 0;
+            RunOnUiThread(() =>
+            {
+                adapter.NotifyDataSetChanged();
+                adapter.ResetList();
+                SetMainLoading(false);
+                if (Core.Gallery.CurrentList.Count>0)
+                mRecyclerView.ScrollToPosition(0);
+                GetTotalCount();
+                
+            });
+        }
 
+        public class ScrollChangeListener : Java.Lang.Object ,View.IOnScrollChangeListener
+        {
+            Clans.Fab.FloatingActionMenu fam;
+            public ScrollChangeListener(Clans.Fab.FloatingActionMenu fam)
+            {
+                this.fam = fam;
             }
             public void OnScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY)
             {
@@ -130,7 +217,7 @@ namespace HappyPandaXDroid
                 var layoutmanager = (GridLayoutManager)mLayoutManager;
                 int lastVisibleItem = layoutmanager.FindLastVisibleItemPosition();
                 int firstVisibleItem = layoutmanager.FindFirstVisibleItemPosition();
-                if (!activity.IsLoading && totalItemCount - visibleCount <= firstVisibleItem + 1)
+                /*if (!activity.IsLoading && totalItemCount - visibleCount <= firstVisibleItem + 1)
                 {
                     // End has been reached
                     // Do something
@@ -138,22 +225,25 @@ namespace HappyPandaXDroid
                     ThreadStart load = new ThreadStart(activity.NextPage);
                     Thread thread = new Thread(load);
                     thread.Start();
-                }
+                }*/
 
+                if (oldScrollY > scrollY + 10)
+                {
+                    fam.Visibility = ViewStates.Invisible;
+                }
+                else if (oldScrollY < scrollY - 10)
+                {
+                    fam.Visibility = ViewStates.Visible;
+                }
             }
         }
-
         private void MSwipeLayout_Refresh(object sender, EventArgs e)
         {
             RefreshLibrary();
             void RefreshLibrary()
             {
                 SetBottomLoading(true);
-                bool success = Core.Gallery.SearchGallery(current_query);
-                if(!success)
-                   //TODO : create error screen
-                CurrentPage = 0;
-                adapter.NotifyDataSetChanged();
+                Refresh();
                 GetTotalCount();
                 OnRefreshLoadComplete();
             }
@@ -164,34 +254,18 @@ namespace HappyPandaXDroid
             }
         }
 
-        private void MRecyclerView_ScrollChange(object sender, View.ScrollChangeEventArgs e)
-        {
-            int totalItemCount = mLayoutManager.ItemCount;
-            int visibleCount = mLayoutManager.ChildCount;
-            var layoutmanager = (GridLayoutManager)mLayoutManager;
-            int  lastVisibleItem = layoutmanager.FindLastVisibleItemPosition();
-            int firstVisibleItem = layoutmanager.FindFirstVisibleItemPosition();
-            if (!IsLoading && totalItemCount -visibleCount <= firstVisibleItem+5)
-            {
-                // End has been reached
-                // Do something
-                SetBottomLoading(true);
-                ThreadStart load = new ThreadStart(NextPage);
-                Thread thread = new Thread(load);
-                thread.Start();
-            }
-        }
+        
 
         public void SetBottomLoading(bool state)
         {
            switch (state)
             {
                 case true:
-                    mBottomProgressBar.Visibility = ViewStates.Visible;
+                   // mBottomProgressBar.Visibility = ViewStates.Visible;
                     IsLoading = true;
                     break;
                 case false:
-                    mBottomProgressBar.Visibility = ViewStates.Gone;
+                   // mBottomProgressBar.Visibility = ViewStates.Gone;
                     IsLoading = false;
                     break;
             }
@@ -202,17 +276,19 @@ namespace HappyPandaXDroid
             switch (state)
             {
                 case true:
-                   // mRecyclerView.Visibility = ViewStates.Invisible;
-                   // mProgressCircle.Visibility = ViewStates.Visible;
+                    mProgressView.Visibility = ViewStates.Visible;
+                    mRefreshLayout.Visibility = ViewStates.Gone;
                     IsLoading = true;
                     break;
                 case false:
-                    //mRecyclerView.Visibility = ViewStates.Visible;
-                    //mProgressCircle.Visibility = ViewStates.Gone;
+                    mProgressView.Visibility = ViewStates.Gone;
+                    mRefreshLayout.Visibility = ViewStates.Visible;
                     IsLoading = false;
                     break;
             }
         }
+
+        
 
         public void NextPage()
         {
@@ -225,7 +301,9 @@ namespace HappyPandaXDroid
                
                 to.Show();
                 SetBottomLoading(false);
-            });
+                    mRefreshLayout.HeaderRefreshing = false;
+                    mRefreshLayout.FooterRefreshing = false;
+                });
             return;
             }
             int newitems = Core.Gallery.NextPage(CurrentPage + 1, current_query);
@@ -242,6 +320,8 @@ namespace HappyPandaXDroid
             }
             RunOnUiThread(() =>
             {
+                mRefreshLayout.HeaderRefreshing = false;
+                mRefreshLayout.FooterRefreshing = false;
                 SetBottomLoading(false);
             });
         }
@@ -292,19 +372,55 @@ namespace HappyPandaXDroid
                 toolbarHeight = (int)a.GetDimension(0, 0) + 10;
                 a.Recycle();
             }
-            
+
+            public override void OnScrollStateChanged(RecyclerView recyclerView, int newState)
+            {
+                base.OnScrollStateChanged(recyclerView, newState);
+            }
 
             public override void OnScrolled(RecyclerView recyclerView, int dx, int dy)
             {
                 base.OnScrolled(recyclerView, dx, dy);
-                ClipToolbarOffset();
-                OnMoved(toolbarOffset);
-
-                if ((toolbarOffset < toolbarHeight && dy > 0) || (toolbarOffset > 0 && dy < 0))
+               /* try
                 {
-                    toolbarOffset += dy;
-                }
+                    ClipToolbarOffset();
+                    OnMoved(toolbarOffset);
 
+                    if ((toolbarOffset < toolbarHeight && dy > 0) || (toolbarOffset > 0 && dy < 0))
+                    {
+                        toolbarOffset += dy;
+                    }
+
+                    RecyclerView view = mactivity.mRecyclerView;
+                    if (!view.CanScrollVertically(1))
+                    {
+                        // End has been reached
+                        // Do something
+                         mactivity.SetBottomLoading(true);
+                         ThreadStart load = new ThreadStart(mactivity.NextPage);
+                         Thread thread = new Thread(load);
+                         thread.Start();
+                        //Toast.MakeText(mactivity, "You have reached to the bottom!", ToastLength.Short).Show();
+                    }
+
+
+                    if (dy > 0)
+                    {
+                        mactivity.fam.Visibility = ViewStates.Invisible;
+                    }
+                    else if (dy < 0)
+                    {
+                        mactivity.fam.Visibility = ViewStates.Visible;
+                    }
+                }
+                catch(Exception ex)
+                {
+
+                }*/
+            }
+
+            async Task<bool> HasReachedBottom()
+            {
                 RecyclerView view = mactivity.mRecyclerView;
                 var mLayoutManager = view.GetLayoutManager();
                 int totalItemCount = mLayoutManager.ItemCount;
@@ -312,15 +428,21 @@ namespace HappyPandaXDroid
                 var layoutmanager = (GridLayoutManager)mLayoutManager;
                 int lastVisibleItem = layoutmanager.FindLastVisibleItemPosition();
                 int firstVisibleItem = layoutmanager.FindFirstVisibleItemPosition();
-                if (!mactivity.IsLoading && totalItemCount - visibleCount <= firstVisibleItem + 1)
+                
+                if (!mactivity.IsLoading && (totalItemCount - visibleCount) <= firstVisibleItem)
                 {
-                    // End has been reached
-                    // Do something
-                    mactivity.SetBottomLoading(true);
-                    ThreadStart load = new ThreadStart(mactivity.NextPage);
-                    Thread thread = new Thread(load);
-                    thread.Start();
+                    if (!view.CanScrollVertically(1))
+                        // End has been reached
+                        // Do something
+                        /* mactivity.SetBottomLoading(true);
+                         ThreadStart load = new ThreadStart(mactivity.NextPage);
+                         Thread thread = new Thread(load);
+                         thread.Start();*/
+                        Toast.MakeText(mactivity, "You have reached to the bottom!", ToastLength.Short).Show();
+                    return true;
                 }
+
+                return false;
             }
 
             private void ClipToolbarOffset()
@@ -381,12 +503,37 @@ namespace HappyPandaXDroid
             public ListViewHolder(View itemView) : base(itemView)
             {
                 gcard = (Custom_Views.GalleryCard)itemView;
-                
+                // gcard.Click += (s, e) => clicklistener(base.AdapterPosition);
+               gcard.SetOnClickListener(new GalleryCardClickListener());
             }
+
+            class GalleryCardClickListener : Java.Lang.Object, View.IOnClickListener
+            {
+                Custom_Views.GalleryCard card;
+                public void OnClick(View v)
+                {
+                    card = (Custom_Views.GalleryCard)v;
+                    Intent intent = new Intent(card.Context, typeof(GalleryActivity));
+                    string gallerystring = Core.JSON.Serializer.simpleSerializer.Serialize(card.Gallery);
+                    intent.PutExtra("gallery", gallerystring);
+                    card.Context.StartActivity(intent);
+                }
+            }
+
+
         }
 
         public class ListViewAdapter : RecyclerView.Adapter
         {
+
+            public EventHandler<int> ItemClick;
+
+            void OnClick(int position)
+            {
+                if (ItemClick != null)
+                    ItemClick(this, position);
+            }
+
             public List<Core.Gallery.GalleryItem> mdata = Core.Gallery.CurrentList;
             Android.Content.Context mcontext;
             public ListViewAdapter(Context context)
@@ -415,7 +562,11 @@ namespace HappyPandaXDroid
                     {
 
                     }
+                //vh.gcard.SetOnClickListener(new GalleryCardClickListener());
             }
+
+            
+
 
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
             {
@@ -437,23 +588,19 @@ namespace HappyPandaXDroid
 
         public bool OnQueryTextSubmit(string query)
         {
+            searchView.ClearFocus();
             current_query = query;
-            SetBottomLoading(true);
-            bool success = Core.Gallery.SearchGallery(current_query);
-            if (success)
-            {
-                adapter.NotifyDataSetChanged();
-                GetTotalCount();
-            }
-            SetBottomLoading(false);
+            Refresh();
             return true;
         }
+
+        Android.Support.V7.Widget.SearchView searchView;
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.gallerySearch, menu);
             var search = toolbar.Menu.FindItem(Resource.Id.search);
-            var searchView = (Android.Support.V7.Widget.SearchView)search.ActionView;
+            searchView = (Android.Support.V7.Widget.SearchView)search.ActionView;
             searchView.SetOnQueryTextListener(this);
             return base.OnCreateOptionsMenu(menu);
         }

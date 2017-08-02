@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using System.Threading.Tasks;
 using System.Threading;
@@ -32,7 +33,7 @@ namespace HappyPandaXDroid.Core
             Gallery = 0,
             GalleryFilter = 2,
             Grouping = 4,
-            Page =3
+            Page = 3
         }
 
         public enum ViewType
@@ -44,14 +45,16 @@ namespace HappyPandaXDroid.Core
 
         public class GalleryItem
         {
+            public int command_id;
             public int taggable_id;
-            public bool complete_pages;
             public string category_id;
             public string last_read;
             public string last_updated;
             public string language_id;
             public List<Artist> artists;
+            public List<Page> pages;
             public int timestamp;
+            public string[] filters;
             public string info;
             public bool fetched;
             public int grouping_id;
@@ -65,6 +68,26 @@ namespace HappyPandaXDroid.Core
             public int pub_date;
             public List<URL> urls;
             public bool inbox;
+            public bool singe_source;
+            public string[] collections;
+            public string[] circles;
+
+            public TagList tags;
+        }
+
+        public class Page
+        {
+            public int number;
+            public int gallery_id;
+            public int taggable_id;
+            public int id;
+            public int last_updated;
+            public bool in_archive;
+            public string path;
+            public string name;
+            public string thumb_url;
+            public string image_url;
+            public int command_id;
         }
 
         public class Artist
@@ -79,14 +102,6 @@ namespace HappyPandaXDroid.Core
             public string ext;
             public string size;
             public string data;
-            public byte[] Data
-            {
-                get
-                {
-                    string temp = data.Substring(data.IndexOf(",")+1);
-                    return Convert.FromBase64String(temp);
-                }
-            }
         }
         public class Title
         {
@@ -100,6 +115,28 @@ namespace HappyPandaXDroid.Core
             public int id;
             public string url;
             public int gallery_id;
+        }
+
+        public class TagList
+        {
+            public List<TagItem> Artist { get; set; }
+            public List<TagItem> Male { get; set; }
+            public List<TagItem> Female { get; set; }
+            public List<TagItem> Language { get; set; }
+            public List<TagItem> __namespace__ { get; set; }
+            public List<TagItem> Reclass { get; set; }
+            public List<TagItem> Parody { get; set; }
+        }
+
+        public class TagNamespace
+        {
+
+        }
+
+        public class TagItem
+        {
+            public List<string> alias;
+            public string name;
         }
 
 
@@ -116,44 +153,61 @@ namespace HappyPandaXDroid.Core
             response = JSON.API.ParseToString(main);
             string countstring = Net.SendPost(response);
             string data = JSON.API.GetData(countstring, 2);
-            if(data.LastIndexOf("]") != data.Length-1)
-            data = data.Remove(data.LastIndexOf("]")+1);
-            CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);            
+            if (data.LastIndexOf("]") != data.Length - 1)
+                data = data.Remove(data.LastIndexOf("]") + 1);
+            CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+            List<int> g_ids = new List<int>();
+            foreach (var gal in CurrentList)
+            {
+                g_ids.Add(gal.id);
+            }
+            int[] gids = g_ids.ToArray();
 
+            //InitiateImageGeneration(gids, "gallery","medium");
         }
 
-        public static async Task<string> GetImage(GalleryItem gallery)
+        public static async Task<string> GetImage(GalleryItem gallery, bool return_url, string size = "medium")
         {
             try
             {
-                int gallery_item_id = gallery.id;
+                int item_id = gallery.id;
                 List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
                 JSON.API.PushKey(ref main, "name", "test");
                 JSON.API.PushKey(ref main, "session", Net.session_id);
                 JSON.API.PushKey(ref funct, "fname", "get_image");
-                JSON.API.PushKey(ref funct, "item_ids", "[" + gallery_item_id + "]");
-                JSON.API.PushKey(ref funct, "uri", "<bool>true");
+                JSON.API.PushKey(ref funct, "item_ids", "[" + item_id + "]");
+                JSON.API.PushKey(ref funct, "url", "<bool>true");
+                JSON.API.PushKey(ref funct, "size", size);
                 string response = JSON.API.ParseToString(funct);
                 JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
                 response = JSON.API.ParseToString(main);
                 string reply = Net.SendPost(response);
-                int command_id = App.Server.GetCommandId(gallery_item_id, reply);
-                if (App.Server.StartCommand(command_id) == "started")
+                int command_id = App.Server.GetCommandId(item_id, reply);
+
+                while (true)
                 {
                     string state = App.Server.GetCommandState(command_id);
                     if (state.Contains("error"))
                         return "fail: server error";
-                    while (!App.Server.GetCommandState(command_id).Contains("finished"))
-                    {
+                    if(state.Contains("failed"))
+                        return "fail: command error";
+                    if (!state.Contains("finished"))
                         Thread.Sleep(1000);
-                    }
-                    //get value
-                    string name = App.Server.HashGenerator(gallery.profiles[0].size, gallery_item_id);
-                    string path = App.Server.GetCommandValue(command_id, gallery_item_id,name, "thumb");
-                    return path;
+                    else
+                        break;
                 }
-                else return "fail: server error";
+                string name = string.Empty;
+                //get value
+                gallery = App.Server.GetItem<GalleryItem>(gallery.id, "Gallery");
+                name = App.Server.HashGenerator(size, gallery.id);
+
+                string path = App.Server.GetCommandValue(command_id, gallery.id, name, "thumb", return_url);
+                return path;
+            }
+            catch (System.Net.Sockets.SocketException ex)
+            {
+                return "fail: server not found or connection failed error";
             }
             catch (Exception ex)
             {
@@ -161,7 +215,80 @@ namespace HappyPandaXDroid.Core
             }
         }
 
-        public static bool SearchGallery(string query)
+        public static async void InitiateImageGeneration(int[] ids, string type,string size)
+        {
+            await Task.Delay(10);
+            try
+            {
+                string item_ids = "[" + String.Join(",", ids) + "]";
+                List<Tuple<string, string>> main = new List<Tuple<string, string>>();
+                List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
+                JSON.API.PushKey(ref main, "name", "test");
+                JSON.API.PushKey(ref main, "session", Net.session_id);
+                JSON.API.PushKey(ref funct, "fname", "get_image");
+                JSON.API.PushKey(ref funct, "item_ids", item_ids);
+                JSON.API.PushKey(ref funct, "url", "<bool>true");
+                JSON.API.PushKey(ref funct, "size", size);
+                JSON.API.PushKey(ref funct, "item_type", type);
+                string response = JSON.API.ParseToString(funct);
+                JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
+                response = JSON.API.ParseToString(main);
+                string reply = Net.SendPost(response);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        public static async Task<string> GetImage(Page page, bool return_url, string size = "medium")
+        {
+            try
+            {
+
+                List<Tuple<string, string>> main = new List<Tuple<string, string>>();
+                List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
+                JSON.API.PushKey(ref main, "name", "test");
+                JSON.API.PushKey(ref main, "session", Net.session_id);
+                JSON.API.PushKey(ref funct, "fname", "get_image");
+                JSON.API.PushKey(ref funct, "item_ids", "[" + page.id + "]");
+                JSON.API.PushKey(ref funct, "url", "<bool>true");
+                JSON.API.PushKey(ref funct, "size", size);
+                JSON.API.PushKey(ref funct, "item_type", "page");
+                string response = JSON.API.ParseToString(funct);
+                JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
+                response = JSON.API.ParseToString(main);
+                string reply = Net.SendPost(response);
+                int command_id = App.Server.GetCommandId(page.id, reply);
+                while (true)
+                {
+                    string state = App.Server.GetCommandState(command_id);
+                    if (state.Contains("error"))
+                        return "fail: server error";
+                    if (state.Contains("failed"))
+                        return "fail: command error";
+                    if (!state.Contains("finished"))
+                        Thread.Sleep(1000);
+                    else
+                        break;
+                }
+                string name = string.Empty;
+                //get value
+                string path = App.Server.GetCommandValue(command_id, page.id, name, "page", return_url);
+                return path;
+
+            }
+            catch (System.Net.Sockets.SocketException ex)
+            {
+                return "fail: server not found or connection failed error";
+            }
+            catch (Exception ex)
+            {
+                return "fail: misc server error";
+            }
+        }
+
+        public static async Task<bool> SearchGallery(string query)
         {
             List<Tuple<string, string>> main = new List<Tuple<string, string>>();
             List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
@@ -179,7 +306,17 @@ namespace HappyPandaXDroid.Core
                 data = data.Remove(data.LastIndexOf("]") + 1);
             CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
             if (CurrentList.Count > 0)
+            {
+                List<int> g_ids = new List<int>();
+                foreach (var gal in CurrentList)
+                {
+                    g_ids.Add(gal.id);
+                }
+                int[] gids = g_ids.ToArray();
+
+                //InitiateImageGeneration(gids, "gallery", "medium");
                 return true;
+            }
             else
                 return false;
         }
@@ -188,7 +325,7 @@ namespace HappyPandaXDroid.Core
         /// jump to a page in the current library
         /// </summary>
         /// <param name="page">zero based page number</param>        
-        public void JumpToPage(int page,string search_query)
+        public void JumpToPage(int page, string search_query)
         {
             List<Tuple<string, string>> main = new List<Tuple<string, string>>();
             List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
@@ -197,7 +334,7 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref funct, "fname", "library_view");
             JSON.API.PushKey(ref funct, "limit", "<int>25");
             JSON.API.PushKey(ref funct, "search_query", search_query);
-            JSON.API.PushKey(ref funct, "page","<int>" + page);
+            JSON.API.PushKey(ref funct, "page", "<int>" + page);
             string response = JSON.API.ParseToString(funct);
             JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
@@ -273,13 +410,74 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref funct, "item_type", "Gallery");
             JSON.API.PushKey(ref funct, "search_query", query);
             string response = JSON.API.ParseToString(funct);
-            JSON.API.PushKey(ref main, "data", "[\n"+response+"\n]");
+            JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
             string countstring = Net.SendPost(response);
             string countdata = JSON.API.GetData(countstring, 2);
             countdata = countdata.Substring(countdata.IndexOf(":") + 1, countdata.IndexOf("}") - countdata.IndexOf(":") - 1);
             int.TryParse(countdata, out count);
             return count;
+        }
+
+        public static TagList GetTags(int item_id, string type)
+        {
+            List<Tuple<string, string>> main = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
+            JSON.API.PushKey(ref main, "name", "test");
+            JSON.API.PushKey(ref main, "session", Net.session_id);
+            JSON.API.PushKey(ref funct, "fname", "get_tags");
+            JSON.API.PushKey(ref funct, "item_id", "<int>" + item_id);
+            JSON.API.PushKey(ref funct, "item_type", type);
+            string response = JSON.API.ParseToString(funct);
+            JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
+            response = JSON.API.ParseToString(main);
+            string responsestring = Net.SendPost(response);
+            string data = App.Server.ParseItem(responsestring);
+
+
+            return JSON.Serializer.simpleSerializer.Deserialize<TagList>(data);
+        }
+
+        public async static Task<string> GetThumb(GalleryItem gallery)
+        {
+
+            string thumb_path = string.Empty;
+            while (true)
+            {
+                if (IsCached())
+                {
+
+                    break;
+                }
+                else
+                {
+                    await Task.Run(async () =>
+                    {
+                        thumb_path = await Core.Gallery.GetImage(gallery, false);
+                    });
+
+                    gallery = Core.App.Server.GetItem<Core.Gallery.GalleryItem>(gallery.id, "Gallery");
+                }
+            }
+
+
+            bool IsCached()
+            {
+                int item_id = gallery.id;
+                try
+                {
+                    thumb_path = Core.App.Settings.cache + "thumbs/" + Core.App.Server.HashGenerator("medium", item_id) + ".jpg";
+                    return File.Exists(thumb_path) ? true : false;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+
+            }
+
+            return thumb_path;
+
         }
     }
 }

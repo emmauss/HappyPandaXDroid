@@ -27,52 +27,58 @@ namespace HappyPandaXDroid.Core
 
         public  static string Connect()
         {
-            TcpClient listener = new TcpClient(App.Settings.Server_IP, 7007);
-            string response = string.Empty;
-            string payload;
-            var stream = listener.GetStream();
-            byte[] res = new byte[1024];
-            while (true)
+            try
             {
+                TcpClient listener = new TcpClient(App.Settings.Server_IP, int.Parse(App.Settings.Server_Port));
+                string response = string.Empty;
+                string payload;
+                var stream = listener.GetStream();
+                byte[] res = new byte[1024];
+                while (true)
+                {
+                    stream.Read(res, 0, res.Length);
+                    payload = Encoding.UTF8.GetString(res).TrimEnd('\0');
+                    response += payload;
+                    if (response.Contains("<EOF>"))
+                        break;
+                    Array.Clear(res, 0, res.Length);
+                }
+                payload = payload.Replace("<EOF>", "");
+                App.Server.info = JSON.Serializer.simpleSerializer.Deserialize<App.Server.ServerInfo>(payload);
+                List<Tuple<string, string>> main = new List<Tuple<string, string>>();
+                JSON.API.PushKey(ref main, "name", "test");
+                JSON.API.PushKey(ref main, "session", "");
+                JSON.API.PushKey(ref main, "data", "{}");
+                string request = JSON.API.ParseToString(main);
+                byte[] req = Encoding.UTF8.GetBytes(request + "<EOF>");
+                stream.Write(req, 0, req.Length);
+                Array.Clear(res, 0, res.Length);
                 stream.Read(res, 0, res.Length);
                 payload = Encoding.UTF8.GetString(res).TrimEnd('\0');
-                response += payload;
-                if (response.Contains("<EOF>"))
-                    break;
-                Array.Clear(res, 0, res.Length);
-            }
-            payload = payload.Replace("<EOF>", "");
-            App.Server.info = JSON.Serializer.simpleSerializer.Deserialize<App.Server.ServerInfo>(payload);
-            List<Tuple<string, string>> main = new List<Tuple<string, string>>();            
-            JSON.API.PushKey(ref main, "name", "test");
-            JSON.API.PushKey(ref main, "session", "");
-            JSON.API.PushKey(ref main, "data", "{}");
-            string request = JSON.API.ParseToString(main);
-            byte[] req = Encoding.UTF8.GetBytes(request+"<EOF>");
-            stream.Write(req, 0, req.Length);
-            Array.Clear(res, 0, res.Length);
-            stream.Read(res, 0, res.Length);
-            payload = Encoding.UTF8.GetString(res).TrimEnd('\0');
-            bool success = false;
-            if (!payload.Contains("Authenticated"))
+                bool success = false;
+                if (!payload.Contains("Authenticated"))
+                {
+                    success = true;
+                    response = "fail";
+                }
+                else
+                {
+                    payload = payload.Replace("<EOF>", "");
+                    Dictionary<string, string> reply =
+                        JSON.Serializer.simpleSerializer.Deserialize<Dictionary<string, string>>(payload);
+                    success = reply.TryGetValue("session", out session_id);
+                }
+                return response;
+            }catch(SocketException ex)
             {
-                success = true;
-                response = "fail";
+                return "fail";
             }
-            else
-            {
-                payload = payload.Replace("<EOF>", "");
-                Dictionary<string, string> reply = 
-                    JSON.Serializer.simpleSerializer.Deserialize<Dictionary<string, string>>(payload);
-                success = reply.TryGetValue("session",out session_id);
-            }
-            return response;
         }
         public  static string SendPost(string payload)
         {
             
             string response = "fail";
-            TcpClient listener = new TcpClient(App.Settings.Server_IP, 7007);
+            TcpClient listener = new TcpClient(App.Settings.Server_IP, int.Parse(App.Settings.Server_Port));
             try
             {
                 if(session_id == null || session_id == string.Empty)

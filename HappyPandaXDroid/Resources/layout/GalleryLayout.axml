@@ -3,6 +3,7 @@
     xmlns:viewpager="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:id="@+id/frame"
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="horizontal"
@@ -10,6 +11,7 @@
         android:layout_height="match_parent"
         android:minWidth="25px"
         android:minHeight="25px">
+        
         <Emmaus.Widget.RecyclerViewPager
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -21,7 +23,32 @@
             viewpager:rvp_singlePageFling="true"
             android:clipToPadding="false" />
     </LinearLayout>
-<!--<include
+  <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:minWidth="25px"
+        android:minHeight="25px">
+    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#333333"
+                    android:background="#10101010"
+                    android:text=""
+                    android:layout_marginLeft="5dp"
+                    android:paddingBottom="5dp"
+                    android:id="@+id/page_number" />
+  <SeekBar
+            android:layout_width="match_parent"
+            android:paddingBottom="?attr/actionBarSize"
+            android:layout_height="wrap_content"
+            android:background="#10101010"
+            android:id="@+id/progress_seekbar" />
+    </LinearLayout>
+<include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_alpha" />-->
+        layout="@layout/toolbar_alpha" />
 </FrameLayout>

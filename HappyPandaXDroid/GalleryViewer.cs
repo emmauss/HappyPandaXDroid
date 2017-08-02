@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 using Android.App;
 using Android.Content;
@@ -18,53 +20,202 @@ using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Support.V7.View;
+using PhotoView = Com.Github.Chrisbanes.Photoview;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Java.Lang;
 using Emmaus.Widget;
+using Com.Bumptech.Glide.Request.Target;
+
+using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
 {
     [Activity(Label = "GalleryViewer")]
     public class GalleryViewer : AppCompatActivity
     {
-        Core.Media.ImageViewer imageHandler;
+        
         Toolbar toolbar;
-        RecyclerViewPager galleryPager;
+        public TextView page_number;
+        public RecyclerViewPager galleryPager;
         bool overlayVisible = true;
-        List<string> ImageList =
-            new List<string>();
+        public  ImageAdapter adapter;
+        FrameLayout lay;
+        /*List<string> ImageList =
+            new List<string>();*/
+        List<Core.Gallery.Page> PageList =
+            new List<Core.Gallery.Page>();
+        SeekBar seekbar;
+        bool doubl_click = false;
+        public int activityID;
+        int touch_count = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-
             SetContentView(Resource.Layout.GalleryLayout);
-            string data = Intent.GetStringExtra("image");
-
-            /*Core.Media.ImageViewer imageHandler = new Core.Media.ImageViewer();
-            Core.JSON.Serializer.simpleSerializer
-                .Deserialize(data, ref imageHandler);*/
-           // toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            //SetSupportActionBar(toolbar);
-            galleryPager = FindViewById<RecyclerViewPager>(Resource.Id.galleryViewPager);
-            LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false);
-            galleryPager.SetLayoutManager(layout);
-            ImageAdapter adapter = new ImageAdapter(ImageList,this);
-            galleryPager.SetAdapter(new RecyclerViewPagerAdapter(galleryPager, adapter));
-           // SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            imageHandler = new Core.Media.ImageViewer();
-            var list = GetPictureList(data);
-            imageHandler.SetList(list);
             
+                string data = Intent.GetStringExtra("page");
+                PageList = Core.JSON.Serializer.simpleSerializer.Deserialize<List<Core.Gallery.Page>>(data);
+            InitPageGen();
+            activityID = ThreadHandler.Thread.IdGen.Next();
+            
+            toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            lay = FindViewById<FrameLayout>(Resource.Id.frame);
+            galleryPager = FindViewById<RecyclerViewPager>(Resource.Id.galleryViewPager);
+            var layout = new ExtraLayoutManager(this, LinearLayoutManager.Horizontal, false);            
+            galleryPager.SetLayoutManager(layout);
+            adapter = new ImageAdapter(PageList,this);
+            galleryPager.SetAdapter(new RecyclerViewPagerAdapter(galleryPager, adapter));
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            seekbar = FindViewById<SeekBar>(Resource.Id.progress_seekbar);
+            seekbar.Max = PageList.Count;
+            seekbar.Progress = galleryPager.CurrentPosition + 1;
             galleryPager.GetAdapter().NotifyDataSetChanged();
-            int pos = list.IndexOf(data);
+            page_number = FindViewById<TextView>(Resource.Id.page_number);
+            page_number.Text = seekbar.Progress.ToString();
+            galleryPager.AddOnPageChangedListener(new PageChangeListener(this));
+            seekbar.SetOnSeekBarChangeListener(new SeekBarChangeListener(this));
+            /*int pos = list.IndexOf(data);
             if (pos < 0)
                 pos = 0;
-            imageHandler.StartReader(galleryPager, this, pos, galleryPager);
-            
+            imageHandler.StartReader(galleryPager, this, pos, galleryPager);*/
+             
          }
+
+        protected override void OnResume()
+        {
+            ThreadHandler.ElevateActivityPriority(activityID);
+            base.OnResume();
+        }
+
+        protected override void OnDestroy()
+        {
+            
+            ThreadHandler.AbortActivityThreads(activityID);
+            base.OnDestroy();
+        }
+
+        public override bool DispatchTouchEvent(MotionEvent ev)
+        {
+            touch_count++;
+            bool res =  base.DispatchTouchEvent(ev);
+
+            Task.Run(async () =>
+            {
+                await Task.Delay(500);
+                if (touch_count == 2)
+                {
+                    touch_count = 0;
+                    toggleOverlay();
+                }
+                else if (touch_count > 2)
+                {
+                    touch_count = 0;
+                }
+            });
+            return res;
+        }
+
+       
+
+        public class PhotoImageVIew: PhotoView.PhotoView
+        {
+            GalleryViewer mactivity;
+            public PhotoImageVIew(Context context) : base(context)
+            {
+                if (context is GalleryViewer)
+                    mactivity = (GalleryViewer)context;
+            }
+            
+        }
+        
+
+        public class SeekBarChangeListener : Java.Lang.Object, SeekBar.IOnSeekBarChangeListener
+        {
+            GalleryViewer activity;
+            public SeekBarChangeListener(GalleryViewer activity)
+            {
+                this.activity = activity;
+            }   
+            public void OnProgressChanged(SeekBar seekBar, int progress, bool fromUser)
+            {
+                //throw new NotImplementedException();
+            }
+
+            public void OnStartTrackingTouch(SeekBar seekBar)
+            {
+                //throw new NotImplementedException();
+            }
+
+            public void OnStopTrackingTouch(SeekBar seekBar)
+            {
+                int new_position = seekBar.Progress;
+                if (new_position < 1)
+                    new_position = 1;
+                seekBar.Progress = new_position;
+                activity.galleryPager.ScrollToPosition(new_position - 1);
+                activity.page_number.Text = seekBar.Progress.ToString();
+
+            }
+        }
+
+        public class PageChangeListener : RecyclerViewPager.OnPageChangedListener
+        {
+            GalleryViewer mactivity;
+            public PageChangeListener(GalleryViewer activity)
+            {
+                mactivity = activity;
+            }
+            public void OnPageChanged(int oldPosition, int newPosition)
+            {
+                mactivity.seekbar.Progress = newPosition + 1;
+                mactivity.page_number.Text = (newPosition + 1).ToString() ;
+                mactivity.toolbar.Title = mactivity.adapter.PageList[newPosition].name;
+            }
+        }
+
+        public class ExtraLayoutManager : LinearLayoutManager
+        {
+            private static readonly int DEFAULT_EXTRA_LAYOUT_SPACE = 600;
+            private int extraLayoutSpace = -1;
+            private Context context;
+
+            public ExtraLayoutManager(Context context) : base(context)
+            {
+                this.context = context;
+            }
+
+            public ExtraLayoutManager(Context context, int extraLayoutSpace) : base(context)
+            {
+                this.context = context;
+                this.extraLayoutSpace = extraLayoutSpace;
+            }
+
+            public ExtraLayoutManager(Context context, int orientation, bool reverseLayout) 
+                : base(context,orientation,reverseLayout)
+            {
+                this.context = context;
+            }
+
+            public void setExtraLayoutSpace(int extraLayoutSpace)
+            {
+                this.extraLayoutSpace = extraLayoutSpace;
+            }
+
+            protected override int GetExtraLayoutSpace(RecyclerView.State state)
+            {
+                if (extraLayoutSpace > 0)
+                {
+                    return extraLayoutSpace;
+                }
+                else
+                return DEFAULT_EXTRA_LAYOUT_SPACE;
+            }
+        }
 
         public List<string> GetPictureList(string imagefile)
         {
@@ -81,37 +232,74 @@ namespace HappyPandaXDroid
             return imgList;
         }
 
-        void toggleOverlay()
+        public void InitPageGen()
         {
-            if (overlayVisible)
+
+            Core.Gallery.Page[] pages = PageList.ToArray();
+            int[] ids = new int[pages.Length];
+            for (int i = 0; i < ids.Length; i++)
             {
-                overlayVisible = false;
-                SupportActionBar.Hide();
+                ids[i] = pages[i].id;
             }
-            else
+            Core.Gallery.InitiateImageGeneration(ids, "page","original");
+            
+        }
+
+        public async void toggleOverlay()
+        {
+            RunOnUiThread(() =>
             {
-                overlayVisible = true;
-                SupportActionBar.Show();
-            }
+                if (overlayVisible)
+                {
+                    overlayVisible = false;
+                    toolbar.Visibility = ViewStates.Gone;
+                    seekbar.Visibility = ViewStates.Gone;
+                }
+                else
+                {
+                    overlayVisible = true;
+                    toolbar.Visibility = ViewStates.Visible;
+                    seekbar.Visibility = ViewStates.Visible;
+                }
+            });
 
             
         }
 
+        public void NextPage()
+        {
+            int pos = galleryPager.CurrentPosition;
+            if (pos < galleryPager.ItemCount)
+                galleryPager.SmoothScrollToPosition(pos + 1);
+
+        }
+
+        public void PreviousPage()
+        {
+            int pos = galleryPager.CurrentPosition;
+            if (pos > -1)
+                galleryPager.SmoothScrollToPosition(pos - 1);
+        }
+        
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
-            if (e.Action == KeyEventActions.Up)
+            if (e.Action == KeyEventActions.Down)
             {
                 int pos = galleryPager.CurrentPosition;
                 switch (keyCode)
                 {
                     case Keycode.VolumeUp:
-                        if (pos > -1)
-                            galleryPager.SmoothScrollToPosition(pos - 1);
+                        PreviousPage();
                         return true;
-                        //break;
+                    case Keycode.DpadLeft:
+                        PreviousPage();
+                        return true;
+                    //break;
                     case Keycode.VolumeDown:
-                        if (pos < galleryPager.ItemCount)
-                            galleryPager.SmoothScrollToPosition(pos + 1);
+                        NextPage();
+                        return true;
+                    case Keycode.DpadRight:
+                        NextPage();
                         return true;
                         //break;
                 }
@@ -144,7 +332,7 @@ namespace HappyPandaXDroid
             {
                 switch (e.Action)
                 {
-                    case MotionEventActions.Down:
+                    case MotionEventActions.Up:
                         mparent.toggleOverlay();
                         break;
                 }
@@ -154,20 +342,20 @@ namespace HappyPandaXDroid
 
         public  class ImageAdapter : RecyclerView.Adapter , IOnItemChangedListener
         {
-            public List<string> ImageList;
+            public List<Core.Gallery.Page> PageList;
             Context context;
             IOnRecyclerViewItemClickListener mOnItemClickListener;
-            public ImageAdapter(List<string> imagelist, Context context)
+            public ImageAdapter(List<Core.Gallery.Page> imagelist, Context context)
             {
                 this.context = context;
-                ImageList = imagelist;
+                PageList = imagelist;
             }
 
             public override int ItemCount
             {
                 get
                 {
-                    return ImageList.Count;
+                    return PageList.Count;
                 }
             }
 
@@ -180,18 +368,68 @@ namespace HappyPandaXDroid
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                string uri = ImageList[position];
                 ImageViewHolder vh = holder as ImageViewHolder;
+                var activity = (GalleryViewer)context;
+
                 Glide.With(context)
-                    .Load(new Java.IO.File(uri))
+                    .Load(Resource.Drawable.Loading)                    
                     .Into(vh.imageView);
-                //vh.imageView = ImageList[position];
-                
+                int tries = 0;
+                var thread = ThreadHandler.CreateThread(async () =>
+                {
+                    while (true)
+                    {
+                        await Task.Delay(10);
+                        if (PageList[position].image_url == string.Empty || PageList[position].image_url == null 
+                            || PageList[position].image_url.Contains("fail:"))
+                        {
+                            PageList[position].image_url = await Core.Gallery.GetImage(PageList[position], true, "original");
+                        }
+                        if (PageList[position].image_url.Contains("fail"))
+                        {
+
+                            if (PageList[position].image_url.Contains("misc"))
+                            {
+                                tries++;
+                                if (tries < 4)
+                                {
+                                    continue;
+                                }
+
+                                return;
+
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                string url = PageList[position].image_url;
+                    
+                    var h = new Handler(Looper.MainLooper);
+                    h.Post(() =>
+                    {
+                        Glide.With(context)
+                        .Load(url)
+                        .DiskCacheStrategy(Com.Bumptech.Glide.Load.Engine.DiskCacheStrategy.All)
+                        .Override(Target.SizeOriginal,Target.SizeOriginal)
+                        .Into(vh.imageView)
+                        ;
+                    });
+                    tries = 0;
+                    //vh.imageView = ImageList[position];
+                },activity.activityID);
+                ThreadHandler.Schedule(thread);
+
+
             }
 
-            public int indexOf(string item)
+            public int indexOf(Core.Gallery.Page item)
             {
-                return ImageList.IndexOf(item);
+                return PageList.IndexOf(item);
             }
 
             public class Onclick : Java.Lang.Object,View.IOnClickListener
@@ -216,31 +454,31 @@ namespace HappyPandaXDroid
                 }
             }
 
-            public ImageAdapter Add(string item)
+            public ImageAdapter Add(Core.Gallery.Page item)
             {
-                ImageList.Add(item);
+                PageList.Add(item);
 
                 return this;
             }
 
-            public ImageAdapter Insert(int position,string item)
+            public ImageAdapter Insert(int position, Core.Gallery.Page item)
             {
-                ImageList.Insert(position,item);
+                PageList.Insert(position,item);
                 NotifyItemInserted(position);
                 return this;
             }
 
-            public ImageAdapter Set(int index, string item)
+            public ImageAdapter Set(int index, Core.Gallery.Page item)
             {
                 if (index > -1)
-                    ImageList[index] = item;
+                    PageList[index] = item;
                 NotifyItemChanged(index);
                 return this;
             }
 
             public ImageAdapter Remove(int index)
             {
-                ImageList.RemoveAt(index);
+                PageList.RemoveAt(index);
                 if (index == 0)
                 {
                     NotifyDataSetChanged();
@@ -252,10 +490,10 @@ namespace HappyPandaXDroid
                 return this;
             }
 
-            public ImageAdapter Remove(string item)
+            public ImageAdapter Remove(Core.Gallery.Page item)
             {
-                int position = ImageList.IndexOf(item);
-                ImageList.Remove(item);
+                int position = PageList.IndexOf(item);
+                PageList.Remove(item);
                 if (position == 0)
                 {
                     NotifyDataSetChanged();
@@ -269,8 +507,8 @@ namespace HappyPandaXDroid
 
             public ImageAdapter Clear()
             {
-                int size = ImageList.Count;
-                ImageList.Clear();
+                int size = PageList.Count;
+                PageList.Clear();
                 NotifyItemRangeRemoved(0, size);
                 return this;
             }
@@ -285,13 +523,13 @@ namespace HappyPandaXDroid
             {
                 /*var imageview = Android.Views.LayoutInflater.From(parent.Context).
                     Inflate(Resource.Layout.ImageViewTemplate, parent,false);*/
-                ImageView img = new ImageView(context);
+                PhotoImageVIew img = new PhotoImageVIew(context);
                 return new ImageViewHolder(img);
             }
 
-            public void Swap(List<string> list, int p1, int p2)
+            public void Swap(List<Core.Gallery.Page> list, int p1, int p2)
             {
-                string temp = list[p1];
+                Core.Gallery.Page temp = list[p1];
                 list[p1] = list[p2];
                 list[p2] = temp;
             }
@@ -303,14 +541,14 @@ namespace HappyPandaXDroid
                     for (int i = fromPosition; i < toPosition; i++)
                     {
                         
-                        Swap(ImageList, i, i + 1);
+                        Swap(PageList, i, i + 1);
                     }
                 }
                 else
                 {
                     for (int i = fromPosition; i > toPosition; i--)
                     {
-                        Swap(ImageList, i, i - 1);
+                        Swap(PageList, i, i - 1);
                     }
                 }
                 NotifyItemMoved(fromPosition, toPosition);
@@ -337,12 +575,14 @@ namespace HappyPandaXDroid
 
         public class ImageViewHolder : RecyclerView.ViewHolder
         {
-            public ImageView imageView;
+            public PhotoImageVIew imageView;
             public ImageViewHolder(View itemView) : base(itemView)
             {
-                imageView = (ImageView)itemView;
+                imageView = (PhotoImageVIew)itemView;
+                
 
             }
+            
         }
 
 
@@ -355,53 +595,6 @@ namespace HappyPandaXDroid
             void OnItemDismiss(int position);
         }
 
-        /*public class ImageAdapter : RecyclerViewPagerAdapter
-        {
-            
-            public List<Custom_Views.ImageViewHolder> ImageList;
-            Context context;
-            public override int Count
-            {
-                get
-                {
-                    return ImageList.Count;
-                }
-            }
-
-            /*public override int GetItemPosition(Java.Lang.Object objectValue)
-            {
-                /*var obj = (Custom_Views.ImageViewHolder)objectValue;
-                if (ImageList.Contains(obj))
-                {
-                    return ImageList.IndexOf(obj);
-                }
-                return PositionNone;
-            }
-            
-
-            public override bool IsViewFromObject(View view, Java.Lang.Object objectValue)
-            {
-                return view == objectValue;
-            }
-
-            public ImageAdapter(List<Custom_Views.ImageViewHolder> ImageList, Context context)
-            {
-                this.context = context;
-                ImageList = ImageList;
-            }
-            public override void DestroyItem(View container, int position, Java.Lang.Object view)
-            {
-                var viewPager = container.JavaCast<ViewPager>();
-                viewPager.RemoveView(view as View);
-            }
-            public override Java.Lang.Object InstantiateItem(View container, int position)
-            {
-                var imageView = new Custom_Views.ImageViewHolder(context);
-                imageView = ImageList[position];
-                var viewPager = container.JavaCast<ViewPager>();
-                viewPager.AddView(imageView);
-                return imageView;
-            }
-        }*/
+        
     }
 }

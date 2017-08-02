@@ -58,7 +58,7 @@ namespace HappyPandaXDroid.Core
 
                 //madapter.Add(ImageView);
                 viewpager.AddOnPageChangedListener(new OnPageChange(this));
-                madapter.ImageList = ImageList;
+                //madapter.ImageList = ImageList;
                 
                 madapter.NotifyDataSetChanged();
                 pager.ScrollToPosition(ImagePosition);

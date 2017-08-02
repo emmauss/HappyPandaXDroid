@@ -3,6 +3,7 @@
     xmlns:navdrawer="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:minWidth="25px"
     android:minHeight="25px"
     android:id="@+id/drawer_layout">
@@ -10,22 +11,24 @@
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:scrollbars="vertical"
-            android:paddingTop="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ProgressBar
-            android:id="@+id/progress_bar_bottom"
-            style="?android:attr/progressBarStyleHorizontal"
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:layout_width="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:indeterminate="true"
-            android:layout_height="wrap_content" />
+            android:id="@+id/progress_view" />
+        <RefreshLayout.RefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/refresh_layout">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:scrollbars="vertical"
+                android:paddingTop="?attr/actionBarSize"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RefreshLayout.RefreshLayout>
         <com.github.clans.fab.FloatingActionMenu
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,14 +36,23 @@
             android:layout_gravity="bottom|right"
             android:id="@+id/fam">
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fabMenuItem"
+                android:id="@+id/fabJumpTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                navdrawer:fab_colorNormal="#00DA4336"
-                navdrawer:srcCompat="@drawable/v_jump_to"
+                navdrawer:srcCompat="@drawable/v_plus_dark_x24"
                 navdrawer:fab_size="normal"
                 navdrawer:fab_label="Jump To.." />
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fabRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                navdrawer:srcCompat="@drawable/v_plus_dark_x24"
+                navdrawer:fab_size="normal"
+                navdrawer:fab_label="Refresh" />
         </com.github.clans.fab.FloatingActionMenu>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
     </FrameLayout>
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"

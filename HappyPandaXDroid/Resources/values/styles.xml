@@ -3,7 +3,7 @@
   <style name="MyTheme" parent="MyTheme.Base">
   </style>
   <!-- Base theme applied no matter what API -->
-  <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
     <item name="windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
@@ -19,4 +19,32 @@
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
   </style>
+  <style name="ButtonInCard">
+    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Button</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:gravity">center</item>
+    <item name="android:minHeight">48dp</item>
+    <item name="android:minWidth">88dp</item>
+    <item name="android:padding">8dp</item>
+    <item name="android:textColor">?attr/colorPrimary</item>
+  </style>
+
+  <style name="ButtonInCard.Accent">
+    <item name="android:textColor">?attr/colorAccent</item>
+  </style>
+
+  <style name="TextAppearance" parent="TextAppearance.AppCompat">
+  </style>
+  
+  <style name="TextAppearance.CardMessage">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColor">@color/secondary_text_light</item>
+    </style>
+  <style name="CardMessage">
+        <item name="android:textAppearance">@style/TextAppearance.CardMessage</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
+  
 </resources>
