@@ -18,7 +18,7 @@ using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
 {
-    [Activity(Label = "HappyPandaXDroid", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "HPXDroid", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity , Android.Support.V7.Widget.SearchView.IOnQueryTextListener
     {
         

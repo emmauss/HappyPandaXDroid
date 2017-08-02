@@ -7,11 +7,6 @@
          navmenu:showAsAction="always"
         android:title="Library"        
          />
-  <item android:id="@+id/action_filemanager"
-        android:icon="@drawable/ic_filemanager"
-         navmenu:showAsAction="always"
-        android:title="Local"
-         />
   <item android:id="@+id/action_setting"
         android:icon="@drawable/ic_settings"
          navmenu:showAsAction="always"
