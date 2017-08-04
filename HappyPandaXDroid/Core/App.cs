@@ -703,6 +703,12 @@ namespace HappyPandaXDroid.Core
                 System.Threading.Thread thread = new System.Threading.Thread(thrds);
                 thread.Start();
             }
+
+            public static void Close()
+            {
+                ThreadPool.Clear();
+                RunScheduler = false;
+            }
         }
     }
 }

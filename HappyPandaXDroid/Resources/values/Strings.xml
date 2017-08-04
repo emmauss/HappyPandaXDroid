@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">HappyPandaXDroid</string>
+    <string name="ApplicationName">HPXDroid</string>
   <string name="open_drawer">Open Drawer</string>
   <string name="close_drawer">close Drawer</string>
   <string name="no_tags">No Tags Available</string>

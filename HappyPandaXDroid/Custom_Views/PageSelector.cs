@@ -33,8 +33,8 @@ namespace HappyPandaXDroid.Custom_Views
             PageInput = pageseletor.FindViewById<EditText>(Resource.Id.setpage);
             FloatingTextLayout = pageseletor
                 .FindViewById<Android.Support.Design.Widget.TextInputLayout>(Resource.Id.textInputLayout1);
-            PageCount = (int)Math.Round((double)mactivity.count / 25);
-            FloatingTextLayout.Hint = mactivity.CurrentPage + 1 + " of " + PageCount;
+            PageCount = (int)Math.Round((double)mactivity.ContentView.count / 25);
+            FloatingTextLayout.Hint = mactivity.ContentView.CurrentPage + 1 + " of " + PageCount;
             builder.SetView(pageseletor);
             AlertDialog dialog = builder.Create();
             return dialog;
@@ -87,8 +87,8 @@ namespace HappyPandaXDroid.Custom_Views
         {
             base.OnResume();
             mactivity = (MainActivity)Activity;
-            PageCount = (int)Math.Round((double)mactivity.count / 25);
-            FloatingTextLayout.Hint = mactivity.CurrentPage + 1 + " of " + PageCount;
+            PageCount = (int)Math.Round((double)mactivity.ContentView.count / 25);
+            FloatingTextLayout.Hint = mactivity.ContentView.CurrentPage + 1 + " of " + PageCount;
         }
 
         public override void OnAttach(Activity activity)
@@ -98,7 +98,7 @@ namespace HappyPandaXDroid.Custom_Views
             try
             {
                 // Instantiate the NoticeDialogListener so we can send events to the host
-                mDialogListener = ((MainActivity)activity).dialogeventlistener;
+                mDialogListener = ((MainActivity)activity).ContentView.dialogeventlistener;
             }
             catch (Java.Lang.ClassCastException e)
             {

@@ -50,7 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidLinkMode>Full</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
@@ -60,6 +60,7 @@
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
     <EnableProguard>False</EnableProguard>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Engine.IO.Client, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -150,9 +151,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Custom_Views\AutoWrapLayout.cs" />
+    <Compile Include="Custom_Views\HPContent.cs" />
     <Compile Include="Custom_Views\ImageViewHolder.cs" />
     <Compile Include="Custom_Views\PageSelector.cs" />
     <Compile Include="Custom_Views\RoundSideRectDrawable.cs" />
+    <Compile Include="Custom_Views\SafeCoordinatorLayout.cs" />
     <Compile Include="FileBrowser.cs" />
     <Compile Include="GalleryActivity.cs" />
     <Compile Include="GalleryViewer.cs" />
@@ -226,6 +229,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Gallery_Details_Layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\HPContent.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

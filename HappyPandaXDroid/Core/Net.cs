@@ -87,7 +87,7 @@ namespace HappyPandaXDroid.Core
                 {
                     var stream = listener.GetStream();
                     byte[] req = Encoding.UTF8.GetBytes(payload + "<EOF>");
-                    byte[] res = new byte[1024];
+                    byte[] res = new byte[1024*10];
                     while (true)
                     {
                         stream.Read(res, 0, res.Length);
