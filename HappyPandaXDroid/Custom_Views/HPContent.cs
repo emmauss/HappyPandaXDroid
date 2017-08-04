@@ -27,6 +27,7 @@ namespace HappyPandaXDroid.Custom_Views
         View ContentView;
         public Custom_Views.PageSelector mpageSelector;
         RecyclerView mRecyclerView;
+        bool IsRefreshing = false;
         ProgressView.MaterialProgressBar mProgressView;
         public int count = 0, lastindex = 0;
         RefreshLayout.RefreshLayout mRefreshLayout;
@@ -56,7 +57,9 @@ namespace HappyPandaXDroid.Custom_Views
             set
             {
                 current_query = value;
+                SetMainLoading(true);
                 Refresh();
+                SetMainLoading(false);
             }
         }
         DrawerLayout navDrawer;
@@ -88,8 +91,9 @@ namespace HappyPandaXDroid.Custom_Views
             SetBottomLoading(false);
             mLayoutManager = new GridLayoutManager(this.Context, 2);
             mRecyclerView.SetAdapter(adapter);
-            mRefreshLayout.OnHeaderRefresh += MRefreshLayout_OnHeaderRefresh;
-            mRefreshLayout.OnFooterRefresh += MRefreshLayout_OnFooterRefresh;
+            /*mRefreshLayout.OnHeaderRefresh += MRefreshLayout_OnHeaderRefresh;
+            mRefreshLayout.OnFooterRefresh += MRefreshLayout_OnFooterRefresh;*/
+            mRefreshLayout.SetOnRefreshListener(new OnRefreshListener(this));
             mRecyclerView.SetLayoutManager(mLayoutManager);
             SetMainLoading(true);
             ThreadStart thrds = new ThreadStart(() =>
@@ -98,7 +102,6 @@ namespace HappyPandaXDroid.Custom_Views
                 if (!Core.Net.Connect().Contains("fail"))
                 {
                     {
-                        Core.Net.Connect();
                         GetTotalCount();
                         GetLib();
                         var h = new Handler(Looper.MainLooper);
@@ -139,13 +142,46 @@ namespace HappyPandaXDroid.Custom_Views
 
         private void MRefreshLayout_OnHeaderRefresh(object sender, EventArgs e)
         {
+            if(!IsRefreshing)
             Task.Run(async () =>
             {
-                await Task.Delay(100);
+                IsRefreshing = true;
+                await Task.Delay(10);
                 Refresh();
+                IsRefreshing = false;
                 mRefreshLayout.HeaderRefreshing = false;
                 mRefreshLayout.FooterRefreshing = false;
             });
+        }
+
+        class OnRefreshListener : RefreshLayout.RefreshLayout.IOnRefreshListener
+        {
+            HPContent content;
+            public OnRefreshListener(HPContent content)
+            {
+                this.content = content;
+            }
+            public void OnFooterRefresh()
+            {
+                content.SetBottomLoading(true);
+                ThreadStart load = new ThreadStart(content.NextPage);
+                Thread thread = new Thread(load);
+                thread.Start();
+            }
+
+            public void OnHeaderRefresh()
+            {
+                if (!content.IsRefreshing)
+                    Task.Run(async () =>
+                    {
+                        content.IsRefreshing = true;
+                        await Task.Delay(10);
+                        content.Refresh();
+                        content.IsRefreshing = false;
+                        content.mRefreshLayout.HeaderRefreshing = false;
+                        content.mRefreshLayout.FooterRefreshing = false;
+                    });
+            }
         }
 
         public void GetLib()
@@ -161,10 +197,6 @@ namespace HappyPandaXDroid.Custom_Views
         public async void Refresh()
         {
             var h = new Handler(Looper.MainLooper);
-            h.Post(() =>
-            {
-                SetMainLoading(true);
-            });
             bool success = await Core.Gallery.SearchGallery(Current_Query);
             if (!success)
                 //TODO : create error screen
@@ -173,7 +205,6 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 adapter.NotifyDataSetChanged();
                 adapter.ResetList();
-                SetMainLoading(false);
                 if (Core.Gallery.CurrentList.Count > 0)
                     mRecyclerView.ScrollToPosition(0);
                 GetTotalCount();

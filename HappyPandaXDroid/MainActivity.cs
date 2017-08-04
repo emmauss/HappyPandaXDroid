@@ -71,7 +71,7 @@ namespace HappyPandaXDroid
 
         public override bool OnGenericMotionEvent(MotionEvent e)
         {
-            if(e.Source == InputSourceType.Touchscreen)
+            /*if(e.Source == InputSourceType.Touchscreen)
             {
                 switch (e.Action)
                 {
@@ -88,7 +88,7 @@ namespace HappyPandaXDroid
                         }
                         break;
                 }
-            }
+            }*/
             return base.OnGenericMotionEvent(e);
         }
 
