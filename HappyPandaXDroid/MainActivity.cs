@@ -2,6 +2,7 @@
 using Android.OS;
 using Android.Content;
 using Android.Support.V7.App;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
@@ -38,6 +39,10 @@ namespace HappyPandaXDroid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            //set unhandled exception handler
+            AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -67,6 +72,18 @@ namespace HappyPandaXDroid
             mRefreshFab.SetOnClickListener(fabclick);
 
 
+        }
+
+        //bg thread unhandled exception handler
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        //ui thread unhandled exception handler
+        private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool OnGenericMotionEvent(MotionEvent e)

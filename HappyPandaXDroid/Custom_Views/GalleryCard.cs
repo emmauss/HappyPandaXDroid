@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 
 namespace HappyPandaXDroid.Custom_Views
 {
-    public class GalleryCard : CardView
+    public class GalleryCard : LinearLayout
     {
         View galleryCard;
         ImageView img;
