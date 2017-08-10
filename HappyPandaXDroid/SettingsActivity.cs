@@ -117,7 +117,7 @@ namespace HappyPandaXDroid
 
             public override void OnDestroy()
             {
-                Core.Net.Connect();
+                
                 base.OnDestroy();
             }
 
@@ -132,6 +132,10 @@ namespace HappyPandaXDroid
                     edit.PutString(key, editp.Text);
                     editp.Summary = editp.Text;
                     edit.Commit();
+                    if(key =="server_ip"||key == "server_port")
+                    {
+                        Core.App.Settings.Refresh = true;
+                    }
                 }
             }
 

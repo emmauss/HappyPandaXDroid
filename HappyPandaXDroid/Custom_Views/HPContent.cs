@@ -32,6 +32,9 @@ namespace HappyPandaXDroid.Custom_Views
         public int count = 0, lastindex = 0;
         RefreshLayout.RefreshLayout mRefreshLayout;
         RecyclerView.LayoutManager mLayoutManager;
+        FrameLayout mErrorFrame;
+        ImageView mErrorImage;
+        TextView mErrorText;
         ListViewAdapter adapter;
         bool IsLoading = false;
         int page = 0;
@@ -86,8 +89,13 @@ namespace HappyPandaXDroid.Custom_Views
             mRefreshLayout = FindViewById<RefreshLayout.RefreshLayout>(Resource.Id.refresh_layout);
             mProgressView = FindViewById<ProgressView.MaterialProgressBar>(Resource.Id.progress_view);
             mProgressView.Visibility = ViewStates.Gone;
-            
-           
+            mErrorFrame = FindViewById<FrameLayout>(Resource.Id.error_frame);
+            mErrorFrame.Visibility = ViewStates.Gone;
+            mErrorImage = FindViewById<ImageView>(Resource.Id.error_image);
+            mErrorImage.SetImageResource(Resource.Drawable.big_weird_face);
+            mErrorText = FindViewById<TextView>(Resource.Id.error_text);
+            mErrorText.Text = "Error";
+            mErrorImage.Click += MErrorFrame_Click;
             SetBottomLoading(false);
             mLayoutManager = new GridLayoutManager(this.Context, 2);
             mRecyclerView.SetAdapter(adapter);
@@ -102,7 +110,7 @@ namespace HappyPandaXDroid.Custom_Views
                 if (!Core.Net.Connect().Contains("fail"))
                 {
                     {
-                        GetTotalCount();
+                        
                         GetLib();
                         var h = new Handler(Looper.MainLooper);
                         h.Post(() =>
@@ -122,6 +130,7 @@ namespace HappyPandaXDroid.Custom_Views
                     h.Post(() =>
                     {
                         SetMainLoading(false);
+                        SetError(true);
                     });
                 }
             });
@@ -129,6 +138,13 @@ namespace HappyPandaXDroid.Custom_Views
             thread.Start();
             mpageSelector = new Custom_Views.PageSelector();
             dialogeventlistener = new DialogEventListener();
+        }
+
+        private void MErrorFrame_Click(object sender, EventArgs e)
+        {
+            SetMainLoading(true);
+            Refresh();
+            SetMainLoading(false);
         }
 
         private void MRefreshLayout_OnFooterRefresh(object sender, EventArgs e)
@@ -199,7 +215,14 @@ namespace HappyPandaXDroid.Custom_Views
             var h = new Handler(Looper.MainLooper);
             bool success = await Core.Gallery.SearchGallery(Current_Query);
             if (!success)
-                //TODO : create error screen
+            {
+                h.Post(() =>
+                {
+                    SetMainLoading(false);
+                    SetError(true);
+                });
+                return;
+            }
                 CurrentPage = 0;
             h.Post(() =>
             {
@@ -227,12 +250,30 @@ namespace HappyPandaXDroid.Custom_Views
             }
         }
 
+        public void SetError(bool show)
+        {
+            switch (show)
+            {
+                case true:
+                    mRefreshLayout.Visibility = ViewStates.Gone;
+                    mProgressView.Visibility = ViewStates.Gone;
+                    mErrorFrame.Visibility = ViewStates.Visible;
+                    break;
+                case false:
+                    mErrorFrame.Visibility = ViewStates.Gone;
+                    break;
+            }
+            
+
+        }
+
         public void SetMainLoading(bool state)
         {
             switch (state)
             {
                 case true:
                     mProgressView.Visibility = ViewStates.Visible;
+                    SetError(false);
                     mRefreshLayout.Visibility = ViewStates.Gone;
                     IsLoading = true;
                     break;

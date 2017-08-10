@@ -33,6 +33,7 @@ namespace HappyPandaXDroid.Core
         {
             public static string username = "test";
             public static string cache = Android.OS.Environment.ExternalStorageDirectory.Path+"/HPX/cache/";
+            public static bool Refresh = false;
             private static ISettings AppSettings
             {
                 get
@@ -56,6 +57,8 @@ namespace HappyPandaXDroid.Core
                 }
                 set
                 {
+                    if (Server_IP != value)
+                        Refresh = true;
                     AppSettings.AddOrUpdateValue("server_ip", value);
                 }
             }
@@ -70,6 +73,8 @@ namespace HappyPandaXDroid.Core
                 {
                     if (!int.TryParse(value, out int port))
                         value = "7007";
+                    if (Server_Port != value)
+                        Refresh = true;
                     AppSettings.AddOrUpdateValue("server_port", value);
                 }
             }

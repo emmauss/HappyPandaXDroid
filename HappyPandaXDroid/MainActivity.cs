@@ -31,7 +31,7 @@ namespace HappyPandaXDroid
         bool RootActivity = true;
         public Custom_Views.HPContent ContentView;
         DrawerLayout navDrawer;
-
+        public bool SwitchedToSettings = false;
         Clans.Fab.FloatingActionMenu fam;
         Clans.Fab.FloatingActionButton mRefreshFab;
         Clans.Fab.FloatingActionButton mJumpFab;
@@ -145,6 +145,7 @@ namespace HappyPandaXDroid
             }
         }
 
+        
 
         protected override void OnDestroy()
         {
@@ -154,9 +155,48 @@ namespace HappyPandaXDroid
             Android.Support.V4.App.ActivityCompat.FinishAffinity(this);
             
         }
-        
 
-        
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (SwitchedToSettings)
+                SwitchedToSettings = false;
+            else
+                return;
+            if (Core.App.Settings.Refresh)
+                Core.App.Settings.Refresh = false;
+            else
+                return;
+            try
+            {
+                Task.Run(async () =>
+                {
+                    await Task.Delay(10);
+                    RunOnUiThread(() =>
+                    {
+                        ContentView.SetMainLoading(true);
+                    });
+                    if (Core.Net.Connect().Contains("fail"))
+                    {
+                        RunOnUiThread(() =>
+                        {
+                            ContentView.SetMainLoading(false);
+                            ContentView.SetError(true);
+                        });
+                        return;
+                    }
+                    ContentView.Refresh();
+                    RunOnUiThread(() =>
+                    {
+                        ContentView.SetMainLoading(false);
+                    });
+                });
+            }
+            catch(System.Exception ex)
+            {
+
+            }
+        }
 
         private void NavView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
         {
@@ -167,6 +207,7 @@ namespace HappyPandaXDroid
             {
                 case Resource.Id.action_setting:
                     intent = new Android.Content.Intent(this, typeof(SettingsActivity));
+                    SwitchedToSettings = true;
                     StartActivity(intent);
                     break;
                 case Resource.Id.action_home:

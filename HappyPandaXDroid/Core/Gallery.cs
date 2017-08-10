@@ -14,6 +14,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+
 namespace HappyPandaXDroid.Core
 {
     public class Gallery
@@ -290,35 +291,41 @@ namespace HappyPandaXDroid.Core
 
         public static async Task<bool> SearchGallery(string query)
         {
-            List<Tuple<string, string>> main = new List<Tuple<string, string>>();
-            List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
-            JSON.API.PushKey(ref main, "name", "test");
-            JSON.API.PushKey(ref main, "session", Net.session_id);
-            JSON.API.PushKey(ref funct, "fname", "library_view");
-            JSON.API.PushKey(ref funct, "limit", "<int>25");
-            JSON.API.PushKey(ref funct, "search_query", query);
-            string response = JSON.API.ParseToString(funct);
-            JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
-            response = JSON.API.ParseToString(main);
-            string countstring = Net.SendPost(response);
-            string data = JSON.API.GetData(countstring, 2);
-            if (data.LastIndexOf("]") != data.Length - 1)
-                data = data.Remove(data.LastIndexOf("]") + 1);
-            CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
-            if (CurrentList.Count > 0)
+            try
             {
-                List<int> g_ids = new List<int>();
-                foreach (var gal in CurrentList)
+                List<Tuple<string, string>> main = new List<Tuple<string, string>>();
+                List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
+                JSON.API.PushKey(ref main, "name", "test");
+                JSON.API.PushKey(ref main, "session", Net.session_id);
+                JSON.API.PushKey(ref funct, "fname", "library_view");
+                JSON.API.PushKey(ref funct, "limit", "<int>25");
+                JSON.API.PushKey(ref funct, "search_query", query);
+                string response = JSON.API.ParseToString(funct);
+                JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
+                response = JSON.API.ParseToString(main);
+                string countstring = Net.SendPost(response);
+                string data = JSON.API.GetData(countstring, 2);
+                if (data.LastIndexOf("]") != data.Length - 1)
+                    data = data.Remove(data.LastIndexOf("]") + 1);
+                CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+                if (CurrentList.Count > 0)
                 {
-                    g_ids.Add(gal.id);
-                }
-                int[] gids = g_ids.ToArray();
+                    List<int> g_ids = new List<int>();
+                    foreach (var gal in CurrentList)
+                    {
+                        g_ids.Add(gal.id);
+                    }
+                    int[] gids = g_ids.ToArray();
 
-                //InitiateImageGeneration(gids, "gallery", "medium");
-                return true;
-            }
-            else
+                    //InitiateImageGeneration(gids, "gallery", "medium");
+                    return true;
+                }
+                else
+                    return false;
+            }catch(Exception ex)
+            {
                 return false;
+            }
         }
 
         /// <summary>
