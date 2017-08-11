@@ -11,7 +11,11 @@
       android:title="@string/server_port"
       android:id="@+id/portpref"
       />
-  
+  <EditTextPreference
+      android:key="webclient_port"
+      android:title="@string/webclient_port"
+      android:id="@+id/webclientportpref"
+      />
   <CheckBoxPreference
     android:key="enable_debugging"
       android:title="@string/enable_debug"

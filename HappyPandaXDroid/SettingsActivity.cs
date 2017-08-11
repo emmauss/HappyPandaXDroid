@@ -143,7 +143,7 @@ namespace HappyPandaXDroid
                     edit.PutString(key, editp.Text);
                     editp.Summary = editp.Text;
                     edit.Commit();
-                    if(key =="server_ip"||key == "server_port")
+                    if (key == "server_ip" || key == "server_port" || key == "webclient_port")
                     {
                         Core.App.Settings.Refresh = true;
                     }
@@ -155,10 +155,7 @@ namespace HappyPandaXDroid
                     edit.PutBoolean(key, check.Checked);
                     
                     edit.Commit();
-                    if (key == "server_ip" || key == "server_port")
-                    {
-                        Core.App.Settings.Refresh = true;
-                    }
+                    
                     if (key == "enable_debugging")
                     {
                         switch (check.Checked)

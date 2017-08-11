@@ -23,7 +23,7 @@ namespace HappyPandaXDroid.Core
 {
     class App
     {
-        
+
 
         /// <summary>
         /// This is the Settings static class that can be used in your Core solution or in any
@@ -72,7 +72,7 @@ namespace HappyPandaXDroid.Core
             {
                 get
                 {
-                    var set  = AppSettings.GetValueOrDefault("enable_debugging", false);
+                    var set = AppSettings.GetValueOrDefault("enable_debugging", false);
                     return set;
                 }
                 set
@@ -80,6 +80,7 @@ namespace HappyPandaXDroid.Core
                     AppSettings.AddOrUpdateValue("enable_debugging", value);
                 }
             }
+
 
             public static string Server_Port
             {
@@ -94,6 +95,22 @@ namespace HappyPandaXDroid.Core
                     if (Server_Port != value)
                         Refresh = true;
                     AppSettings.AddOrUpdateValue("server_port", value);
+                }
+            }
+
+            public static string WebClient_Port
+            {
+                get
+                {
+                    return AppSettings.GetValueOrDefault("webclient_port", "7008");
+                }
+                set
+                {
+                    if (!int.TryParse(value, out int port))
+                        value = "7008";
+                    if (WebClient_Port != value)
+                        Refresh = true;
+                    AppSettings.AddOrUpdateValue("webclient_port", value);
                 }
             }
 
@@ -142,7 +159,7 @@ namespace HappyPandaXDroid.Core
             {
                 logger.Info("GetServerInfo() called");
                 string fname = "get_version";
-                List<Tuple<string,string>> main = new List<Tuple<string, string>>();
+                List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> data = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
                 JSON.API.PushKey(ref main, "id", "1");
@@ -203,15 +220,15 @@ namespace HappyPandaXDroid.Core
 
             public static string UndoCommand(int command_id)
             {
-                
-                string response = CreateCommand("undo_command",command_id);
+
+                string response = CreateCommand("undo_command", command_id);
                 response = Net.SendPost(response);
                 string state = string.Empty;
                 if (GetError(response) == "none")
                 {
                     state = JSON.API.GetData(response, 2);
-                    if(state.Contains("s"))
-                    return state;
+                    if (state.Contains("s"))
+                        return state;
                     else
                         return "failed";
                 }
@@ -221,7 +238,7 @@ namespace HappyPandaXDroid.Core
             static string CreateCommand(string key, int command_id)
             {
                 logger.Info("Create Command. commandName ={0}, commandId ={1}", key, command_id);
-                List <Tuple<string, string>> main = new List<Tuple<string, string>>();
+                List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
 
                 JSON.API.PushKey(ref main, "name", Settings.username);
@@ -240,7 +257,7 @@ namespace HappyPandaXDroid.Core
                 {
                     string command = JSON.API.GetData(command_response, 2);
                     string id = command.Substring(command.IndexOf(":"));
-                    id = id.Substring(id.IndexOf(":") + 1, id.IndexOf("}")-1);
+                    id = id.Substring(id.IndexOf(":") + 1, id.IndexOf("}") - 1);
                     id = id.Trim('\"');
                     id = id.Trim(' ');
                     return int.Parse(id);
@@ -248,14 +265,14 @@ namespace HappyPandaXDroid.Core
                 else return -1;
             }
 
-            
 
-            public static string GetCommandValue(int command_id, int item_id, string name,string type, bool return_url)
+
+            public static string GetCommandValue(int command_id, int item_id, string name, string type, bool return_url)
             {
                 logger.Info("Get Command value. commandId={0}, type = {1}, url = {2}, itemID ={3}",
-                    command_id,type,return_url.ToString(),item_id.ToString());
+                    command_id, type, return_url.ToString(), item_id.ToString());
                 string response = CreateCommand("get_command_value", command_id);
-               response = Net.SendPost(response);
+                response = Net.SendPost(response);
                 string filename = string.Empty;
                 string data = string.Empty;
                 try
@@ -280,19 +297,20 @@ namespace HappyPandaXDroid.Core
                         var profiledata = JSON.Serializer.simpleSerializer.Deserialize<Gallery.Profile>(data);
                         filename = dir + name + ".jpg";
                         string url = profiledata.data;
-                        url = "http://" + App.Settings.Server_IP + ":7008" + url;
+                        url = "http://" + App.Settings.Server_IP + ":"+ App.Settings.WebClient_Port + url;
                         if (return_url)
                             return url;
                         using (var client = new WebClient())
                         {
-                            logger.Info("Downloading URL. URL : {0}\n, Path : {1}", url,filename);
+                            logger.Info("Downloading URL. URL : {0}\n, Path : {1}", url, filename);
                             client.DownloadFile(new Uri(url), filename);
-                            logger.Info("Download Complete. URL : {0},\n Path : {1},\n Size: {2}", url, filename,new FileInfo(filename).Length);
+                            logger.Info("Download Complete. URL : {0},\n Path : {1},\n Size: {2}", url, filename, new FileInfo(filename).Length);
                         }
                         return filename;
                     }
                     else return "fail";
-                }catch(ThreadAbortException ex)
+                }
+                catch (ThreadAbortException ex)
                 {
                     logger.Error(ex, "\n Exception Caught In App.Server.GetCommandValue.");
                     return "fail";
@@ -315,7 +333,7 @@ namespace HappyPandaXDroid.Core
                 {
                     state = JSON.API.GetData(response, 2);
                     return state;
-                    
+
                 }
                 else return (GetError(response));
 
@@ -323,13 +341,13 @@ namespace HappyPandaXDroid.Core
 
             public static T GetItem<T>(int item_id, string type)
             {
-                logger.Info("Get Item. itemId={0}, type = {1}", item_id,type);
+                logger.Info("Get Item. itemId={0}, type = {1}", item_id, type);
                 List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
                 JSON.API.PushKey(ref main, "name", "test");
                 JSON.API.PushKey(ref main, "session", Net.session_id);
                 JSON.API.PushKey(ref funct, "fname", "get_item");
-                JSON.API.PushKey(ref funct, "item_id", "<int>"+item_id);
+                JSON.API.PushKey(ref funct, "item_id", "<int>" + item_id);
                 JSON.API.PushKey(ref funct, "item_type", type);
                 string response = JSON.API.ParseToString(funct);
                 JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
@@ -338,12 +356,12 @@ namespace HappyPandaXDroid.Core
                 string data = ParseItem(responsestring);
                 return JSON.Serializer.simpleSerializer.Deserialize<T>(data);
 
-                
+
             }
 
-            public static List<T> GetRelatedItems<T>(int item_id, string related_type = "Page", int limit =-1)
+            public static List<T> GetRelatedItems<T>(int item_id, string related_type = "Page", int limit = -1)
             {
-                logger.Info("Get Item. itemId={0}, related_type = {1}, limit = {2}", item_id, related_type,limit);
+                logger.Info("Get Item. itemId={0}, related_type = {1}, limit = {2}", item_id, related_type, limit);
                 List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
                 JSON.API.PushKey(ref main, "name", "test");
@@ -355,18 +373,18 @@ namespace HappyPandaXDroid.Core
                 string response = JSON.API.ParseToString(funct);
                 JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
                 response = JSON.API.ParseToString(main);
-               
+
                 response = Net.SendPost(response);
                 response = JSON.API.GetData(response, 2);
                 if (response.Contains("\"fname\""))
-                    response = response.Substring(0,response.LastIndexOf(","));
+                    response = response.Substring(0, response.LastIndexOf(","));
                 var list = JSON.Serializer.simpleSerializer.DeserializeToList<T>(response);
                 return list;
             }
 
             public int GetRelatedCount(int item_id, string related_type = "Page")
             {
-                int  count = 0;
+                int count = 0;
                 logger.Info("Get Related Count. itemId={0}, related_type = {1},", item_id, related_type);
                 List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
@@ -399,7 +417,7 @@ namespace HappyPandaXDroid.Core
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, "\n Exception Caught In App.Server.ParseItem. JSONString = {0}",json);
+                    logger.Error(ex, "\n Exception Caught In App.Server.ParseItem. JSONString = {0}", json);
                 }
                 return d;
             }
@@ -411,18 +429,18 @@ namespace HappyPandaXDroid.Core
                     string error = string.Empty;
                     string temp = datajson.Substring(datajson.IndexOf("error"));
                     temp = temp.Substring(temp.IndexOf("code"));
-                    error = temp.Substring(temp.IndexOf(":") +1, temp.IndexOf("}") - temp.IndexOf(":"));
+                    error = temp.Substring(temp.IndexOf(":") + 1, temp.IndexOf("}") - temp.IndexOf(":"));
                     error = error.Trim(' ');
                     error += ":";
                     temp = datajson.Substring(datajson.IndexOf("msg"));
                     error += temp.Substring(temp.IndexOf(":") + 1, temp.IndexOf("}") - temp.IndexOf(":"));
                     error = error.Trim('\n');
-                    return "error "+error;
+                    return "error " + error;
                 }
                 else return "none";
             }
 
-            public static string HashGenerator(string size , int item_id = 0)
+            public static string HashGenerator(string size, int item_id = 0)
             {
                 string feed = info.name;
                 feed += "-" + size;
@@ -486,7 +504,7 @@ namespace HappyPandaXDroid.Core
                     {
                         AbortRequested = true;
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         logger.Error(ex, "\n Exception Caught In App.Threading.Thread.Abort().");
                     }
@@ -498,9 +516,9 @@ namespace HappyPandaXDroid.Core
                     Status = ThreadState.Running;
                 }
             }
-            
 
-            public static Thread CreateThread(Action action,int activityId,string ActivityClass)
+
+            public static Thread CreateThread(Action action, int activityId, string ActivityClass)
             {
                 Thread thread = new Thread(ActivityClass);
                 ThreadStart thrds = new ThreadStart(action);
@@ -515,14 +533,14 @@ namespace HappyPandaXDroid.Core
                 {
                     logger.Info("Thread {0} Dispatched", thread.ThreadId);
                     thread.Start();
-                    
+
                 }
             }
 
             public static void AbortThread(Thread thread)
             {
                 if (thread.thread.IsAlive)
-                
+
                     thread.Abort();
             }
 
@@ -536,7 +554,8 @@ namespace HappyPandaXDroid.Core
                     try
                     {
                         threads = ThreadPool.ToArray();
-                    }catch(Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         logger.Error(ex, "\n Exception Caught In App.Threading.CleanUp.");
                         return;
@@ -554,7 +573,7 @@ namespace HappyPandaXDroid.Core
 
             public static void Schedule(Thread thread)
             {
-                logger.Info("Thread {0} added to schedule",thread.ThreadId);
+                logger.Info("Thread {0} added to schedule", thread.ThreadId);
                 thread.Status = Thread.ThreadState.Pending;
                 thread.Priority = 1;
                 while (Updating)
@@ -622,7 +641,7 @@ namespace HappyPandaXDroid.Core
                             Thread HighestPriorityThread;
                             if (ThreadPool.Count > 0)
                             {
-                                HighestPriorityThread = ThreadPool.Find((x)=>x.Status == Thread.ThreadState.Pending);
+                                HighestPriorityThread = ThreadPool.Find((x) => x.Status == Thread.ThreadState.Pending);
                                 if (HighestPriorityThread == null)
                                     break;
                                 count = ThreadPool.Count;
@@ -635,8 +654,8 @@ namespace HappyPandaXDroid.Core
                                         HighestPriorityThread = thread;
                                     }
                                 }
-                                if(HighestPriorityThread!=null)
-                                StartThread(HighestPriorityThread);
+                                if (HighestPriorityThread != null)
+                                    StartThread(HighestPriorityThread);
                             }
                             else
                                 return;
@@ -671,7 +690,7 @@ namespace HappyPandaXDroid.Core
                 }
             }
 
-            public static void AbortActivityThreads(int activityId,string ActivityType)
+            public static void AbortActivityThreads(int activityId, string ActivityType)
             {
                 logger.Info("Abort Activity Child Threads Called. Activity = {0}", ActivityType);
                 if (ThreadPool.Count > 0)
@@ -695,7 +714,7 @@ namespace HappyPandaXDroid.Core
                 }
             }
 
-            public  static void AbortThreads()
+            public static void AbortThreads()
             {
                 if (ThreadPool.Count > 0)
                 {
@@ -753,7 +772,7 @@ namespace HappyPandaXDroid.Core
                     }
                 }
             }
-            
+
             public static void InitScheduler()
             {
                 logger.Info("Initializing Scheduler");
@@ -770,6 +789,6 @@ namespace HappyPandaXDroid.Core
                 RunScheduler = false;
             }
         }
-        
+
     }
 }
