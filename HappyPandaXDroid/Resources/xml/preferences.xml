@@ -11,4 +11,10 @@
       android:title="@string/server_port"
       android:id="@+id/portpref"
       />
+  
+  <CheckBoxPreference
+    android:key="enable_debugging"
+      android:title="@string/enable_debug"
+    android:defaultValue="false"
+      android:id="@+id/debugpref"/>
 </PreferenceScreen>

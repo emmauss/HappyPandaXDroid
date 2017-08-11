@@ -16,7 +16,9 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Support.V7.View;
 using Plugin.Settings;
+using System.IO;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using NLog.Config;
 
 using NLog;
 
@@ -144,6 +146,43 @@ namespace HappyPandaXDroid
                     if(key =="server_ip"||key == "server_port")
                     {
                         Core.App.Settings.Refresh = true;
+                    }
+                }
+                else if (pref is TwoStatePreference)
+                {
+                    var check = (TwoStatePreference)pref;
+                    var edit = sharedPreferences.Edit();
+                    edit.PutBoolean(key, check.Checked);
+                    
+                    edit.Commit();
+                    if (key == "server_ip" || key == "server_port")
+                    {
+                        Core.App.Settings.Refresh = true;
+                    }
+                    if (key == "enable_debugging")
+                    {
+                        switch (check.Checked)
+                        {
+                            case true:
+                                NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
+                                if (!Directory.Exists(Core.App.Settings.Log))
+                                {
+                                    Directory.CreateDirectory(Core.App.Settings.Log);
+                                }
+                                string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
+                                    + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
+                                target.FileName = logfile;
+                                target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
+                                LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
+                                LogManager.Configuration.AddTarget(target);
+
+                                LogManager.Configuration.AddRuleForAllLevels(target, "*");
+                                LogManager.ReconfigExistingLoggers();
+                                break;
+                            case false:
+                                LogManager.Configuration = null;
+                                break;
+                        }
                     }
                 }
             }

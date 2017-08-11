@@ -47,23 +47,26 @@ namespace HappyPandaXDroid
             //set unhandled exception handler
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            
+
             //init logger
-            NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
-            if(!Directory.Exists(Core.App.Settings.Log)){
-                Directory.CreateDirectory(Core.App.Settings.Log);
+            if (Core.App.Settings.Logging_Enabled)
+            {
+                NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
+                if (!Directory.Exists(Core.App.Settings.Log))
+                {
+                    Directory.CreateDirectory(Core.App.Settings.Log);
+                }
+                string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
+                    + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
+                target.FileName = logfile;
+                target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
+                LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
+                var config = LogManager.Configuration;
+                LogManager.Configuration.AddTarget(target);
+
+                LogManager.Configuration.AddRuleForAllLevels(target, "*");
+                LogManager.ReconfigExistingLoggers();
             }
-            string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
-                + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
-            target.FileName = logfile;
-            target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
-            //File.Create(logfile);
-            LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
-            var config = LogManager.Configuration;
-            LogManager.Configuration.AddTarget(target);
-            
-            LogManager.Configuration.AddRuleForAllLevels(target, "*");
-            LogManager.ReconfigExistingLoggers();
             logger.Info("Main Actitvity Created");
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource

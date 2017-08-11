@@ -68,6 +68,19 @@ namespace HappyPandaXDroid.Core
                 }
             }
 
+            public static bool Logging_Enabled
+            {
+                get
+                {
+                    var set  = AppSettings.GetValueOrDefault("enable_debugging", false);
+                    return set;
+                }
+                set
+                {
+                    AppSettings.AddOrUpdateValue("enable_debugging", value);
+                }
+            }
+
             public static string Server_Port
             {
                 get
