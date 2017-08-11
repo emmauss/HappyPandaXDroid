@@ -16,7 +16,7 @@ using Android.Support.V7.View;
 using Com.Bumptech.Glide;
 using Com.Bumptech.Glide.Request;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
-
+using NLog;
 
 namespace HappyPandaXDroid
 {
@@ -31,6 +31,7 @@ namespace HappyPandaXDroid
         Core.Gallery.GalleryItem gallery;
         RecyclerView grid_layout;
         PreviewAdapter adapter;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public bool IsRunning = true;
         public int activityId;
         List<Core.Gallery.Page> pagelist;
@@ -43,7 +44,7 @@ namespace HappyPandaXDroid
             string data = Intent.GetStringExtra("gallery");
             InitializeViews();
             gallery = Core.JSON.Serializer.simpleSerializer.Deserialize<Core.Gallery.GalleryItem>(data);
-
+            logger.Info("Initializing Gallery Detail. GalleryId ={0}", gallery.id);
 
             activityId = ThreadHandler.Thread.IdGen.Next();
             pagelist = Core.App.Server.GetRelatedItems<Core.Gallery.Page>(gallery.id);
@@ -63,7 +64,7 @@ namespace HappyPandaXDroid
                     }
                     catch (Exception ex)
                     {
-
+                        logger.Error(ex, "\n Exception Caught In GalleryActivity.Oncreate.");
                     }
                 });
             });
@@ -72,7 +73,7 @@ namespace HappyPandaXDroid
         protected override void OnDestroy()
         {
             IsRunning = false;
-            ThreadHandler.AbortActivityThreads(activityId);
+            ThreadHandler.AbortActivityThreads(activityId,"GalleryActivity");
             base.OnDestroy();
         }
 
@@ -233,7 +234,7 @@ namespace HappyPandaXDroid
     public class PreviewAdapter : RecyclerView.Adapter
     {
         public int preview_count = 10;
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public List<Core.Gallery.Page> mdata;
         Android.Content.Context mcontext;
         public PreviewAdapter(Context context)
@@ -276,10 +277,10 @@ namespace HappyPandaXDroid
                }
                catch(Exception ex)
                {
-
+                   logger.Error(ex, "\n Exception Caught In GalleryActivity.PreviewAdaptor.OnBindViewHolder.");
                }
 
-           }, activity.activityId);
+           }, activity.activityId,"GalleryActivity");
             ThreadHandler.Schedule(thread);
             
             vh.txt.Text = mdata[position].number.ToString();
@@ -305,6 +306,7 @@ namespace HappyPandaXDroid
         public ImageView img;
         public TextView txt;
         public int position;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public bool loaded = false;
         public PreviewViewHolder(View itemView) : base(itemView)
         {
@@ -370,6 +372,8 @@ namespace HappyPandaXDroid
             }
             catch(Exception ex)
             {
+                logger.Error(ex, "\n Exception Caught In GalleryActivity.PreviewHolder.LoadPreview.");
+
                 tries = 0;
                 return false;
             }
@@ -381,7 +385,7 @@ namespace HappyPandaXDroid
             View preview;
             public void OnClick(View v)
             {
-                preview = v;
+                /*preview = v;
                 Intent intent = new Intent(preview.Context, typeof(GalleryActivity));
                 /*string gallerystring = Core.JSON.Serializer.simpleSerializer.Serialize(preview.Gallery);
                 intent.PutExtra("gallery", gallerystring);

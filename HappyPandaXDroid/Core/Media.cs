@@ -16,6 +16,7 @@ using Android.Support.V4.Widget;
 
 using Com.Bumptech.Glide;
 using Emmaus.Widget;
+using NLog;
 
 namespace HappyPandaXDroid.Core
 {
@@ -23,8 +24,10 @@ namespace HappyPandaXDroid.Core
     {
         
         
-        public class ImageViewer
+       /* public class ImageViewer
         {
+            
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             List<string> ImageList = new List<string>();
             int ImagePosition = 0, preloadPositionRight = 0, preloadPositionLeft;
             Context mcontext;
@@ -65,7 +68,7 @@ namespace HappyPandaXDroid.Core
                 preloadPositionLeft = pos;
                 /*PreloadImages();
                 PreloadLeft();                
-                madapter.NotifyDataSetChanged();*/
+                madapter.NotifyDataSetChanged();
 
             }
 
@@ -84,7 +87,7 @@ namespace HappyPandaXDroid.Core
                     var ImageView = new Custom_Views.ImageViewHolder(mcontext);                    
                     /*GalleryService
                         .LoadFile(ImageList[preloadPositionRight]).Retry(3, 1000)
-                        .Into(ImageView);*/
+                        .Into(ImageView);*
                     //madapter.Add(ImageView);
                     //int posn = madapter.GetItemPosition(ImageView);
                     madapter.NotifyDataSetChanged();
@@ -106,7 +109,7 @@ namespace HappyPandaXDroid.Core
                     var ImageView = new Custom_Views.ImageViewHolder(mcontext);
                     /*GalleryService
                         .LoadFile(ImageList[preloadPositionLeft]).Retry(3, 1000)
-                        .Into(ImageView);*/
+                        .Into(ImageView);*
                     //madapter.Insert(0,ImageView);
                     //int posn = madapter.GetItemPosition(ImageView);
                     madapter.NotifyDataSetChanged();
@@ -129,7 +132,7 @@ namespace HappyPandaXDroid.Core
                     var ImageView = new Custom_Views.ImageViewHolder(mcontext);
                     /*GalleryService
                         .LoadFile(ImageList[preloadPositionRight]).Retry(3, 1000)
-                        .Into(ImageView);*/
+                        .Into(ImageView);*
                     //madapter.ImageViewList.Add(ImageView);
 
                     madapter.NotifyDataSetChanged();
@@ -198,6 +201,6 @@ namespace HappyPandaXDroid.Core
 
                 }
             }
-        }
+        }*/
     }
 }

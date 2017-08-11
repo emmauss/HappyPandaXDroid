@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using NLog;
 
 namespace HappyPandaXDroid.Custom_Views
 {
@@ -19,7 +20,7 @@ namespace HappyPandaXDroid.Custom_Views
         public EditText PageInput;
         public Android.Support.Design.Widget.TextInputLayout FloatingTextLayout;
         MainActivity mactivity;
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
@@ -43,7 +44,7 @@ namespace HappyPandaXDroid.Custom_Views
         public class ClickListener : Java.Lang.Object, IDialogInterfaceOnClickListener
         {
             NoticeDialogListener listener;
-
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             PageSelector pg;
             public ClickListener(NoticeDialogListener listener,PageSelector pg)
             {

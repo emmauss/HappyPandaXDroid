@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NLog;
 
 namespace HappyPandaXDroid.Core
 {
@@ -18,6 +19,7 @@ namespace HappyPandaXDroid.Core
     {
         public  class Serializer
         {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public static Serializer simpleSerializer = new Serializer();
             public string Serialize<T>( T obj )
             {
@@ -51,6 +53,8 @@ namespace HappyPandaXDroid.Core
 
                     catch (Exception ex)
                     {
+                        logger.Error(ex, "\n Exception Caught In JSON.Serializer.DeserializeToString. string ={0}",serialized_string);
+
                     }
                 }
                 return objectsList;
@@ -59,6 +63,7 @@ namespace HappyPandaXDroid.Core
 
         public class API
         {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public static void PushKey(ref List<Tuple<string, string>> request, string name, string value)
             {
                 request.Add(new Tuple<string, string>(name,value) );

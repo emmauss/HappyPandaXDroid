@@ -13,12 +13,16 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
+using System.IO;
 using System.Threading;
+using System.Xml;
 using Android.Support.V7.View;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using Java.Lang;
+using NLog.Config;
+using NLog;
 
 namespace HappyPandaXDroid
 {
@@ -34,6 +38,7 @@ namespace HappyPandaXDroid
         DrawerLayout navDrawer;
         public bool SwitchedToSettings = false;
         Clans.Fab.FloatingActionMenu fam;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         Clans.Fab.FloatingActionButton mRefreshFab;
         Clans.Fab.FloatingActionButton mJumpFab;
         protected override void OnCreate(Bundle bundle)
@@ -42,7 +47,24 @@ namespace HappyPandaXDroid
             //set unhandled exception handler
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
+            
+            //init logger
+            NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
+            if(!Directory.Exists(Core.App.Settings.Log)){
+                Directory.CreateDirectory(Core.App.Settings.Log);
+            }
+            string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
+                + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
+            target.FileName = logfile;
+            target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
+            //File.Create(logfile);
+            LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
+            var config = LogManager.Configuration;
+            LogManager.Configuration.AddTarget(target);
+            
+            LogManager.Configuration.AddRuleForAllLevels(target, "*");
+            LogManager.ReconfigExistingLoggers();
+            logger.Info("Main Actitvity Created");
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -77,13 +99,14 @@ namespace HappyPandaXDroid
         //bg thread unhandled exception handler
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            throw new NotImplementedException();
+            logger.Fatal((System.Exception)e.ExceptionObject, "Fatal Exception Thrown");
         }
 
         //ui thread unhandled exception handler
         private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
         {
-            throw new NotImplementedException();
+            logger.Fatal(e.Exception, "Fatal Exception Thrown");
+            RunOnUiThread(() => { throw new System.Exception(); });
         }
 
         public override bool OnGenericMotionEvent(MotionEvent e)
@@ -143,6 +166,7 @@ namespace HappyPandaXDroid
         class FABClickListener : Java.Lang.Object, View.IOnClickListener
         {
             MainActivity main;
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public FABClickListener(MainActivity main)
             {
                 this.main = main;
@@ -153,6 +177,7 @@ namespace HappyPandaXDroid
                 switch (fab.Id)
                 {
                     case Resource.Id.fabJumpTo:
+                        logger.Info("Page selector shown");
                         main.ContentView.mpageSelector.Show(((Activity)main).FragmentManager, "PageSelecter");
                         break;
                     case Resource.Id.fabRefresh:
@@ -189,6 +214,7 @@ namespace HappyPandaXDroid
                 Task.Run(async () =>
                 {
                     await Task.Delay(10);
+                    logger.Info("Refreshing library");
                     RunOnUiThread(() =>
                     {
                         ContentView.SetMainLoading(true);
@@ -203,6 +229,7 @@ namespace HappyPandaXDroid
                         return;
                     }
                     ContentView.Refresh();
+                    logger.Info("Refresh Done");
                     RunOnUiThread(() =>
                     {
                         ContentView.SetMainLoading(false);
@@ -211,7 +238,7 @@ namespace HappyPandaXDroid
             }
             catch(System.Exception ex)
             {
-
+                logger.Error(ex, "\n Exception Caught In MainActivity.OnResume");
             }
         }
 
@@ -225,6 +252,7 @@ namespace HappyPandaXDroid
                 case Resource.Id.action_setting:
                     intent = new Android.Content.Intent(this, typeof(SettingsActivity));
                     SwitchedToSettings = true;
+                    logger.Info("Settings Openned");
                     StartActivity(intent);
                     break;
                 case Resource.Id.action_home:
@@ -247,6 +275,7 @@ namespace HappyPandaXDroid
         public bool OnQueryTextSubmit(string query)
         {
             searchView.ClearFocus();
+            logger.Info("Search query submit , query ={0}", query);
             ContentView.Current_Query = query;
             return true;
         }

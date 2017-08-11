@@ -18,11 +18,15 @@ using Android.Support.V7.View;
 using Plugin.Settings;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
+using NLog;
+
 namespace HappyPandaXDroid
 {
     [Activity(Label = "Settings")]
     public class SettingsActivity : AppCompatActivity
     {
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,6 +38,8 @@ namespace HappyPandaXDroid
             var ft = FragmentManager.BeginTransaction();
             ft.Add(Resource.Id.fragment_container, newFragment);
             ft.Commit();
+
+            logger.Info("Settings Loaded");
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -51,6 +57,8 @@ namespace HappyPandaXDroid
         public  class SettingsFragments : PreferenceFragment, 
             ISharedPreferencesOnSharedPreferenceChangeListener
         {
+
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             //Core.App.Settings set = new Core.App.Settings();
             ISharedPreferences sharedPreferences;
             ISharedPreferencesOnSharedPreferenceChangeListener listener;
@@ -124,9 +132,10 @@ namespace HappyPandaXDroid
             public void OnSharedPreferenceChanged(ISharedPreferences sharedPreferences, string key)
             {
                 Preference pref = FindPreference(key);
-
+                logger.Info("Change Preference : {0}", key);
                 if (pref is EditTextPreference)
                 {
+
                     EditTextPreference editp = (EditTextPreference)pref;
                     var edit = sharedPreferences.Edit();
                     edit.PutString(key, editp.Text);

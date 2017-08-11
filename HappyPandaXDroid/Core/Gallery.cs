@@ -13,12 +13,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using NLog;
 
 
 namespace HappyPandaXDroid.Core
 {
     public class Gallery
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public static List<GalleryItem> CurrentList = new List<GalleryItem>();
         public enum ImageSize
         {
@@ -208,10 +210,12 @@ namespace HappyPandaXDroid.Core
             }
             catch (System.Net.Sockets.SocketException ex)
             {
+                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Gallery, itemId = {0}, size = {1}",gallery.id,size);
                 return "fail: server not found or connection failed error";
             }
             catch (Exception ex)
             {
+                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Gallery, itemId = {0}, size = {1}", gallery.id, size);
                 return "fail: server error";
             }
         }
@@ -238,7 +242,7 @@ namespace HappyPandaXDroid.Core
             }
             catch (Exception ex)
             {
-                
+                logger.Error(ex, "\n Exception Caught In Gallery.InitiateImageGeneration.");
             }
         }
 
@@ -281,10 +285,13 @@ namespace HappyPandaXDroid.Core
             }
             catch (System.Net.Sockets.SocketException ex)
             {
+                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1}", page.id, size);
                 return "fail: server not found or connection failed error";
             }
             catch (Exception ex)
             {
+                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1}", page.id, size);
+
                 return "fail: misc server error";
             }
         }
@@ -324,6 +331,8 @@ namespace HappyPandaXDroid.Core
                     return false;
             }catch(Exception ex)
             {
+                logger.Error(ex, "\n Exception Caught In Gallery.SearchGallery. query = {0}",query);
+
                 return false;
             }
         }
@@ -478,6 +487,8 @@ namespace HappyPandaXDroid.Core
                 }
                 catch (Exception ex)
                 {
+                    logger.Error(ex, "\n Exception Caught In Gallery.IsCached.");
+
                     return false;
                 }
 

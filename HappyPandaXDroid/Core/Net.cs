@@ -17,19 +17,22 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using NLog;
 
 namespace HappyPandaXDroid.Core
 {
     class Net
     {
-        
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public static string session_id = string.Empty;
 
         public  static string Connect()
         {
             try
             {
+                logger.Info("Connecting to server ...");
                 TcpClient listener = new TcpClient(App.Settings.Server_IP, int.Parse(App.Settings.Server_Port));
+                logger.Info("Connection Successful. Starting Handshake");
                 string response = string.Empty;
                 string payload;
                 var stream = listener.GetStream();
@@ -58,11 +61,13 @@ namespace HappyPandaXDroid.Core
                 bool success = false;
                 if (!payload.Contains("Authenticated"))
                 {
+                    logger.Info("Handshake Failed");
                     success = true;
                     response = "fail";
                 }
                 else
                 {
+                    logger.Info("Handshake Successful");
                     payload = payload.Replace("<EOF>", "");
                     Dictionary<string, string> reply =
                         JSON.Serializer.simpleSerializer.Deserialize<Dictionary<string, string>>(payload);
@@ -71,12 +76,14 @@ namespace HappyPandaXDroid.Core
                 return response;
             }catch(SocketException ex)
             {
+                logger.Error(ex, "\n Exception Caught In Net.Connect.");
+
                 return "fail";
             }
         }
         public  static string SendPost(string payload)
         {
-            
+            logger.Info("Sending Request.\n Request : \n {0} \n", payload);
             string response = "fail";
             TcpClient listener = new TcpClient(App.Settings.Server_IP, int.Parse(App.Settings.Server_Port));
             try
@@ -109,11 +116,13 @@ namespace HappyPandaXDroid.Core
                             break;
                         Array.Clear(res, 0, res.Length);
                     }
+                    logger.Info("Response from server: \n {0}", response);
                 }
 
             }
             catch(System.Exception ex)
             {
+                logger.Error(ex, "\n Exception Caught In Net.SendPost.");
 
             }
             return response;

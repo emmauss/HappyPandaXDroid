@@ -26,7 +26,7 @@ using Android.Support.V7.App;
 using Java.Lang;
 using Emmaus.Widget;
 using Com.Bumptech.Glide.Request.Target;
-
+using NLog;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
@@ -41,6 +41,7 @@ namespace HappyPandaXDroid
         bool overlayVisible = true;
         public  ImageAdapter adapter;
         FrameLayout lay;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         /*List<string> ImageList =
             new List<string>();*/
         List<Core.Gallery.Page> PageList =
@@ -58,6 +59,7 @@ namespace HappyPandaXDroid
             
                 string data = Intent.GetStringExtra("page");
                 PageList = Core.JSON.Serializer.simpleSerializer.Deserialize<List<Core.Gallery.Page>>(data);
+            logger.Info("Initializing Gallery Viewer");
             InitPageGen();
             activityID = ThreadHandler.Thread.IdGen.Next();
             
@@ -79,11 +81,12 @@ namespace HappyPandaXDroid
             page_number.Text = seekbar.Progress.ToString();
             galleryPager.AddOnPageChangedListener(new PageChangeListener(this));
             seekbar.SetOnSeekBarChangeListener(new SeekBarChangeListener(this));
+            logger.Info("Gallery Viewer Initialized");
             /*int pos = list.IndexOf(data);
             if (pos < 0)
                 pos = 0;
             imageHandler.StartReader(galleryPager, this, pos, galleryPager);*/
-             
+
          }
 
         protected override void OnResume()
@@ -94,8 +97,8 @@ namespace HappyPandaXDroid
 
         protected override void OnDestroy()
         {
-            
-            ThreadHandler.AbortActivityThreads(activityID);
+            logger.Info("Closing Gallery Viewer");
+            ThreadHandler.AbortActivityThreads(activityID,"GalleryViewer");
             base.OnDestroy();
         }
 
@@ -137,6 +140,7 @@ namespace HappyPandaXDroid
         public class SeekBarChangeListener : Java.Lang.Object, SeekBar.IOnSeekBarChangeListener
         {
             GalleryViewer activity;
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public SeekBarChangeListener(GalleryViewer activity)
             {
                 this.activity = activity;
@@ -166,6 +170,7 @@ namespace HappyPandaXDroid
         public class PageChangeListener : RecyclerViewPager.OnPageChangedListener
         {
             GalleryViewer mactivity;
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public PageChangeListener(GalleryViewer activity)
             {
                 mactivity = activity;
@@ -343,6 +348,7 @@ namespace HappyPandaXDroid
         public  class ImageAdapter : RecyclerView.Adapter , IOnItemChangedListener
         {
             public List<Core.Gallery.Page> PageList;
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             Context context;
             IOnRecyclerViewItemClickListener mOnItemClickListener;
             public ImageAdapter(List<Core.Gallery.Page> imagelist, Context context)
@@ -380,7 +386,7 @@ namespace HappyPandaXDroid
                     while (true)
                     {
                         await Task.Delay(10);
-                        if (PageList[position].image_url == string.Empty || PageList[position].image_url == null 
+                        if (PageList[position].image_url == string.Empty || PageList[position].image_url == null
                             || PageList[position].image_url.Contains("fail:"))
                         {
                             PageList[position].image_url = await Core.Gallery.GetImage(PageList[position], true, "original");
@@ -407,21 +413,21 @@ namespace HappyPandaXDroid
                         }
                     }
 
-                string url = PageList[position].image_url;
-                    
+                    string url = PageList[position].image_url;
+
                     var h = new Handler(Looper.MainLooper);
                     h.Post(() =>
                     {
                         Glide.With(context)
                         .Load(url)
                         .DiskCacheStrategy(Com.Bumptech.Glide.Load.Engine.DiskCacheStrategy.All)
-                        .Override(Target.SizeOriginal,Target.SizeOriginal)
+                        .Override(Target.SizeOriginal, Target.SizeOriginal)
                         .Into(vh.imageView)
                         ;
                     });
                     tries = 0;
                     //vh.imageView = ImageList[position];
-                },activity.activityID);
+                }, activity.activityID, "GalleryViewer");
                 ThreadHandler.Schedule(thread);
 
 

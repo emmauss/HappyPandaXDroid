@@ -19,12 +19,14 @@ using Android.Support.V7.View;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
+using NLog;
 
 namespace HappyPandaXDroid.Custom_Views
 {
     public class HPContent : FrameLayout
     {
         View ContentView;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public Custom_Views.PageSelector mpageSelector;
         RecyclerView mRecyclerView;
         bool IsRefreshing = false;
@@ -81,7 +83,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         private void Initialize()
         {
-
+            logger.Info("Initializing HPContent");
             ContentView = Inflate(Context, Resource.Layout.HPContent, this);
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
             adapter = new ListViewAdapter(this.Context);
@@ -110,7 +112,7 @@ namespace HappyPandaXDroid.Custom_Views
                 if (!Core.Net.Connect().Contains("fail"))
                 {
                     {
-                        
+                        logger.Info("Getting Library");
                         GetLib();
                         var h = new Handler(Looper.MainLooper);
                         h.Post(() =>
@@ -138,6 +140,7 @@ namespace HappyPandaXDroid.Custom_Views
             thread.Start();
             mpageSelector = new Custom_Views.PageSelector();
             dialogeventlistener = new DialogEventListener();
+            logger.Info("HPContent Initialized");
         }
 
         private void MErrorFrame_Click(object sender, EventArgs e)
@@ -161,6 +164,7 @@ namespace HappyPandaXDroid.Custom_Views
             if(!IsRefreshing)
             Task.Run(async () =>
             {
+                logger.Info("Swipe Header Refreshing");
                 IsRefreshing = true;
                 await Task.Delay(10);
                 Refresh();
@@ -179,6 +183,7 @@ namespace HappyPandaXDroid.Custom_Views
             }
             public void OnFooterRefresh()
             {
+                logger.Info("Swipe Footer Refreshing");
                 content.SetBottomLoading(true);
                 ThreadStart load = new ThreadStart(content.NextPage);
                 Thread thread = new Thread(load);
@@ -190,6 +195,7 @@ namespace HappyPandaXDroid.Custom_Views
                 if (!content.IsRefreshing)
                     Task.Run(async () =>
                     {
+                        logger.Info("Swipe Header Refreshing");
                         content.IsRefreshing = true;
                         await Task.Delay(10);
                         content.Refresh();
@@ -212,6 +218,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         public async void Refresh()
         {
+            logger.Info("Refreshing HPContent");
             var h = new Handler(Looper.MainLooper);
             bool success = await Core.Gallery.SearchGallery(Current_Query);
             if (!success)
@@ -233,6 +240,7 @@ namespace HappyPandaXDroid.Custom_Views
                 GetTotalCount();
 
             });
+            logger.Info("HPContent Refresh Successful");
         }
 
         public void SetBottomLoading(bool state)
@@ -287,6 +295,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         public void NextPage()
         {
+            logger.Info("Loading Next Page");
             GetTotalCount();
             var h = new Handler(Looper.MainLooper);
             if ((CurrentPage + 1) >= (count / 25))
@@ -321,10 +330,12 @@ namespace HappyPandaXDroid.Custom_Views
                 mRefreshLayout.FooterRefreshing = false;
                 SetBottomLoading(false);
             });
+            logger.Info("Loading Next Page Successful");
         }
 
         public void PreviousPage()
         {
+            logger.Info("Loading Previous Page");
             var h = new Handler(Looper.MainLooper);
             if (CurrentPage == 0)
             {
@@ -352,6 +363,7 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 SetBottomLoading(false);
             });
+            logger.Info("Loading Previous Page Successful");
         }
 
 
@@ -372,7 +384,7 @@ namespace HappyPandaXDroid.Custom_Views
         
         public class ListViewAdapter : RecyclerView.Adapter
         {
-
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public EventHandler<int> ItemClick;
 
             void OnClick(int position)
@@ -409,6 +421,7 @@ namespace HappyPandaXDroid.Custom_Views
                 }
                 catch (Exception ex)
                 {
+                    logger.Error(ex, "\n Exception Caught In HPContent.ListViewAdapter.OnBindViewHolder.");
 
                 }
                 //vh.gcard.SetOnClickListener(new GalleryCardClickListener());
@@ -429,6 +442,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         public class ListViewHolder : RecyclerView.ViewHolder
         {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
             public Custom_Views.GalleryCard gcard;
             public ListViewHolder(View itemView) : base(itemView)
             {
@@ -461,22 +475,7 @@ namespace HappyPandaXDroid.Custom_Views
             }
             public void OnScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY)
             {
-                RecyclerView view = (RecyclerView)v;
-                var mLayoutManager = view.GetLayoutManager();
-                int totalItemCount = mLayoutManager.ItemCount;
-                int visibleCount = mLayoutManager.ChildCount;
-                var layoutmanager = (GridLayoutManager)mLayoutManager;
-                int lastVisibleItem = layoutmanager.FindLastVisibleItemPosition();
-                int firstVisibleItem = layoutmanager.FindFirstVisibleItemPosition();
-                /*if (!activity.IsLoading && totalItemCount - visibleCount <= firstVisibleItem + 1)
-                {
-                    // End has been reached
-                    // Do something
-                    activity.SetBottomLoading(true);
-                    ThreadStart load = new ThreadStart(activity.NextPage);
-                    Thread thread = new Thread(load);
-                    thread.Start();
-                }*/
+                
 
                 if (oldScrollY > scrollY + 10)
                 {
@@ -489,14 +488,14 @@ namespace HappyPandaXDroid.Custom_Views
             }
         }
 
-        public class ScrollListener : RecyclerView.OnScrollListener
+        /*public class ScrollListener : RecyclerView.OnScrollListener
         {
             private int toolbarOffset = 0;
             private int toolbarHeight;
             private Toolbar toolbar;
             public HPContent mactivity;
 
-            public ScrollListener(HPContent context, Toolbar toolbar)
+            /*public ScrollListener(HPContent context, Toolbar toolbar)
             {
                 mactivity = context;
                 this.toolbar = toolbar;
@@ -538,7 +537,7 @@ namespace HappyPandaXDroid.Custom_Views
                          thread.Start();*/
                 /*Toast.MakeText(mactivity, "You have reached to the bottom!", ToastLength.Short).Show();
             return true;
-        }*/
+        }*
 
                 return false;
             }
@@ -561,7 +560,7 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 toolbar.TranslationY = -distance;
             }
-        }
+        }*/
 
 
     }

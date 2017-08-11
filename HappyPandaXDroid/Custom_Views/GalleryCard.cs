@@ -20,12 +20,14 @@ using Com.Bumptech.Glide;
 
 using System.Threading;
 using System.Threading.Tasks;
+using NLog;
 
 
 namespace HappyPandaXDroid.Custom_Views
 {
     public class GalleryCard : LinearLayout
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         View galleryCard;
         ImageView img;
         TextView text;
@@ -97,6 +99,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         private void Initialize()
         {
+            
             galleryCard = Inflate(this.Context,Resource.Layout.galleryCard, this);
             Name = FindViewById<TextView>(Resource.Id.textViewholder);
             Label = FindViewById<TextView>(Resource.Id.textViewholder2);
@@ -106,11 +109,11 @@ namespace HappyPandaXDroid.Custom_Views
             /*this.Click += GalleryCard_Click;
             this.LongClick += GalleryCard_LongClick;
             this.Touch += GalleryCard_Touch;*/
-
         }
 
         public async void Refresh()
         {
+            logger.Info("Refreshing GalleryCard. GalleryId = {0}",Gallery.id);
             Name.Text = Gallery.titles[0].name;
             var h = new Handler(Looper.MainLooper);
             h.Post(() =>
@@ -133,7 +136,7 @@ namespace HappyPandaXDroid.Custom_Views
             });
             Label.Visibility = ViewStates.Gone;
             LoadThumb();
-
+            logger.Info("Refresh {0} Successful",Gallery.id);
         }
 
         public void LoadThumb()
@@ -151,6 +154,7 @@ namespace HappyPandaXDroid.Custom_Views
                     });
                 }catch(Exception ex)
                 {
+                    logger.Error(ex, "\n Exception Caught In GalleryCard.LoadThumb.");
 
                 }
 
@@ -170,6 +174,8 @@ namespace HappyPandaXDroid.Custom_Views
                 }
                 catch(Exception ex)
                 {
+                    logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached.");
+
                     return false;
                 }
                 
