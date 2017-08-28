@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Drawing;
 
 using Android;
 using Android.App;
@@ -11,6 +12,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 using Android.Widget;
 using Android.Support.V7.Widget;
 using Android.Support.V7.App;
@@ -103,6 +106,7 @@ namespace HappyPandaXDroid.Custom_Views
             galleryCard = Inflate(this.Context,Resource.Layout.galleryCard, this);
             Name = FindViewById<TextView>(Resource.Id.textViewholder);
             Label = FindViewById<TextView>(Resource.Id.textViewholder2);
+            Label.Text = string.Empty;
             img = FindViewById<ImageView>(Resource.Id.imageView);
             //t.Text = "hey";
             Clickable = true;
@@ -118,10 +122,16 @@ namespace HappyPandaXDroid.Custom_Views
             var h = new Handler(Looper.MainLooper);
             h.Post(() =>
             {
+                try { 
                 Glide.With(Context)
                     .Load(Resource.Drawable.loading2)
                     .Into(img);
-            });
+            }catch (System.Exception ex)
+            {
+                if (ex.Message.Contains("destroyed"))
+                    return;
+            }
+        });
             if (!IsCached)
             {
                 await Task.Run(async () =>
@@ -132,7 +142,7 @@ namespace HappyPandaXDroid.Custom_Views
             await Task.Run(async () =>
             {
                 await Task.Delay(10);
-                Gallery = Core.App.Server.GetItem<Core.Gallery.GalleryItem>(Gallery.id, "Gallery");                
+                //Gallery = Core.App.Server.GetItem<Core.Gallery.GalleryItem>(Gallery.id, "Gallery");                
             });
             Label.Visibility = ViewStates.Gone;
             LoadThumb();
@@ -148,10 +158,16 @@ namespace HappyPandaXDroid.Custom_Views
                     var h = new Handler(Looper.MainLooper);
                     h.Post(() =>
                     {
+                        try { 
                        Glide.With(Context)
                         .Load(thumb_path)
                         .Into(img);
-                    });
+                    }catch (Exception ex)
+                {
+                    if (ex.Message.Contains("destroyed"))
+                        return;
+                }
+            });
                 }catch(Exception ex)
                 {
                     logger.Error(ex, "\n Exception Caught In GalleryCard.LoadThumb.");
@@ -169,16 +185,18 @@ namespace HappyPandaXDroid.Custom_Views
                 int item_id = gallery.id;
                 try
                 {
-                    thumb_path = Core.App.Settings.cache + "thumbs/" + Core.App.Server.HashGenerator("medium", item_id) + ".jpg";
-                    return File.Exists(thumb_path) ? true : false;
+                    thumb_path = Core.App.Settings.cache + "thumbs/" + Core.App.Server.HashGenerator("medium", "thumb", item_id) + ".jpg";
+                    bool check = Core.Media.Cache.IsCached(thumb_path);
+
+                    return check;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached.");
 
                     return false;
                 }
-                
+
             }
         }
 

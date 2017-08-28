@@ -171,7 +171,7 @@ namespace HappyPandaXDroid.Core
                 response = JSON.API.ParseToString(main);
 
 
-                string res = Net.Connect();
+                Net.Connect();
 
             }
 
@@ -267,7 +267,7 @@ namespace HappyPandaXDroid.Core
 
 
 
-            public static string GetCommandValue(int command_id, int item_id, string name, string type, bool return_url)
+            public static string GetCommandValue(int command_id, int item_id, string name, string type, bool return_url,bool IsPreview = false)
             {
                 logger.Info("Get Command value. commandId={0}, type = {1}, url = {2}, itemID ={3}",
                     command_id, type, return_url.ToString(), item_id.ToString());
@@ -289,7 +289,10 @@ namespace HappyPandaXDroid.Core
                                 dir += "thumbs/";
                                 break;
                             case "page":
-                                dir += "pages/";
+                                if (IsPreview)
+                                    dir += "preview/";
+                                else
+                                    dir += "pages/";
                                 break;
 
                         }
@@ -440,9 +443,10 @@ namespace HappyPandaXDroid.Core
                 else return "none";
             }
 
-            public static string HashGenerator(string size, int item_id = 0)
+            public static string HashGenerator(string size,string type, int item_id = 0)
             {
                 string feed = info.name;
+                feed += "-" + type;
                 feed += "-" + size;
                 feed += item_id == 0 ? "" : item_id.ToString();
                 byte[] feedbyte = Encoding.Unicode.GetBytes(feed);

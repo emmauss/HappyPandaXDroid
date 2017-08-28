@@ -20,7 +20,7 @@ using NLog;
 
 namespace HappyPandaXDroid
 {
-    [Activity(Label = "GalleryActivity")]
+    [Activity(Label = "GalleryActivity", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class GalleryActivity : AppCompatActivity
     {
         public TextView title, category, read_action,
@@ -31,6 +31,7 @@ namespace HappyPandaXDroid
         Core.Gallery.GalleryItem gallery;
         RecyclerView grid_layout;
         PreviewAdapter adapter;
+        ScrollView scrollview;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public bool IsRunning = true;
         public int activityId;
@@ -45,9 +46,10 @@ namespace HappyPandaXDroid
             InitializeViews();
             gallery = Core.JSON.Serializer.simpleSerializer.Deserialize<Core.Gallery.GalleryItem>(data);
             logger.Info("Initializing Gallery Detail. GalleryId ={0}", gallery.id);
-
+            
             activityId = ThreadHandler.Thread.IdGen.Next();
             pagelist = Core.App.Server.GetRelatedItems<Core.Gallery.Page>(gallery.id);
+            
             ParseData();
 
             string path = string.Empty ;
@@ -68,6 +70,7 @@ namespace HappyPandaXDroid
                     }
                 });
             });
+            
         }
 
         protected override void OnDestroy()
@@ -92,7 +95,7 @@ namespace HappyPandaXDroid
             pages = FindViewById<TextView>(Resource.Id.pages);
             time_posted = FindViewById<TextView>(Resource.Id.posted);
             no_tags = FindViewById<TextView>(Resource.Id.no_tags);
-
+            scrollview = FindViewById<ScrollView>(Resource.Id.scroll_view);
            grid_layout = FindViewById<RecyclerView>(Resource.Id.grid_layout);
             TagLayout = FindViewById<LinearLayout>(Resource.Id.tags);
             InfoLayout = FindViewById<LinearLayout>(Resource.Id.info);
@@ -184,12 +187,28 @@ namespace HappyPandaXDroid
                             TextView tag_item = (TextView)inflater.Inflate(Resource.Layout.tag_template, awl, false);
                             tag_item.Text = tag.name;                            
                             tag_item.SetBackgroundDrawable(new Custom_Views.RoundSideRectDrawable(color_tag));
-
+                            tag_item.Click += Tag_item_Click;
+                            string fullTagName = _namespace.Name + ":" + tag.name;
+                            tag_item.Tag = fullTagName;
+                            tag_item.Clickable=true;
                             awl.AddView(tag_item);
                         }
                     }
-                }
+                }InfoLayout.RequestFocus();
             }
+            
+        }
+
+        private void Tag_item_Click(object sender, EventArgs e)
+        {
+            TextView tag_item = sender as TextView;
+            if (tag_item == null)
+                return;
+            Android.Content.Intent intent = new Android.Content.Intent(this, typeof(SearchActivity));
+            intent.PutExtra("query", (string)tag_item.Tag);
+            logger.Info("search init :" + (string)tag_item);
+            StartActivity(intent); 
+
         }
 
         void ParseTags()
@@ -250,7 +269,7 @@ namespace HappyPandaXDroid
         public void SetList(List<Core.Gallery.Page> UrlList) 
         {
             int number = preview_count;
-            if (UrlList.Count < 5)
+            if (UrlList.Count < 10)
                 number = UrlList.Count;
             mdata = new List<Core.Gallery.Page>();
             for(int i = 0; i < number; i++)
@@ -308,6 +327,8 @@ namespace HappyPandaXDroid
         public int position;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public bool loaded = false;
+        public Core.Gallery.Page page;
+        string thumb_path;
         public PreviewViewHolder(View itemView) : base(itemView)
         {
             
@@ -316,8 +337,31 @@ namespace HappyPandaXDroid
             txt = preview.FindViewById<TextView>(Resource.Id.title);
             preview.SetOnClickListener(new PreviewClickListener());
         }
+
+        bool IsCached
+        {
+            get
+            {
+                int item_id = page.id;
+                try
+                {
+                    thumb_path = Core.App.Settings.cache + "preview/" + Core.App.Server.HashGenerator("medium", "preview", item_id) + ".jpg";
+                    bool check = Core.Media.Cache.IsCached(thumb_path);
+
+                    return check;
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached.");
+
+                    return false;
+                }
+            }
+        }
+
         public async Task<bool> LoadPreview(Core.Gallery.Page page)
         {
+            this.page = page;
             int tries = 0;
             try
             {
@@ -325,45 +369,49 @@ namespace HappyPandaXDroid
                 var h = new Handler(Looper.MainLooper);
                 h.Post(() =>
                 {
+                try
+                {
                     if (((GalleryActivity)(preview.Context)).IsRunning)
                         Glide.With(preview.Context)
                  .Load(Resource.Drawable.loading2)
                  .Into(img);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        if (ex.Message.Contains("destroyed"))
+                            return;
+                    }
                 });
-                while (true)
-                {
-                    page.thumb_url = await Core.Gallery.GetImage(page, true);
-                    if(page.thumb_url.Contains("fail"))
+                    while (!IsCached)
                     {
-                        if (page.thumb_url.Contains("misc"))
+                        page.thumb_url = await Core.Gallery.GetImage(page, false,"medium",true);
+                        if (page.thumb_url.Contains("fail"))
                         {
-                            tries++;
-                            if (tries < 4)
+                            if (page.thumb_url.Contains("misc"))
                             {
-                                continue;
+                                tries++;
+                                if (tries < 4)
+                                {
+                                    continue;
+                                }
+
+                                return false;
+
                             }
-
                             return false;
-
                         }
-                        return false;
+                        else
+                        {
+                            break;
+                        }
                     }
-                    else
-                    {
-                        break;
-                    }
-                }
-                IFutureTarget future = Glide.With(preview.Context)
-                    .Load(page.thumb_url)
-                    .DownloadOnly(500, 500);
-                var cache = future.Get();
+                
                 h = new Handler(Looper.MainLooper);
                 h.Post(() =>
                 {
                     if(((GalleryActivity)(preview.Context)).IsRunning)
                     Glide.With(preview.Context)
-                         .Load(page.thumb_url)
-                         .DiskCacheStrategy(Com.Bumptech.Glide.Load.Engine.DiskCacheStrategy.All)
+                         .Load(thumb_path)
                          .Into(img);
                     loaded = true;
                 });

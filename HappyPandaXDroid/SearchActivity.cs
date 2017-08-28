@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.OS;
 using Android.Content;
 using Android.Support.V7.App;
@@ -21,18 +21,16 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using Java.Lang;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NLog.Config;
 using NLog;
 using Android.Content.Res;
 
 namespace HappyPandaXDroid
 {
-    [Activity(Label = "HPXDroid", MainLauncher = true, Icon = "@drawable/icon", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-    public class MainActivity : AppCompatActivity , Android.Support.V7.Widget.SearchView.IOnQueryTextListener
+    [Activity(Label = "SearchActivity", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
+    public class SearchActivity : AppCompatActivity, Android.Support.V7.Widget.SearchView.IOnQueryTextListener
     {
-        
+
         //public List<string> lists = new List<string>();
         //ArrayAdapter<string> adapter;
         Toolbar toolbar;
@@ -50,48 +48,19 @@ namespace HappyPandaXDroid
             //set unhandled exception handler
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            Task.Run(() => {
-                JsonConvert.DeserializeObject("{}");
-            });
+
             //init logger
-            if (Core.App.Settings.Logging_Enabled)
-            {
-                NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
-                if (!Directory.Exists(Core.App.Settings.Log))
-                {
-                    Directory.CreateDirectory(Core.App.Settings.Log);
-                }
-                string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
-                    + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
-                target.FileName = logfile;
-                target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
-                LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
-                var config = LogManager.Configuration;
-                LogManager.Configuration.AddTarget(target);
-
-                LogManager.Configuration.AddRuleForAllLevels(target, "*");
-                
-            }
-            try
-            {
-                LogManager.ReconfigExistingLoggers();
-            }catch(System.Exception ex)
-            {
-
-            }
+            string data = Intent.GetStringExtra("query");
             logger.Info("Main Actitvity Created");
-            
+            //LogManager.ReconfigExistingLoggers();
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            ThreadHandler.InitScheduler();
             toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Library";
-            
+            SupportActionBar.Title = data;
             ContentView = FindViewById<Custom_Views.HPContent>(Resource.Id.content_view);
-            ContentView.InitLibrary();
+            
             var navView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navView.NavigationItemSelected += NavView_NavigationItemSelected;
             navDrawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -107,15 +76,8 @@ namespace HappyPandaXDroid
             FABClickListener fabclick = new FABClickListener(this);
             mJumpFab.SetOnClickListener(fabclick);
             mRefreshFab.SetOnClickListener(fabclick);
-            Directory.CreateDirectory(Core.App.Settings.basePath);
-            File.Create(Core.App.Settings.basePath + ".nomedia");
+            ContentView.Current_Query = data;
 
-        }
-
-        public override void OnConfigurationChanged(Configuration newConfig)
-        {
-            base.OnConfigurationChanged(newConfig);
-                ContentView.OrientationChanged(newConfig.Orientation);
         }
 
         //bg thread unhandled exception handler
@@ -128,7 +90,7 @@ namespace HappyPandaXDroid
         //ui thread unhandled exception handler
         private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
         {
-            logger.Fatal(e.Exception, "Fatal Exception Thrown : "+ e.Exception.Message );
+            logger.Fatal(e.Exception, "Fatal Exception Thrown : " + e.Exception.Message);
         }
 
         public override bool OnGenericMotionEvent(MotionEvent e)
@@ -156,16 +118,17 @@ namespace HappyPandaXDroid
 
         public class HideOnScroll : CoordinatorLayout.Behavior
         {
-            public HideOnScroll(Context context, IAttributeSet attrs) : base(context,attrs)
+            public HideOnScroll(Context context, IAttributeSet attrs) : base(context, attrs)
             {
 
             }
 
-            
+
 
             public override void OnNestedScroll(CoordinatorLayout coordinatorLayout, Java.Lang.Object child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed)
             {
-                if(child is Clans.Fab.FloatingActionMenu){
+                if (child is Clans.Fab.FloatingActionMenu)
+                {
                     var c = (Clans.Fab.FloatingActionMenu)child;
                     base.OnNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
                     if (dyConsumed > 0)
@@ -187,9 +150,9 @@ namespace HappyPandaXDroid
 
         class FABClickListener : Java.Lang.Object, View.IOnClickListener
         {
-            MainActivity main;
+            SearchActivity main;
             private static Logger logger = LogManager.GetCurrentClassLogger();
-            public FABClickListener(MainActivity main)
+            public FABClickListener(SearchActivity main)
             {
                 this.main = main;
             }
@@ -209,20 +172,18 @@ namespace HappyPandaXDroid
             }
         }
 
-        
+
 
         protected override void OnDestroy()
         {
-           
+            ContentView = null;
             base.OnDestroy();
-            Core.App.Threading.Close();
-            Android.Support.V4.App.ActivityCompat.FinishAffinity(this);
-            
+
         }
 
         protected override void OnResume()
         {
-            
+
             base.OnResume();
             if (SwitchedToSettings)
                 SwitchedToSettings = false;
@@ -259,7 +220,7 @@ namespace HappyPandaXDroid
                     });
                 });
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 logger.Error(ex, "\n Exception Caught In MainActivity.OnResume");
             }
@@ -285,15 +246,18 @@ namespace HappyPandaXDroid
 
         }
 
-        
-        
+        public override void OnConfigurationChanged(Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+            ContentView.OrientationChanged(newConfig.Orientation);
+        }
 
 
-            public bool OnQueryTextChange(string newText)
-            {
-                //throw new NotImplementedException();
-                return true;
-            }
+        public bool OnQueryTextChange(string newText)
+        {
+            //throw new NotImplementedException();
+            return true;
+        }
 
         public bool OnQueryTextSubmit(string query)
         {
@@ -316,18 +280,18 @@ namespace HappyPandaXDroid
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            
+
             return base.OnOptionsItemSelected(item);
-        } 
+        }
 
         public void switchtotest()
         {
             Android.Content.Intent intent = new Android.Content.Intent(this, typeof(test));
             StartActivity(intent);
         }
-        
+
     }
 
-    
+
 }
 

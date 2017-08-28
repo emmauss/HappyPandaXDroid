@@ -5459,79 +5459,82 @@ namespace HappyPandaXDroid
 			public const int PageSelector = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int preference = 2130968641;
+			public const int PhotoViewHolder = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int preference_category = 2130968642;
+			public const int preference = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int preference_category_material = 2130968643;
+			public const int preference_category = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int preference_dialog_edittext = 2130968644;
+			public const int preference_category_material = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int preference_information = 2130968645;
+			public const int preference_dialog_edittext = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int preference_information_material = 2130968646;
+			public const int preference_information = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int preference_list_fragment = 2130968647;
+			public const int preference_information_material = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int preference_material = 2130968648;
+			public const int preference_list_fragment = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int preference_recyclerview = 2130968649;
+			public const int preference_material = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int preference_widget_checkbox = 2130968650;
+			public const int preference_recyclerview = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int preference_widget_switch = 2130968651;
+			public const int preference_widget_checkbox = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int preference_widget_switch_compat = 2130968652;
+			public const int preference_widget_switch = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int preview_template = 2130968653;
+			public const int preference_widget_switch_compat = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int rvp_fragment_container = 2130968654;
+			public const int preview_template = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int select_dialog_item_material = 2130968655;
+			public const int rvp_fragment_container = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int select_dialog_multichoice_material = 2130968656;
+			public const int select_dialog_item_material = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int select_dialog_singlechoice_material = 2130968657;
+			public const int select_dialog_multichoice_material = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int settings = 2130968658;
+			public const int select_dialog_singlechoice_material = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int settingViewText = 2130968659;
+			public const int settings = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int support_simple_spinner_dropdown_item = 2130968660;
+			public const int settingViewText = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int tag_group_template = 2130968661;
+			public const int support_simple_spinner_dropdown_item = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int tag_template = 2130968662;
+			public const int tag_group_template = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int test = 2130968663;
+			public const int tag_template = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int toolbar = 2130968664;
+			public const int test = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int toolbar_alpha = 2130968665;
+			public const int toolbar = 2130968665;
+			
+			// aapt resource value: 0x7f04005a
+			public const int toolbar_alpha = 2130968666;
 			
 			static Layout()
 			{

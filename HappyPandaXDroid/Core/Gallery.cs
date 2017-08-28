@@ -196,14 +196,14 @@ namespace HappyPandaXDroid.Core
                     if(state.Contains("failed"))
                         return "fail: command error";
                     if (!state.Contains("finished"))
-                        Thread.Sleep(1000);
+                        Thread.Sleep(3000);
                     else
                         break;
                 }
                 string name = string.Empty;
                 //get value
                 gallery = App.Server.GetItem<GalleryItem>(gallery.id, "Gallery");
-                name = App.Server.HashGenerator(size, gallery.id);
+                name = App.Server.HashGenerator(size, "thumb",gallery.id);
 
                 string path = App.Server.GetCommandValue(command_id, gallery.id, name, "thumb", return_url);
                 return path;
@@ -246,7 +246,7 @@ namespace HappyPandaXDroid.Core
             }
         }
 
-        public static async Task<string> GetImage(Page page, bool return_url, string size = "medium")
+        public static async Task<string> GetImage(Page page, bool return_url, string size = "medium",bool IsPreview = false)
         {
             try
             {
@@ -273,13 +273,23 @@ namespace HappyPandaXDroid.Core
                     if (state.Contains("failed"))
                         return "fail: command error";
                     if (!state.Contains("finished"))
-                        Thread.Sleep(1000);
+                        Thread.Sleep(3000);
                     else
                         break;
                 }
-                string name = string.Empty;
+                string type = "";
+                switch (size)
+                {
+                    case "medium":
+                        type = "preview";
+                        break;
+                    case "original":
+                        type = "page";
+                        break;
+                }
+                string name = App.Server.HashGenerator(size, type, page.id);
                 //get value
-                string path = App.Server.GetCommandValue(command_id, page.id, name, "page", return_url);
+                string path = App.Server.GetCommandValue(command_id, page.id, name, "page", return_url,IsPreview);
                 return path;
 
             }
@@ -482,8 +492,8 @@ namespace HappyPandaXDroid.Core
                 int item_id = gallery.id;
                 try
                 {
-                    thumb_path = Core.App.Settings.cache + "thumbs/" + Core.App.Server.HashGenerator("medium", item_id) + ".jpg";
-                    return File.Exists(thumb_path) ? true : false;
+                    thumb_path = Core.App.Settings.cache + "thumbs/" + Core.App.Server.HashGenerator("medium", "thumb",item_id) + ".jpg";
+                    return Media.Cache.IsCached(thumb_path);
                 }
                 catch (Exception ex)
                 {

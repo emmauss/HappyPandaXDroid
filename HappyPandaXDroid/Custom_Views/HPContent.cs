@@ -30,6 +30,7 @@ namespace HappyPandaXDroid.Custom_Views
         public Custom_Views.PageSelector mpageSelector;
         RecyclerView mRecyclerView;
         bool IsRefreshing = false;
+        bool initialized = false;
         ProgressView.MaterialProgressBar mProgressView;
         public int count = 0, lastindex = 0;
         RefreshLayout.RefreshLayout mRefreshLayout;
@@ -81,6 +82,7 @@ namespace HappyPandaXDroid.Custom_Views
             Initialize();
         }
 
+        int columns = 0;
         private void Initialize()
         {
             logger.Info("Initializing HPContent");
@@ -99,17 +101,113 @@ namespace HappyPandaXDroid.Custom_Views
             mErrorText.Text = "Error";
             mErrorImage.Click += MErrorFrame_Click;
             SetBottomLoading(false);
-            mLayoutManager = new GridLayoutManager(this.Context, 2);
+
+            if (Resources.Configuration.Orientation == Android.Content.Res.Orientation.Landscape)
+                columns = 2;
+            else
+                columns = 1;
+            mLayoutManager = new GridLayoutManager(this.Context,columns);
             mRecyclerView.SetAdapter(adapter);
             /*mRefreshLayout.OnHeaderRefresh += MRefreshLayout_OnHeaderRefresh;
             mRefreshLayout.OnFooterRefresh += MRefreshLayout_OnFooterRefresh;*/
             mRefreshLayout.SetOnRefreshListener(new OnRefreshListener(this));
             mRecyclerView.SetLayoutManager(mLayoutManager);
             SetMainLoading(true);
+            mpageSelector = new Custom_Views.PageSelector();
+            dialogeventlistener = new DialogEventListener();
+            initialized = true;
+            logger.Info("HPContent Initialized");
+        }
+
+        public void OrientationChanged(Android.Content.Res.Orientation orientation)
+        {
+            switch (orientation)
+            {
+                case Android.Content.Res.Orientation.Landscape:
+                    columns = 2;
+                    break;
+                default:
+                    columns = 1;
+                    break;
+            }
+            mLayoutManager = new GridLayoutManager(this.Context, columns);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+        }
+
+        public class AutoFitGridLayout : GridLayoutManager
+        {
+            private int mColumnWidth;
+            private bool mColumnWidthChanged = true;
+
+            public AutoFitGridLayout(Context context, int columnWidth) : base(context,1)
+            {
+                /* Initially set spanCount to 1, will be changed automatically later. */
+                setColumnWidth(checkedColumnWidth(context, columnWidth));
+            }
+
+            public AutoFitGridLayout(Context context, int columnWidth, int orientation, bool reverseLayout) : base (context, 1, orientation, reverseLayout)
+            {
+                /* Initially set spanCount to 1, will be changed automatically later. */
+
+                setColumnWidth(checkedColumnWidth(context, columnWidth));
+            }
+
+            private int checkedColumnWidth(Context context, int columnWidth)
+            {
+                if (columnWidth <= 0)
+                {
+                    /* Set default columnWidth value (48dp here). It is better to move this constant
+                    to static constant on top, but we need context to convert it to dp, so can't really
+                    do so. */
+                    columnWidth = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 48,
+                            context.Resources.DisplayMetrics);
+                }
+                return columnWidth;
+            }
+
+            public void setColumnWidth(int newColumnWidth)
+            {
+                if (newColumnWidth > 0 && newColumnWidth != mColumnWidth)
+                {
+                    mColumnWidth = newColumnWidth;
+                    mColumnWidthChanged = true;
+                }
+            }
+
+            public override void OnLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state)
+            {
+                int width = Width;
+                int height = Height;
+                if (mColumnWidthChanged && mColumnWidth > 0 && width > 0 && height > 0)
+                {
+                    int totalSpace;
+                    if (Orientation == Vertical)
+                    {
+                        totalSpace = width - PaddingRight - PaddingLeft;
+                    }
+                    else
+                    {
+                        totalSpace = height - PaddingTop - PaddingBottom;
+                    }
+                    int spanCount = Math.Max(1, totalSpace / mColumnWidth);
+                    SpanCount = spanCount;
+                    mColumnWidthChanged = false;
+                }
+                base.OnLayoutChildren(recycler, state);
+            }
+        }
+
+
+        public void InitLibrary()
+        {
+
             ThreadStart thrds = new ThreadStart(() =>
             {
-
-                if (!Core.Net.Connect().Contains("fail"))
+                while (!initialized)
+                {
+                    Thread.Sleep(100);
+                }
+                if (Core.Net.Connect())
                 {
                     {
                         logger.Info("Getting Library");
@@ -138,9 +236,6 @@ namespace HappyPandaXDroid.Custom_Views
             });
             Thread thread = new Thread(thrds);
             thread.Start();
-            mpageSelector = new Custom_Views.PageSelector();
-            dialogeventlistener = new DialogEventListener();
-            logger.Info("HPContent Initialized");
         }
 
         private void MErrorFrame_Click(object sender, EventArgs e)

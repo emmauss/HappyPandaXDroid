@@ -13,12 +13,10 @@
         android:minHeight="25px">
         
         <Emmaus.Widget.RecyclerViewPager
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/galleryViewPager"
             android:background="#ff000000"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
             viewpager:rvp_triggerOffset="0.1"
             viewpager:rvp_singlePageFling="true"
             android:clipToPadding="false" />

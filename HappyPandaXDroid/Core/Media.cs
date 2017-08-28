@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Runtime.Serialization;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -20,187 +22,60 @@ using NLog;
 
 namespace HappyPandaXDroid.Core
 {
-    class Media
+    public class Media
     {
         
-        
-       /* public class ImageViewer
+        public class Cache
         {
-            
             private static Logger logger = LogManager.GetCurrentClassLogger();
-            List<string> ImageList = new List<string>();
-            int ImagePosition = 0, preloadPositionRight = 0, preloadPositionLeft;
-            Context mcontext;
-            GalleryViewer.ImageAdapter madapter;
-           
-            public ImageViewer()
+            public static bool IsCached(string filepath)
             {
-            }
-
-            public void SetList(List<string> list)
-            {
-                ImageList = list;
-
-            }
-
-            public async void StartReader(RecyclerViewPager viewpager,Context context,int pos, RecyclerViewPager pager)
-            {
-                if(ImageList == null || ImageList.Count == 0)
-                {
-                    throw new ImageListEmptyException("Image List not initiallized or empty");
-                }
-
-
-                //start reader
-
-                mcontext = context;
-                this.madapter = (GalleryViewer.ImageAdapter)viewpager.GetAdapter();
-                var ImageView = new Custom_Views.ImageViewHolder(mcontext);
-                ImagePosition = pos;
                 
-
-                //madapter.Add(ImageView);
-                viewpager.AddOnPageChangedListener(new OnPageChange(this));
-                //madapter.ImageList = ImageList;
-                
-                madapter.NotifyDataSetChanged();
-                pager.ScrollToPosition(ImagePosition);
-                preloadPositionLeft = pos;
-                /*PreloadImages();
-                PreloadLeft();                
-                madapter.NotifyDataSetChanged();
-
-            }
-
-            /// <summary>
-            /// Preloads  a default of the next 2 images
-            /// </summary>
-            public void PreloadImages()
-            {
-                while(preloadPositionRight < ImagePosition + 3)
+                try
                 {
-                    preloadPositionRight++;
-                    if (preloadPositionRight == ImagePosition || preloadPositionRight < ImagePosition)
-                        preloadPositionRight = ImagePosition + 1;
-                    if (preloadPositionRight >= ImageList.Count)
-                        return;
-                    var ImageView = new Custom_Views.ImageViewHolder(mcontext);                    
-                    /*GalleryService
-                        .LoadFile(ImageList[preloadPositionRight]).Retry(3, 1000)
-                        .Into(ImageView);*
-                    //madapter.Add(ImageView);
-                    //int posn = madapter.GetItemPosition(ImageView);
-                    madapter.NotifyDataSetChanged();
-                    
-                }
-
-            }
-
-            public void PreloadLeft()
-            {
-
-                while ((preloadPositionLeft > ImagePosition - 3) && preloadPositionLeft > 0)
-                {
-                    preloadPositionLeft--;
-                    if (preloadPositionLeft == ImagePosition || preloadPositionLeft > ImagePosition)
-                        preloadPositionLeft = ImagePosition - 1;
-                    if (preloadPositionLeft < 0)
-                        return;
-                    var ImageView = new Custom_Views.ImageViewHolder(mcontext);
-                    /*GalleryService
-                        .LoadFile(ImageList[preloadPositionLeft]).Retry(3, 1000)
-                        .Into(ImageView);*
-                    //madapter.Insert(0,ImageView);
-                    //int posn = madapter.GetItemPosition(ImageView);
-                    madapter.NotifyDataSetChanged();
-                }
-            }
-
-            /// <summary>
-            /// Preloads the next 'number' of images
-            /// </summary>
-            /// <param name="number">Number of images to preload</param>
-            public void PreloadImages(int number)
-            {
-                while (preloadPositionRight < ImagePosition + (number+1))
-                {
-                    preloadPositionRight++;
-                    if (preloadPositionRight == ImagePosition || preloadPositionRight < ImagePosition)
-                        preloadPositionRight = ImagePosition + 1;
-                    if (preloadPositionRight >= ImageList.Count)
-                        return;
-                    var ImageView = new Custom_Views.ImageViewHolder(mcontext);
-                    /*GalleryService
-                        .LoadFile(ImageList[preloadPositionRight]).Retry(3, 1000)
-                        .Into(ImageView);*
-                    //madapter.ImageViewList.Add(ImageView);
-
-                    madapter.NotifyDataSetChanged();
-                }
-            }
-
-            public class OnPageChange : Java.Lang.Object,RecyclerViewPager.OnPageChangedListener
-            {
-                ImageViewer mviewer;
-                public OnPageChange(ImageViewer viewer)
-                {
-                    mviewer = viewer;
-                }
-
-                public void OnPageChanged(int oldPosition, int newPosition)
-                {
-                    bool dir = (newPosition < oldPosition);
-                    if (!dir)
+                    bool check = File.Exists(filepath);
+                    using (var bit = BitmapFactory.DecodeFile(filepath, new BitmapFactory.Options()))
                     {
-                        mviewer.ImagePosition++;
-                        mviewer.PreloadImages();
+                        if (bit == null)
+                        {
+                            File.Delete(filepath);
+                            return false;
+                        }
+
                     }
-                    else
-                    {
-                        mviewer.ImagePosition--;
-                        mviewer.PreloadLeft();
-                    }
+                    return check;
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached.");
+
+                    return false;
                 }
             }
-
-            public void LoadNextImage()
+            public static long GetCacheSize()
             {
+                Directory.CreateDirectory(App.Settings.cache);
+                var filelist = new DirectoryInfo(App.Settings.cache).EnumerateFiles("*",SearchOption.AllDirectories);
+                return filelist.Sum((x) => x.Length);
 
-            }         
-                       
-
-            public void Dispose()
-            {
-                ImageList.Clear();
-                
             }
 
-            
-
-            public class ImageListEmptyException : Exception
+            public static async  Task<bool> ClearCache()
             {
-                public ImageListEmptyException() : base()
+                await Task.Delay(10);
+                var dirlist = new DirectoryInfo(App.Settings.cache).EnumerateDirectories("*",SearchOption.AllDirectories);
+                foreach(var dir in dirlist)
                 {
-
+                    dir.Delete(true);
                 }
-
-                public ImageListEmptyException(string message) : base(message)
+                var filelist = new DirectoryInfo(App.Settings.cache).EnumerateFiles("*", SearchOption.AllDirectories);
+                foreach (var file in filelist)
                 {
-
+                    file.Delete();
                 }
-
-                public ImageListEmptyException(string message, Exception innerException ) 
-                    : base(message,innerException)
-                {
-
-                }
-
-                protected ImageListEmptyException(SerializationInfo info, StreamingContext context) 
-                    : base(info, context)
-                {
-
-                }
+                return true;
             }
-        }*/
+        }
+       
     }
 }

@@ -31,7 +31,7 @@ using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
 {
-    [Activity(Label = "GalleryViewer")]
+    [Activity(Label = "GalleryViewer", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class GalleryViewer : AppCompatActivity
     {
         
@@ -60,14 +60,14 @@ namespace HappyPandaXDroid
                 string data = Intent.GetStringExtra("page");
                 PageList = Core.JSON.Serializer.simpleSerializer.Deserialize<List<Core.Gallery.Page>>(data);
             logger.Info("Initializing Gallery Viewer");
-            InitPageGen();
+            //InitPageGen();
             activityID = ThreadHandler.Thread.IdGen.Next();
             
             toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             lay = FindViewById<FrameLayout>(Resource.Id.frame);
             galleryPager = FindViewById<RecyclerViewPager>(Resource.Id.galleryViewPager);
-            var layout = new ExtraLayoutManager(this, LinearLayoutManager.Horizontal, false);            
+            var layout = new ExtraLayoutManager(this, LinearLayoutManager.Horizontal, false);    
             galleryPager.SetLayoutManager(layout);
             adapter = new ImageAdapter(PageList,this);
             galleryPager.SetAdapter(new RecyclerViewPagerAdapter(galleryPager, adapter));
@@ -104,26 +104,11 @@ namespace HappyPandaXDroid
 
         public override bool DispatchTouchEvent(MotionEvent ev)
         {
-            touch_count++;
-            bool res =  base.DispatchTouchEvent(ev);
-
-            Task.Run(async () =>
-            {
-                await Task.Delay(500);
-                if (touch_count == 2)
-                {
-                    touch_count = 0;
-                    toggleOverlay();
-                }
-                else if (touch_count > 2)
-                {
-                    touch_count = 0;
-                }
-            });
+            
+            bool res = base.DispatchTouchEvent(ev);
             return res;
         }
 
-       
 
         public class PhotoImageVIew: PhotoView.PhotoView
         {
@@ -188,6 +173,7 @@ namespace HappyPandaXDroid
             private static readonly int DEFAULT_EXTRA_LAYOUT_SPACE = 600;
             private int extraLayoutSpace = -1;
             private Context context;
+            
 
             public ExtraLayoutManager(Context context) : base(context)
             {
@@ -199,6 +185,8 @@ namespace HappyPandaXDroid
                 this.context = context;
                 this.extraLayoutSpace = extraLayoutSpace;
             }
+
+            
 
             public ExtraLayoutManager(Context context, int orientation, bool reverseLayout) 
                 : base(context,orientation,reverseLayout)
@@ -274,7 +262,7 @@ namespace HappyPandaXDroid
         public void NextPage()
         {
             int pos = galleryPager.CurrentPosition;
-            if (pos < galleryPager.ItemCount)
+            if (pos < galleryPager.ItemCount-1)
                 galleryPager.SmoothScrollToPosition(pos + 1);
 
         }
@@ -282,7 +270,7 @@ namespace HappyPandaXDroid
         public void PreviousPage()
         {
             int pos = galleryPager.CurrentPosition;
-            if (pos > -1)
+            if (pos > 0)
                 galleryPager.SmoothScrollToPosition(pos - 1);
         }
         
@@ -370,31 +358,72 @@ namespace HappyPandaXDroid
                 return position;
             }
 
-            
+
+            public override void OnViewRecycled(Java.Lang.Object holder)
+            {
+                var vh = holder as ImageViewHolder;
+                var h = new Handler(Looper.MainLooper);
+                vh.imageView.SetImageDrawable(null);
+                /*if(vh.loaded)
+                h.Post(() =>
+                {
+                    try
+                    {
+                        Glide.With(context)
+                        .Load(vh.page_path)
+                        .Override(Target.SizeOriginal, Target.SizeOriginal)
+                        .Into(vh.imageView)
+                        ;
+                        vh.loaded = true;
+                    }
+                    catch (IllegalArgumentException ex)
+                    {
+                        if (ex.Message.Contains("destroyed"))
+                            return;
+                    }
+                });*/
+                base.OnViewRecycled(holder);
+            }
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
                 ImageViewHolder vh = holder as ImageViewHolder;
+                var h = new Handler(Looper.MainLooper);
                 var activity = (GalleryViewer)context;
-
-                Glide.With(context)
-                    .Load(Resource.Drawable.Loading)                    
-                    .Into(vh.imageView);
+                vh.imageView.SetImageDrawable(null);
                 int tries = 0;
                 var thread = ThreadHandler.CreateThread(async () =>
                 {
-                    while (true)
+                    if (!vh.loaded) {
+
+                        
+                        h.Post(() =>
+                        {
+                            try
+                            {
+                                {
+                            Glide.With(context)
+                                .Load(Resource.Drawable.Loading)
+                                .Into(vh.imageView);
+                        }
+                            }
+                            catch (IllegalArgumentException ex)
+                            {
+                                if (ex.Message.Contains("destroyed"))
+                                    return;
+                            }
+                        });
+                
+                    
+                    while (!IsCached())
                     {
                         await Task.Delay(10);
-                        if (PageList[position].image_url == string.Empty || PageList[position].image_url == null
-                            || PageList[position].image_url.Contains("fail:"))
-                        {
-                            PageList[position].image_url = await Core.Gallery.GetImage(PageList[position], true, "original");
-                        }
-                        if (PageList[position].image_url.Contains("fail"))
+                        vh.page_path = await Core.Gallery.GetImage(PageList[position], false, "original", false);
+
+                        if (vh.page_path.Contains("fail"))
                         {
 
-                            if (PageList[position].image_url.Contains("misc"))
+                            if (vh.page_path.Contains("misc"))
                             {
                                 tries++;
                                 if (tries < 4)
@@ -412,25 +441,73 @@ namespace HappyPandaXDroid
                             break;
                         }
                     }
-
-                    string url = PageList[position].image_url;
-
-                    var h = new Handler(Looper.MainLooper);
+                }
+                    
+                    
                     h.Post(() =>
                     {
-                        Glide.With(context)
-                        .Load(url)
-                        .DiskCacheStrategy(Com.Bumptech.Glide.Load.Engine.DiskCacheStrategy.All)
-                        .Override(Target.SizeOriginal, Target.SizeOriginal)
-                        .Into(vh.imageView)
-                        ;
+                        try
+                        {
+                            Glide.With(context)
+                            .Load(vh.page_path)
+                            .Override(Target.SizeOriginal, Target.SizeOriginal)
+                            .Into(vh.imageView)
+                            ;
+                            vh.loaded = true;
+                        }catch(IllegalArgumentException ex)
+                        {
+                            if (ex.Message.Contains("destroyed"))
+                                return;
+                        }
                     });
                     tries = 0;
                     //vh.imageView = ImageList[position];
+
+                    bool IsCached()
+                    {
+                        int item_id = PageList[position].id;
+                        try
+                        {
+                            Directory.CreateDirectory(Core.App.Settings.cache + "pages/");
+                            vh.page_path = Core.App.Settings.cache + "pages/" + Core.App.Server.HashGenerator("original", "page", item_id) + ".jpg";
+                            bool check = Core.Media.Cache.IsCached(vh.page_path);
+
+                            return check;
+                        }
+                        catch (System.Exception ex)
+                        {
+                            logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached.");
+
+                            return false;
+                        }
+
+
+                    }
+
                 }, activity.activityID, "GalleryViewer");
                 ThreadHandler.Schedule(thread);
 
+               
+            }
 
+            private void ItemView_Touch(object sender, View.TouchEventArgs e)
+            {
+                var activity = (GalleryViewer)context;
+                activity.touch_count++;
+                Task.Run(async () =>
+                {
+                    await Task.Delay(500);
+                    if (activity.touch_count == 2)
+                    {
+                        activity.touch_count = 0;
+                        activity.toggleOverlay();
+
+                    }
+                    else if (activity.touch_count > 2)
+                    {
+                        activity.touch_count = 0;
+                    }
+                });
             }
 
             public int indexOf(Core.Gallery.Page item)
@@ -581,12 +658,14 @@ namespace HappyPandaXDroid
 
         public class ImageViewHolder : RecyclerView.ViewHolder
         {
+            public LinearLayout holder;
             public PhotoImageVIew imageView;
-            public ImageViewHolder(View itemView) : base(itemView)
+            public bool loaded = false;
+            public string page_path = string.Empty;
+            public ImageViewHolder(PhotoImageVIew itemView) : base(itemView)
             {
-                imageView = (PhotoImageVIew)itemView;
-                
-
+                imageView = itemView;
+               this.IsRecyclable = false;
             }
             
         }

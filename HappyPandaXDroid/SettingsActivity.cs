@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Android.Preferences;
 using Android.App;
 using Android.Content;
@@ -24,7 +25,7 @@ using NLog;
 
 namespace HappyPandaXDroid
 {
-    [Activity(Label = "Settings")]
+    [Activity(Label = "Settings", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class SettingsActivity : AppCompatActivity
     {
 
@@ -60,6 +61,7 @@ namespace HappyPandaXDroid
             ISharedPreferencesOnSharedPreferenceChangeListener
         {
 
+            Custom_Views.OptionDialogPreference cachedialog;
             private static Logger logger = LogManager.GetCurrentClassLogger();
             //Core.App.Settings set = new Core.App.Settings();
             ISharedPreferences sharedPreferences;
@@ -70,16 +72,45 @@ namespace HappyPandaXDroid
                 base.OnCreate(savedInstanceState);
                 // Create your application here
                 AddPreferencesFromResource(Resource.Xml.preferences);
-                
+
                 sharedPreferences = PreferenceScreen.SharedPreferences;
                 for (int i = 0; i < PreferenceScreen.PreferenceCount; i++)
                 {
                     setSummary(PreferenceScreen.GetPreference(i));
                 }
                 sharedPreferences.RegisterOnSharedPreferenceChangeListener(this);
+                cachedialog = (Custom_Views.OptionDialogPreference)FindPreference("cachedialog");
+                Task.Run(() =>
+                {
+                    var h = new Handler(Looper.MainLooper);
+                    h.Post(() =>
+                    {
+                        
+                        cachedialog.Title = "Local Cache";
+                        cachedialog.Summary = Math.Round((double)(Core.Media.Cache.GetCacheSize()) / (1024 * 1024), 2).ToString() + " MB";
+                    });
+                });
+                cachedialog.OnPositiveClick += Cachedialog_OnPositiveClick;
+               
+                
+                //cachedialog.Dialog.DismissEvent += Dialog_DismissEvent;
                 //listener = new changelistener(this);
 
             }
+
+            private async void Cachedialog_OnPositiveClick(object sender, EventArgs e)
+            {
+               bool result = await Core.Media.Cache.ClearCache();
+                Task.Run(() =>
+                {
+                    var h = new Handler(Looper.MainLooper);
+                    h.Post(() =>
+                    {
+                        cachedialog.Summary = Math.Round((double)(Core.Media.Cache.GetCacheSize()) / (1024 * 1024), 2).ToString() + " MB";
+                    });
+                });
+            }
+
             public override void OnResume()
             {
 
@@ -174,7 +205,7 @@ namespace HappyPandaXDroid
                                 LogManager.Configuration.AddTarget(target);
 
                                 LogManager.Configuration.AddRuleForAllLevels(target, "*");
-                                LogManager.ReconfigExistingLoggers();
+                                //LogManager.ReconfigExistingLoggers();
                                 break;
                             case false:
                                 LogManager.Configuration = null;

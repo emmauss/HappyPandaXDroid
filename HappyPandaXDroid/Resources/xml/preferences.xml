@@ -21,4 +21,11 @@
       android:title="@string/enable_debug"
     android:defaultValue="false"
       android:id="@+id/debugpref"/>
+<HappyPandaXDroid.Custom_Views.OptionDialogPreference
+android:key="cachedialog"
+android:dialogMessage="Do you want to clear local cache?"
+android:dialogTitle="Clear Local Cache?"
+android:positiveButtonText="OK"
+android:negativeButtonText="Cancel"
+/>
 </PreferenceScreen>
