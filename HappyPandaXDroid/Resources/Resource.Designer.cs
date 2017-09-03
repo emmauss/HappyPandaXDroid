@@ -5675,14 +5675,11 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0016
 			public const int appbar_scrolling_view_behavior = 2131427350;
 			
-			// aapt resource value: 0x7f0b0061
-			public const int artist_cg = 2131427425;
+			// aapt resource value: 0x7f0b0065
+			public const int artist_cg = 2131427429;
 			
-			// aapt resource value: 0x7f0b0067
-			public const int asian_porn = 2131427431;
-			
-			// aapt resource value: 0x7f0b005e
-			public const int back_thread_summary = 2131427422;
+			// aapt resource value: 0x7f0b006b
+			public const int asian_porn = 2131427435;
 			
 			// aapt resource value: 0x7f0b005d
 			public const int back_thread_title = 2131427421;
@@ -5693,35 +5690,44 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0018
 			public const int character_counter_pattern = 2131427352;
 			
+			// aapt resource value: 0x7f0b0060
+			public const int client_config_summary = 2131427424;
+			
+			// aapt resource value: 0x7f0b0061
+			public const int client_config_title = 2131427425;
+			
 			// aapt resource value: 0x7f0b0056
 			public const int close_drawer = 2131427414;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int cosplay = 2131427430;
+			// aapt resource value: 0x7f0b006a
+			public const int cosplay = 2131427434;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int doujinshi = 2131427423;
+			// aapt resource value: 0x7f0b0063
+			public const int doujinshi = 2131427427;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int enable_debug = 2131427420;
 			
-			// aapt resource value: 0x7f0b0062
-			public const int game_cg = 2131427426;
+			// aapt resource value: 0x7f0b0066
+			public const int game_cg = 2131427430;
 			
-			// aapt resource value: 0x7f0b0065
-			public const int image_set = 2131427429;
+			// aapt resource value: 0x7f0b0069
+			public const int image_set = 2131427433;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int manga = 2131427424;
+			// aapt resource value: 0x7f0b005e
+			public const int loop_delay_title = 2131427422;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int misc = 2131427432;
+			// aapt resource value: 0x7f0b0064
+			public const int manga = 2131427428;
+			
+			// aapt resource value: 0x7f0b006c
+			public const int misc = 2131427436;
 			
 			// aapt resource value: 0x7f0b0057
 			public const int no_tags = 2131427415;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int non_h = 2131427428;
+			// aapt resource value: 0x7f0b0068
+			public const int non_h = 2131427432;
 			
 			// aapt resource value: 0x7f0b0055
 			public const int open_drawer = 2131427413;
@@ -5903,6 +5909,12 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0058
 			public const int read = 2131427416;
 			
+			// aapt resource value: 0x7f0b0062
+			public const int server_config_summary = 2131427426;
+			
+			// aapt resource value: 0x7f0b005f
+			public const int server_config_title = 2131427423;
+			
 			// aapt resource value: 0x7f0b0059
 			public const int server_ip = 2131427417;
 			
@@ -5921,8 +5933,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b005b
 			public const int webclient_port = 2131427419;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int western = 2131427427;
+			// aapt resource value: 0x7f0b0067
+			public const int western = 2131427431;
 			
 			static String()
 			{

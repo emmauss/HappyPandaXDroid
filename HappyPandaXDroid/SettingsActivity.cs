@@ -76,7 +76,7 @@ namespace HappyPandaXDroid
                 sharedPreferences = PreferenceScreen.SharedPreferences;
                 for (int i = 0; i < PreferenceScreen.PreferenceCount; i++)
                 {
-                    setSummary(PreferenceScreen.GetPreference(i));
+                    SetSummary(PreferenceScreen.GetPreference(i));
                 }
                 sharedPreferences.RegisterOnSharedPreferenceChangeListener(this);
                 cachedialog = (Custom_Views.OptionDialogPreference)FindPreference("cachedialog");
@@ -103,10 +103,11 @@ namespace HappyPandaXDroid
                bool result = await Core.Media.Cache.ClearCache();
                 Task.Run(() =>
                 {
+                    string size = Math.Round((double)(Core.Media.Cache.GetCacheSize()) / (1024 * 1024), 2).ToString() + " MB";
                     var h = new Handler(Looper.MainLooper);
                     h.Post(() =>
                     {
-                        cachedialog.Summary = Math.Round((double)(Core.Media.Cache.GetCacheSize()) / (1024 * 1024), 2).ToString() + " MB";
+                        cachedialog.Summary = size;
                     });
                 });
             }
@@ -117,7 +118,7 @@ namespace HappyPandaXDroid
                 base.OnResume();
                 for(int i = 0; i < PreferenceScreen.PreferenceCount; i++)
                 {
-                    setSummary(PreferenceScreen.GetPreference(i));
+                    SetSummary(PreferenceScreen.GetPreference(i));
                 }
                 sharedPreferences.RegisterOnSharedPreferenceChangeListener(this);
 
@@ -125,7 +126,7 @@ namespace HappyPandaXDroid
 
             
 
-            private void setSummary(Preference pref)
+            private void SetSummary(Preference pref)
             {
                 if (pref is EditTextPreference) {
                     updateSummary((EditTextPreference)pref);
@@ -205,7 +206,15 @@ namespace HappyPandaXDroid
                                 LogManager.Configuration.AddTarget(target);
 
                                 LogManager.Configuration.AddRuleForAllLevels(target, "*");
-                                //LogManager.ReconfigExistingLoggers();
+
+                                try
+                                {
+                                    LogManager.ReconfigExistingLoggers();
+                                }
+                                catch (System.Exception ex)
+                                {
+
+                                }
                                 break;
                             case false:
                                 LogManager.Configuration = null;

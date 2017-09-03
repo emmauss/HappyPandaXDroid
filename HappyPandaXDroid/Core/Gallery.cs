@@ -196,7 +196,7 @@ namespace HappyPandaXDroid.Core
                     if(state.Contains("failed"))
                         return "fail: command error";
                     if (!state.Contains("finished"))
-                        Thread.Sleep(3000);
+                        Thread.Sleep(App.Settings.Loop_Delay);
                     else
                         break;
                 }

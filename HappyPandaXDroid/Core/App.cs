@@ -79,7 +79,21 @@ namespace HappyPandaXDroid.Core
                 {
                     if (BackgroundThreadLimit != value)
                         Refresh = true;
-                    AppSettings.AddOrUpdateValue("server_ip", value.ToString());
+                    AppSettings.AddOrUpdateValue("background_thread_limit", value.ToString());
+                }
+            }
+
+            public static int Loop_Delay
+            {
+                get
+                {
+                    return int.Parse(AppSettings.GetValueOrDefault("loop_delay", "1000"));
+                }
+                set
+                {
+                    if (BackgroundThreadLimit != value)
+                        Refresh = true;
+                    AppSettings.AddOrUpdateValue("loop_delay", value.ToString());
                 }
             }
 
