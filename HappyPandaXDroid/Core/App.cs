@@ -68,6 +68,21 @@ namespace HappyPandaXDroid.Core
                 }
             }
 
+
+            public static int BackgroundThreadLimit
+            {
+                get
+                {
+                    return int.Parse(AppSettings.GetValueOrDefault("background_thread_limit", "2"));
+                }
+                set
+                {
+                    if (BackgroundThreadLimit != value)
+                        Refresh = true;
+                    AppSettings.AddOrUpdateValue("server_ip", value.ToString());
+                }
+            }
+
             public static bool Logging_Enabled
             {
                 get
@@ -472,7 +487,6 @@ namespace HappyPandaXDroid.Core
         public class Threading
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
-            public static int ActiveThreadLimit = 5;
             public static List<Thread> ThreadPool = new List<Thread>();
             public static List<Thread> PendingPool = new List<Thread>();
             public static bool Updating = false;
@@ -637,9 +651,9 @@ namespace HappyPandaXDroid.Core
                         if (thread.Status == Thread.ThreadState.Running)
                             runningThreads++;
                     }
-                    if (runningThreads < ActiveThreadLimit)
+                    if (runningThreads < App.Settings.BackgroundThreadLimit)
                     {
-                        int threadsToStart = ActiveThreadLimit - runningThreads;
+                        int threadsToStart = Settings.BackgroundThreadLimit - runningThreads;
                         for (int i = 1; i <= threadsToStart; i++)
                         {
                             Thread HighestPriorityThread;

@@ -53,14 +53,11 @@ namespace HappyPandaXDroid
             Task.Run(() => {
                 JsonConvert.DeserializeObject("{}");
             });
+            CreateFolders();
             //init logger
             if (Core.App.Settings.Logging_Enabled)
             {
                 NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
-                if (!Directory.Exists(Core.App.Settings.Log))
-                {
-                    Directory.CreateDirectory(Core.App.Settings.Log);
-                }
                 string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
                     + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
                 target.FileName = logfile;
@@ -107,9 +104,17 @@ namespace HappyPandaXDroid
             FABClickListener fabclick = new FABClickListener(this);
             mJumpFab.SetOnClickListener(fabclick);
             mRefreshFab.SetOnClickListener(fabclick);
-            Directory.CreateDirectory(Core.App.Settings.basePath);
+            
             File.Create(Core.App.Settings.basePath + ".nomedia");
 
+        }
+
+        public void CreateFolders()
+        {
+            Directory.CreateDirectory(Core.App.Settings.basePath);
+            Directory.CreateDirectory(Core.App.Settings.cache);
+            Directory.CreateDirectory(Core.App.Settings.cache + "pages/");
+            Directory.CreateDirectory(Core.App.Settings.Log);
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)

@@ -10,6 +10,8 @@
   <string name="server_port">HappyPandaX Server Port</string>
   <string name="webclient_port">HappyPandaX WebClient Port</string>
   <string name="enable_debug">Enable Logging</string>
+  <string name="back_thread_title">Background Thread Limit</string>
+  <string name="back_thread_summary">Limit max threads used for getting previews and pages</string>
 <string name="doujinshi" translatable="false">DOUJINSHI</string>
     <string name="manga" translatable="false">MANGA</string>
     <string name="artist_cg" translatable="false">ARTIST CG</string>

@@ -213,6 +213,14 @@ namespace HappyPandaXDroid
                         }
                     }
                 }
+                else if (pref is ListPreference)
+                {
+                    ListPreference listp = (ListPreference)pref;
+                    var edit = sharedPreferences.Edit();
+                    edit.PutString(key,listp.Entry);
+                    listp.Summary = listp.Entry;
+                    edit.Commit();
+                }
             }
 
 

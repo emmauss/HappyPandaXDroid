@@ -468,7 +468,7 @@ namespace HappyPandaXDroid
                         int item_id = PageList[position].id;
                         try
                         {
-                            Directory.CreateDirectory(Core.App.Settings.cache + "pages/");
+                            
                             vh.page_path = Core.App.Settings.cache + "pages/" + Core.App.Server.HashGenerator("original", "page", item_id) + ".jpg";
                             bool check = Core.Media.Cache.IsCached(vh.page_path);
 
