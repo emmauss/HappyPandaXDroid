@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using SocketIO.Client;
 
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
