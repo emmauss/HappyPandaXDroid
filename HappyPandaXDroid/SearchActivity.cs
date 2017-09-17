@@ -39,6 +39,8 @@ namespace HappyPandaXDroid
         DrawerLayout navDrawer;
         public bool SwitchedToSettings = false;
         Clans.Fab.FloatingActionMenu fam;
+        public int activityId;
+        public string activityName;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         Clans.Fab.FloatingActionButton mRefreshFab;
         Clans.Fab.FloatingActionButton mJumpFab;
@@ -60,7 +62,11 @@ namespace HappyPandaXDroid
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = data;
             ContentView = FindViewById<Custom_Views.HPContent>(Resource.Id.content_view);
-            
+            activityId = ThreadHandler.Thread.IdGen.Next();
+            activityName = "SearchActivity " + activityId;
+            ContentView.activityId = activityId;
+            ContentView.activityName = activityName;
+
             var navView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navView.NavigationItemSelected += NavView_NavigationItemSelected;
             navDrawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);

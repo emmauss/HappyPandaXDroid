@@ -544,7 +544,14 @@ namespace HappyPandaXDroid.Core
 
                 public void Start()
                 {
-                    thread.Start();
+                    try
+                    {
+                        if (!thread.IsAlive)
+                            thread.Start();
+                    }catch(ThreadStateException ex)
+                    {
+                       
+                    }
                     Status = ThreadState.Running;
                 }
             }
@@ -556,6 +563,7 @@ namespace HappyPandaXDroid.Core
                 ThreadStart thrds = new ThreadStart(action);
                 thread.thread = new System.Threading.Thread(thrds);
                 thread.ActitivtyID = activityId;
+                thread.Status = Thread.ThreadState.Pending;
                 return thread;
             }
 
@@ -578,6 +586,7 @@ namespace HappyPandaXDroid.Core
 
             public static void CleanUp()
             {
+                
                 if (ThreadPool.Count > 0)
                 {
 
@@ -647,6 +656,7 @@ namespace HappyPandaXDroid.Core
             public static void DispatchNextThreads()
             {
                 int runningThreads = 0;
+                
                 if (ThreadPool.Count > 0)
                 {
                     int count = ThreadPool.Count;
@@ -673,7 +683,7 @@ namespace HappyPandaXDroid.Core
                             Thread HighestPriorityThread;
                             if (ThreadPool.Count > 0)
                             {
-                                HighestPriorityThread = ThreadPool.Find((x) => x.Status == Thread.ThreadState.Pending);
+                                HighestPriorityThread = ThreadPool.Find((x) => x.Status == Thread.ThreadState.Pending && !x.thread.IsAlive);
                                 if (HighestPriorityThread == null)
                                     break;
                                 count = ThreadPool.Count;
@@ -681,7 +691,8 @@ namespace HappyPandaXDroid.Core
 
                                 foreach (var thread in ThreadPool)
                                 {
-                                    if (thread.Status == Thread.ThreadState.Pending && thread.Priority < HighestPriorityThread.Priority)
+                                    if (thread.Status == Thread.ThreadState.Pending && thread.Priority < HighestPriorityThread.Priority 
+                                        )
                                     {
                                         HighestPriorityThread = thread;
                                     }
@@ -771,6 +782,7 @@ namespace HappyPandaXDroid.Core
                         }
                     }
                 }
+                PendingPool.Clear();
             }
 
             public static void UpdateStatus()
@@ -817,6 +829,7 @@ namespace HappyPandaXDroid.Core
 
             public static void Close()
             {
+                CleanUp();
                 AbortThreads();
                 ThreadPool.Clear();
                 RunScheduler = false;

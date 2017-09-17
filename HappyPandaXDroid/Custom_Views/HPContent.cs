@@ -30,6 +30,8 @@ namespace HappyPandaXDroid.Custom_Views
         public Custom_Views.PageSelector mpageSelector;
         RecyclerView mRecyclerView;
         bool IsRefreshing = false;
+        public string activityName;
+        public int activityId;
         bool initialized = false;
         ProgressView.MaterialProgressBar mProgressView;
         public int count = 0, lastindex = 0;
@@ -200,42 +202,42 @@ namespace HappyPandaXDroid.Custom_Views
 
         public void InitLibrary()
         {
+            
+            ThreadHandler.Thread thread = ThreadHandler.CreateThread(() =>
+             {
+                 while (!initialized)
+                 {
+                     Thread.Sleep(100);
+                 }
+                 if (Core.Net.Connect())
+                 {
+                     {
+                         logger.Info("Getting Library");
+                         GetLib();
+                         var h = new Handler(Looper.MainLooper);
+                         h.Post(() =>
+                         {
+                             SetMainLoading(false);
+                             adapter.ResetList();
+                             SetMainLoading(false);
+                             lastindex = Core.Gallery.CurrentList.Count - 1;
+                             GetTotalCount();
+                         });
 
-            ThreadStart thrds = new ThreadStart(() =>
-            {
-                while (!initialized)
-                {
-                    Thread.Sleep(100);
-                }
-                if (Core.Net.Connect())
-                {
-                    {
-                        logger.Info("Getting Library");
-                        GetLib();
-                        var h = new Handler(Looper.MainLooper);
-                        h.Post(() =>
-                        {
-                            SetMainLoading(false);
-                            adapter.ResetList();
-                            SetMainLoading(false);
-                            lastindex = Core.Gallery.CurrentList.Count - 1;
-                            GetTotalCount();
-                        });
-
-                    }
-                }
-                else
-                {
-                    var h = new Handler(Looper.MainLooper);
-                    h.Post(() =>
-                    {
-                        SetMainLoading(false);
-                        SetError(true);
-                    });
-                }
-            });
-            Thread thread = new Thread(thrds);
-            thread.Start();
+                     }
+                 }
+                 else
+                 {
+                     var h = new Handler(Looper.MainLooper);
+                     h.Post(() =>
+                     {
+                         SetMainLoading(false);
+                         SetError(true);
+                     });
+                 }
+             }, activityId, activityName);
+            ThreadHandler.StartThread(thread);
+            ThreadHandler.Schedule(thread);
         }
 
         private void MErrorFrame_Click(object sender, EventArgs e)
@@ -249,9 +251,9 @@ namespace HappyPandaXDroid.Custom_Views
         {
 
             SetBottomLoading(true);
-            ThreadStart load = new ThreadStart(NextPage);
-            Thread thread = new Thread(load);
-            thread.Start();
+            ThreadHandler.Thread thread = ThreadHandler.CreateThread(NextPage, activityId, activityName);
+            ThreadHandler.StartThread(thread);
+            ThreadHandler.Schedule(thread);
         }
 
         private void MRefreshLayout_OnHeaderRefresh(object sender, EventArgs e)
@@ -280,9 +282,10 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 logger.Info("Swipe Footer Refreshing");
                 content.SetBottomLoading(true);
-                ThreadStart load = new ThreadStart(content.NextPage);
-                Thread thread = new Thread(load);
-                thread.Start();
+                ThreadHandler.Thread thread = ThreadHandler.CreateThread(content.NextPage,content.activityId,content.activityName);
+                ThreadHandler.StartThread(thread);
+                ThreadHandler.Schedule(thread);
+
             }
 
             public void OnHeaderRefresh()
@@ -313,29 +316,34 @@ namespace HappyPandaXDroid.Custom_Views
 
         public async void Refresh()
         {
-            logger.Info("Refreshing HPContent");
-            var h = new Handler(Looper.MainLooper);
-            bool success = await Core.Gallery.SearchGallery(Current_Query);
-            if (!success)
+            ThreadHandler.Thread thread = ThreadHandler.CreateThread(async () =>
             {
+                logger.Info("Refreshing HPContent");
+                var h = new Handler(Looper.MainLooper);
+                bool success = await Core.Gallery.SearchGallery(Current_Query);
+                if (!success)
+                {
+                    h.Post(() =>
+                    {
+                        SetMainLoading(false);
+                        SetError(true);
+                    });
+                    return;
+                }
+                CurrentPage = 0;
                 h.Post(() =>
                 {
-                    SetMainLoading(false);
-                    SetError(true);
-                });
-                return;
-            }
-                CurrentPage = 0;
-            h.Post(() =>
-            {
-                adapter.NotifyDataSetChanged();
-                adapter.ResetList();
-                if (Core.Gallery.CurrentList.Count > 0)
-                    mRecyclerView.ScrollToPosition(0);
-                GetTotalCount();
+                    adapter.NotifyDataSetChanged();
+                    adapter.ResetList();
+                    if (Core.Gallery.CurrentList.Count > 0)
+                        mRecyclerView.ScrollToPosition(0);
+                    GetTotalCount();
 
-            });
-            logger.Info("HPContent Refresh Successful");
+                });
+                logger.Info("HPContent Refresh Successful");
+            }, activityId, activityName);
+            ThreadHandler.StartThread(thread);
+            ThreadHandler.Schedule(thread);
         }
 
         public void SetBottomLoading(bool state)

@@ -42,7 +42,7 @@ namespace HappyPandaXDroid
         public bool SwitchedToSettings = false;
         CountDown backTimer;
         Toast toast;
-
+        public int activityId;
         Clans.Fab.FloatingActionMenu fam;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         Clans.Fab.FloatingActionButton mRefreshFab;
@@ -82,16 +82,20 @@ namespace HappyPandaXDroid
 
             }
             logger.Info("Main Actitvity Created");
+            
             toast = Toast.MakeText(this, "Press Back again to exit", ToastLength.Short);
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
             ThreadHandler.InitScheduler();
+            activityId = ThreadHandler.Thread.IdGen.Next();
             toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Library";
             
             ContentView = FindViewById<Custom_Views.HPContent>(Resource.Id.content_view);
+            ContentView.activityId = activityId;
+            ContentView.activityName = "MainActivity";
             ContentView.InitLibrary();
             var navView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navView.NavigationItemSelected += NavView_NavigationItemSelected;
