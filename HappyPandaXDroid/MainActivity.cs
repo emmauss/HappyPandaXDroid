@@ -40,10 +40,15 @@ namespace HappyPandaXDroid
         public Custom_Views.HPContent ContentView;
         DrawerLayout navDrawer;
         public bool SwitchedToSettings = false;
+        CountDown backTimer;
+        Toast toast;
+
         Clans.Fab.FloatingActionMenu fam;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         Clans.Fab.FloatingActionButton mRefreshFab;
         Clans.Fab.FloatingActionButton mJumpFab;
+        bool backPressed = false;
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -77,13 +82,12 @@ namespace HappyPandaXDroid
 
             }
             logger.Info("Main Actitvity Created");
-            
+            toast = Toast.MakeText(this, "Press Back again to exit", ToastLength.Short);
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
             ThreadHandler.InitScheduler();
             toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Library";
             
@@ -108,6 +112,45 @@ namespace HappyPandaXDroid
             File.Create(Core.App.Settings.basePath + ".nomedia");
 
         }
+        public class CountDown : CountDownTimer
+        {
+            MainActivity activity;
+            public CountDown(long milliseconds, long interval,MainActivity activity) :base(milliseconds,interval)
+            {
+               
+                this.activity = activity;
+                activity.backPressed = true;
+                
+            }
+            public override void OnFinish()
+            {
+                activity.backPressed = false;
+            }
+
+            public override void OnTick(long millisUntilFinished)
+            {
+                
+            }
+            
+        }
+        public override void OnBackPressed()
+        {
+            if (backPressed)
+            {
+                toast.Cancel();
+                OnDestroy();
+            }
+            else
+            {
+                backTimer = new CountDown(1000, 10, this);
+                backTimer.Start();
+                
+                
+                toast.Show();
+            }
+            
+        }
+
 
         public void CreateFolders()
         {
@@ -218,10 +261,17 @@ namespace HappyPandaXDroid
 
         protected override void OnDestroy()
         {
-           
-            base.OnDestroy();
+            if (IsDestroyed)
+            {
+                return;
+            }
+            ContentView.Dispose();
+            ContentView = null;
             Core.App.Threading.Close();
             Android.Support.V4.App.ActivityCompat.FinishAffinity(this);
+            //base.OnDestroy();
+            
+           
             
         }
 
