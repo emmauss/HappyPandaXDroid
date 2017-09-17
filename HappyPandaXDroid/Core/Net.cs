@@ -87,8 +87,18 @@ namespace HappyPandaXDroid.Core
                     byte[] req = Encoding.UTF8.GetBytes(request + "<EOF>");
                     stream.Write(req, 0, req.Length);
                     Array.Clear(res, 0, res.Length);
-                    stream.Read(res, 0, res.Length);
-                    payload = Encoding.UTF8.GetString(res).TrimEnd('\0');
+                    response = string.Empty;
+                    while (true)
+                    {
+                        
+                        stream.Read(res, 0, res.Length);
+                        payload = Encoding.UTF8.GetString(res).TrimEnd('\0');
+                        response += payload;
+                        if (response.Contains("<EOF>"))
+                            break;
+                        Array.Clear(res, 0, res.Length);
+                    }
+                    payload = response;
                     bool success = false;
                     if (!payload.Contains("Authenticated"))
                     {
