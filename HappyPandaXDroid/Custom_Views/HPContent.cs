@@ -67,7 +67,6 @@ namespace HappyPandaXDroid.Custom_Views
                 current_query = value;
                 SetMainLoading(true);
                 Refresh();
-                SetMainLoading(false);
             }
         }
         DrawerLayout navDrawer;
@@ -244,7 +243,6 @@ namespace HappyPandaXDroid.Custom_Views
         {
             SetMainLoading(true);
             Refresh();
-            SetMainLoading(false);
         }
 
         private void MRefreshLayout_OnFooterRefresh(object sender, EventArgs e)
@@ -316,6 +314,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         public async void Refresh()
         {
+            SetMainLoading(true);
             ThreadHandler.Thread thread = ThreadHandler.CreateThread(async () =>
             {
                 logger.Info("Refreshing HPContent");
@@ -335,6 +334,7 @@ namespace HappyPandaXDroid.Custom_Views
                 {
                     adapter.NotifyDataSetChanged();
                     adapter.ResetList();
+                    SetMainLoading(false);
                     if (Core.Gallery.CurrentList.Count > 0)
                         mRecyclerView.ScrollToPosition(0);
                     GetTotalCount();
@@ -386,11 +386,13 @@ namespace HappyPandaXDroid.Custom_Views
                     mProgressView.Visibility = ViewStates.Visible;
                     SetError(false);
                     mRefreshLayout.Visibility = ViewStates.Gone;
+                    mRecyclerView.Visibility = ViewStates.Invisible;
                     IsLoading = true;
                     break;
                 case false:
                     mProgressView.Visibility = ViewStates.Gone;
                     mRefreshLayout.Visibility = ViewStates.Visible;
+                    mRecyclerView.Visibility = ViewStates.Visible;
                     IsLoading = false;
                     break;
             }

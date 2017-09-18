@@ -15,6 +15,7 @@ using Android.Support.V7.Widget;
 using Android.Support.V7.View;
 using Com.Bumptech.Glide;
 using Com.Bumptech.Glide.Request;
+using ProgressView = XamarinBindings.MaterialProgressBar;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using NLog;
 
@@ -30,6 +31,8 @@ namespace HappyPandaXDroid
         public ImageView ThumbView;
         Core.Gallery.GalleryItem gallery;
         RecyclerView grid_layout;
+        ProgressView.MaterialProgressBar mProgressView;
+        LinearLayout MainView;
         PreviewAdapter adapter;
         ScrollView scrollview;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -48,10 +51,10 @@ namespace HappyPandaXDroid
             logger.Info("Initializing Gallery Detail. GalleryId ={0}", gallery.id);
             
             activityId = ThreadHandler.Thread.IdGen.Next();
-            pagelist = Core.App.Server.GetRelatedItems<Core.Gallery.Page>(gallery.id);
-            
-            ParseData();
 
+
+
+            ParseMeta();
             string path = string.Empty ;
             Task.Run(async () =>
             {
@@ -69,8 +72,17 @@ namespace HappyPandaXDroid
                         logger.Error(ex, "\n Exception Caught In GalleryActivity.Oncreate.");
                     }
                 });
+                gallery.tags = await Core.Gallery.GetTags(gallery.id, "Gallery");
+                pagelist = Core.App.Server.GetRelatedItems<Core.Gallery.Page>(gallery.id);
+                ParseData();
+                RunOnUiThread(() =>
+                {
+                    mProgressView.Visibility = ViewStates.Invisible;
+                    MainView.Visibility = ViewStates.Visible;
+                });
             });
             
+
         }
 
         protected override void OnDestroy()
@@ -88,6 +100,10 @@ namespace HappyPandaXDroid
 
         void InitializeViews()
         {
+            mProgressView = FindViewById<ProgressView.MaterialProgressBar>(Resource.Id.progress_view);
+            mProgressView.Visibility = ViewStates.Visible;
+            MainView = FindViewById<LinearLayout>(Resource.Id.below_header);
+            MainView.Visibility = ViewStates.Gone;
             title = FindViewById<TextView>(Resource.Id.title);
             category = FindViewById<TextView>(Resource.Id.category);
             read_action = FindViewById<TextView>(Resource.Id.read);
@@ -124,22 +140,31 @@ namespace HappyPandaXDroid
 
         }
 
-        void ParseData()
+        public void ParseMeta()
         {
             title.Text = gallery.titles[0].name;
-            gallery.tags = Core.Gallery.GetTags(gallery.id, "Gallery");
             category.Text = "place_holder";
-            if (gallery.tags.Language.Count > 0)
+            
+        }
+
+        async void ParseData()
+        {
+            
+
+            RunOnUiThread(() =>
             {
-                string lan = gallery.tags.Language[0].name;
-                language.Text = System.Globalization.CultureInfo.CurrentCulture
-                    .TextInfo.ToTitleCase(lan.ToLower());
-            }
-            else
-            language.Text = "eng";
-            pages.Text = pagelist.Count.ToString() + " Pages" ;
-            adapter.SetList(pagelist);
-            ParseTags();
+                if (gallery.tags.Language.Count > 0)
+                {
+                    string lan = gallery.tags.Language[0].name;
+                    language.Text = System.Globalization.CultureInfo.CurrentCulture
+                        .TextInfo.ToTitleCase(lan.ToLower());
+                }
+                else
+                    language.Text = "eng";
+                pages.Text = pagelist.Count.ToString() + " Pages";
+                adapter.SetList(pagelist);
+                ParseTags();
+            });
         }
 
         protected override void OnPause()
@@ -263,7 +288,7 @@ namespace HappyPandaXDroid
 
         public override int ItemCount
         {
-            get { return mdata.Count; }
+            get { return mdata==null?0:mdata.Count; }
         }
 
         public void SetList(List<Core.Gallery.Page> UrlList) 

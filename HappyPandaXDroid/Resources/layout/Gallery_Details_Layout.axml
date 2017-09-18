@@ -15,6 +15,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+      <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"            
+        android:paddingBottom="80dp"
+            android:indeterminate="true"
+            android:id="@+id/progress_view" />
         <LinearLayout
             android:id="@+id/below_header"
             android:layout_width="match_parent"

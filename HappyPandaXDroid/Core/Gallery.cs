@@ -445,7 +445,7 @@ namespace HappyPandaXDroid.Core
             return count;
         }
 
-        public static TagList GetTags(int item_id, string type)
+        public static async Task<TagList> GetTags(int item_id, string type)
         {
             List<Tuple<string, string>> main = new List<Tuple<string, string>>();
             List<Tuple<string, string>> funct = new List<Tuple<string, string>>();

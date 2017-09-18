@@ -312,10 +312,6 @@ namespace HappyPandaXDroid
                     }
                     ContentView.Refresh();
                     logger.Info("Refresh Done");
-                    RunOnUiThread(() =>
-                    {
-                        ContentView.SetMainLoading(false);
-                    });
                 });
             }
             catch(System.Exception ex)
