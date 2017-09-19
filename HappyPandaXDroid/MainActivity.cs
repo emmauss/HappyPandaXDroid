@@ -352,7 +352,9 @@ namespace HappyPandaXDroid
 
         public bool OnQueryTextSubmit(string query)
         {
-            searchView.ClearFocus();
+            var view = CurrentFocus;
+            if (view != null)
+                view.ClearFocus();
             logger.Info("Search query submit , query ={0}", query);
             ContentView.Current_Query = query;
             return true;

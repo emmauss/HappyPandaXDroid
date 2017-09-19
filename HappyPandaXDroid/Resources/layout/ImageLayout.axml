@@ -5,8 +5,22 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <ImageView
+    <FrameLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/image" />
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayout1">
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="160dp"
+            android:layout_gravity="center"
+            android:id="@+id/progress_view" />        
+        <com.github.chrisbanes.photoview.PhotoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/image" />
+    </FrameLayout>
 </LinearLayout>

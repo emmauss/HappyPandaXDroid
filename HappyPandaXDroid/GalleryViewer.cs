@@ -359,135 +359,23 @@ namespace HappyPandaXDroid
             }
 
 
-            public override void OnViewRecycled(Java.Lang.Object holder)
-            {
-                var vh = holder as ImageViewHolder;
-                var h = new Handler(Looper.MainLooper);
-                vh.imageView.SetImageDrawable(null);
-                /*if(vh.loaded)
-                h.Post(() =>
-                {
-                    try
-                    {
-                        Glide.With(context)
-                        .Load(vh.page_path)
-                        .Override(Target.SizeOriginal, Target.SizeOriginal)
-                        .Into(vh.imageView)
-                        ;
-                        vh.loaded = true;
-                    }
-                    catch (IllegalArgumentException ex)
-                    {
-                        if (ex.Message.Contains("destroyed"))
-                            return;
-                    }
-                });*/
-                base.OnViewRecycled(holder);
-            }
+            
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
                 ImageViewHolder vh = holder as ImageViewHolder;
+                //vh.IsRecyclable = false;
                 var h = new Handler(Looper.MainLooper);
                 var activity = (GalleryViewer)context;
-                vh.imageView.SetImageDrawable(null);
                 int tries = 0;
-                var thread = ThreadHandler.CreateThread(async () =>
+
+                ThreadHandler.Thread thread = ThreadHandler.CreateThread(() =>
                 {
-                    if (!vh.loaded) {
-
-                        
-                        h.Post(() =>
-                        {
-                            try
-                            {
-                                {
-                            Glide.With(context)
-                                .Load(Resource.Drawable.Loading)
-                                .Into(vh.imageView);
-                        }
-                            }
-                            catch (IllegalArgumentException ex)
-                            {
-                                if (ex.Message.Contains("destroyed"))
-                                    return;
-                            }
-                        });
-                
-                    
-                    while (!IsCached())
-                    {
-                        await Task.Delay(10);
-                        vh.page_path = await Core.Gallery.GetImage(PageList[position], false, "original", false);
-
-                        if (vh.page_path.Contains("fail"))
-                        {
-
-                            if (vh.page_path.Contains("misc"))
-                            {
-                                tries++;
-                                if (tries < 4)
-                                {
-                                    continue;
-                                }
-
-                                return;
-
-                            }
-                            return;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-                    
-                    
-                    h.Post(() =>
-                    {
-                        try
-                        {
-                            Glide.With(context)
-                            .Load(vh.page_path)
-                            .Override(Target.SizeOriginal, Target.SizeOriginal)
-                            .Into(vh.imageView)
-                            ;
-                            vh.loaded = true;
-                        }catch(IllegalArgumentException ex)
-                        {
-                            if (ex.Message.Contains("destroyed"))
-                                return;
-                        }
-                    });
-                    tries = 0;
-                    //vh.imageView = ImageList[position];
-
-                    bool IsCached()
-                    {
-                        int item_id = PageList[position].id;
-                        try
-                        {
-                            
-                            vh.page_path = Core.App.Settings.cache + "pages/" + Core.App.Server.HashGenerator("original", "page", item_id) + ".jpg";
-                            bool check = Core.Media.Cache.IsCached(vh.page_path);
-
-                            return check;
-                        }
-                        catch (System.Exception ex)
-                        {
-                            logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached.");
-
-                            return false;
-                        }
-
-
-                    }
-
+                    if (!vh.imageView.Loaded)
+                        vh.imageView.OnLoadStart(PageList[position]);
                 }, activity.activityID, "GalleryViewer");
+                ThreadHandler.StartThread(thread);
                 ThreadHandler.Schedule(thread);
-
-               
             }
 
             private void ItemView_Touch(object sender, View.TouchEventArgs e)
@@ -606,7 +494,7 @@ namespace HappyPandaXDroid
             {
                 /*var imageview = Android.Views.LayoutInflater.From(parent.Context).
                     Inflate(Resource.Layout.ImageViewTemplate, parent,false);*/
-                PhotoImageVIew img = new PhotoImageVIew(context);
+                Custom_Views.ImageViewHolder img = new Custom_Views.ImageViewHolder(context);
                 return new ImageViewHolder(img);
             }
 
@@ -658,14 +546,14 @@ namespace HappyPandaXDroid
 
         public class ImageViewHolder : RecyclerView.ViewHolder
         {
-            public LinearLayout holder;
-            public PhotoImageVIew imageView;
+            
+            public Custom_Views.ImageViewHolder imageView;
             public bool loaded = false;
             public string page_path = string.Empty;
-            public ImageViewHolder(PhotoImageVIew itemView) : base(itemView)
+            public ImageViewHolder(Custom_Views.ImageViewHolder itemView) : base(itemView)
             {
                 imageView = itemView;
-               this.IsRecyclable = false;
+               //this.IsRecyclable = false;
             }
             
         }

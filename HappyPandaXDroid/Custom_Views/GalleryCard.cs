@@ -142,10 +142,10 @@ namespace HappyPandaXDroid.Custom_Views
             await Task.Run(async () =>
             {
                 await Task.Delay(10);
-                //Gallery = Core.App.Server.GetItem<Core.Gallery.GalleryItem>(Gallery.id, "Gallery");                
+                LoadThumb();
             });
             Label.Visibility = ViewStates.Gone;
-            LoadThumb();
+            
             logger.Info("Refresh {0} Successful",Gallery.id);
         }
 

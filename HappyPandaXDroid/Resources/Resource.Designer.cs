@@ -26,23 +26,1846 @@ namespace HappyPandaXDroid
 		
 		public static void UpdateIdValues()
 		{
+			global::Emmaus.Resource.Animation.abc_fade_in = global::HappyPandaXDroid.Resource.Animation.abc_fade_in;
+			global::Emmaus.Resource.Animation.abc_fade_out = global::HappyPandaXDroid.Resource.Animation.abc_fade_out;
+			global::Emmaus.Resource.Animation.abc_grow_fade_in_from_bottom = global::HappyPandaXDroid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Emmaus.Resource.Animation.abc_popup_enter = global::HappyPandaXDroid.Resource.Animation.abc_popup_enter;
+			global::Emmaus.Resource.Animation.abc_popup_exit = global::HappyPandaXDroid.Resource.Animation.abc_popup_exit;
+			global::Emmaus.Resource.Animation.abc_shrink_fade_out_from_bottom = global::HappyPandaXDroid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Emmaus.Resource.Animation.abc_slide_in_bottom = global::HappyPandaXDroid.Resource.Animation.abc_slide_in_bottom;
+			global::Emmaus.Resource.Animation.abc_slide_in_top = global::HappyPandaXDroid.Resource.Animation.abc_slide_in_top;
+			global::Emmaus.Resource.Animation.abc_slide_out_bottom = global::HappyPandaXDroid.Resource.Animation.abc_slide_out_bottom;
+			global::Emmaus.Resource.Animation.abc_slide_out_top = global::HappyPandaXDroid.Resource.Animation.abc_slide_out_top;
+			global::Emmaus.Resource.Animation.design_bottom_sheet_slide_in = global::HappyPandaXDroid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Emmaus.Resource.Animation.design_bottom_sheet_slide_out = global::HappyPandaXDroid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Emmaus.Resource.Animation.design_fab_in = global::HappyPandaXDroid.Resource.Animation.design_fab_in;
+			global::Emmaus.Resource.Animation.design_fab_out = global::HappyPandaXDroid.Resource.Animation.design_fab_out;
+			global::Emmaus.Resource.Animation.design_snackbar_in = global::HappyPandaXDroid.Resource.Animation.design_snackbar_in;
+			global::Emmaus.Resource.Animation.design_snackbar_out = global::HappyPandaXDroid.Resource.Animation.design_snackbar_out;
+			global::Emmaus.Resource.Animator.design_appbar_state_list_animator = global::HappyPandaXDroid.Resource.Animator.design_appbar_state_list_animator;
+			global::Emmaus.Resource.Attribute.actionBarDivider = global::HappyPandaXDroid.Resource.Attribute.actionBarDivider;
+			global::Emmaus.Resource.Attribute.actionBarItemBackground = global::HappyPandaXDroid.Resource.Attribute.actionBarItemBackground;
+			global::Emmaus.Resource.Attribute.actionBarPopupTheme = global::HappyPandaXDroid.Resource.Attribute.actionBarPopupTheme;
+			global::Emmaus.Resource.Attribute.actionBarSize = global::HappyPandaXDroid.Resource.Attribute.actionBarSize;
+			global::Emmaus.Resource.Attribute.actionBarSplitStyle = global::HappyPandaXDroid.Resource.Attribute.actionBarSplitStyle;
+			global::Emmaus.Resource.Attribute.actionBarStyle = global::HappyPandaXDroid.Resource.Attribute.actionBarStyle;
+			global::Emmaus.Resource.Attribute.actionBarTabBarStyle = global::HappyPandaXDroid.Resource.Attribute.actionBarTabBarStyle;
+			global::Emmaus.Resource.Attribute.actionBarTabStyle = global::HappyPandaXDroid.Resource.Attribute.actionBarTabStyle;
+			global::Emmaus.Resource.Attribute.actionBarTabTextStyle = global::HappyPandaXDroid.Resource.Attribute.actionBarTabTextStyle;
+			global::Emmaus.Resource.Attribute.actionBarTheme = global::HappyPandaXDroid.Resource.Attribute.actionBarTheme;
+			global::Emmaus.Resource.Attribute.actionBarWidgetTheme = global::HappyPandaXDroid.Resource.Attribute.actionBarWidgetTheme;
+			global::Emmaus.Resource.Attribute.actionButtonStyle = global::HappyPandaXDroid.Resource.Attribute.actionButtonStyle;
+			global::Emmaus.Resource.Attribute.actionDropDownStyle = global::HappyPandaXDroid.Resource.Attribute.actionDropDownStyle;
+			global::Emmaus.Resource.Attribute.actionLayout = global::HappyPandaXDroid.Resource.Attribute.actionLayout;
+			global::Emmaus.Resource.Attribute.actionMenuTextAppearance = global::HappyPandaXDroid.Resource.Attribute.actionMenuTextAppearance;
+			global::Emmaus.Resource.Attribute.actionMenuTextColor = global::HappyPandaXDroid.Resource.Attribute.actionMenuTextColor;
+			global::Emmaus.Resource.Attribute.actionModeBackground = global::HappyPandaXDroid.Resource.Attribute.actionModeBackground;
+			global::Emmaus.Resource.Attribute.actionModeCloseButtonStyle = global::HappyPandaXDroid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Emmaus.Resource.Attribute.actionModeCloseDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeCloseDrawable;
+			global::Emmaus.Resource.Attribute.actionModeCopyDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeCopyDrawable;
+			global::Emmaus.Resource.Attribute.actionModeCutDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeCutDrawable;
+			global::Emmaus.Resource.Attribute.actionModeFindDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeFindDrawable;
+			global::Emmaus.Resource.Attribute.actionModePasteDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModePasteDrawable;
+			global::Emmaus.Resource.Attribute.actionModePopupWindowStyle = global::HappyPandaXDroid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Emmaus.Resource.Attribute.actionModeSelectAllDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Emmaus.Resource.Attribute.actionModeShareDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeShareDrawable;
+			global::Emmaus.Resource.Attribute.actionModeSplitBackground = global::HappyPandaXDroid.Resource.Attribute.actionModeSplitBackground;
+			global::Emmaus.Resource.Attribute.actionModeStyle = global::HappyPandaXDroid.Resource.Attribute.actionModeStyle;
+			global::Emmaus.Resource.Attribute.actionModeWebSearchDrawable = global::HappyPandaXDroid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Emmaus.Resource.Attribute.actionOverflowButtonStyle = global::HappyPandaXDroid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Emmaus.Resource.Attribute.actionOverflowMenuStyle = global::HappyPandaXDroid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Emmaus.Resource.Attribute.actionProviderClass = global::HappyPandaXDroid.Resource.Attribute.actionProviderClass;
+			global::Emmaus.Resource.Attribute.actionViewClass = global::HappyPandaXDroid.Resource.Attribute.actionViewClass;
+			global::Emmaus.Resource.Attribute.activityChooserViewStyle = global::HappyPandaXDroid.Resource.Attribute.activityChooserViewStyle;
+			global::Emmaus.Resource.Attribute.alertDialogButtonGroupStyle = global::HappyPandaXDroid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Emmaus.Resource.Attribute.alertDialogCenterButtons = global::HappyPandaXDroid.Resource.Attribute.alertDialogCenterButtons;
+			global::Emmaus.Resource.Attribute.alertDialogStyle = global::HappyPandaXDroid.Resource.Attribute.alertDialogStyle;
+			global::Emmaus.Resource.Attribute.alertDialogTheme = global::HappyPandaXDroid.Resource.Attribute.alertDialogTheme;
+			global::Emmaus.Resource.Attribute.allowStacking = global::HappyPandaXDroid.Resource.Attribute.allowStacking;
+			global::Emmaus.Resource.Attribute.alpha = global::HappyPandaXDroid.Resource.Attribute.alpha;
+			global::Emmaus.Resource.Attribute.arrowHeadLength = global::HappyPandaXDroid.Resource.Attribute.arrowHeadLength;
+			global::Emmaus.Resource.Attribute.arrowShaftLength = global::HappyPandaXDroid.Resource.Attribute.arrowShaftLength;
+			global::Emmaus.Resource.Attribute.autoCompleteTextViewStyle = global::HappyPandaXDroid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Emmaus.Resource.Attribute.background = global::HappyPandaXDroid.Resource.Attribute.background;
+			global::Emmaus.Resource.Attribute.backgroundSplit = global::HappyPandaXDroid.Resource.Attribute.backgroundSplit;
+			global::Emmaus.Resource.Attribute.backgroundStacked = global::HappyPandaXDroid.Resource.Attribute.backgroundStacked;
+			global::Emmaus.Resource.Attribute.backgroundTint = global::HappyPandaXDroid.Resource.Attribute.backgroundTint;
+			global::Emmaus.Resource.Attribute.backgroundTintMode = global::HappyPandaXDroid.Resource.Attribute.backgroundTintMode;
+			global::Emmaus.Resource.Attribute.barLength = global::HappyPandaXDroid.Resource.Attribute.barLength;
+			global::Emmaus.Resource.Attribute.behavior_autoHide = global::HappyPandaXDroid.Resource.Attribute.behavior_autoHide;
+			global::Emmaus.Resource.Attribute.behavior_hideable = global::HappyPandaXDroid.Resource.Attribute.behavior_hideable;
+			global::Emmaus.Resource.Attribute.behavior_overlapTop = global::HappyPandaXDroid.Resource.Attribute.behavior_overlapTop;
+			global::Emmaus.Resource.Attribute.behavior_peekHeight = global::HappyPandaXDroid.Resource.Attribute.behavior_peekHeight;
+			global::Emmaus.Resource.Attribute.behavior_skipCollapsed = global::HappyPandaXDroid.Resource.Attribute.behavior_skipCollapsed;
+			global::Emmaus.Resource.Attribute.borderWidth = global::HappyPandaXDroid.Resource.Attribute.borderWidth;
+			global::Emmaus.Resource.Attribute.borderlessButtonStyle = global::HappyPandaXDroid.Resource.Attribute.borderlessButtonStyle;
+			global::Emmaus.Resource.Attribute.bottomSheetDialogTheme = global::HappyPandaXDroid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Emmaus.Resource.Attribute.bottomSheetStyle = global::HappyPandaXDroid.Resource.Attribute.bottomSheetStyle;
+			global::Emmaus.Resource.Attribute.buttonBarButtonStyle = global::HappyPandaXDroid.Resource.Attribute.buttonBarButtonStyle;
+			global::Emmaus.Resource.Attribute.buttonBarNegativeButtonStyle = global::HappyPandaXDroid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Emmaus.Resource.Attribute.buttonBarNeutralButtonStyle = global::HappyPandaXDroid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Emmaus.Resource.Attribute.buttonBarPositiveButtonStyle = global::HappyPandaXDroid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Emmaus.Resource.Attribute.buttonBarStyle = global::HappyPandaXDroid.Resource.Attribute.buttonBarStyle;
+			global::Emmaus.Resource.Attribute.buttonGravity = global::HappyPandaXDroid.Resource.Attribute.buttonGravity;
+			global::Emmaus.Resource.Attribute.buttonPanelSideLayout = global::HappyPandaXDroid.Resource.Attribute.buttonPanelSideLayout;
+			global::Emmaus.Resource.Attribute.buttonStyle = global::HappyPandaXDroid.Resource.Attribute.buttonStyle;
+			global::Emmaus.Resource.Attribute.buttonStyleSmall = global::HappyPandaXDroid.Resource.Attribute.buttonStyleSmall;
+			global::Emmaus.Resource.Attribute.buttonTint = global::HappyPandaXDroid.Resource.Attribute.buttonTint;
+			global::Emmaus.Resource.Attribute.buttonTintMode = global::HappyPandaXDroid.Resource.Attribute.buttonTintMode;
+			global::Emmaus.Resource.Attribute.checkboxStyle = global::HappyPandaXDroid.Resource.Attribute.checkboxStyle;
+			global::Emmaus.Resource.Attribute.checkedTextViewStyle = global::HappyPandaXDroid.Resource.Attribute.checkedTextViewStyle;
+			global::Emmaus.Resource.Attribute.closeIcon = global::HappyPandaXDroid.Resource.Attribute.closeIcon;
+			global::Emmaus.Resource.Attribute.closeItemLayout = global::HappyPandaXDroid.Resource.Attribute.closeItemLayout;
+			global::Emmaus.Resource.Attribute.collapseContentDescription = global::HappyPandaXDroid.Resource.Attribute.collapseContentDescription;
+			global::Emmaus.Resource.Attribute.collapseIcon = global::HappyPandaXDroid.Resource.Attribute.collapseIcon;
+			global::Emmaus.Resource.Attribute.collapsedTitleGravity = global::HappyPandaXDroid.Resource.Attribute.collapsedTitleGravity;
+			global::Emmaus.Resource.Attribute.collapsedTitleTextAppearance = global::HappyPandaXDroid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Emmaus.Resource.Attribute.color = global::HappyPandaXDroid.Resource.Attribute.color;
+			global::Emmaus.Resource.Attribute.colorAccent = global::HappyPandaXDroid.Resource.Attribute.colorAccent;
+			global::Emmaus.Resource.Attribute.colorBackgroundFloating = global::HappyPandaXDroid.Resource.Attribute.colorBackgroundFloating;
+			global::Emmaus.Resource.Attribute.colorButtonNormal = global::HappyPandaXDroid.Resource.Attribute.colorButtonNormal;
+			global::Emmaus.Resource.Attribute.colorControlActivated = global::HappyPandaXDroid.Resource.Attribute.colorControlActivated;
+			global::Emmaus.Resource.Attribute.colorControlHighlight = global::HappyPandaXDroid.Resource.Attribute.colorControlHighlight;
+			global::Emmaus.Resource.Attribute.colorControlNormal = global::HappyPandaXDroid.Resource.Attribute.colorControlNormal;
+			global::Emmaus.Resource.Attribute.colorPrimary = global::HappyPandaXDroid.Resource.Attribute.colorPrimary;
+			global::Emmaus.Resource.Attribute.colorPrimaryDark = global::HappyPandaXDroid.Resource.Attribute.colorPrimaryDark;
+			global::Emmaus.Resource.Attribute.colorSwitchThumbNormal = global::HappyPandaXDroid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Emmaus.Resource.Attribute.commitIcon = global::HappyPandaXDroid.Resource.Attribute.commitIcon;
+			global::Emmaus.Resource.Attribute.contentInsetEnd = global::HappyPandaXDroid.Resource.Attribute.contentInsetEnd;
+			global::Emmaus.Resource.Attribute.contentInsetEndWithActions = global::HappyPandaXDroid.Resource.Attribute.contentInsetEndWithActions;
+			global::Emmaus.Resource.Attribute.contentInsetLeft = global::HappyPandaXDroid.Resource.Attribute.contentInsetLeft;
+			global::Emmaus.Resource.Attribute.contentInsetRight = global::HappyPandaXDroid.Resource.Attribute.contentInsetRight;
+			global::Emmaus.Resource.Attribute.contentInsetStart = global::HappyPandaXDroid.Resource.Attribute.contentInsetStart;
+			global::Emmaus.Resource.Attribute.contentInsetStartWithNavigation = global::HappyPandaXDroid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Emmaus.Resource.Attribute.contentScrim = global::HappyPandaXDroid.Resource.Attribute.contentScrim;
+			global::Emmaus.Resource.Attribute.controlBackground = global::HappyPandaXDroid.Resource.Attribute.controlBackground;
+			global::Emmaus.Resource.Attribute.counterEnabled = global::HappyPandaXDroid.Resource.Attribute.counterEnabled;
+			global::Emmaus.Resource.Attribute.counterMaxLength = global::HappyPandaXDroid.Resource.Attribute.counterMaxLength;
+			global::Emmaus.Resource.Attribute.counterOverflowTextAppearance = global::HappyPandaXDroid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Emmaus.Resource.Attribute.counterTextAppearance = global::HappyPandaXDroid.Resource.Attribute.counterTextAppearance;
+			global::Emmaus.Resource.Attribute.customNavigationLayout = global::HappyPandaXDroid.Resource.Attribute.customNavigationLayout;
+			global::Emmaus.Resource.Attribute.defaultQueryHint = global::HappyPandaXDroid.Resource.Attribute.defaultQueryHint;
+			global::Emmaus.Resource.Attribute.dialogPreferredPadding = global::HappyPandaXDroid.Resource.Attribute.dialogPreferredPadding;
+			global::Emmaus.Resource.Attribute.dialogTheme = global::HappyPandaXDroid.Resource.Attribute.dialogTheme;
+			global::Emmaus.Resource.Attribute.displayOptions = global::HappyPandaXDroid.Resource.Attribute.displayOptions;
+			global::Emmaus.Resource.Attribute.divider = global::HappyPandaXDroid.Resource.Attribute.divider;
+			global::Emmaus.Resource.Attribute.dividerHorizontal = global::HappyPandaXDroid.Resource.Attribute.dividerHorizontal;
+			global::Emmaus.Resource.Attribute.dividerPadding = global::HappyPandaXDroid.Resource.Attribute.dividerPadding;
+			global::Emmaus.Resource.Attribute.dividerVertical = global::HappyPandaXDroid.Resource.Attribute.dividerVertical;
+			global::Emmaus.Resource.Attribute.drawableSize = global::HappyPandaXDroid.Resource.Attribute.drawableSize;
+			global::Emmaus.Resource.Attribute.drawerArrowStyle = global::HappyPandaXDroid.Resource.Attribute.drawerArrowStyle;
+			global::Emmaus.Resource.Attribute.dropDownListViewStyle = global::HappyPandaXDroid.Resource.Attribute.dropDownListViewStyle;
+			global::Emmaus.Resource.Attribute.dropdownListPreferredItemHeight = global::HappyPandaXDroid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Emmaus.Resource.Attribute.editTextBackground = global::HappyPandaXDroid.Resource.Attribute.editTextBackground;
+			global::Emmaus.Resource.Attribute.editTextColor = global::HappyPandaXDroid.Resource.Attribute.editTextColor;
+			global::Emmaus.Resource.Attribute.editTextStyle = global::HappyPandaXDroid.Resource.Attribute.editTextStyle;
+			global::Emmaus.Resource.Attribute.elevation = global::HappyPandaXDroid.Resource.Attribute.elevation;
+			global::Emmaus.Resource.Attribute.errorEnabled = global::HappyPandaXDroid.Resource.Attribute.errorEnabled;
+			global::Emmaus.Resource.Attribute.errorTextAppearance = global::HappyPandaXDroid.Resource.Attribute.errorTextAppearance;
+			global::Emmaus.Resource.Attribute.expandActivityOverflowButtonDrawable = global::HappyPandaXDroid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Emmaus.Resource.Attribute.expanded = global::HappyPandaXDroid.Resource.Attribute.expanded;
+			global::Emmaus.Resource.Attribute.expandedTitleGravity = global::HappyPandaXDroid.Resource.Attribute.expandedTitleGravity;
+			global::Emmaus.Resource.Attribute.expandedTitleMargin = global::HappyPandaXDroid.Resource.Attribute.expandedTitleMargin;
+			global::Emmaus.Resource.Attribute.expandedTitleMarginBottom = global::HappyPandaXDroid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Emmaus.Resource.Attribute.expandedTitleMarginEnd = global::HappyPandaXDroid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Emmaus.Resource.Attribute.expandedTitleMarginStart = global::HappyPandaXDroid.Resource.Attribute.expandedTitleMarginStart;
+			global::Emmaus.Resource.Attribute.expandedTitleMarginTop = global::HappyPandaXDroid.Resource.Attribute.expandedTitleMarginTop;
+			global::Emmaus.Resource.Attribute.expandedTitleTextAppearance = global::HappyPandaXDroid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Emmaus.Resource.Attribute.fabSize = global::HappyPandaXDroid.Resource.Attribute.fabSize;
+			global::Emmaus.Resource.Attribute.foregroundInsidePadding = global::HappyPandaXDroid.Resource.Attribute.foregroundInsidePadding;
+			global::Emmaus.Resource.Attribute.gapBetweenBars = global::HappyPandaXDroid.Resource.Attribute.gapBetweenBars;
+			global::Emmaus.Resource.Attribute.goIcon = global::HappyPandaXDroid.Resource.Attribute.goIcon;
+			global::Emmaus.Resource.Attribute.headerLayout = global::HappyPandaXDroid.Resource.Attribute.headerLayout;
+			global::Emmaus.Resource.Attribute.height = global::HappyPandaXDroid.Resource.Attribute.height;
+			global::Emmaus.Resource.Attribute.hideOnContentScroll = global::HappyPandaXDroid.Resource.Attribute.hideOnContentScroll;
+			global::Emmaus.Resource.Attribute.hintAnimationEnabled = global::HappyPandaXDroid.Resource.Attribute.hintAnimationEnabled;
+			global::Emmaus.Resource.Attribute.hintEnabled = global::HappyPandaXDroid.Resource.Attribute.hintEnabled;
+			global::Emmaus.Resource.Attribute.hintTextAppearance = global::HappyPandaXDroid.Resource.Attribute.hintTextAppearance;
+			global::Emmaus.Resource.Attribute.homeAsUpIndicator = global::HappyPandaXDroid.Resource.Attribute.homeAsUpIndicator;
+			global::Emmaus.Resource.Attribute.homeLayout = global::HappyPandaXDroid.Resource.Attribute.homeLayout;
+			global::Emmaus.Resource.Attribute.icon = global::HappyPandaXDroid.Resource.Attribute.icon;
+			global::Emmaus.Resource.Attribute.iconifiedByDefault = global::HappyPandaXDroid.Resource.Attribute.iconifiedByDefault;
+			global::Emmaus.Resource.Attribute.imageButtonStyle = global::HappyPandaXDroid.Resource.Attribute.imageButtonStyle;
+			global::Emmaus.Resource.Attribute.indeterminateProgressStyle = global::HappyPandaXDroid.Resource.Attribute.indeterminateProgressStyle;
+			global::Emmaus.Resource.Attribute.initialActivityCount = global::HappyPandaXDroid.Resource.Attribute.initialActivityCount;
+			global::Emmaus.Resource.Attribute.insetForeground = global::HappyPandaXDroid.Resource.Attribute.insetForeground;
+			global::Emmaus.Resource.Attribute.isLightTheme = global::HappyPandaXDroid.Resource.Attribute.isLightTheme;
+			global::Emmaus.Resource.Attribute.itemBackground = global::HappyPandaXDroid.Resource.Attribute.itemBackground;
+			global::Emmaus.Resource.Attribute.itemIconTint = global::HappyPandaXDroid.Resource.Attribute.itemIconTint;
+			global::Emmaus.Resource.Attribute.itemPadding = global::HappyPandaXDroid.Resource.Attribute.itemPadding;
+			global::Emmaus.Resource.Attribute.itemTextAppearance = global::HappyPandaXDroid.Resource.Attribute.itemTextAppearance;
+			global::Emmaus.Resource.Attribute.itemTextColor = global::HappyPandaXDroid.Resource.Attribute.itemTextColor;
+			global::Emmaus.Resource.Attribute.keylines = global::HappyPandaXDroid.Resource.Attribute.keylines;
+			global::Emmaus.Resource.Attribute.layout = global::HappyPandaXDroid.Resource.Attribute.layout;
+			global::Emmaus.Resource.Attribute.layoutManager = global::HappyPandaXDroid.Resource.Attribute.layoutManager;
+			global::Emmaus.Resource.Attribute.layout_anchor = global::HappyPandaXDroid.Resource.Attribute.layout_anchor;
+			global::Emmaus.Resource.Attribute.layout_anchorGravity = global::HappyPandaXDroid.Resource.Attribute.layout_anchorGravity;
+			global::Emmaus.Resource.Attribute.layout_behavior = global::HappyPandaXDroid.Resource.Attribute.layout_behavior;
+			global::Emmaus.Resource.Attribute.layout_collapseMode = global::HappyPandaXDroid.Resource.Attribute.layout_collapseMode;
+			global::Emmaus.Resource.Attribute.layout_collapseParallaxMultiplier = global::HappyPandaXDroid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Emmaus.Resource.Attribute.layout_dodgeInsetEdges = global::HappyPandaXDroid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Emmaus.Resource.Attribute.layout_insetEdge = global::HappyPandaXDroid.Resource.Attribute.layout_insetEdge;
+			global::Emmaus.Resource.Attribute.layout_keyline = global::HappyPandaXDroid.Resource.Attribute.layout_keyline;
+			global::Emmaus.Resource.Attribute.layout_scrollFlags = global::HappyPandaXDroid.Resource.Attribute.layout_scrollFlags;
+			global::Emmaus.Resource.Attribute.layout_scrollInterpolator = global::HappyPandaXDroid.Resource.Attribute.layout_scrollInterpolator;
+			global::Emmaus.Resource.Attribute.listChoiceBackgroundIndicator = global::HappyPandaXDroid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Emmaus.Resource.Attribute.listDividerAlertDialog = global::HappyPandaXDroid.Resource.Attribute.listDividerAlertDialog;
+			global::Emmaus.Resource.Attribute.listItemLayout = global::HappyPandaXDroid.Resource.Attribute.listItemLayout;
+			global::Emmaus.Resource.Attribute.listLayout = global::HappyPandaXDroid.Resource.Attribute.listLayout;
+			global::Emmaus.Resource.Attribute.listMenuViewStyle = global::HappyPandaXDroid.Resource.Attribute.listMenuViewStyle;
+			global::Emmaus.Resource.Attribute.listPopupWindowStyle = global::HappyPandaXDroid.Resource.Attribute.listPopupWindowStyle;
+			global::Emmaus.Resource.Attribute.listPreferredItemHeight = global::HappyPandaXDroid.Resource.Attribute.listPreferredItemHeight;
+			global::Emmaus.Resource.Attribute.listPreferredItemHeightLarge = global::HappyPandaXDroid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Emmaus.Resource.Attribute.listPreferredItemHeightSmall = global::HappyPandaXDroid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Emmaus.Resource.Attribute.listPreferredItemPaddingLeft = global::HappyPandaXDroid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Emmaus.Resource.Attribute.listPreferredItemPaddingRight = global::HappyPandaXDroid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Emmaus.Resource.Attribute.logo = global::HappyPandaXDroid.Resource.Attribute.logo;
+			global::Emmaus.Resource.Attribute.logoDescription = global::HappyPandaXDroid.Resource.Attribute.logoDescription;
+			global::Emmaus.Resource.Attribute.maxActionInlineWidth = global::HappyPandaXDroid.Resource.Attribute.maxActionInlineWidth;
+			global::Emmaus.Resource.Attribute.maxButtonHeight = global::HappyPandaXDroid.Resource.Attribute.maxButtonHeight;
+			global::Emmaus.Resource.Attribute.measureWithLargestChild = global::HappyPandaXDroid.Resource.Attribute.measureWithLargestChild;
+			global::Emmaus.Resource.Attribute.menu = global::HappyPandaXDroid.Resource.Attribute.menu;
+			global::Emmaus.Resource.Attribute.multiChoiceItemLayout = global::HappyPandaXDroid.Resource.Attribute.multiChoiceItemLayout;
+			global::Emmaus.Resource.Attribute.navigationContentDescription = global::HappyPandaXDroid.Resource.Attribute.navigationContentDescription;
+			global::Emmaus.Resource.Attribute.navigationIcon = global::HappyPandaXDroid.Resource.Attribute.navigationIcon;
+			global::Emmaus.Resource.Attribute.navigationMode = global::HappyPandaXDroid.Resource.Attribute.navigationMode;
+			global::Emmaus.Resource.Attribute.overlapAnchor = global::HappyPandaXDroid.Resource.Attribute.overlapAnchor;
+			global::Emmaus.Resource.Attribute.paddingBottomNoButtons = global::HappyPandaXDroid.Resource.Attribute.paddingBottomNoButtons;
+			global::Emmaus.Resource.Attribute.paddingEnd = global::HappyPandaXDroid.Resource.Attribute.paddingEnd;
+			global::Emmaus.Resource.Attribute.paddingStart = global::HappyPandaXDroid.Resource.Attribute.paddingStart;
+			global::Emmaus.Resource.Attribute.paddingTopNoTitle = global::HappyPandaXDroid.Resource.Attribute.paddingTopNoTitle;
+			global::Emmaus.Resource.Attribute.panelBackground = global::HappyPandaXDroid.Resource.Attribute.panelBackground;
+			global::Emmaus.Resource.Attribute.panelMenuListTheme = global::HappyPandaXDroid.Resource.Attribute.panelMenuListTheme;
+			global::Emmaus.Resource.Attribute.panelMenuListWidth = global::HappyPandaXDroid.Resource.Attribute.panelMenuListWidth;
+			global::Emmaus.Resource.Attribute.passwordToggleContentDescription = global::HappyPandaXDroid.Resource.Attribute.passwordToggleContentDescription;
+			global::Emmaus.Resource.Attribute.passwordToggleDrawable = global::HappyPandaXDroid.Resource.Attribute.passwordToggleDrawable;
+			global::Emmaus.Resource.Attribute.passwordToggleEnabled = global::HappyPandaXDroid.Resource.Attribute.passwordToggleEnabled;
+			global::Emmaus.Resource.Attribute.passwordToggleTint = global::HappyPandaXDroid.Resource.Attribute.passwordToggleTint;
+			global::Emmaus.Resource.Attribute.passwordToggleTintMode = global::HappyPandaXDroid.Resource.Attribute.passwordToggleTintMode;
+			global::Emmaus.Resource.Attribute.popupMenuStyle = global::HappyPandaXDroid.Resource.Attribute.popupMenuStyle;
+			global::Emmaus.Resource.Attribute.popupTheme = global::HappyPandaXDroid.Resource.Attribute.popupTheme;
+			global::Emmaus.Resource.Attribute.popupWindowStyle = global::HappyPandaXDroid.Resource.Attribute.popupWindowStyle;
+			global::Emmaus.Resource.Attribute.preserveIconSpacing = global::HappyPandaXDroid.Resource.Attribute.preserveIconSpacing;
+			global::Emmaus.Resource.Attribute.pressedTranslationZ = global::HappyPandaXDroid.Resource.Attribute.pressedTranslationZ;
+			global::Emmaus.Resource.Attribute.progressBarPadding = global::HappyPandaXDroid.Resource.Attribute.progressBarPadding;
+			global::Emmaus.Resource.Attribute.progressBarStyle = global::HappyPandaXDroid.Resource.Attribute.progressBarStyle;
+			global::Emmaus.Resource.Attribute.queryBackground = global::HappyPandaXDroid.Resource.Attribute.queryBackground;
+			global::Emmaus.Resource.Attribute.queryHint = global::HappyPandaXDroid.Resource.Attribute.queryHint;
+			global::Emmaus.Resource.Attribute.radioButtonStyle = global::HappyPandaXDroid.Resource.Attribute.radioButtonStyle;
+			global::Emmaus.Resource.Attribute.ratingBarStyle = global::HappyPandaXDroid.Resource.Attribute.ratingBarStyle;
+			global::Emmaus.Resource.Attribute.ratingBarStyleIndicator = global::HappyPandaXDroid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Emmaus.Resource.Attribute.ratingBarStyleSmall = global::HappyPandaXDroid.Resource.Attribute.ratingBarStyleSmall;
+			global::Emmaus.Resource.Attribute.reverseLayout = global::HappyPandaXDroid.Resource.Attribute.reverseLayout;
+			global::Emmaus.Resource.Attribute.rippleColor = global::HappyPandaXDroid.Resource.Attribute.rippleColor;
 			global::Emmaus.Resource.Attribute.rvp_flingFactor = global::HappyPandaXDroid.Resource.Attribute.rvp_flingFactor;
 			global::Emmaus.Resource.Attribute.rvp_inertia = global::HappyPandaXDroid.Resource.Attribute.rvp_inertia;
 			global::Emmaus.Resource.Attribute.rvp_millisecondsPerInch = global::HappyPandaXDroid.Resource.Attribute.rvp_millisecondsPerInch;
 			global::Emmaus.Resource.Attribute.rvp_singlePageFling = global::HappyPandaXDroid.Resource.Attribute.rvp_singlePageFling;
 			global::Emmaus.Resource.Attribute.rvp_triggerOffset = global::HappyPandaXDroid.Resource.Attribute.rvp_triggerOffset;
+			global::Emmaus.Resource.Attribute.scrimAnimationDuration = global::HappyPandaXDroid.Resource.Attribute.scrimAnimationDuration;
+			global::Emmaus.Resource.Attribute.scrimVisibleHeightTrigger = global::HappyPandaXDroid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Emmaus.Resource.Attribute.searchHintIcon = global::HappyPandaXDroid.Resource.Attribute.searchHintIcon;
+			global::Emmaus.Resource.Attribute.searchIcon = global::HappyPandaXDroid.Resource.Attribute.searchIcon;
+			global::Emmaus.Resource.Attribute.searchViewStyle = global::HappyPandaXDroid.Resource.Attribute.searchViewStyle;
+			global::Emmaus.Resource.Attribute.seekBarStyle = global::HappyPandaXDroid.Resource.Attribute.seekBarStyle;
+			global::Emmaus.Resource.Attribute.selectableItemBackground = global::HappyPandaXDroid.Resource.Attribute.selectableItemBackground;
+			global::Emmaus.Resource.Attribute.selectableItemBackgroundBorderless = global::HappyPandaXDroid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Emmaus.Resource.Attribute.showAsAction = global::HappyPandaXDroid.Resource.Attribute.showAsAction;
+			global::Emmaus.Resource.Attribute.showDividers = global::HappyPandaXDroid.Resource.Attribute.showDividers;
+			global::Emmaus.Resource.Attribute.showText = global::HappyPandaXDroid.Resource.Attribute.showText;
+			global::Emmaus.Resource.Attribute.showTitle = global::HappyPandaXDroid.Resource.Attribute.showTitle;
+			global::Emmaus.Resource.Attribute.singleChoiceItemLayout = global::HappyPandaXDroid.Resource.Attribute.singleChoiceItemLayout;
+			global::Emmaus.Resource.Attribute.spanCount = global::HappyPandaXDroid.Resource.Attribute.spanCount;
+			global::Emmaus.Resource.Attribute.spinBars = global::HappyPandaXDroid.Resource.Attribute.spinBars;
+			global::Emmaus.Resource.Attribute.spinnerDropDownItemStyle = global::HappyPandaXDroid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Emmaus.Resource.Attribute.spinnerStyle = global::HappyPandaXDroid.Resource.Attribute.spinnerStyle;
+			global::Emmaus.Resource.Attribute.splitTrack = global::HappyPandaXDroid.Resource.Attribute.splitTrack;
+			global::Emmaus.Resource.Attribute.srcCompat = global::HappyPandaXDroid.Resource.Attribute.srcCompat;
+			global::Emmaus.Resource.Attribute.stackFromEnd = global::HappyPandaXDroid.Resource.Attribute.stackFromEnd;
+			global::Emmaus.Resource.Attribute.state_above_anchor = global::HappyPandaXDroid.Resource.Attribute.state_above_anchor;
+			global::Emmaus.Resource.Attribute.state_collapsed = global::HappyPandaXDroid.Resource.Attribute.state_collapsed;
+			global::Emmaus.Resource.Attribute.state_collapsible = global::HappyPandaXDroid.Resource.Attribute.state_collapsible;
+			global::Emmaus.Resource.Attribute.statusBarBackground = global::HappyPandaXDroid.Resource.Attribute.statusBarBackground;
+			global::Emmaus.Resource.Attribute.statusBarScrim = global::HappyPandaXDroid.Resource.Attribute.statusBarScrim;
+			global::Emmaus.Resource.Attribute.subMenuArrow = global::HappyPandaXDroid.Resource.Attribute.subMenuArrow;
+			global::Emmaus.Resource.Attribute.submitBackground = global::HappyPandaXDroid.Resource.Attribute.submitBackground;
+			global::Emmaus.Resource.Attribute.subtitle = global::HappyPandaXDroid.Resource.Attribute.subtitle;
+			global::Emmaus.Resource.Attribute.subtitleTextAppearance = global::HappyPandaXDroid.Resource.Attribute.subtitleTextAppearance;
+			global::Emmaus.Resource.Attribute.subtitleTextColor = global::HappyPandaXDroid.Resource.Attribute.subtitleTextColor;
+			global::Emmaus.Resource.Attribute.subtitleTextStyle = global::HappyPandaXDroid.Resource.Attribute.subtitleTextStyle;
+			global::Emmaus.Resource.Attribute.suggestionRowLayout = global::HappyPandaXDroid.Resource.Attribute.suggestionRowLayout;
+			global::Emmaus.Resource.Attribute.switchMinWidth = global::HappyPandaXDroid.Resource.Attribute.switchMinWidth;
+			global::Emmaus.Resource.Attribute.switchPadding = global::HappyPandaXDroid.Resource.Attribute.switchPadding;
+			global::Emmaus.Resource.Attribute.switchStyle = global::HappyPandaXDroid.Resource.Attribute.switchStyle;
+			global::Emmaus.Resource.Attribute.switchTextAppearance = global::HappyPandaXDroid.Resource.Attribute.switchTextAppearance;
+			global::Emmaus.Resource.Attribute.tabBackground = global::HappyPandaXDroid.Resource.Attribute.tabBackground;
+			global::Emmaus.Resource.Attribute.tabContentStart = global::HappyPandaXDroid.Resource.Attribute.tabContentStart;
+			global::Emmaus.Resource.Attribute.tabGravity = global::HappyPandaXDroid.Resource.Attribute.tabGravity;
+			global::Emmaus.Resource.Attribute.tabIndicatorColor = global::HappyPandaXDroid.Resource.Attribute.tabIndicatorColor;
+			global::Emmaus.Resource.Attribute.tabIndicatorHeight = global::HappyPandaXDroid.Resource.Attribute.tabIndicatorHeight;
+			global::Emmaus.Resource.Attribute.tabMaxWidth = global::HappyPandaXDroid.Resource.Attribute.tabMaxWidth;
+			global::Emmaus.Resource.Attribute.tabMinWidth = global::HappyPandaXDroid.Resource.Attribute.tabMinWidth;
+			global::Emmaus.Resource.Attribute.tabMode = global::HappyPandaXDroid.Resource.Attribute.tabMode;
+			global::Emmaus.Resource.Attribute.tabPadding = global::HappyPandaXDroid.Resource.Attribute.tabPadding;
+			global::Emmaus.Resource.Attribute.tabPaddingBottom = global::HappyPandaXDroid.Resource.Attribute.tabPaddingBottom;
+			global::Emmaus.Resource.Attribute.tabPaddingEnd = global::HappyPandaXDroid.Resource.Attribute.tabPaddingEnd;
+			global::Emmaus.Resource.Attribute.tabPaddingStart = global::HappyPandaXDroid.Resource.Attribute.tabPaddingStart;
+			global::Emmaus.Resource.Attribute.tabPaddingTop = global::HappyPandaXDroid.Resource.Attribute.tabPaddingTop;
+			global::Emmaus.Resource.Attribute.tabSelectedTextColor = global::HappyPandaXDroid.Resource.Attribute.tabSelectedTextColor;
+			global::Emmaus.Resource.Attribute.tabTextAppearance = global::HappyPandaXDroid.Resource.Attribute.tabTextAppearance;
+			global::Emmaus.Resource.Attribute.tabTextColor = global::HappyPandaXDroid.Resource.Attribute.tabTextColor;
+			global::Emmaus.Resource.Attribute.textAllCaps = global::HappyPandaXDroid.Resource.Attribute.textAllCaps;
+			global::Emmaus.Resource.Attribute.textAppearanceLargePopupMenu = global::HappyPandaXDroid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Emmaus.Resource.Attribute.textAppearanceListItem = global::HappyPandaXDroid.Resource.Attribute.textAppearanceListItem;
+			global::Emmaus.Resource.Attribute.textAppearanceListItemSecondary = global::HappyPandaXDroid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::Emmaus.Resource.Attribute.textAppearanceListItemSmall = global::HappyPandaXDroid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Emmaus.Resource.Attribute.textAppearancePopupMenuHeader = global::HappyPandaXDroid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Emmaus.Resource.Attribute.textAppearanceSearchResultSubtitle = global::HappyPandaXDroid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Emmaus.Resource.Attribute.textAppearanceSearchResultTitle = global::HappyPandaXDroid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Emmaus.Resource.Attribute.textAppearanceSmallPopupMenu = global::HappyPandaXDroid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Emmaus.Resource.Attribute.textColorAlertDialogListItem = global::HappyPandaXDroid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Emmaus.Resource.Attribute.textColorError = global::HappyPandaXDroid.Resource.Attribute.textColorError;
+			global::Emmaus.Resource.Attribute.textColorSearchUrl = global::HappyPandaXDroid.Resource.Attribute.textColorSearchUrl;
+			global::Emmaus.Resource.Attribute.theme = global::HappyPandaXDroid.Resource.Attribute.theme;
+			global::Emmaus.Resource.Attribute.thickness = global::HappyPandaXDroid.Resource.Attribute.thickness;
+			global::Emmaus.Resource.Attribute.thumbTextPadding = global::HappyPandaXDroid.Resource.Attribute.thumbTextPadding;
+			global::Emmaus.Resource.Attribute.thumbTint = global::HappyPandaXDroid.Resource.Attribute.thumbTint;
+			global::Emmaus.Resource.Attribute.thumbTintMode = global::HappyPandaXDroid.Resource.Attribute.thumbTintMode;
+			global::Emmaus.Resource.Attribute.tickMark = global::HappyPandaXDroid.Resource.Attribute.tickMark;
+			global::Emmaus.Resource.Attribute.tickMarkTint = global::HappyPandaXDroid.Resource.Attribute.tickMarkTint;
+			global::Emmaus.Resource.Attribute.tickMarkTintMode = global::HappyPandaXDroid.Resource.Attribute.tickMarkTintMode;
+			global::Emmaus.Resource.Attribute.tint = global::HappyPandaXDroid.Resource.Attribute.tint;
+			global::Emmaus.Resource.Attribute.tintMode = global::HappyPandaXDroid.Resource.Attribute.tintMode;
+			global::Emmaus.Resource.Attribute.title = global::HappyPandaXDroid.Resource.Attribute.title;
+			global::Emmaus.Resource.Attribute.titleEnabled = global::HappyPandaXDroid.Resource.Attribute.titleEnabled;
+			global::Emmaus.Resource.Attribute.titleMargin = global::HappyPandaXDroid.Resource.Attribute.titleMargin;
+			global::Emmaus.Resource.Attribute.titleMarginBottom = global::HappyPandaXDroid.Resource.Attribute.titleMarginBottom;
+			global::Emmaus.Resource.Attribute.titleMarginEnd = global::HappyPandaXDroid.Resource.Attribute.titleMarginEnd;
+			global::Emmaus.Resource.Attribute.titleMarginStart = global::HappyPandaXDroid.Resource.Attribute.titleMarginStart;
+			global::Emmaus.Resource.Attribute.titleMarginTop = global::HappyPandaXDroid.Resource.Attribute.titleMarginTop;
+			global::Emmaus.Resource.Attribute.titleMargins = global::HappyPandaXDroid.Resource.Attribute.titleMargins;
+			global::Emmaus.Resource.Attribute.titleTextAppearance = global::HappyPandaXDroid.Resource.Attribute.titleTextAppearance;
+			global::Emmaus.Resource.Attribute.titleTextColor = global::HappyPandaXDroid.Resource.Attribute.titleTextColor;
+			global::Emmaus.Resource.Attribute.titleTextStyle = global::HappyPandaXDroid.Resource.Attribute.titleTextStyle;
+			global::Emmaus.Resource.Attribute.toolbarId = global::HappyPandaXDroid.Resource.Attribute.toolbarId;
+			global::Emmaus.Resource.Attribute.toolbarNavigationButtonStyle = global::HappyPandaXDroid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Emmaus.Resource.Attribute.toolbarStyle = global::HappyPandaXDroid.Resource.Attribute.toolbarStyle;
+			global::Emmaus.Resource.Attribute.track = global::HappyPandaXDroid.Resource.Attribute.track;
+			global::Emmaus.Resource.Attribute.trackTint = global::HappyPandaXDroid.Resource.Attribute.trackTint;
+			global::Emmaus.Resource.Attribute.trackTintMode = global::HappyPandaXDroid.Resource.Attribute.trackTintMode;
+			global::Emmaus.Resource.Attribute.useCompatPadding = global::HappyPandaXDroid.Resource.Attribute.useCompatPadding;
+			global::Emmaus.Resource.Attribute.voiceIcon = global::HappyPandaXDroid.Resource.Attribute.voiceIcon;
+			global::Emmaus.Resource.Attribute.windowActionBar = global::HappyPandaXDroid.Resource.Attribute.windowActionBar;
+			global::Emmaus.Resource.Attribute.windowActionBarOverlay = global::HappyPandaXDroid.Resource.Attribute.windowActionBarOverlay;
+			global::Emmaus.Resource.Attribute.windowActionModeOverlay = global::HappyPandaXDroid.Resource.Attribute.windowActionModeOverlay;
+			global::Emmaus.Resource.Attribute.windowFixedHeightMajor = global::HappyPandaXDroid.Resource.Attribute.windowFixedHeightMajor;
+			global::Emmaus.Resource.Attribute.windowFixedHeightMinor = global::HappyPandaXDroid.Resource.Attribute.windowFixedHeightMinor;
+			global::Emmaus.Resource.Attribute.windowFixedWidthMajor = global::HappyPandaXDroid.Resource.Attribute.windowFixedWidthMajor;
+			global::Emmaus.Resource.Attribute.windowFixedWidthMinor = global::HappyPandaXDroid.Resource.Attribute.windowFixedWidthMinor;
+			global::Emmaus.Resource.Attribute.windowMinWidthMajor = global::HappyPandaXDroid.Resource.Attribute.windowMinWidthMajor;
+			global::Emmaus.Resource.Attribute.windowMinWidthMinor = global::HappyPandaXDroid.Resource.Attribute.windowMinWidthMinor;
+			global::Emmaus.Resource.Attribute.windowNoTitle = global::HappyPandaXDroid.Resource.Attribute.windowNoTitle;
+			global::Emmaus.Resource.Boolean.abc_action_bar_embed_tabs = global::HappyPandaXDroid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Emmaus.Resource.Boolean.abc_allow_stacked_button_bar = global::HappyPandaXDroid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Emmaus.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::HappyPandaXDroid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Emmaus.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::HappyPandaXDroid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
+			global::Emmaus.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::HappyPandaXDroid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
+			global::Emmaus.Resource.Color.abc_background_cache_hint_selector_material_dark = global::HappyPandaXDroid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Emmaus.Resource.Color.abc_background_cache_hint_selector_material_light = global::HappyPandaXDroid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Emmaus.Resource.Color.abc_btn_colored_borderless_text_material = global::HappyPandaXDroid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Emmaus.Resource.Color.abc_btn_colored_text_material = global::HappyPandaXDroid.Resource.Color.abc_btn_colored_text_material;
+			global::Emmaus.Resource.Color.abc_color_highlight_material = global::HappyPandaXDroid.Resource.Color.abc_color_highlight_material;
+			global::Emmaus.Resource.Color.abc_hint_foreground_material_dark = global::HappyPandaXDroid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Emmaus.Resource.Color.abc_hint_foreground_material_light = global::HappyPandaXDroid.Resource.Color.abc_hint_foreground_material_light;
+			global::Emmaus.Resource.Color.abc_input_method_navigation_guard = global::HappyPandaXDroid.Resource.Color.abc_input_method_navigation_guard;
+			global::Emmaus.Resource.Color.abc_primary_text_disable_only_material_dark = global::HappyPandaXDroid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Emmaus.Resource.Color.abc_primary_text_disable_only_material_light = global::HappyPandaXDroid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Emmaus.Resource.Color.abc_primary_text_material_dark = global::HappyPandaXDroid.Resource.Color.abc_primary_text_material_dark;
+			global::Emmaus.Resource.Color.abc_primary_text_material_light = global::HappyPandaXDroid.Resource.Color.abc_primary_text_material_light;
+			global::Emmaus.Resource.Color.abc_search_url_text = global::HappyPandaXDroid.Resource.Color.abc_search_url_text;
+			global::Emmaus.Resource.Color.abc_search_url_text_normal = global::HappyPandaXDroid.Resource.Color.abc_search_url_text_normal;
+			global::Emmaus.Resource.Color.abc_search_url_text_pressed = global::HappyPandaXDroid.Resource.Color.abc_search_url_text_pressed;
+			global::Emmaus.Resource.Color.abc_search_url_text_selected = global::HappyPandaXDroid.Resource.Color.abc_search_url_text_selected;
+			global::Emmaus.Resource.Color.abc_secondary_text_material_dark = global::HappyPandaXDroid.Resource.Color.abc_secondary_text_material_dark;
+			global::Emmaus.Resource.Color.abc_secondary_text_material_light = global::HappyPandaXDroid.Resource.Color.abc_secondary_text_material_light;
+			global::Emmaus.Resource.Color.abc_tint_btn_checkable = global::HappyPandaXDroid.Resource.Color.abc_tint_btn_checkable;
+			global::Emmaus.Resource.Color.abc_tint_default = global::HappyPandaXDroid.Resource.Color.abc_tint_default;
+			global::Emmaus.Resource.Color.abc_tint_edittext = global::HappyPandaXDroid.Resource.Color.abc_tint_edittext;
+			global::Emmaus.Resource.Color.abc_tint_seek_thumb = global::HappyPandaXDroid.Resource.Color.abc_tint_seek_thumb;
+			global::Emmaus.Resource.Color.abc_tint_spinner = global::HappyPandaXDroid.Resource.Color.abc_tint_spinner;
+			global::Emmaus.Resource.Color.abc_tint_switch_thumb = global::HappyPandaXDroid.Resource.Color.abc_tint_switch_thumb;
+			global::Emmaus.Resource.Color.abc_tint_switch_track = global::HappyPandaXDroid.Resource.Color.abc_tint_switch_track;
+			global::Emmaus.Resource.Color.accent_material_dark = global::HappyPandaXDroid.Resource.Color.accent_material_dark;
+			global::Emmaus.Resource.Color.accent_material_light = global::HappyPandaXDroid.Resource.Color.accent_material_light;
+			global::Emmaus.Resource.Color.background_floating_material_dark = global::HappyPandaXDroid.Resource.Color.background_floating_material_dark;
+			global::Emmaus.Resource.Color.background_floating_material_light = global::HappyPandaXDroid.Resource.Color.background_floating_material_light;
+			global::Emmaus.Resource.Color.background_material_dark = global::HappyPandaXDroid.Resource.Color.background_material_dark;
+			global::Emmaus.Resource.Color.background_material_light = global::HappyPandaXDroid.Resource.Color.background_material_light;
+			global::Emmaus.Resource.Color.bright_foreground_disabled_material_dark = global::HappyPandaXDroid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Emmaus.Resource.Color.bright_foreground_disabled_material_light = global::HappyPandaXDroid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Emmaus.Resource.Color.bright_foreground_inverse_material_dark = global::HappyPandaXDroid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Emmaus.Resource.Color.bright_foreground_inverse_material_light = global::HappyPandaXDroid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Emmaus.Resource.Color.bright_foreground_material_dark = global::HappyPandaXDroid.Resource.Color.bright_foreground_material_dark;
+			global::Emmaus.Resource.Color.bright_foreground_material_light = global::HappyPandaXDroid.Resource.Color.bright_foreground_material_light;
+			global::Emmaus.Resource.Color.button_material_dark = global::HappyPandaXDroid.Resource.Color.button_material_dark;
+			global::Emmaus.Resource.Color.button_material_light = global::HappyPandaXDroid.Resource.Color.button_material_light;
+			global::Emmaus.Resource.Color.design_bottom_navigation_shadow_color = global::HappyPandaXDroid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Emmaus.Resource.Color.design_error = global::HappyPandaXDroid.Resource.Color.design_error;
+			global::Emmaus.Resource.Color.design_fab_shadow_end_color = global::HappyPandaXDroid.Resource.Color.design_fab_shadow_end_color;
+			global::Emmaus.Resource.Color.design_fab_shadow_mid_color = global::HappyPandaXDroid.Resource.Color.design_fab_shadow_mid_color;
+			global::Emmaus.Resource.Color.design_fab_shadow_start_color = global::HappyPandaXDroid.Resource.Color.design_fab_shadow_start_color;
+			global::Emmaus.Resource.Color.design_fab_stroke_end_inner_color = global::HappyPandaXDroid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Emmaus.Resource.Color.design_fab_stroke_end_outer_color = global::HappyPandaXDroid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Emmaus.Resource.Color.design_fab_stroke_top_inner_color = global::HappyPandaXDroid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Emmaus.Resource.Color.design_fab_stroke_top_outer_color = global::HappyPandaXDroid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Emmaus.Resource.Color.design_snackbar_background_color = global::HappyPandaXDroid.Resource.Color.design_snackbar_background_color;
+			global::Emmaus.Resource.Color.design_textinput_error_color_dark = global::HappyPandaXDroid.Resource.Color.design_textinput_error_color_dark;
+			global::Emmaus.Resource.Color.design_textinput_error_color_light = global::HappyPandaXDroid.Resource.Color.design_textinput_error_color_light;
+			global::Emmaus.Resource.Color.design_tint_password_toggle = global::HappyPandaXDroid.Resource.Color.design_tint_password_toggle;
+			global::Emmaus.Resource.Color.dim_foreground_disabled_material_dark = global::HappyPandaXDroid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Emmaus.Resource.Color.dim_foreground_disabled_material_light = global::HappyPandaXDroid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Emmaus.Resource.Color.dim_foreground_material_dark = global::HappyPandaXDroid.Resource.Color.dim_foreground_material_dark;
+			global::Emmaus.Resource.Color.dim_foreground_material_light = global::HappyPandaXDroid.Resource.Color.dim_foreground_material_light;
+			global::Emmaus.Resource.Color.foreground_material_dark = global::HappyPandaXDroid.Resource.Color.foreground_material_dark;
+			global::Emmaus.Resource.Color.foreground_material_light = global::HappyPandaXDroid.Resource.Color.foreground_material_light;
+			global::Emmaus.Resource.Color.highlighted_text_material_dark = global::HappyPandaXDroid.Resource.Color.highlighted_text_material_dark;
+			global::Emmaus.Resource.Color.highlighted_text_material_light = global::HappyPandaXDroid.Resource.Color.highlighted_text_material_light;
+			global::Emmaus.Resource.Color.material_blue_grey_800 = global::HappyPandaXDroid.Resource.Color.material_blue_grey_800;
+			global::Emmaus.Resource.Color.material_blue_grey_900 = global::HappyPandaXDroid.Resource.Color.material_blue_grey_900;
+			global::Emmaus.Resource.Color.material_blue_grey_950 = global::HappyPandaXDroid.Resource.Color.material_blue_grey_950;
+			global::Emmaus.Resource.Color.material_deep_teal_200 = global::HappyPandaXDroid.Resource.Color.material_deep_teal_200;
+			global::Emmaus.Resource.Color.material_deep_teal_500 = global::HappyPandaXDroid.Resource.Color.material_deep_teal_500;
+			global::Emmaus.Resource.Color.material_grey_100 = global::HappyPandaXDroid.Resource.Color.material_grey_100;
+			global::Emmaus.Resource.Color.material_grey_300 = global::HappyPandaXDroid.Resource.Color.material_grey_300;
+			global::Emmaus.Resource.Color.material_grey_50 = global::HappyPandaXDroid.Resource.Color.material_grey_50;
+			global::Emmaus.Resource.Color.material_grey_600 = global::HappyPandaXDroid.Resource.Color.material_grey_600;
+			global::Emmaus.Resource.Color.material_grey_800 = global::HappyPandaXDroid.Resource.Color.material_grey_800;
+			global::Emmaus.Resource.Color.material_grey_850 = global::HappyPandaXDroid.Resource.Color.material_grey_850;
+			global::Emmaus.Resource.Color.material_grey_900 = global::HappyPandaXDroid.Resource.Color.material_grey_900;
+			global::Emmaus.Resource.Color.notification_action_color_filter = global::HappyPandaXDroid.Resource.Color.notification_action_color_filter;
+			global::Emmaus.Resource.Color.notification_icon_bg_color = global::HappyPandaXDroid.Resource.Color.notification_icon_bg_color;
+			global::Emmaus.Resource.Color.notification_material_background_media_default_color = global::HappyPandaXDroid.Resource.Color.notification_material_background_media_default_color;
+			global::Emmaus.Resource.Color.primary_dark_material_dark = global::HappyPandaXDroid.Resource.Color.primary_dark_material_dark;
+			global::Emmaus.Resource.Color.primary_dark_material_light = global::HappyPandaXDroid.Resource.Color.primary_dark_material_light;
+			global::Emmaus.Resource.Color.primary_material_dark = global::HappyPandaXDroid.Resource.Color.primary_material_dark;
+			global::Emmaus.Resource.Color.primary_material_light = global::HappyPandaXDroid.Resource.Color.primary_material_light;
+			global::Emmaus.Resource.Color.primary_text_default_material_dark = global::HappyPandaXDroid.Resource.Color.primary_text_default_material_dark;
+			global::Emmaus.Resource.Color.primary_text_default_material_light = global::HappyPandaXDroid.Resource.Color.primary_text_default_material_light;
+			global::Emmaus.Resource.Color.primary_text_disabled_material_dark = global::HappyPandaXDroid.Resource.Color.primary_text_disabled_material_dark;
+			global::Emmaus.Resource.Color.primary_text_disabled_material_light = global::HappyPandaXDroid.Resource.Color.primary_text_disabled_material_light;
+			global::Emmaus.Resource.Color.ripple_material_dark = global::HappyPandaXDroid.Resource.Color.ripple_material_dark;
+			global::Emmaus.Resource.Color.ripple_material_light = global::HappyPandaXDroid.Resource.Color.ripple_material_light;
+			global::Emmaus.Resource.Color.secondary_text_default_material_dark = global::HappyPandaXDroid.Resource.Color.secondary_text_default_material_dark;
+			global::Emmaus.Resource.Color.secondary_text_default_material_light = global::HappyPandaXDroid.Resource.Color.secondary_text_default_material_light;
+			global::Emmaus.Resource.Color.secondary_text_disabled_material_dark = global::HappyPandaXDroid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Emmaus.Resource.Color.secondary_text_disabled_material_light = global::HappyPandaXDroid.Resource.Color.secondary_text_disabled_material_light;
+			global::Emmaus.Resource.Color.switch_thumb_disabled_material_dark = global::HappyPandaXDroid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Emmaus.Resource.Color.switch_thumb_disabled_material_light = global::HappyPandaXDroid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Emmaus.Resource.Color.switch_thumb_material_dark = global::HappyPandaXDroid.Resource.Color.switch_thumb_material_dark;
+			global::Emmaus.Resource.Color.switch_thumb_material_light = global::HappyPandaXDroid.Resource.Color.switch_thumb_material_light;
+			global::Emmaus.Resource.Color.switch_thumb_normal_material_dark = global::HappyPandaXDroid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Emmaus.Resource.Color.switch_thumb_normal_material_light = global::HappyPandaXDroid.Resource.Color.switch_thumb_normal_material_light;
+			global::Emmaus.Resource.Dimension.abc_action_bar_content_inset_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Emmaus.Resource.Dimension.abc_action_bar_default_height_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_default_padding_end_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_default_padding_start_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_elevation_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_progress_bar_size = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_progress_bar_size;
+			global::Emmaus.Resource.Dimension.abc_action_bar_stacked_max_height = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Emmaus.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Emmaus.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Emmaus.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Emmaus.Resource.Dimension.abc_action_button_min_height_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Emmaus.Resource.Dimension.abc_action_button_min_width_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Emmaus.Resource.Dimension.abc_action_button_min_width_overflow_material = global::HappyPandaXDroid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Emmaus.Resource.Dimension.abc_alert_dialog_button_bar_height = global::HappyPandaXDroid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Emmaus.Resource.Dimension.abc_button_inset_horizontal_material = global::HappyPandaXDroid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Emmaus.Resource.Dimension.abc_button_inset_vertical_material = global::HappyPandaXDroid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Emmaus.Resource.Dimension.abc_button_padding_horizontal_material = global::HappyPandaXDroid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Emmaus.Resource.Dimension.abc_button_padding_vertical_material = global::HappyPandaXDroid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Emmaus.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::HappyPandaXDroid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Emmaus.Resource.Dimension.abc_config_prefDialogWidth = global::HappyPandaXDroid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Emmaus.Resource.Dimension.abc_control_corner_material = global::HappyPandaXDroid.Resource.Dimension.abc_control_corner_material;
+			global::Emmaus.Resource.Dimension.abc_control_inset_material = global::HappyPandaXDroid.Resource.Dimension.abc_control_inset_material;
+			global::Emmaus.Resource.Dimension.abc_control_padding_material = global::HappyPandaXDroid.Resource.Dimension.abc_control_padding_material;
+			global::Emmaus.Resource.Dimension.abc_dialog_fixed_height_major = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Emmaus.Resource.Dimension.abc_dialog_fixed_height_minor = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Emmaus.Resource.Dimension.abc_dialog_fixed_width_major = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Emmaus.Resource.Dimension.abc_dialog_fixed_width_minor = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Emmaus.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Emmaus.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Emmaus.Resource.Dimension.abc_dialog_min_width_major = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Emmaus.Resource.Dimension.abc_dialog_min_width_minor = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Emmaus.Resource.Dimension.abc_dialog_padding_material = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_padding_material;
+			global::Emmaus.Resource.Dimension.abc_dialog_padding_top_material = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Emmaus.Resource.Dimension.abc_dialog_title_divider_material = global::HappyPandaXDroid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Emmaus.Resource.Dimension.abc_disabled_alpha_material_dark = global::HappyPandaXDroid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Emmaus.Resource.Dimension.abc_disabled_alpha_material_light = global::HappyPandaXDroid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Emmaus.Resource.Dimension.abc_dropdownitem_icon_width = global::HappyPandaXDroid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Emmaus.Resource.Dimension.abc_dropdownitem_text_padding_left = global::HappyPandaXDroid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Emmaus.Resource.Dimension.abc_dropdownitem_text_padding_right = global::HappyPandaXDroid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Emmaus.Resource.Dimension.abc_edit_text_inset_bottom_material = global::HappyPandaXDroid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Emmaus.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::HappyPandaXDroid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Emmaus.Resource.Dimension.abc_edit_text_inset_top_material = global::HappyPandaXDroid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Emmaus.Resource.Dimension.abc_floating_window_z = global::HappyPandaXDroid.Resource.Dimension.abc_floating_window_z;
+			global::Emmaus.Resource.Dimension.abc_list_item_padding_horizontal_material = global::HappyPandaXDroid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Emmaus.Resource.Dimension.abc_panel_menu_list_width = global::HappyPandaXDroid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Emmaus.Resource.Dimension.abc_progress_bar_height_material = global::HappyPandaXDroid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Emmaus.Resource.Dimension.abc_search_view_preferred_height = global::HappyPandaXDroid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Emmaus.Resource.Dimension.abc_search_view_preferred_width = global::HappyPandaXDroid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Emmaus.Resource.Dimension.abc_seekbar_track_background_height_material = global::HappyPandaXDroid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Emmaus.Resource.Dimension.abc_seekbar_track_progress_height_material = global::HappyPandaXDroid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Emmaus.Resource.Dimension.abc_select_dialog_padding_start_material = global::HappyPandaXDroid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Emmaus.Resource.Dimension.abc_switch_padding = global::HappyPandaXDroid.Resource.Dimension.abc_switch_padding;
+			global::Emmaus.Resource.Dimension.abc_text_size_body_1_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_body_2_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_button_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_button_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_caption_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_caption_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_display_1_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_display_2_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_display_3_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_display_4_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_headline_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_headline_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_large_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_large_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_medium_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_medium_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_menu_header_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_menu_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_menu_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_small_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_small_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_subhead_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Emmaus.Resource.Dimension.abc_text_size_title_material = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_title_material;
+			global::Emmaus.Resource.Dimension.abc_text_size_title_material_toolbar = global::HappyPandaXDroid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Emmaus.Resource.Dimension.design_appbar_elevation = global::HappyPandaXDroid.Resource.Dimension.design_appbar_elevation;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_active_text_size = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_elevation = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_height = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_height;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_item_max_width = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_item_min_width = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_margin = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_shadow_height = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Emmaus.Resource.Dimension.design_bottom_navigation_text_size = global::HappyPandaXDroid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Emmaus.Resource.Dimension.design_bottom_sheet_modal_elevation = global::HappyPandaXDroid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Emmaus.Resource.Dimension.design_bottom_sheet_peek_height_min = global::HappyPandaXDroid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Emmaus.Resource.Dimension.design_fab_border_width = global::HappyPandaXDroid.Resource.Dimension.design_fab_border_width;
+			global::Emmaus.Resource.Dimension.design_fab_elevation = global::HappyPandaXDroid.Resource.Dimension.design_fab_elevation;
+			global::Emmaus.Resource.Dimension.design_fab_image_size = global::HappyPandaXDroid.Resource.Dimension.design_fab_image_size;
+			global::Emmaus.Resource.Dimension.design_fab_size_mini = global::HappyPandaXDroid.Resource.Dimension.design_fab_size_mini;
+			global::Emmaus.Resource.Dimension.design_fab_size_normal = global::HappyPandaXDroid.Resource.Dimension.design_fab_size_normal;
+			global::Emmaus.Resource.Dimension.design_fab_translation_z_pressed = global::HappyPandaXDroid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Emmaus.Resource.Dimension.design_navigation_elevation = global::HappyPandaXDroid.Resource.Dimension.design_navigation_elevation;
+			global::Emmaus.Resource.Dimension.design_navigation_icon_padding = global::HappyPandaXDroid.Resource.Dimension.design_navigation_icon_padding;
+			global::Emmaus.Resource.Dimension.design_navigation_icon_size = global::HappyPandaXDroid.Resource.Dimension.design_navigation_icon_size;
+			global::Emmaus.Resource.Dimension.design_navigation_max_width = global::HappyPandaXDroid.Resource.Dimension.design_navigation_max_width;
+			global::Emmaus.Resource.Dimension.design_navigation_padding_bottom = global::HappyPandaXDroid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Emmaus.Resource.Dimension.design_navigation_separator_vertical_padding = global::HappyPandaXDroid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Emmaus.Resource.Dimension.design_snackbar_action_inline_max_width = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Emmaus.Resource.Dimension.design_snackbar_background_corner_radius = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Emmaus.Resource.Dimension.design_snackbar_elevation = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_elevation;
+			global::Emmaus.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Emmaus.Resource.Dimension.design_snackbar_max_width = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_max_width;
+			global::Emmaus.Resource.Dimension.design_snackbar_min_width = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_min_width;
+			global::Emmaus.Resource.Dimension.design_snackbar_padding_horizontal = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Emmaus.Resource.Dimension.design_snackbar_padding_vertical = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Emmaus.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Emmaus.Resource.Dimension.design_snackbar_text_size = global::HappyPandaXDroid.Resource.Dimension.design_snackbar_text_size;
+			global::Emmaus.Resource.Dimension.design_tab_max_width = global::HappyPandaXDroid.Resource.Dimension.design_tab_max_width;
+			global::Emmaus.Resource.Dimension.design_tab_scrollable_min_width = global::HappyPandaXDroid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Emmaus.Resource.Dimension.design_tab_text_size = global::HappyPandaXDroid.Resource.Dimension.design_tab_text_size;
+			global::Emmaus.Resource.Dimension.design_tab_text_size_2line = global::HappyPandaXDroid.Resource.Dimension.design_tab_text_size_2line;
+			global::Emmaus.Resource.Dimension.disabled_alpha_material_dark = global::HappyPandaXDroid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Emmaus.Resource.Dimension.disabled_alpha_material_light = global::HappyPandaXDroid.Resource.Dimension.disabled_alpha_material_light;
+			global::Emmaus.Resource.Dimension.highlight_alpha_material_colored = global::HappyPandaXDroid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Emmaus.Resource.Dimension.highlight_alpha_material_dark = global::HappyPandaXDroid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Emmaus.Resource.Dimension.highlight_alpha_material_light = global::HappyPandaXDroid.Resource.Dimension.highlight_alpha_material_light;
+			global::Emmaus.Resource.Dimension.hint_alpha_material_dark = global::HappyPandaXDroid.Resource.Dimension.hint_alpha_material_dark;
+			global::Emmaus.Resource.Dimension.hint_alpha_material_light = global::HappyPandaXDroid.Resource.Dimension.hint_alpha_material_light;
+			global::Emmaus.Resource.Dimension.hint_pressed_alpha_material_dark = global::HappyPandaXDroid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Emmaus.Resource.Dimension.hint_pressed_alpha_material_light = global::HappyPandaXDroid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Emmaus.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::HappyPandaXDroid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Emmaus.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::HappyPandaXDroid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Emmaus.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::HappyPandaXDroid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Emmaus.Resource.Dimension.notification_action_icon_size = global::HappyPandaXDroid.Resource.Dimension.notification_action_icon_size;
+			global::Emmaus.Resource.Dimension.notification_action_text_size = global::HappyPandaXDroid.Resource.Dimension.notification_action_text_size;
+			global::Emmaus.Resource.Dimension.notification_big_circle_margin = global::HappyPandaXDroid.Resource.Dimension.notification_big_circle_margin;
+			global::Emmaus.Resource.Dimension.notification_content_margin_start = global::HappyPandaXDroid.Resource.Dimension.notification_content_margin_start;
+			global::Emmaus.Resource.Dimension.notification_large_icon_height = global::HappyPandaXDroid.Resource.Dimension.notification_large_icon_height;
+			global::Emmaus.Resource.Dimension.notification_large_icon_width = global::HappyPandaXDroid.Resource.Dimension.notification_large_icon_width;
+			global::Emmaus.Resource.Dimension.notification_main_column_padding_top = global::HappyPandaXDroid.Resource.Dimension.notification_main_column_padding_top;
+			global::Emmaus.Resource.Dimension.notification_media_narrow_margin = global::HappyPandaXDroid.Resource.Dimension.notification_media_narrow_margin;
+			global::Emmaus.Resource.Dimension.notification_right_icon_size = global::HappyPandaXDroid.Resource.Dimension.notification_right_icon_size;
+			global::Emmaus.Resource.Dimension.notification_right_side_padding_top = global::HappyPandaXDroid.Resource.Dimension.notification_right_side_padding_top;
+			global::Emmaus.Resource.Dimension.notification_small_icon_background_padding = global::HappyPandaXDroid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Emmaus.Resource.Dimension.notification_small_icon_size_as_large = global::HappyPandaXDroid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Emmaus.Resource.Dimension.notification_subtext_size = global::HappyPandaXDroid.Resource.Dimension.notification_subtext_size;
+			global::Emmaus.Resource.Dimension.notification_top_pad = global::HappyPandaXDroid.Resource.Dimension.notification_top_pad;
+			global::Emmaus.Resource.Dimension.notification_top_pad_large_text = global::HappyPandaXDroid.Resource.Dimension.notification_top_pad_large_text;
+			global::Emmaus.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_action_bar_item_background_material = global::HappyPandaXDroid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Emmaus.Resource.Drawable.abc_btn_borderless_material = global::HappyPandaXDroid.Resource.Drawable.abc_btn_borderless_material;
+			global::Emmaus.Resource.Drawable.abc_btn_check_material = global::HappyPandaXDroid.Resource.Drawable.abc_btn_check_material;
+			global::Emmaus.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::HappyPandaXDroid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Emmaus.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::HappyPandaXDroid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Emmaus.Resource.Drawable.abc_btn_colored_material = global::HappyPandaXDroid.Resource.Drawable.abc_btn_colored_material;
+			global::Emmaus.Resource.Drawable.abc_btn_default_mtrl_shape = global::HappyPandaXDroid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Emmaus.Resource.Drawable.abc_btn_radio_material = global::HappyPandaXDroid.Resource.Drawable.abc_btn_radio_material;
+			global::Emmaus.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::HappyPandaXDroid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Emmaus.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::HappyPandaXDroid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Emmaus.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::HappyPandaXDroid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Emmaus.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::HappyPandaXDroid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Emmaus.Resource.Drawable.abc_cab_background_internal_bg = global::HappyPandaXDroid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Emmaus.Resource.Drawable.abc_cab_background_top_material = global::HappyPandaXDroid.Resource.Drawable.abc_cab_background_top_material;
+			global::Emmaus.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_control_background_material = global::HappyPandaXDroid.Resource.Drawable.abc_control_background_material;
+			global::Emmaus.Resource.Drawable.abc_dialog_material_background = global::HappyPandaXDroid.Resource.Drawable.abc_dialog_material_background;
+			global::Emmaus.Resource.Drawable.abc_edit_text_material = global::HappyPandaXDroid.Resource.Drawable.abc_edit_text_material;
+			global::Emmaus.Resource.Drawable.abc_ic_ab_back_material = global::HappyPandaXDroid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Emmaus.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Emmaus.Resource.Drawable.abc_ic_clear_material = global::HappyPandaXDroid.Resource.Drawable.abc_ic_clear_material;
+			global::Emmaus.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_ic_go_search_api_material = global::HappyPandaXDroid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Emmaus.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Emmaus.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_ic_menu_overflow_material = global::HappyPandaXDroid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Emmaus.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Emmaus.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_ic_search_api_material = global::HappyPandaXDroid.Resource.Drawable.abc_ic_search_api_material;
+			global::Emmaus.Resource.Drawable.abc_ic_star_black_16dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Emmaus.Resource.Drawable.abc_ic_star_black_36dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Emmaus.Resource.Drawable.abc_ic_star_black_48dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Emmaus.Resource.Drawable.abc_ic_star_half_black_16dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Emmaus.Resource.Drawable.abc_ic_star_half_black_36dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Emmaus.Resource.Drawable.abc_ic_star_half_black_48dp = global::HappyPandaXDroid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Emmaus.Resource.Drawable.abc_ic_voice_search_api_material = global::HappyPandaXDroid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Emmaus.Resource.Drawable.abc_item_background_holo_dark = global::HappyPandaXDroid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Emmaus.Resource.Drawable.abc_item_background_holo_light = global::HappyPandaXDroid.Resource.Drawable.abc_item_background_holo_light;
+			global::Emmaus.Resource.Drawable.abc_list_divider_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_list_focused_holo = global::HappyPandaXDroid.Resource.Drawable.abc_list_focused_holo;
+			global::Emmaus.Resource.Drawable.abc_list_longpressed_holo = global::HappyPandaXDroid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Emmaus.Resource.Drawable.abc_list_pressed_holo_dark = global::HappyPandaXDroid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Emmaus.Resource.Drawable.abc_list_pressed_holo_light = global::HappyPandaXDroid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Emmaus.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::HappyPandaXDroid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Emmaus.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::HappyPandaXDroid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Emmaus.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::HappyPandaXDroid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Emmaus.Resource.Drawable.abc_list_selector_disabled_holo_light = global::HappyPandaXDroid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Emmaus.Resource.Drawable.abc_list_selector_holo_dark = global::HappyPandaXDroid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Emmaus.Resource.Drawable.abc_list_selector_holo_light = global::HappyPandaXDroid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Emmaus.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::HappyPandaXDroid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Emmaus.Resource.Drawable.abc_popup_background_mtrl_mult = global::HappyPandaXDroid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Emmaus.Resource.Drawable.abc_ratingbar_indicator_material = global::HappyPandaXDroid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Emmaus.Resource.Drawable.abc_ratingbar_material = global::HappyPandaXDroid.Resource.Drawable.abc_ratingbar_material;
+			global::Emmaus.Resource.Drawable.abc_ratingbar_small_material = global::HappyPandaXDroid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Emmaus.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::HappyPandaXDroid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Emmaus.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::HappyPandaXDroid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Emmaus.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_seekbar_thumb_material = global::HappyPandaXDroid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Emmaus.Resource.Drawable.abc_seekbar_tick_mark_material = global::HappyPandaXDroid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Emmaus.Resource.Drawable.abc_seekbar_track_material = global::HappyPandaXDroid.Resource.Drawable.abc_seekbar_track_material;
+			global::Emmaus.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Emmaus.Resource.Drawable.abc_spinner_textfield_background_material = global::HappyPandaXDroid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Emmaus.Resource.Drawable.abc_switch_thumb_material = global::HappyPandaXDroid.Resource.Drawable.abc_switch_thumb_material;
+			global::Emmaus.Resource.Drawable.abc_switch_track_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_tab_indicator_material = global::HappyPandaXDroid.Resource.Drawable.abc_tab_indicator_material;
+			global::Emmaus.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_text_cursor_material = global::HappyPandaXDroid.Resource.Drawable.abc_text_cursor_material;
+			global::Emmaus.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::HappyPandaXDroid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Emmaus.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::HappyPandaXDroid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Emmaus.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::HappyPandaXDroid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Emmaus.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::HappyPandaXDroid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Emmaus.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::HappyPandaXDroid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Emmaus.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::HappyPandaXDroid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Emmaus.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::HappyPandaXDroid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Emmaus.Resource.Drawable.abc_textfield_search_material = global::HappyPandaXDroid.Resource.Drawable.abc_textfield_search_material;
+			global::Emmaus.Resource.Drawable.abc_vector_test = global::HappyPandaXDroid.Resource.Drawable.abc_vector_test;
+			global::Emmaus.Resource.Drawable.avd_hide_password = global::HappyPandaXDroid.Resource.Drawable.avd_hide_password;
+			global::Emmaus.Resource.Drawable.avd_hide_password_1 = global::HappyPandaXDroid.Resource.Drawable.avd_hide_password_1;
+			global::Emmaus.Resource.Drawable.avd_hide_password_2 = global::HappyPandaXDroid.Resource.Drawable.avd_hide_password_2;
+			global::Emmaus.Resource.Drawable.avd_hide_password_3 = global::HappyPandaXDroid.Resource.Drawable.avd_hide_password_3;
+			global::Emmaus.Resource.Drawable.avd_show_password = global::HappyPandaXDroid.Resource.Drawable.avd_show_password;
+			global::Emmaus.Resource.Drawable.avd_show_password_1 = global::HappyPandaXDroid.Resource.Drawable.avd_show_password_1;
+			global::Emmaus.Resource.Drawable.avd_show_password_2 = global::HappyPandaXDroid.Resource.Drawable.avd_show_password_2;
+			global::Emmaus.Resource.Drawable.avd_show_password_3 = global::HappyPandaXDroid.Resource.Drawable.avd_show_password_3;
+			global::Emmaus.Resource.Drawable.design_bottom_navigation_item_background = global::HappyPandaXDroid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Emmaus.Resource.Drawable.design_fab_background = global::HappyPandaXDroid.Resource.Drawable.design_fab_background;
+			global::Emmaus.Resource.Drawable.design_ic_visibility = global::HappyPandaXDroid.Resource.Drawable.design_ic_visibility;
+			global::Emmaus.Resource.Drawable.design_ic_visibility_off = global::HappyPandaXDroid.Resource.Drawable.design_ic_visibility_off;
+			global::Emmaus.Resource.Drawable.design_password_eye = global::HappyPandaXDroid.Resource.Drawable.design_password_eye;
+			global::Emmaus.Resource.Drawable.design_snackbar_background = global::HappyPandaXDroid.Resource.Drawable.design_snackbar_background;
+			global::Emmaus.Resource.Drawable.navigation_empty_icon = global::HappyPandaXDroid.Resource.Drawable.navigation_empty_icon;
+			global::Emmaus.Resource.Drawable.notification_action_background = global::HappyPandaXDroid.Resource.Drawable.notification_action_background;
+			global::Emmaus.Resource.Drawable.notification_bg = global::HappyPandaXDroid.Resource.Drawable.notification_bg;
+			global::Emmaus.Resource.Drawable.notification_bg_low = global::HappyPandaXDroid.Resource.Drawable.notification_bg_low;
+			global::Emmaus.Resource.Drawable.notification_bg_low_normal = global::HappyPandaXDroid.Resource.Drawable.notification_bg_low_normal;
+			global::Emmaus.Resource.Drawable.notification_bg_low_pressed = global::HappyPandaXDroid.Resource.Drawable.notification_bg_low_pressed;
+			global::Emmaus.Resource.Drawable.notification_bg_normal = global::HappyPandaXDroid.Resource.Drawable.notification_bg_normal;
+			global::Emmaus.Resource.Drawable.notification_bg_normal_pressed = global::HappyPandaXDroid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Emmaus.Resource.Drawable.notification_icon_background = global::HappyPandaXDroid.Resource.Drawable.notification_icon_background;
+			global::Emmaus.Resource.Drawable.notification_template_icon_bg = global::HappyPandaXDroid.Resource.Drawable.notification_template_icon_bg;
+			global::Emmaus.Resource.Drawable.notification_template_icon_low_bg = global::HappyPandaXDroid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Emmaus.Resource.Drawable.notification_tile_bg = global::HappyPandaXDroid.Resource.Drawable.notification_tile_bg;
+			global::Emmaus.Resource.Drawable.notify_panel_notification_icon_bg = global::HappyPandaXDroid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Emmaus.Resource.Id.action0 = global::HappyPandaXDroid.Resource.Id.action0;
+			global::Emmaus.Resource.Id.action_bar = global::HappyPandaXDroid.Resource.Id.action_bar;
+			global::Emmaus.Resource.Id.action_bar_activity_content = global::HappyPandaXDroid.Resource.Id.action_bar_activity_content;
+			global::Emmaus.Resource.Id.action_bar_container = global::HappyPandaXDroid.Resource.Id.action_bar_container;
+			global::Emmaus.Resource.Id.action_bar_root = global::HappyPandaXDroid.Resource.Id.action_bar_root;
+			global::Emmaus.Resource.Id.action_bar_spinner = global::HappyPandaXDroid.Resource.Id.action_bar_spinner;
+			global::Emmaus.Resource.Id.action_bar_subtitle = global::HappyPandaXDroid.Resource.Id.action_bar_subtitle;
+			global::Emmaus.Resource.Id.action_bar_title = global::HappyPandaXDroid.Resource.Id.action_bar_title;
+			global::Emmaus.Resource.Id.action_container = global::HappyPandaXDroid.Resource.Id.action_container;
+			global::Emmaus.Resource.Id.action_context_bar = global::HappyPandaXDroid.Resource.Id.action_context_bar;
+			global::Emmaus.Resource.Id.action_divider = global::HappyPandaXDroid.Resource.Id.action_divider;
+			global::Emmaus.Resource.Id.action_image = global::HappyPandaXDroid.Resource.Id.action_image;
+			global::Emmaus.Resource.Id.action_menu_divider = global::HappyPandaXDroid.Resource.Id.action_menu_divider;
+			global::Emmaus.Resource.Id.action_menu_presenter = global::HappyPandaXDroid.Resource.Id.action_menu_presenter;
+			global::Emmaus.Resource.Id.action_mode_bar = global::HappyPandaXDroid.Resource.Id.action_mode_bar;
+			global::Emmaus.Resource.Id.action_mode_bar_stub = global::HappyPandaXDroid.Resource.Id.action_mode_bar_stub;
+			global::Emmaus.Resource.Id.action_mode_close_button = global::HappyPandaXDroid.Resource.Id.action_mode_close_button;
+			global::Emmaus.Resource.Id.action_text = global::HappyPandaXDroid.Resource.Id.action_text;
+			global::Emmaus.Resource.Id.actions = global::HappyPandaXDroid.Resource.Id.actions;
+			global::Emmaus.Resource.Id.activity_chooser_view_content = global::HappyPandaXDroid.Resource.Id.activity_chooser_view_content;
+			global::Emmaus.Resource.Id.add = global::HappyPandaXDroid.Resource.Id.add;
+			global::Emmaus.Resource.Id.alertTitle = global::HappyPandaXDroid.Resource.Id.alertTitle;
+			global::Emmaus.Resource.Id.all = global::HappyPandaXDroid.Resource.Id.all;
+			global::Emmaus.Resource.Id.always = global::HappyPandaXDroid.Resource.Id.always;
+			global::Emmaus.Resource.Id.auto = global::HappyPandaXDroid.Resource.Id.auto;
+			global::Emmaus.Resource.Id.beginning = global::HappyPandaXDroid.Resource.Id.beginning;
+			global::Emmaus.Resource.Id.bottom = global::HappyPandaXDroid.Resource.Id.bottom;
+			global::Emmaus.Resource.Id.buttonPanel = global::HappyPandaXDroid.Resource.Id.buttonPanel;
+			global::Emmaus.Resource.Id.cancel_action = global::HappyPandaXDroid.Resource.Id.cancel_action;
+			global::Emmaus.Resource.Id.center = global::HappyPandaXDroid.Resource.Id.center;
+			global::Emmaus.Resource.Id.center_horizontal = global::HappyPandaXDroid.Resource.Id.center_horizontal;
+			global::Emmaus.Resource.Id.center_vertical = global::HappyPandaXDroid.Resource.Id.center_vertical;
+			global::Emmaus.Resource.Id.checkbox = global::HappyPandaXDroid.Resource.Id.checkbox;
+			global::Emmaus.Resource.Id.chronometer = global::HappyPandaXDroid.Resource.Id.chronometer;
+			global::Emmaus.Resource.Id.clip_horizontal = global::HappyPandaXDroid.Resource.Id.clip_horizontal;
+			global::Emmaus.Resource.Id.clip_vertical = global::HappyPandaXDroid.Resource.Id.clip_vertical;
+			global::Emmaus.Resource.Id.collapseActionView = global::HappyPandaXDroid.Resource.Id.collapseActionView;
+			global::Emmaus.Resource.Id.container = global::HappyPandaXDroid.Resource.Id.container;
+			global::Emmaus.Resource.Id.contentPanel = global::HappyPandaXDroid.Resource.Id.contentPanel;
+			global::Emmaus.Resource.Id.coordinator = global::HappyPandaXDroid.Resource.Id.coordinator;
+			global::Emmaus.Resource.Id.custom = global::HappyPandaXDroid.Resource.Id.custom;
+			global::Emmaus.Resource.Id.customPanel = global::HappyPandaXDroid.Resource.Id.customPanel;
+			global::Emmaus.Resource.Id.decor_content_parent = global::HappyPandaXDroid.Resource.Id.decor_content_parent;
+			global::Emmaus.Resource.Id.default_activity_button = global::HappyPandaXDroid.Resource.Id.default_activity_button;
+			global::Emmaus.Resource.Id.design_bottom_sheet = global::HappyPandaXDroid.Resource.Id.design_bottom_sheet;
+			global::Emmaus.Resource.Id.design_menu_item_action_area = global::HappyPandaXDroid.Resource.Id.design_menu_item_action_area;
+			global::Emmaus.Resource.Id.design_menu_item_action_area_stub = global::HappyPandaXDroid.Resource.Id.design_menu_item_action_area_stub;
+			global::Emmaus.Resource.Id.design_menu_item_text = global::HappyPandaXDroid.Resource.Id.design_menu_item_text;
+			global::Emmaus.Resource.Id.design_navigation_view = global::HappyPandaXDroid.Resource.Id.design_navigation_view;
+			global::Emmaus.Resource.Id.disableHome = global::HappyPandaXDroid.Resource.Id.disableHome;
+			global::Emmaus.Resource.Id.edit_query = global::HappyPandaXDroid.Resource.Id.edit_query;
+			global::Emmaus.Resource.Id.end = global::HappyPandaXDroid.Resource.Id.end;
+			global::Emmaus.Resource.Id.end_padder = global::HappyPandaXDroid.Resource.Id.end_padder;
+			global::Emmaus.Resource.Id.enterAlways = global::HappyPandaXDroid.Resource.Id.enterAlways;
+			global::Emmaus.Resource.Id.enterAlwaysCollapsed = global::HappyPandaXDroid.Resource.Id.enterAlwaysCollapsed;
+			global::Emmaus.Resource.Id.exitUntilCollapsed = global::HappyPandaXDroid.Resource.Id.exitUntilCollapsed;
+			global::Emmaus.Resource.Id.expand_activities_button = global::HappyPandaXDroid.Resource.Id.expand_activities_button;
+			global::Emmaus.Resource.Id.expanded_menu = global::HappyPandaXDroid.Resource.Id.expanded_menu;
+			global::Emmaus.Resource.Id.fill = global::HappyPandaXDroid.Resource.Id.fill;
+			global::Emmaus.Resource.Id.fill_horizontal = global::HappyPandaXDroid.Resource.Id.fill_horizontal;
+			global::Emmaus.Resource.Id.fill_vertical = global::HappyPandaXDroid.Resource.Id.fill_vertical;
+			global::Emmaus.Resource.Id.@fixed = global::HappyPandaXDroid.Resource.Id.@fixed;
+			global::Emmaus.Resource.Id.home = global::HappyPandaXDroid.Resource.Id.home;
+			global::Emmaus.Resource.Id.homeAsUp = global::HappyPandaXDroid.Resource.Id.homeAsUp;
+			global::Emmaus.Resource.Id.icon = global::HappyPandaXDroid.Resource.Id.icon;
+			global::Emmaus.Resource.Id.icon_group = global::HappyPandaXDroid.Resource.Id.icon_group;
+			global::Emmaus.Resource.Id.ifRoom = global::HappyPandaXDroid.Resource.Id.ifRoom;
+			global::Emmaus.Resource.Id.image = global::HappyPandaXDroid.Resource.Id.image;
+			global::Emmaus.Resource.Id.info = global::HappyPandaXDroid.Resource.Id.info;
+			global::Emmaus.Resource.Id.item_touch_helper_previous_elevation = global::HappyPandaXDroid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Emmaus.Resource.Id.largeLabel = global::HappyPandaXDroid.Resource.Id.largeLabel;
+			global::Emmaus.Resource.Id.left = global::HappyPandaXDroid.Resource.Id.left;
+			global::Emmaus.Resource.Id.line1 = global::HappyPandaXDroid.Resource.Id.line1;
+			global::Emmaus.Resource.Id.line3 = global::HappyPandaXDroid.Resource.Id.line3;
+			global::Emmaus.Resource.Id.listMode = global::HappyPandaXDroid.Resource.Id.listMode;
+			global::Emmaus.Resource.Id.list_item = global::HappyPandaXDroid.Resource.Id.list_item;
+			global::Emmaus.Resource.Id.masked = global::HappyPandaXDroid.Resource.Id.masked;
+			global::Emmaus.Resource.Id.media_actions = global::HappyPandaXDroid.Resource.Id.media_actions;
+			global::Emmaus.Resource.Id.middle = global::HappyPandaXDroid.Resource.Id.middle;
+			global::Emmaus.Resource.Id.mini = global::HappyPandaXDroid.Resource.Id.mini;
+			global::Emmaus.Resource.Id.multiply = global::HappyPandaXDroid.Resource.Id.multiply;
+			global::Emmaus.Resource.Id.navigation_header_container = global::HappyPandaXDroid.Resource.Id.navigation_header_container;
+			global::Emmaus.Resource.Id.never = global::HappyPandaXDroid.Resource.Id.never;
+			global::Emmaus.Resource.Id.none = global::HappyPandaXDroid.Resource.Id.none;
+			global::Emmaus.Resource.Id.normal = global::HappyPandaXDroid.Resource.Id.normal;
+			global::Emmaus.Resource.Id.notification_background = global::HappyPandaXDroid.Resource.Id.notification_background;
+			global::Emmaus.Resource.Id.notification_main_column = global::HappyPandaXDroid.Resource.Id.notification_main_column;
+			global::Emmaus.Resource.Id.notification_main_column_container = global::HappyPandaXDroid.Resource.Id.notification_main_column_container;
+			global::Emmaus.Resource.Id.parallax = global::HappyPandaXDroid.Resource.Id.parallax;
+			global::Emmaus.Resource.Id.parentPanel = global::HappyPandaXDroid.Resource.Id.parentPanel;
+			global::Emmaus.Resource.Id.pin = global::HappyPandaXDroid.Resource.Id.pin;
+			global::Emmaus.Resource.Id.progress_circular = global::HappyPandaXDroid.Resource.Id.progress_circular;
+			global::Emmaus.Resource.Id.progress_horizontal = global::HappyPandaXDroid.Resource.Id.progress_horizontal;
+			global::Emmaus.Resource.Id.radio = global::HappyPandaXDroid.Resource.Id.radio;
+			global::Emmaus.Resource.Id.right = global::HappyPandaXDroid.Resource.Id.right;
+			global::Emmaus.Resource.Id.right_icon = global::HappyPandaXDroid.Resource.Id.right_icon;
+			global::Emmaus.Resource.Id.right_side = global::HappyPandaXDroid.Resource.Id.right_side;
 			global::Emmaus.Resource.Id.rvp_fragment_container = global::HappyPandaXDroid.Resource.Id.rvp_fragment_container;
+			global::Emmaus.Resource.Id.screen = global::HappyPandaXDroid.Resource.Id.screen;
+			global::Emmaus.Resource.Id.scroll = global::HappyPandaXDroid.Resource.Id.scroll;
+			global::Emmaus.Resource.Id.scrollIndicatorDown = global::HappyPandaXDroid.Resource.Id.scrollIndicatorDown;
+			global::Emmaus.Resource.Id.scrollIndicatorUp = global::HappyPandaXDroid.Resource.Id.scrollIndicatorUp;
+			global::Emmaus.Resource.Id.scrollView = global::HappyPandaXDroid.Resource.Id.scrollView;
+			global::Emmaus.Resource.Id.scrollable = global::HappyPandaXDroid.Resource.Id.scrollable;
+			global::Emmaus.Resource.Id.search_badge = global::HappyPandaXDroid.Resource.Id.search_badge;
+			global::Emmaus.Resource.Id.search_bar = global::HappyPandaXDroid.Resource.Id.search_bar;
+			global::Emmaus.Resource.Id.search_button = global::HappyPandaXDroid.Resource.Id.search_button;
+			global::Emmaus.Resource.Id.search_close_btn = global::HappyPandaXDroid.Resource.Id.search_close_btn;
+			global::Emmaus.Resource.Id.search_edit_frame = global::HappyPandaXDroid.Resource.Id.search_edit_frame;
+			global::Emmaus.Resource.Id.search_go_btn = global::HappyPandaXDroid.Resource.Id.search_go_btn;
+			global::Emmaus.Resource.Id.search_mag_icon = global::HappyPandaXDroid.Resource.Id.search_mag_icon;
+			global::Emmaus.Resource.Id.search_plate = global::HappyPandaXDroid.Resource.Id.search_plate;
+			global::Emmaus.Resource.Id.search_src_text = global::HappyPandaXDroid.Resource.Id.search_src_text;
+			global::Emmaus.Resource.Id.search_voice_btn = global::HappyPandaXDroid.Resource.Id.search_voice_btn;
+			global::Emmaus.Resource.Id.select_dialog_listview = global::HappyPandaXDroid.Resource.Id.select_dialog_listview;
+			global::Emmaus.Resource.Id.shortcut = global::HappyPandaXDroid.Resource.Id.shortcut;
+			global::Emmaus.Resource.Id.showCustom = global::HappyPandaXDroid.Resource.Id.showCustom;
+			global::Emmaus.Resource.Id.showHome = global::HappyPandaXDroid.Resource.Id.showHome;
+			global::Emmaus.Resource.Id.showTitle = global::HappyPandaXDroid.Resource.Id.showTitle;
+			global::Emmaus.Resource.Id.smallLabel = global::HappyPandaXDroid.Resource.Id.smallLabel;
+			global::Emmaus.Resource.Id.snackbar_action = global::HappyPandaXDroid.Resource.Id.snackbar_action;
+			global::Emmaus.Resource.Id.snackbar_text = global::HappyPandaXDroid.Resource.Id.snackbar_text;
+			global::Emmaus.Resource.Id.snap = global::HappyPandaXDroid.Resource.Id.snap;
+			global::Emmaus.Resource.Id.spacer = global::HappyPandaXDroid.Resource.Id.spacer;
+			global::Emmaus.Resource.Id.split_action_bar = global::HappyPandaXDroid.Resource.Id.split_action_bar;
+			global::Emmaus.Resource.Id.src_atop = global::HappyPandaXDroid.Resource.Id.src_atop;
+			global::Emmaus.Resource.Id.src_in = global::HappyPandaXDroid.Resource.Id.src_in;
+			global::Emmaus.Resource.Id.src_over = global::HappyPandaXDroid.Resource.Id.src_over;
+			global::Emmaus.Resource.Id.start = global::HappyPandaXDroid.Resource.Id.start;
+			global::Emmaus.Resource.Id.status_bar_latest_event_content = global::HappyPandaXDroid.Resource.Id.status_bar_latest_event_content;
+			global::Emmaus.Resource.Id.submenuarrow = global::HappyPandaXDroid.Resource.Id.submenuarrow;
+			global::Emmaus.Resource.Id.submit_area = global::HappyPandaXDroid.Resource.Id.submit_area;
+			global::Emmaus.Resource.Id.tabMode = global::HappyPandaXDroid.Resource.Id.tabMode;
+			global::Emmaus.Resource.Id.text = global::HappyPandaXDroid.Resource.Id.text;
+			global::Emmaus.Resource.Id.text2 = global::HappyPandaXDroid.Resource.Id.text2;
+			global::Emmaus.Resource.Id.textSpacerNoButtons = global::HappyPandaXDroid.Resource.Id.textSpacerNoButtons;
+			global::Emmaus.Resource.Id.textSpacerNoTitle = global::HappyPandaXDroid.Resource.Id.textSpacerNoTitle;
+			global::Emmaus.Resource.Id.text_input_password_toggle = global::HappyPandaXDroid.Resource.Id.text_input_password_toggle;
+			global::Emmaus.Resource.Id.textinput_counter = global::HappyPandaXDroid.Resource.Id.textinput_counter;
+			global::Emmaus.Resource.Id.textinput_error = global::HappyPandaXDroid.Resource.Id.textinput_error;
+			global::Emmaus.Resource.Id.time = global::HappyPandaXDroid.Resource.Id.time;
+			global::Emmaus.Resource.Id.title = global::HappyPandaXDroid.Resource.Id.title;
+			global::Emmaus.Resource.Id.titleDividerNoCustom = global::HappyPandaXDroid.Resource.Id.titleDividerNoCustom;
+			global::Emmaus.Resource.Id.title_template = global::HappyPandaXDroid.Resource.Id.title_template;
+			global::Emmaus.Resource.Id.top = global::HappyPandaXDroid.Resource.Id.top;
+			global::Emmaus.Resource.Id.topPanel = global::HappyPandaXDroid.Resource.Id.topPanel;
+			global::Emmaus.Resource.Id.touch_outside = global::HappyPandaXDroid.Resource.Id.touch_outside;
 			global::Emmaus.Resource.Id.transition_current_scene = global::HappyPandaXDroid.Resource.Id.transition_current_scene;
 			global::Emmaus.Resource.Id.transition_scene_layoutid_cache = global::HappyPandaXDroid.Resource.Id.transition_scene_layoutid_cache;
+			global::Emmaus.Resource.Id.up = global::HappyPandaXDroid.Resource.Id.up;
+			global::Emmaus.Resource.Id.useLogo = global::HappyPandaXDroid.Resource.Id.useLogo;
+			global::Emmaus.Resource.Id.view_offset_helper = global::HappyPandaXDroid.Resource.Id.view_offset_helper;
+			global::Emmaus.Resource.Id.visible = global::HappyPandaXDroid.Resource.Id.visible;
+			global::Emmaus.Resource.Id.withText = global::HappyPandaXDroid.Resource.Id.withText;
+			global::Emmaus.Resource.Id.wrap_content = global::HappyPandaXDroid.Resource.Id.wrap_content;
+			global::Emmaus.Resource.Integer.abc_config_activityDefaultDur = global::HappyPandaXDroid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Emmaus.Resource.Integer.abc_config_activityShortDur = global::HappyPandaXDroid.Resource.Integer.abc_config_activityShortDur;
+			global::Emmaus.Resource.Integer.app_bar_elevation_anim_duration = global::HappyPandaXDroid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Emmaus.Resource.Integer.bottom_sheet_slide_duration = global::HappyPandaXDroid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Emmaus.Resource.Integer.cancel_button_image_alpha = global::HappyPandaXDroid.Resource.Integer.cancel_button_image_alpha;
+			global::Emmaus.Resource.Integer.design_snackbar_text_max_lines = global::HappyPandaXDroid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Emmaus.Resource.Integer.hide_password_duration = global::HappyPandaXDroid.Resource.Integer.hide_password_duration;
+			global::Emmaus.Resource.Integer.show_password_duration = global::HappyPandaXDroid.Resource.Integer.show_password_duration;
+			global::Emmaus.Resource.Integer.status_bar_notification_info_maxnum = global::HappyPandaXDroid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Emmaus.Resource.Layout.abc_action_bar_title_item = global::HappyPandaXDroid.Resource.Layout.abc_action_bar_title_item;
+			global::Emmaus.Resource.Layout.abc_action_bar_up_container = global::HappyPandaXDroid.Resource.Layout.abc_action_bar_up_container;
+			global::Emmaus.Resource.Layout.abc_action_bar_view_list_nav_layout = global::HappyPandaXDroid.Resource.Layout.abc_action_bar_view_list_nav_layout;
+			global::Emmaus.Resource.Layout.abc_action_menu_item_layout = global::HappyPandaXDroid.Resource.Layout.abc_action_menu_item_layout;
+			global::Emmaus.Resource.Layout.abc_action_menu_layout = global::HappyPandaXDroid.Resource.Layout.abc_action_menu_layout;
+			global::Emmaus.Resource.Layout.abc_action_mode_bar = global::HappyPandaXDroid.Resource.Layout.abc_action_mode_bar;
+			global::Emmaus.Resource.Layout.abc_action_mode_close_item_material = global::HappyPandaXDroid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Emmaus.Resource.Layout.abc_activity_chooser_view = global::HappyPandaXDroid.Resource.Layout.abc_activity_chooser_view;
+			global::Emmaus.Resource.Layout.abc_activity_chooser_view_list_item = global::HappyPandaXDroid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Emmaus.Resource.Layout.abc_alert_dialog_button_bar_material = global::HappyPandaXDroid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Emmaus.Resource.Layout.abc_alert_dialog_material = global::HappyPandaXDroid.Resource.Layout.abc_alert_dialog_material;
+			global::Emmaus.Resource.Layout.abc_alert_dialog_title_material = global::HappyPandaXDroid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Emmaus.Resource.Layout.abc_dialog_title_material = global::HappyPandaXDroid.Resource.Layout.abc_dialog_title_material;
+			global::Emmaus.Resource.Layout.abc_expanded_menu_layout = global::HappyPandaXDroid.Resource.Layout.abc_expanded_menu_layout;
+			global::Emmaus.Resource.Layout.abc_list_menu_item_checkbox = global::HappyPandaXDroid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Emmaus.Resource.Layout.abc_list_menu_item_icon = global::HappyPandaXDroid.Resource.Layout.abc_list_menu_item_icon;
+			global::Emmaus.Resource.Layout.abc_list_menu_item_layout = global::HappyPandaXDroid.Resource.Layout.abc_list_menu_item_layout;
+			global::Emmaus.Resource.Layout.abc_list_menu_item_radio = global::HappyPandaXDroid.Resource.Layout.abc_list_menu_item_radio;
+			global::Emmaus.Resource.Layout.abc_popup_menu_header_item_layout = global::HappyPandaXDroid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Emmaus.Resource.Layout.abc_popup_menu_item_layout = global::HappyPandaXDroid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Emmaus.Resource.Layout.abc_screen_content_include = global::HappyPandaXDroid.Resource.Layout.abc_screen_content_include;
+			global::Emmaus.Resource.Layout.abc_screen_simple = global::HappyPandaXDroid.Resource.Layout.abc_screen_simple;
+			global::Emmaus.Resource.Layout.abc_screen_simple_overlay_action_mode = global::HappyPandaXDroid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Emmaus.Resource.Layout.abc_screen_toolbar = global::HappyPandaXDroid.Resource.Layout.abc_screen_toolbar;
+			global::Emmaus.Resource.Layout.abc_search_dropdown_item_icons_2line = global::HappyPandaXDroid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Emmaus.Resource.Layout.abc_search_view = global::HappyPandaXDroid.Resource.Layout.abc_search_view;
+			global::Emmaus.Resource.Layout.abc_select_dialog_material = global::HappyPandaXDroid.Resource.Layout.abc_select_dialog_material;
+			global::Emmaus.Resource.Layout.design_bottom_navigation_item = global::HappyPandaXDroid.Resource.Layout.design_bottom_navigation_item;
+			global::Emmaus.Resource.Layout.design_bottom_sheet_dialog = global::HappyPandaXDroid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Emmaus.Resource.Layout.design_layout_snackbar = global::HappyPandaXDroid.Resource.Layout.design_layout_snackbar;
+			global::Emmaus.Resource.Layout.design_layout_snackbar_include = global::HappyPandaXDroid.Resource.Layout.design_layout_snackbar_include;
+			global::Emmaus.Resource.Layout.design_layout_tab_icon = global::HappyPandaXDroid.Resource.Layout.design_layout_tab_icon;
+			global::Emmaus.Resource.Layout.design_layout_tab_text = global::HappyPandaXDroid.Resource.Layout.design_layout_tab_text;
+			global::Emmaus.Resource.Layout.design_menu_item_action_area = global::HappyPandaXDroid.Resource.Layout.design_menu_item_action_area;
+			global::Emmaus.Resource.Layout.design_navigation_item = global::HappyPandaXDroid.Resource.Layout.design_navigation_item;
+			global::Emmaus.Resource.Layout.design_navigation_item_header = global::HappyPandaXDroid.Resource.Layout.design_navigation_item_header;
+			global::Emmaus.Resource.Layout.design_navigation_item_separator = global::HappyPandaXDroid.Resource.Layout.design_navigation_item_separator;
+			global::Emmaus.Resource.Layout.design_navigation_item_subheader = global::HappyPandaXDroid.Resource.Layout.design_navigation_item_subheader;
+			global::Emmaus.Resource.Layout.design_navigation_menu = global::HappyPandaXDroid.Resource.Layout.design_navigation_menu;
+			global::Emmaus.Resource.Layout.design_navigation_menu_item = global::HappyPandaXDroid.Resource.Layout.design_navigation_menu_item;
+			global::Emmaus.Resource.Layout.design_text_input_password_icon = global::HappyPandaXDroid.Resource.Layout.design_text_input_password_icon;
+			global::Emmaus.Resource.Layout.notification_action = global::HappyPandaXDroid.Resource.Layout.notification_action;
+			global::Emmaus.Resource.Layout.notification_action_tombstone = global::HappyPandaXDroid.Resource.Layout.notification_action_tombstone;
+			global::Emmaus.Resource.Layout.notification_media_action = global::HappyPandaXDroid.Resource.Layout.notification_media_action;
+			global::Emmaus.Resource.Layout.notification_media_cancel_action = global::HappyPandaXDroid.Resource.Layout.notification_media_cancel_action;
+			global::Emmaus.Resource.Layout.notification_template_big_media = global::HappyPandaXDroid.Resource.Layout.notification_template_big_media;
+			global::Emmaus.Resource.Layout.notification_template_big_media_custom = global::HappyPandaXDroid.Resource.Layout.notification_template_big_media_custom;
+			global::Emmaus.Resource.Layout.notification_template_big_media_narrow = global::HappyPandaXDroid.Resource.Layout.notification_template_big_media_narrow;
+			global::Emmaus.Resource.Layout.notification_template_big_media_narrow_custom = global::HappyPandaXDroid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Emmaus.Resource.Layout.notification_template_custom_big = global::HappyPandaXDroid.Resource.Layout.notification_template_custom_big;
+			global::Emmaus.Resource.Layout.notification_template_icon_group = global::HappyPandaXDroid.Resource.Layout.notification_template_icon_group;
+			global::Emmaus.Resource.Layout.notification_template_lines_media = global::HappyPandaXDroid.Resource.Layout.notification_template_lines_media;
+			global::Emmaus.Resource.Layout.notification_template_media = global::HappyPandaXDroid.Resource.Layout.notification_template_media;
+			global::Emmaus.Resource.Layout.notification_template_media_custom = global::HappyPandaXDroid.Resource.Layout.notification_template_media_custom;
+			global::Emmaus.Resource.Layout.notification_template_part_chronometer = global::HappyPandaXDroid.Resource.Layout.notification_template_part_chronometer;
+			global::Emmaus.Resource.Layout.notification_template_part_time = global::HappyPandaXDroid.Resource.Layout.notification_template_part_time;
 			global::Emmaus.Resource.Layout.rvp_fragment_container = global::HappyPandaXDroid.Resource.Layout.rvp_fragment_container;
+			global::Emmaus.Resource.Layout.select_dialog_item_material = global::HappyPandaXDroid.Resource.Layout.select_dialog_item_material;
+			global::Emmaus.Resource.Layout.select_dialog_multichoice_material = global::HappyPandaXDroid.Resource.Layout.select_dialog_multichoice_material;
+			global::Emmaus.Resource.Layout.select_dialog_singlechoice_material = global::HappyPandaXDroid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Emmaus.Resource.Layout.support_simple_spinner_dropdown_item = global::HappyPandaXDroid.Resource.Layout.support_simple_spinner_dropdown_item;
 			global::Emmaus.Resource.String.ApplicationName = global::HappyPandaXDroid.Resource.String.ApplicationName;
 			global::Emmaus.Resource.String.Hello = global::HappyPandaXDroid.Resource.String.Hello;
+			global::Emmaus.Resource.String.abc_action_bar_home_description = global::HappyPandaXDroid.Resource.String.abc_action_bar_home_description;
+			global::Emmaus.Resource.String.abc_action_bar_home_description_format = global::HappyPandaXDroid.Resource.String.abc_action_bar_home_description_format;
+			global::Emmaus.Resource.String.abc_action_bar_home_subtitle_description_format = global::HappyPandaXDroid.Resource.String.abc_action_bar_home_subtitle_description_format;
+			global::Emmaus.Resource.String.abc_action_bar_up_description = global::HappyPandaXDroid.Resource.String.abc_action_bar_up_description;
+			global::Emmaus.Resource.String.abc_action_menu_overflow_description = global::HappyPandaXDroid.Resource.String.abc_action_menu_overflow_description;
+			global::Emmaus.Resource.String.abc_action_mode_done = global::HappyPandaXDroid.Resource.String.abc_action_mode_done;
+			global::Emmaus.Resource.String.abc_activity_chooser_view_see_all = global::HappyPandaXDroid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Emmaus.Resource.String.abc_activitychooserview_choose_application = global::HappyPandaXDroid.Resource.String.abc_activitychooserview_choose_application;
+			global::Emmaus.Resource.String.abc_capital_off = global::HappyPandaXDroid.Resource.String.abc_capital_off;
+			global::Emmaus.Resource.String.abc_capital_on = global::HappyPandaXDroid.Resource.String.abc_capital_on;
+			global::Emmaus.Resource.String.abc_font_family_body_1_material = global::HappyPandaXDroid.Resource.String.abc_font_family_body_1_material;
+			global::Emmaus.Resource.String.abc_font_family_body_2_material = global::HappyPandaXDroid.Resource.String.abc_font_family_body_2_material;
+			global::Emmaus.Resource.String.abc_font_family_button_material = global::HappyPandaXDroid.Resource.String.abc_font_family_button_material;
+			global::Emmaus.Resource.String.abc_font_family_caption_material = global::HappyPandaXDroid.Resource.String.abc_font_family_caption_material;
+			global::Emmaus.Resource.String.abc_font_family_display_1_material = global::HappyPandaXDroid.Resource.String.abc_font_family_display_1_material;
+			global::Emmaus.Resource.String.abc_font_family_display_2_material = global::HappyPandaXDroid.Resource.String.abc_font_family_display_2_material;
+			global::Emmaus.Resource.String.abc_font_family_display_3_material = global::HappyPandaXDroid.Resource.String.abc_font_family_display_3_material;
+			global::Emmaus.Resource.String.abc_font_family_display_4_material = global::HappyPandaXDroid.Resource.String.abc_font_family_display_4_material;
+			global::Emmaus.Resource.String.abc_font_family_headline_material = global::HappyPandaXDroid.Resource.String.abc_font_family_headline_material;
+			global::Emmaus.Resource.String.abc_font_family_menu_material = global::HappyPandaXDroid.Resource.String.abc_font_family_menu_material;
+			global::Emmaus.Resource.String.abc_font_family_subhead_material = global::HappyPandaXDroid.Resource.String.abc_font_family_subhead_material;
+			global::Emmaus.Resource.String.abc_font_family_title_material = global::HappyPandaXDroid.Resource.String.abc_font_family_title_material;
+			global::Emmaus.Resource.String.abc_search_hint = global::HappyPandaXDroid.Resource.String.abc_search_hint;
+			global::Emmaus.Resource.String.abc_searchview_description_clear = global::HappyPandaXDroid.Resource.String.abc_searchview_description_clear;
+			global::Emmaus.Resource.String.abc_searchview_description_query = global::HappyPandaXDroid.Resource.String.abc_searchview_description_query;
+			global::Emmaus.Resource.String.abc_searchview_description_search = global::HappyPandaXDroid.Resource.String.abc_searchview_description_search;
+			global::Emmaus.Resource.String.abc_searchview_description_submit = global::HappyPandaXDroid.Resource.String.abc_searchview_description_submit;
+			global::Emmaus.Resource.String.abc_searchview_description_voice = global::HappyPandaXDroid.Resource.String.abc_searchview_description_voice;
+			global::Emmaus.Resource.String.abc_shareactionprovider_share_with = global::HappyPandaXDroid.Resource.String.abc_shareactionprovider_share_with;
+			global::Emmaus.Resource.String.abc_shareactionprovider_share_with_application = global::HappyPandaXDroid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Emmaus.Resource.String.abc_toolbar_collapse_description = global::HappyPandaXDroid.Resource.String.abc_toolbar_collapse_description;
+			global::Emmaus.Resource.String.appbar_scrolling_view_behavior = global::HappyPandaXDroid.Resource.String.appbar_scrolling_view_behavior;
+			global::Emmaus.Resource.String.bottom_sheet_behavior = global::HappyPandaXDroid.Resource.String.bottom_sheet_behavior;
+			global::Emmaus.Resource.String.character_counter_pattern = global::HappyPandaXDroid.Resource.String.character_counter_pattern;
+			global::Emmaus.Resource.String.password_toggle_content_description = global::HappyPandaXDroid.Resource.String.password_toggle_content_description;
+			global::Emmaus.Resource.String.path_password_eye = global::HappyPandaXDroid.Resource.String.path_password_eye;
+			global::Emmaus.Resource.String.path_password_eye_mask_strike_through = global::HappyPandaXDroid.Resource.String.path_password_eye_mask_strike_through;
+			global::Emmaus.Resource.String.path_password_eye_mask_visible = global::HappyPandaXDroid.Resource.String.path_password_eye_mask_visible;
+			global::Emmaus.Resource.String.path_password_strike_through = global::HappyPandaXDroid.Resource.String.path_password_strike_through;
+			global::Emmaus.Resource.String.search_menu_title = global::HappyPandaXDroid.Resource.String.search_menu_title;
+			global::Emmaus.Resource.String.status_bar_notification_info_overflow = global::HappyPandaXDroid.Resource.String.status_bar_notification_info_overflow;
+			global::Emmaus.Resource.Style.AlertDialog_AppCompat = global::HappyPandaXDroid.Resource.Style.AlertDialog_AppCompat;
+			global::Emmaus.Resource.Style.AlertDialog_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Emmaus.Resource.Style.Animation_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Animation_AppCompat_DropDownUp = global::HappyPandaXDroid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Emmaus.Resource.Style.Animation_Design_BottomSheetDialog = global::HappyPandaXDroid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Emmaus.Resource.Style.Base_AlertDialog_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Emmaus.Resource.Style.Base_AlertDialog_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_Animation_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::HappyPandaXDroid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Emmaus.Resource.Style.Base_DialogWindowTitle_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Emmaus.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Button = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Large = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Small = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Title = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Emmaus.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Emmaus.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Emmaus.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Emmaus.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::HappyPandaXDroid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Emmaus.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::HappyPandaXDroid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Emmaus.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
+			global::Emmaus.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::HappyPandaXDroid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
+			global::Emmaus.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::HappyPandaXDroid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
+			global::Emmaus.Resource.Style.Base_V21_Theme_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Emmaus.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_V21_Theme_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Emmaus.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_V22_Theme_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Emmaus.Resource.Style.Base_V22_Theme_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_V23_Theme_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Emmaus.Resource.Style.Base_V23_Theme_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_V7_Theme_AppCompat = global::HappyPandaXDroid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Emmaus.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_V7_Theme_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Emmaus.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Emmaus.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::HappyPandaXDroid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Emmaus.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::HappyPandaXDroid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionButton = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActionMode = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Button = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Button_Small = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_EditText = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ImageButton = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ListView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_RatingBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_SearchView = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_SeekBar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Spinner = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Toolbar = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Emmaus.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::HappyPandaXDroid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Emmaus.Resource.Style.Base_Widget_Design_AppBarLayout = global::HappyPandaXDroid.Resource.Style.Base_Widget_Design_AppBarLayout;
+			global::Emmaus.Resource.Style.Base_Widget_Design_TabLayout = global::HappyPandaXDroid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Emmaus.Resource.Style.Platform_AppCompat = global::HappyPandaXDroid.Resource.Style.Platform_AppCompat;
+			global::Emmaus.Resource.Style.Platform_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Platform_AppCompat_Light;
+			global::Emmaus.Resource.Style.Platform_ThemeOverlay_AppCompat = global::HappyPandaXDroid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Emmaus.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::HappyPandaXDroid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Emmaus.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Emmaus.Resource.Style.Platform_V11_AppCompat = global::HappyPandaXDroid.Resource.Style.Platform_V11_AppCompat;
+			global::Emmaus.Resource.Style.Platform_V11_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Platform_V11_AppCompat_Light;
+			global::Emmaus.Resource.Style.Platform_V14_AppCompat = global::HappyPandaXDroid.Resource.Style.Platform_V14_AppCompat;
+			global::Emmaus.Resource.Style.Platform_V14_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Platform_V14_AppCompat_Light;
+			global::Emmaus.Resource.Style.Platform_V21_AppCompat = global::HappyPandaXDroid.Resource.Style.Platform_V21_AppCompat;
+			global::Emmaus.Resource.Style.Platform_V21_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Emmaus.Resource.Style.Platform_V25_AppCompat = global::HappyPandaXDroid.Resource.Style.Platform_V25_AppCompat;
+			global::Emmaus.Resource.Style.Platform_V25_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Emmaus.Resource.Style.Platform_Widget_AppCompat_Spinner = global::HappyPandaXDroid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Emmaus.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::HappyPandaXDroid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Emmaus.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::HappyPandaXDroid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Emmaus.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::HappyPandaXDroid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Emmaus.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::HappyPandaXDroid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Body1 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Body2 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Button = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Caption = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Display1 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Display2 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Display3 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Display4 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Headline = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Large = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Medium = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Menu = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Info = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Info;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Line2 = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Line2;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Media = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Media;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Time = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Time;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Title;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Small = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Subhead = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Emmaus.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::HappyPandaXDroid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Emmaus.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Emmaus.Resource.Style.TextAppearance_Design_Counter = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_Counter;
+			global::Emmaus.Resource.Style.TextAppearance_Design_Counter_Overflow = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Emmaus.Resource.Style.TextAppearance_Design_Error = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_Error;
+			global::Emmaus.Resource.Style.TextAppearance_Design_Hint = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_Hint;
+			global::Emmaus.Resource.Style.TextAppearance_Design_Snackbar_Message = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Emmaus.Resource.Style.TextAppearance_Design_Tab = global::HappyPandaXDroid.Resource.Style.TextAppearance_Design_Tab;
+			global::Emmaus.Resource.Style.TextAppearance_StatusBar_EventContent = global::HappyPandaXDroid.Resource.Style.TextAppearance_StatusBar_EventContent;
+			global::Emmaus.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::HappyPandaXDroid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
+			global::Emmaus.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::HappyPandaXDroid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
+			global::Emmaus.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::HappyPandaXDroid.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
+			global::Emmaus.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
+			global::Emmaus.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::HappyPandaXDroid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Emmaus.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::HappyPandaXDroid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Emmaus.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::HappyPandaXDroid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Emmaus.Resource.Style.Theme_AppCompat = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat;
+			global::Emmaus.Resource.Style.Theme_AppCompat_CompactMenu = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Emmaus.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light_Dialog = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Emmaus.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Emmaus.Resource.Style.Theme_AppCompat_NoActionBar = global::HappyPandaXDroid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Emmaus.Resource.Style.Theme_Design = global::HappyPandaXDroid.Resource.Style.Theme_Design;
+			global::Emmaus.Resource.Style.Theme_Design_BottomSheetDialog = global::HappyPandaXDroid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Emmaus.Resource.Style.Theme_Design_Light = global::HappyPandaXDroid.Resource.Style.Theme_Design_Light;
+			global::Emmaus.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::HappyPandaXDroid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Emmaus.Resource.Style.Theme_Design_Light_NoActionBar = global::HappyPandaXDroid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Emmaus.Resource.Style.Theme_Design_NoActionBar = global::HappyPandaXDroid.Resource.Style.Theme_Design_NoActionBar;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat_Dark = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Emmaus.Resource.Style.ThemeOverlay_AppCompat_Light = global::HappyPandaXDroid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionButton = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActionMode = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ActivityChooserView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Button = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Button;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Button_Borderless = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Button_Colored = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Button_Small = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ButtonBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Emmaus.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Emmaus.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Emmaus.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Emmaus.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Emmaus.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Emmaus.Resource.Style.Widget_AppCompat_EditText = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_EditText;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ImageButton = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionButton = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_SearchView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ListMenuView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ListPopupWindow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ListView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ListView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ListView_DropDown = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ListView_Menu = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Emmaus.Resource.Style.Widget_AppCompat_NotificationActionContainer = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_NotificationActionContainer;
+			global::Emmaus.Resource.Style.Widget_AppCompat_NotificationActionText = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_NotificationActionText;
+			global::Emmaus.Resource.Style.Widget_AppCompat_PopupMenu = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Emmaus.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_PopupWindow = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ProgressBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Emmaus.Resource.Style.Widget_AppCompat_RatingBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Emmaus.Resource.Style.Widget_AppCompat_RatingBar_Small = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Emmaus.Resource.Style.Widget_AppCompat_SearchView = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Emmaus.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_SeekBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Spinner = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Emmaus.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Toolbar = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Emmaus.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::HappyPandaXDroid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Emmaus.Resource.Style.Widget_Design_AppBarLayout = global::HappyPandaXDroid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Emmaus.Resource.Style.Widget_Design_BottomNavigationView = global::HappyPandaXDroid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Emmaus.Resource.Style.Widget_Design_BottomSheet_Modal = global::HappyPandaXDroid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Emmaus.Resource.Style.Widget_Design_CollapsingToolbar = global::HappyPandaXDroid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Emmaus.Resource.Style.Widget_Design_CoordinatorLayout = global::HappyPandaXDroid.Resource.Style.Widget_Design_CoordinatorLayout;
+			global::Emmaus.Resource.Style.Widget_Design_FloatingActionButton = global::HappyPandaXDroid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Emmaus.Resource.Style.Widget_Design_NavigationView = global::HappyPandaXDroid.Resource.Style.Widget_Design_NavigationView;
+			global::Emmaus.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::HappyPandaXDroid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Emmaus.Resource.Style.Widget_Design_Snackbar = global::HappyPandaXDroid.Resource.Style.Widget_Design_Snackbar;
+			global::Emmaus.Resource.Style.Widget_Design_TabLayout = global::HappyPandaXDroid.Resource.Style.Widget_Design_TabLayout;
+			global::Emmaus.Resource.Style.Widget_Design_TextInputLayout = global::HappyPandaXDroid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Emmaus.Resource.Styleable.ActionBar = global::HappyPandaXDroid.Resource.Styleable.ActionBar;
+			global::Emmaus.Resource.Styleable.ActionBar_background = global::HappyPandaXDroid.Resource.Styleable.ActionBar_background;
+			global::Emmaus.Resource.Styleable.ActionBar_backgroundSplit = global::HappyPandaXDroid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Emmaus.Resource.Styleable.ActionBar_backgroundStacked = global::HappyPandaXDroid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Emmaus.Resource.Styleable.ActionBar_contentInsetEnd = global::HappyPandaXDroid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Emmaus.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::HappyPandaXDroid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Emmaus.Resource.Styleable.ActionBar_contentInsetLeft = global::HappyPandaXDroid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Emmaus.Resource.Styleable.ActionBar_contentInsetRight = global::HappyPandaXDroid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Emmaus.Resource.Styleable.ActionBar_contentInsetStart = global::HappyPandaXDroid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Emmaus.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::HappyPandaXDroid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Emmaus.Resource.Styleable.ActionBar_customNavigationLayout = global::HappyPandaXDroid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Emmaus.Resource.Styleable.ActionBar_displayOptions = global::HappyPandaXDroid.Resource.Styleable.ActionBar_displayOptions;
+			global::Emmaus.Resource.Styleable.ActionBar_divider = global::HappyPandaXDroid.Resource.Styleable.ActionBar_divider;
+			global::Emmaus.Resource.Styleable.ActionBar_elevation = global::HappyPandaXDroid.Resource.Styleable.ActionBar_elevation;
+			global::Emmaus.Resource.Styleable.ActionBar_height = global::HappyPandaXDroid.Resource.Styleable.ActionBar_height;
+			global::Emmaus.Resource.Styleable.ActionBar_hideOnContentScroll = global::HappyPandaXDroid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Emmaus.Resource.Styleable.ActionBar_homeAsUpIndicator = global::HappyPandaXDroid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Emmaus.Resource.Styleable.ActionBar_homeLayout = global::HappyPandaXDroid.Resource.Styleable.ActionBar_homeLayout;
+			global::Emmaus.Resource.Styleable.ActionBar_icon = global::HappyPandaXDroid.Resource.Styleable.ActionBar_icon;
+			global::Emmaus.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::HappyPandaXDroid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Emmaus.Resource.Styleable.ActionBar_itemPadding = global::HappyPandaXDroid.Resource.Styleable.ActionBar_itemPadding;
+			global::Emmaus.Resource.Styleable.ActionBar_logo = global::HappyPandaXDroid.Resource.Styleable.ActionBar_logo;
+			global::Emmaus.Resource.Styleable.ActionBar_navigationMode = global::HappyPandaXDroid.Resource.Styleable.ActionBar_navigationMode;
+			global::Emmaus.Resource.Styleable.ActionBar_popupTheme = global::HappyPandaXDroid.Resource.Styleable.ActionBar_popupTheme;
+			global::Emmaus.Resource.Styleable.ActionBar_progressBarPadding = global::HappyPandaXDroid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Emmaus.Resource.Styleable.ActionBar_progressBarStyle = global::HappyPandaXDroid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Emmaus.Resource.Styleable.ActionBar_subtitle = global::HappyPandaXDroid.Resource.Styleable.ActionBar_subtitle;
+			global::Emmaus.Resource.Styleable.ActionBar_subtitleTextStyle = global::HappyPandaXDroid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Emmaus.Resource.Styleable.ActionBar_title = global::HappyPandaXDroid.Resource.Styleable.ActionBar_title;
+			global::Emmaus.Resource.Styleable.ActionBar_titleTextStyle = global::HappyPandaXDroid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Emmaus.Resource.Styleable.ActionBarLayout = global::HappyPandaXDroid.Resource.Styleable.ActionBarLayout;
+			global::Emmaus.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::HappyPandaXDroid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Emmaus.Resource.Styleable.ActionMenuItemView = global::HappyPandaXDroid.Resource.Styleable.ActionMenuItemView;
+			global::Emmaus.Resource.Styleable.ActionMenuItemView_android_minWidth = global::HappyPandaXDroid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Emmaus.Resource.Styleable.ActionMenuView = global::HappyPandaXDroid.Resource.Styleable.ActionMenuView;
+			global::Emmaus.Resource.Styleable.ActionMode = global::HappyPandaXDroid.Resource.Styleable.ActionMode;
+			global::Emmaus.Resource.Styleable.ActionMode_background = global::HappyPandaXDroid.Resource.Styleable.ActionMode_background;
+			global::Emmaus.Resource.Styleable.ActionMode_backgroundSplit = global::HappyPandaXDroid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Emmaus.Resource.Styleable.ActionMode_closeItemLayout = global::HappyPandaXDroid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Emmaus.Resource.Styleable.ActionMode_height = global::HappyPandaXDroid.Resource.Styleable.ActionMode_height;
+			global::Emmaus.Resource.Styleable.ActionMode_subtitleTextStyle = global::HappyPandaXDroid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Emmaus.Resource.Styleable.ActionMode_titleTextStyle = global::HappyPandaXDroid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Emmaus.Resource.Styleable.ActivityChooserView = global::HappyPandaXDroid.Resource.Styleable.ActivityChooserView;
+			global::Emmaus.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::HappyPandaXDroid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Emmaus.Resource.Styleable.ActivityChooserView_initialActivityCount = global::HappyPandaXDroid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Emmaus.Resource.Styleable.AlertDialog = global::HappyPandaXDroid.Resource.Styleable.AlertDialog;
+			global::Emmaus.Resource.Styleable.AlertDialog_android_layout = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_android_layout;
+			global::Emmaus.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Emmaus.Resource.Styleable.AlertDialog_listItemLayout = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Emmaus.Resource.Styleable.AlertDialog_listLayout = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_listLayout;
+			global::Emmaus.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Emmaus.Resource.Styleable.AlertDialog_showTitle = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_showTitle;
+			global::Emmaus.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::HappyPandaXDroid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Emmaus.Resource.Styleable.AppBarLayout = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout;
+			global::Emmaus.Resource.Styleable.AppBarLayout_android_background = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout_android_background;
+			global::Emmaus.Resource.Styleable.AppBarLayout_elevation = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout_elevation;
+			global::Emmaus.Resource.Styleable.AppBarLayout_expanded = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout_expanded;
+			global::Emmaus.Resource.Styleable.AppBarLayoutStates = global::HappyPandaXDroid.Resource.Styleable.AppBarLayoutStates;
+			global::Emmaus.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::HappyPandaXDroid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Emmaus.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::HappyPandaXDroid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Emmaus.Resource.Styleable.AppBarLayout_Layout = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout_Layout;
+			global::Emmaus.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Emmaus.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::HappyPandaXDroid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Emmaus.Resource.Styleable.AppCompatImageView = global::HappyPandaXDroid.Resource.Styleable.AppCompatImageView;
+			global::Emmaus.Resource.Styleable.AppCompatImageView_android_src = global::HappyPandaXDroid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Emmaus.Resource.Styleable.AppCompatImageView_srcCompat = global::HappyPandaXDroid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Emmaus.Resource.Styleable.AppCompatImageView_tint = global::HappyPandaXDroid.Resource.Styleable.AppCompatImageView_tint;
+			global::Emmaus.Resource.Styleable.AppCompatImageView_tintMode = global::HappyPandaXDroid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::Emmaus.Resource.Styleable.AppCompatSeekBar = global::HappyPandaXDroid.Resource.Styleable.AppCompatSeekBar;
+			global::Emmaus.Resource.Styleable.AppCompatSeekBar_android_thumb = global::HappyPandaXDroid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Emmaus.Resource.Styleable.AppCompatSeekBar_tickMark = global::HappyPandaXDroid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Emmaus.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::HappyPandaXDroid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Emmaus.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::HappyPandaXDroid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Emmaus.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Emmaus.Resource.Styleable.AppCompatTextView = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextView;
+			global::Emmaus.Resource.Styleable.AppCompatTextView_android_textAppearance = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Emmaus.Resource.Styleable.AppCompatTextView_textAllCaps = global::HappyPandaXDroid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Emmaus.Resource.Styleable.AppCompatTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarDivider = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarSize = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_checkboxStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorAccent = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorControlActivated = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorControlNormal = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorPrimary = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_controlBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_dialogTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_dividerVertical = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_editTextBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_editTextColor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_editTextStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_panelBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_searchViewStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_seekBarStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_spinnerStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_switchStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_toolbarStyle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowActionBar = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Emmaus.Resource.Styleable.AppCompatTheme_windowNoTitle = global::HappyPandaXDroid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Emmaus.Resource.Styleable.BottomNavigationView = global::HappyPandaXDroid.Resource.Styleable.BottomNavigationView;
+			global::Emmaus.Resource.Styleable.BottomNavigationView_elevation = global::HappyPandaXDroid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Emmaus.Resource.Styleable.BottomNavigationView_itemBackground = global::HappyPandaXDroid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Emmaus.Resource.Styleable.BottomNavigationView_itemIconTint = global::HappyPandaXDroid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Emmaus.Resource.Styleable.BottomNavigationView_itemTextColor = global::HappyPandaXDroid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Emmaus.Resource.Styleable.BottomNavigationView_menu = global::HappyPandaXDroid.Resource.Styleable.BottomNavigationView_menu;
+			global::Emmaus.Resource.Styleable.BottomSheetBehavior_Layout = global::HappyPandaXDroid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Emmaus.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::HappyPandaXDroid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Emmaus.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::HappyPandaXDroid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Emmaus.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::HappyPandaXDroid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Emmaus.Resource.Styleable.ButtonBarLayout = global::HappyPandaXDroid.Resource.Styleable.ButtonBarLayout;
+			global::Emmaus.Resource.Styleable.ButtonBarLayout_allowStacking = global::HappyPandaXDroid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_title = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_Layout = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Emmaus.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::HappyPandaXDroid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Emmaus.Resource.Styleable.ColorStateListItem = global::HappyPandaXDroid.Resource.Styleable.ColorStateListItem;
+			global::Emmaus.Resource.Styleable.ColorStateListItem_alpha = global::HappyPandaXDroid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Emmaus.Resource.Styleable.ColorStateListItem_android_alpha = global::HappyPandaXDroid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Emmaus.Resource.Styleable.ColorStateListItem_android_color = global::HappyPandaXDroid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Emmaus.Resource.Styleable.CompoundButton = global::HappyPandaXDroid.Resource.Styleable.CompoundButton;
+			global::Emmaus.Resource.Styleable.CompoundButton_android_button = global::HappyPandaXDroid.Resource.Styleable.CompoundButton_android_button;
+			global::Emmaus.Resource.Styleable.CompoundButton_buttonTint = global::HappyPandaXDroid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Emmaus.Resource.Styleable.CompoundButton_buttonTintMode = global::HappyPandaXDroid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_keylines = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Emmaus.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::HappyPandaXDroid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Emmaus.Resource.Styleable.DesignTheme = global::HappyPandaXDroid.Resource.Styleable.DesignTheme;
+			global::Emmaus.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::HappyPandaXDroid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Emmaus.Resource.Styleable.DesignTheme_bottomSheetStyle = global::HappyPandaXDroid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Emmaus.Resource.Styleable.DesignTheme_textColorError = global::HappyPandaXDroid.Resource.Styleable.DesignTheme_textColorError;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_barLength = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_color = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_drawableSize = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_spinBars = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Emmaus.Resource.Styleable.DrawerArrowToggle_thickness = global::HappyPandaXDroid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Emmaus.Resource.Styleable.FloatingActionButton = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_backgroundTint = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_borderWidth = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_elevation = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_fabSize = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_rippleColor = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_useCompatPadding = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Emmaus.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::HappyPandaXDroid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Emmaus.Resource.Styleable.ForegroundLinearLayout = global::HappyPandaXDroid.Resource.Styleable.ForegroundLinearLayout;
+			global::Emmaus.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::HappyPandaXDroid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Emmaus.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::HappyPandaXDroid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Emmaus.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::HappyPandaXDroid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_android_gravity = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_android_orientation = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_divider = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_showDividers = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_Layout = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Emmaus.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::HappyPandaXDroid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Emmaus.Resource.Styleable.ListPopupWindow = global::HappyPandaXDroid.Resource.Styleable.ListPopupWindow;
+			global::Emmaus.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::HappyPandaXDroid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Emmaus.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::HappyPandaXDroid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Emmaus.Resource.Styleable.MenuGroup = global::HappyPandaXDroid.Resource.Styleable.MenuGroup;
+			global::Emmaus.Resource.Styleable.MenuGroup_android_checkableBehavior = global::HappyPandaXDroid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Emmaus.Resource.Styleable.MenuGroup_android_enabled = global::HappyPandaXDroid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Emmaus.Resource.Styleable.MenuGroup_android_id = global::HappyPandaXDroid.Resource.Styleable.MenuGroup_android_id;
+			global::Emmaus.Resource.Styleable.MenuGroup_android_menuCategory = global::HappyPandaXDroid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Emmaus.Resource.Styleable.MenuGroup_android_orderInCategory = global::HappyPandaXDroid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Emmaus.Resource.Styleable.MenuGroup_android_visible = global::HappyPandaXDroid.Resource.Styleable.MenuGroup_android_visible;
+			global::Emmaus.Resource.Styleable.MenuItem = global::HappyPandaXDroid.Resource.Styleable.MenuItem;
+			global::Emmaus.Resource.Styleable.MenuItem_actionLayout = global::HappyPandaXDroid.Resource.Styleable.MenuItem_actionLayout;
+			global::Emmaus.Resource.Styleable.MenuItem_actionProviderClass = global::HappyPandaXDroid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Emmaus.Resource.Styleable.MenuItem_actionViewClass = global::HappyPandaXDroid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Emmaus.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Emmaus.Resource.Styleable.MenuItem_android_checkable = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_checkable;
+			global::Emmaus.Resource.Styleable.MenuItem_android_checked = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_checked;
+			global::Emmaus.Resource.Styleable.MenuItem_android_enabled = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_enabled;
+			global::Emmaus.Resource.Styleable.MenuItem_android_icon = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_icon;
+			global::Emmaus.Resource.Styleable.MenuItem_android_id = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_id;
+			global::Emmaus.Resource.Styleable.MenuItem_android_menuCategory = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Emmaus.Resource.Styleable.MenuItem_android_numericShortcut = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Emmaus.Resource.Styleable.MenuItem_android_onClick = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_onClick;
+			global::Emmaus.Resource.Styleable.MenuItem_android_orderInCategory = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Emmaus.Resource.Styleable.MenuItem_android_title = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_title;
+			global::Emmaus.Resource.Styleable.MenuItem_android_titleCondensed = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Emmaus.Resource.Styleable.MenuItem_android_visible = global::HappyPandaXDroid.Resource.Styleable.MenuItem_android_visible;
+			global::Emmaus.Resource.Styleable.MenuItem_showAsAction = global::HappyPandaXDroid.Resource.Styleable.MenuItem_showAsAction;
+			global::Emmaus.Resource.Styleable.MenuView = global::HappyPandaXDroid.Resource.Styleable.MenuView;
+			global::Emmaus.Resource.Styleable.MenuView_android_headerBackground = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Emmaus.Resource.Styleable.MenuView_android_horizontalDivider = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Emmaus.Resource.Styleable.MenuView_android_itemBackground = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Emmaus.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Emmaus.Resource.Styleable.MenuView_android_itemTextAppearance = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Emmaus.Resource.Styleable.MenuView_android_verticalDivider = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Emmaus.Resource.Styleable.MenuView_android_windowAnimationStyle = global::HappyPandaXDroid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Emmaus.Resource.Styleable.MenuView_preserveIconSpacing = global::HappyPandaXDroid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Emmaus.Resource.Styleable.MenuView_subMenuArrow = global::HappyPandaXDroid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Emmaus.Resource.Styleable.NavigationView = global::HappyPandaXDroid.Resource.Styleable.NavigationView;
+			global::Emmaus.Resource.Styleable.NavigationView_android_background = global::HappyPandaXDroid.Resource.Styleable.NavigationView_android_background;
+			global::Emmaus.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::HappyPandaXDroid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Emmaus.Resource.Styleable.NavigationView_android_maxWidth = global::HappyPandaXDroid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Emmaus.Resource.Styleable.NavigationView_elevation = global::HappyPandaXDroid.Resource.Styleable.NavigationView_elevation;
+			global::Emmaus.Resource.Styleable.NavigationView_headerLayout = global::HappyPandaXDroid.Resource.Styleable.NavigationView_headerLayout;
+			global::Emmaus.Resource.Styleable.NavigationView_itemBackground = global::HappyPandaXDroid.Resource.Styleable.NavigationView_itemBackground;
+			global::Emmaus.Resource.Styleable.NavigationView_itemIconTint = global::HappyPandaXDroid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Emmaus.Resource.Styleable.NavigationView_itemTextAppearance = global::HappyPandaXDroid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Emmaus.Resource.Styleable.NavigationView_itemTextColor = global::HappyPandaXDroid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Emmaus.Resource.Styleable.NavigationView_menu = global::HappyPandaXDroid.Resource.Styleable.NavigationView_menu;
+			global::Emmaus.Resource.Styleable.PopupWindow = global::HappyPandaXDroid.Resource.Styleable.PopupWindow;
+			global::Emmaus.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::HappyPandaXDroid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Emmaus.Resource.Styleable.PopupWindow_android_popupBackground = global::HappyPandaXDroid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Emmaus.Resource.Styleable.PopupWindow_overlapAnchor = global::HappyPandaXDroid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Emmaus.Resource.Styleable.PopupWindowBackgroundState = global::HappyPandaXDroid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Emmaus.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::HappyPandaXDroid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Emmaus.Resource.Styleable.RecycleListView = global::HappyPandaXDroid.Resource.Styleable.RecycleListView;
+			global::Emmaus.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::HappyPandaXDroid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Emmaus.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::HappyPandaXDroid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Emmaus.Resource.Styleable.RecyclerView = global::HappyPandaXDroid.Resource.Styleable.RecyclerView;
+			global::Emmaus.Resource.Styleable.RecyclerView_android_descendantFocusability = global::HappyPandaXDroid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Emmaus.Resource.Styleable.RecyclerView_android_orientation = global::HappyPandaXDroid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Emmaus.Resource.Styleable.RecyclerView_layoutManager = global::HappyPandaXDroid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Emmaus.Resource.Styleable.RecyclerView_reverseLayout = global::HappyPandaXDroid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Emmaus.Resource.Styleable.RecyclerView_spanCount = global::HappyPandaXDroid.Resource.Styleable.RecyclerView_spanCount;
+			global::Emmaus.Resource.Styleable.RecyclerView_stackFromEnd = global::HappyPandaXDroid.Resource.Styleable.RecyclerView_stackFromEnd;
 			global::Emmaus.Resource.Styleable.RecyclerViewPager = global::HappyPandaXDroid.Resource.Styleable.RecyclerViewPager;
 			global::Emmaus.Resource.Styleable.RecyclerViewPager_rvp_flingFactor = global::HappyPandaXDroid.Resource.Styleable.RecyclerViewPager_rvp_flingFactor;
 			global::Emmaus.Resource.Styleable.RecyclerViewPager_rvp_inertia = global::HappyPandaXDroid.Resource.Styleable.RecyclerViewPager_rvp_inertia;
 			global::Emmaus.Resource.Styleable.RecyclerViewPager_rvp_millisecondsPerInch = global::HappyPandaXDroid.Resource.Styleable.RecyclerViewPager_rvp_millisecondsPerInch;
 			global::Emmaus.Resource.Styleable.RecyclerViewPager_rvp_singlePageFling = global::HappyPandaXDroid.Resource.Styleable.RecyclerViewPager_rvp_singlePageFling;
 			global::Emmaus.Resource.Styleable.RecyclerViewPager_rvp_triggerOffset = global::HappyPandaXDroid.Resource.Styleable.RecyclerViewPager_rvp_triggerOffset;
+			global::Emmaus.Resource.Styleable.ScrimInsetsFrameLayout = global::HappyPandaXDroid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Emmaus.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::HappyPandaXDroid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Emmaus.Resource.Styleable.ScrollingViewBehavior_Layout = global::HappyPandaXDroid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Emmaus.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::HappyPandaXDroid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Emmaus.Resource.Styleable.SearchView = global::HappyPandaXDroid.Resource.Styleable.SearchView;
+			global::Emmaus.Resource.Styleable.SearchView_android_focusable = global::HappyPandaXDroid.Resource.Styleable.SearchView_android_focusable;
+			global::Emmaus.Resource.Styleable.SearchView_android_imeOptions = global::HappyPandaXDroid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Emmaus.Resource.Styleable.SearchView_android_inputType = global::HappyPandaXDroid.Resource.Styleable.SearchView_android_inputType;
+			global::Emmaus.Resource.Styleable.SearchView_android_maxWidth = global::HappyPandaXDroid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Emmaus.Resource.Styleable.SearchView_closeIcon = global::HappyPandaXDroid.Resource.Styleable.SearchView_closeIcon;
+			global::Emmaus.Resource.Styleable.SearchView_commitIcon = global::HappyPandaXDroid.Resource.Styleable.SearchView_commitIcon;
+			global::Emmaus.Resource.Styleable.SearchView_defaultQueryHint = global::HappyPandaXDroid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Emmaus.Resource.Styleable.SearchView_goIcon = global::HappyPandaXDroid.Resource.Styleable.SearchView_goIcon;
+			global::Emmaus.Resource.Styleable.SearchView_iconifiedByDefault = global::HappyPandaXDroid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Emmaus.Resource.Styleable.SearchView_layout = global::HappyPandaXDroid.Resource.Styleable.SearchView_layout;
+			global::Emmaus.Resource.Styleable.SearchView_queryBackground = global::HappyPandaXDroid.Resource.Styleable.SearchView_queryBackground;
+			global::Emmaus.Resource.Styleable.SearchView_queryHint = global::HappyPandaXDroid.Resource.Styleable.SearchView_queryHint;
+			global::Emmaus.Resource.Styleable.SearchView_searchHintIcon = global::HappyPandaXDroid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Emmaus.Resource.Styleable.SearchView_searchIcon = global::HappyPandaXDroid.Resource.Styleable.SearchView_searchIcon;
+			global::Emmaus.Resource.Styleable.SearchView_submitBackground = global::HappyPandaXDroid.Resource.Styleable.SearchView_submitBackground;
+			global::Emmaus.Resource.Styleable.SearchView_suggestionRowLayout = global::HappyPandaXDroid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Emmaus.Resource.Styleable.SearchView_voiceIcon = global::HappyPandaXDroid.Resource.Styleable.SearchView_voiceIcon;
+			global::Emmaus.Resource.Styleable.SnackbarLayout = global::HappyPandaXDroid.Resource.Styleable.SnackbarLayout;
+			global::Emmaus.Resource.Styleable.SnackbarLayout_android_maxWidth = global::HappyPandaXDroid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Emmaus.Resource.Styleable.SnackbarLayout_elevation = global::HappyPandaXDroid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Emmaus.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::HappyPandaXDroid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Emmaus.Resource.Styleable.Spinner = global::HappyPandaXDroid.Resource.Styleable.Spinner;
+			global::Emmaus.Resource.Styleable.Spinner_android_dropDownWidth = global::HappyPandaXDroid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Emmaus.Resource.Styleable.Spinner_android_entries = global::HappyPandaXDroid.Resource.Styleable.Spinner_android_entries;
+			global::Emmaus.Resource.Styleable.Spinner_android_popupBackground = global::HappyPandaXDroid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Emmaus.Resource.Styleable.Spinner_android_prompt = global::HappyPandaXDroid.Resource.Styleable.Spinner_android_prompt;
+			global::Emmaus.Resource.Styleable.Spinner_popupTheme = global::HappyPandaXDroid.Resource.Styleable.Spinner_popupTheme;
+			global::Emmaus.Resource.Styleable.SwitchCompat = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat;
+			global::Emmaus.Resource.Styleable.SwitchCompat_android_textOff = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Emmaus.Resource.Styleable.SwitchCompat_android_textOn = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Emmaus.Resource.Styleable.SwitchCompat_android_thumb = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Emmaus.Resource.Styleable.SwitchCompat_showText = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_showText;
+			global::Emmaus.Resource.Styleable.SwitchCompat_splitTrack = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Emmaus.Resource.Styleable.SwitchCompat_switchMinWidth = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Emmaus.Resource.Styleable.SwitchCompat_switchPadding = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Emmaus.Resource.Styleable.SwitchCompat_switchTextAppearance = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Emmaus.Resource.Styleable.SwitchCompat_thumbTextPadding = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Emmaus.Resource.Styleable.SwitchCompat_thumbTint = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Emmaus.Resource.Styleable.SwitchCompat_thumbTintMode = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Emmaus.Resource.Styleable.SwitchCompat_track = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_track;
+			global::Emmaus.Resource.Styleable.SwitchCompat_trackTint = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Emmaus.Resource.Styleable.SwitchCompat_trackTintMode = global::HappyPandaXDroid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Emmaus.Resource.Styleable.TabItem = global::HappyPandaXDroid.Resource.Styleable.TabItem;
+			global::Emmaus.Resource.Styleable.TabItem_android_icon = global::HappyPandaXDroid.Resource.Styleable.TabItem_android_icon;
+			global::Emmaus.Resource.Styleable.TabItem_android_layout = global::HappyPandaXDroid.Resource.Styleable.TabItem_android_layout;
+			global::Emmaus.Resource.Styleable.TabItem_android_text = global::HappyPandaXDroid.Resource.Styleable.TabItem_android_text;
+			global::Emmaus.Resource.Styleable.TabLayout = global::HappyPandaXDroid.Resource.Styleable.TabLayout;
+			global::Emmaus.Resource.Styleable.TabLayout_tabBackground = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabBackground;
+			global::Emmaus.Resource.Styleable.TabLayout_tabContentStart = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Emmaus.Resource.Styleable.TabLayout_tabGravity = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabGravity;
+			global::Emmaus.Resource.Styleable.TabLayout_tabIndicatorColor = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Emmaus.Resource.Styleable.TabLayout_tabIndicatorHeight = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Emmaus.Resource.Styleable.TabLayout_tabMaxWidth = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Emmaus.Resource.Styleable.TabLayout_tabMinWidth = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Emmaus.Resource.Styleable.TabLayout_tabMode = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabMode;
+			global::Emmaus.Resource.Styleable.TabLayout_tabPadding = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabPadding;
+			global::Emmaus.Resource.Styleable.TabLayout_tabPaddingBottom = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Emmaus.Resource.Styleable.TabLayout_tabPaddingEnd = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Emmaus.Resource.Styleable.TabLayout_tabPaddingStart = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Emmaus.Resource.Styleable.TabLayout_tabPaddingTop = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Emmaus.Resource.Styleable.TabLayout_tabSelectedTextColor = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Emmaus.Resource.Styleable.TabLayout_tabTextAppearance = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Emmaus.Resource.Styleable.TabLayout_tabTextColor = global::HappyPandaXDroid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Emmaus.Resource.Styleable.TextAppearance = global::HappyPandaXDroid.Resource.Styleable.TextAppearance;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_shadowColor = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_shadowDx = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_shadowDy = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_shadowRadius = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_textColor = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_textColorHint = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_textSize = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_textStyle = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Emmaus.Resource.Styleable.TextAppearance_android_typeface = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Emmaus.Resource.Styleable.TextAppearance_textAllCaps = global::HappyPandaXDroid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Emmaus.Resource.Styleable.TextInputLayout = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout;
+			global::Emmaus.Resource.Styleable.TextInputLayout_android_hint = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Emmaus.Resource.Styleable.TextInputLayout_android_textColorHint = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Emmaus.Resource.Styleable.TextInputLayout_counterEnabled = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Emmaus.Resource.Styleable.TextInputLayout_counterMaxLength = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Emmaus.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Emmaus.Resource.Styleable.TextInputLayout_counterTextAppearance = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Emmaus.Resource.Styleable.TextInputLayout_errorEnabled = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Emmaus.Resource.Styleable.TextInputLayout_errorTextAppearance = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Emmaus.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Emmaus.Resource.Styleable.TextInputLayout_hintEnabled = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Emmaus.Resource.Styleable.TextInputLayout_hintTextAppearance = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Emmaus.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Emmaus.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Emmaus.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Emmaus.Resource.Styleable.TextInputLayout_passwordToggleTint = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Emmaus.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::HappyPandaXDroid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Emmaus.Resource.Styleable.Toolbar = global::HappyPandaXDroid.Resource.Styleable.Toolbar;
+			global::Emmaus.Resource.Styleable.Toolbar_android_gravity = global::HappyPandaXDroid.Resource.Styleable.Toolbar_android_gravity;
+			global::Emmaus.Resource.Styleable.Toolbar_android_minHeight = global::HappyPandaXDroid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Emmaus.Resource.Styleable.Toolbar_buttonGravity = global::HappyPandaXDroid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Emmaus.Resource.Styleable.Toolbar_collapseContentDescription = global::HappyPandaXDroid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Emmaus.Resource.Styleable.Toolbar_collapseIcon = global::HappyPandaXDroid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Emmaus.Resource.Styleable.Toolbar_contentInsetEnd = global::HappyPandaXDroid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Emmaus.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::HappyPandaXDroid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Emmaus.Resource.Styleable.Toolbar_contentInsetLeft = global::HappyPandaXDroid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Emmaus.Resource.Styleable.Toolbar_contentInsetRight = global::HappyPandaXDroid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Emmaus.Resource.Styleable.Toolbar_contentInsetStart = global::HappyPandaXDroid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Emmaus.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::HappyPandaXDroid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Emmaus.Resource.Styleable.Toolbar_logo = global::HappyPandaXDroid.Resource.Styleable.Toolbar_logo;
+			global::Emmaus.Resource.Styleable.Toolbar_logoDescription = global::HappyPandaXDroid.Resource.Styleable.Toolbar_logoDescription;
+			global::Emmaus.Resource.Styleable.Toolbar_maxButtonHeight = global::HappyPandaXDroid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Emmaus.Resource.Styleable.Toolbar_navigationContentDescription = global::HappyPandaXDroid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Emmaus.Resource.Styleable.Toolbar_navigationIcon = global::HappyPandaXDroid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Emmaus.Resource.Styleable.Toolbar_popupTheme = global::HappyPandaXDroid.Resource.Styleable.Toolbar_popupTheme;
+			global::Emmaus.Resource.Styleable.Toolbar_subtitle = global::HappyPandaXDroid.Resource.Styleable.Toolbar_subtitle;
+			global::Emmaus.Resource.Styleable.Toolbar_subtitleTextAppearance = global::HappyPandaXDroid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Emmaus.Resource.Styleable.Toolbar_subtitleTextColor = global::HappyPandaXDroid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Emmaus.Resource.Styleable.Toolbar_title = global::HappyPandaXDroid.Resource.Styleable.Toolbar_title;
+			global::Emmaus.Resource.Styleable.Toolbar_titleMargin = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleMargin;
+			global::Emmaus.Resource.Styleable.Toolbar_titleMarginBottom = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Emmaus.Resource.Styleable.Toolbar_titleMarginEnd = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Emmaus.Resource.Styleable.Toolbar_titleMarginStart = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Emmaus.Resource.Styleable.Toolbar_titleMarginTop = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Emmaus.Resource.Styleable.Toolbar_titleMargins = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleMargins;
+			global::Emmaus.Resource.Styleable.Toolbar_titleTextAppearance = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Emmaus.Resource.Styleable.Toolbar_titleTextColor = global::HappyPandaXDroid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Emmaus.Resource.Styleable.View = global::HappyPandaXDroid.Resource.Styleable.View;
+			global::Emmaus.Resource.Styleable.View_android_focusable = global::HappyPandaXDroid.Resource.Styleable.View_android_focusable;
+			global::Emmaus.Resource.Styleable.View_android_theme = global::HappyPandaXDroid.Resource.Styleable.View_android_theme;
+			global::Emmaus.Resource.Styleable.View_paddingEnd = global::HappyPandaXDroid.Resource.Styleable.View_paddingEnd;
+			global::Emmaus.Resource.Styleable.View_paddingStart = global::HappyPandaXDroid.Resource.Styleable.View_paddingStart;
+			global::Emmaus.Resource.Styleable.View_theme = global::HappyPandaXDroid.Resource.Styleable.View_theme;
+			global::Emmaus.Resource.Styleable.ViewBackgroundHelper = global::HappyPandaXDroid.Resource.Styleable.ViewBackgroundHelper;
+			global::Emmaus.Resource.Styleable.ViewBackgroundHelper_android_background = global::HappyPandaXDroid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Emmaus.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::HappyPandaXDroid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Emmaus.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::HappyPandaXDroid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Emmaus.Resource.Styleable.ViewStubCompat = global::HappyPandaXDroid.Resource.Styleable.ViewStubCompat;
+			global::Emmaus.Resource.Styleable.ViewStubCompat_android_id = global::HappyPandaXDroid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Emmaus.Resource.Styleable.ViewStubCompat_android_inflatedId = global::HappyPandaXDroid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Emmaus.Resource.Styleable.ViewStubCompat_android_layout = global::HappyPandaXDroid.Resource.Styleable.ViewStubCompat_android_layout;
 		}
 		
 		public partial class Animation
@@ -3443,11 +5266,11 @@ namespace HappyPandaXDroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b00b5
-			public const int HomeFrameLayout = 2131427509;
+			// aapt resource value: 0x7f0b00b6
+			public const int HomeFrameLayout = 2131427510;
 			
-			// aapt resource value: 0x7f0b00bb
-			public const int action0 = 2131427515;
+			// aapt resource value: 0x7f0b00bc
+			public const int action0 = 2131427516;
 			
 			// aapt resource value: 0x7f0b0069
 			public const int action_bar = 2131427433;
@@ -3473,20 +5296,20 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0092
 			public const int action_card = 2131427474;
 			
-			// aapt resource value: 0x7f0b00b8
-			public const int action_container = 2131427512;
+			// aapt resource value: 0x7f0b00b9
+			public const int action_container = 2131427513;
 			
 			// aapt resource value: 0x7f0b006a
 			public const int action_context_bar = 2131427434;
 			
-			// aapt resource value: 0x7f0b00bf
-			public const int action_divider = 2131427519;
+			// aapt resource value: 0x7f0b00c0
+			public const int action_divider = 2131427520;
 			
-			// aapt resource value: 0x7f0b00e5
-			public const int action_home = 2131427557;
+			// aapt resource value: 0x7f0b00e6
+			public const int action_home = 2131427558;
 			
-			// aapt resource value: 0x7f0b00b9
-			public const int action_image = 2131427513;
+			// aapt resource value: 0x7f0b00ba
+			public const int action_image = 2131427514;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -3503,14 +5326,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0048
 			public const int action_mode_close_button = 2131427400;
 			
-			// aapt resource value: 0x7f0b00e6
-			public const int action_setting = 2131427558;
+			// aapt resource value: 0x7f0b00e7
+			public const int action_setting = 2131427559;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int action_text = 2131427514;
+			// aapt resource value: 0x7f0b00bb
+			public const int action_text = 2131427515;
 			
-			// aapt resource value: 0x7f0b00c7
-			public const int actions = 2131427527;
+			// aapt resource value: 0x7f0b00c8
+			public const int actions = 2131427528;
 			
 			// aapt resource value: 0x7f0b0049
 			public const int activity_chooser_view_content = 2131427401;
@@ -3527,8 +5350,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0026
 			public const int always = 2131427366;
 			
-			// aapt resource value: 0x7f0b00dd
-			public const int appbar = 2131427549;
+			// aapt resource value: 0x7f0b00de
+			public const int appbar = 2131427550;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int auto = 2131427378;
@@ -3545,8 +5368,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0050
 			public const int buttonPanel = 2131427408;
 			
-			// aapt resource value: 0x7f0b00bc
-			public const int cancel_action = 2131427516;
+			// aapt resource value: 0x7f0b00bd
+			public const int cancel_action = 2131427517;
 			
 			// aapt resource value: 0x7f0b0091
 			public const int category = 2131427473;
@@ -3563,8 +5386,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0060
 			public const int checkbox = 2131427424;
 			
-			// aapt resource value: 0x7f0b00c4
-			public const int chronometer = 2131427524;
+			// aapt resource value: 0x7f0b00c5
+			public const int chronometer = 2131427525;
 			
 			// aapt resource value: 0x7f0b0010
 			public const int circular = 2131427344;
@@ -3584,8 +5407,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0053
 			public const int contentPanel = 2131427411;
 			
-			// aapt resource value: 0x7f0b00af
-			public const int content_view = 2131427503;
+			// aapt resource value: 0x7f0b00b0
+			public const int content_view = 2131427504;
 			
 			// aapt resource value: 0x7f0b007d
 			public const int coordinator = 2131427453;
@@ -3596,8 +5419,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0059
 			public const int customPanel = 2131427417;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int debugpref = 2131427553;
+			// aapt resource value: 0x7f0b00e2
+			public const int debugpref = 2131427554;
 			
 			// aapt resource value: 0x7f0b0067
 			public const int decor_content_parent = 2131427431;
@@ -3620,8 +5443,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0083
 			public const int design_navigation_view = 2131427459;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int dialogTitle1 = 2131427534;
+			// aapt resource value: 0x7f0b00cf
+			public const int dialogTitle1 = 2131427535;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int disableHome = 2131427355;
@@ -3629,8 +5452,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0045
 			public const int down = 2131427397;
 			
-			// aapt resource value: 0x7f0b00ad
-			public const int drawer_layout = 2131427501;
+			// aapt resource value: 0x7f0b00ae
+			public const int drawer_layout = 2131427502;
 			
 			// aapt resource value: 0x7f0b006b
 			public const int edit_query = 2131427435;
@@ -3638,8 +5461,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0024
 			public const int end = 2131427364;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int end_padder = 2131427533;
+			// aapt resource value: 0x7f0b00ce
+			public const int end_padder = 2131427534;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int enterAlways = 2131427373;
@@ -3647,14 +5470,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b002e
 			public const int enterAlwaysCollapsed = 2131427374;
 			
-			// aapt resource value: 0x7f0b00a9
-			public const int error_frame = 2131427497;
-			
 			// aapt resource value: 0x7f0b00aa
-			public const int error_image = 2131427498;
+			public const int error_frame = 2131427498;
 			
 			// aapt resource value: 0x7f0b00ab
-			public const int error_text = 2131427499;
+			public const int error_image = 2131427499;
+			
+			// aapt resource value: 0x7f0b00ac
+			public const int error_text = 2131427500;
 			
 			// aapt resource value: 0x7f0b002f
 			public const int exitUntilCollapsed = 2131427375;
@@ -3665,23 +5488,23 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b005f
 			public const int expanded_menu = 2131427423;
 			
-			// aapt resource value: 0x7f0b00b1
-			public const int fabJumpTo = 2131427505;
-			
 			// aapt resource value: 0x7f0b00b2
-			public const int fabRefresh = 2131427506;
+			public const int fabJumpTo = 2131427506;
+			
+			// aapt resource value: 0x7f0b00b3
+			public const int fabRefresh = 2131427507;
 			
 			// aapt resource value: 0x7f0b000f
 			public const int fab_label = 2131427343;
 			
-			// aapt resource value: 0x7f0b00b0
-			public const int fam = 2131427504;
+			// aapt resource value: 0x7f0b00b1
+			public const int fam = 2131427505;
 			
 			// aapt resource value: 0x7f0b0098
 			public const int favoredTimes = 2131427480;
 			
-			// aapt resource value: 0x7f0b00a8
-			public const int ffimage = 2131427496;
+			// aapt resource value: 0x7f0b00a9
+			public const int ffimage = 2131427497;
 			
 			// aapt resource value: 0x7f0b008a
 			public const int file_picker_image = 2131427466;
@@ -3704,11 +5527,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0042
 			public const int @fixed = 2131427394;
 			
-			// aapt resource value: 0x7f0b00d9
-			public const int fragment_container = 2131427545;
+			// aapt resource value: 0x7f0b00da
+			public const int fragment_container = 2131427546;
 			
 			// aapt resource value: 0x7f0b00a2
 			public const int frame = 2131427490;
+			
+			// aapt resource value: 0x7f0b00a8
+			public const int frameLayout1 = 2131427496;
 			
 			// aapt resource value: 0x7f0b009e
 			public const int gallercard = 2131427486;
@@ -3734,11 +5560,11 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b004e
 			public const int icon = 2131427406;
 			
-			// aapt resource value: 0x7f0b00d1
-			public const int icon_frame = 2131427537;
+			// aapt resource value: 0x7f0b00d2
+			public const int icon_frame = 2131427538;
 			
-			// aapt resource value: 0x7f0b00c8
-			public const int icon_group = 2131427528;
+			// aapt resource value: 0x7f0b00c9
+			public const int icon_group = 2131427529;
 			
 			// aapt resource value: 0x7f0b0078
 			public const int icon_image = 2131427448;
@@ -3755,14 +5581,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0094
 			public const int info = 2131427476;
 			
-			// aapt resource value: 0x7f0b00de
-			public const int ippref = 2131427550;
+			// aapt resource value: 0x7f0b00df
+			public const int ippref = 2131427551;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int item_touch_helper_previous_elevation = 2131427328;
 			
-			// aapt resource value: 0x7f0b00da
-			public const int key = 2131427546;
+			// aapt resource value: 0x7f0b00db
+			public const int key = 2131427547;
 			
 			// aapt resource value: 0x7f0b0095
 			public const int language = 2131427477;
@@ -3770,20 +5596,20 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b007b
 			public const int largeLabel = 2131427451;
 			
-			// aapt resource value: 0x7f0b00b4
-			public const int layout_main = 2131427508;
+			// aapt resource value: 0x7f0b00b5
+			public const int layout_main = 2131427509;
 			
 			// aapt resource value: 0x7f0b0037
 			public const int left = 2131427383;
 			
-			// aapt resource value: 0x7f0b00c9
-			public const int line1 = 2131427529;
+			// aapt resource value: 0x7f0b00ca
+			public const int line1 = 2131427530;
 			
-			// aapt resource value: 0x7f0b00cb
-			public const int line3 = 2131427531;
+			// aapt resource value: 0x7f0b00cc
+			public const int line3 = 2131427532;
 			
-			// aapt resource value: 0x7f0b00d3
-			public const int list = 2131427539;
+			// aapt resource value: 0x7f0b00d4
+			public const int list = 2131427540;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int listMode = 2131427352;
@@ -3794,14 +5620,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0044
 			public const int marquee = 2131427396;
 			
-			// aapt resource value: 0x7f0b00e3
-			public const int masked = 2131427555;
+			// aapt resource value: 0x7f0b00e4
+			public const int masked = 2131427556;
 			
-			// aapt resource value: 0x7f0b00be
-			public const int media_actions = 2131427518;
+			// aapt resource value: 0x7f0b00bf
+			public const int media_actions = 2131427519;
 			
-			// aapt resource value: 0x7f0b00e7
-			public const int menu_preferences = 2131427559;
+			// aapt resource value: 0x7f0b00e8
+			public const int menu_preferences = 2131427560;
 			
 			// aapt resource value: 0x7f0b0025
 			public const int middle = 2131427365;
@@ -3812,14 +5638,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0013
 			public const int multiply = 2131427347;
 			
-			// aapt resource value: 0x7f0b00b6
-			public const int nav_head = 2131427510;
-			
 			// aapt resource value: 0x7f0b00b7
-			public const int nav_title = 2131427511;
+			public const int nav_head = 2131427511;
 			
-			// aapt resource value: 0x7f0b00b3
-			public const int nav_view = 2131427507;
+			// aapt resource value: 0x7f0b00b8
+			public const int nav_title = 2131427512;
+			
+			// aapt resource value: 0x7f0b00b4
+			public const int nav_view = 2131427508;
 			
 			// aapt resource value: 0x7f0b0082
 			public const int navigation_header_container = 2131427458;
@@ -3836,14 +5662,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0019
 			public const int normal = 2131427353;
 			
-			// aapt resource value: 0x7f0b00c6
-			public const int notification_background = 2131427526;
+			// aapt resource value: 0x7f0b00c7
+			public const int notification_background = 2131427527;
+			
+			// aapt resource value: 0x7f0b00c2
+			public const int notification_main_column = 2131427522;
 			
 			// aapt resource value: 0x7f0b00c1
-			public const int notification_main_column = 2131427521;
-			
-			// aapt resource value: 0x7f0b00c0
-			public const int notification_main_column_container = 2131427520;
+			public const int notification_main_column_container = 2131427521;
 			
 			// aapt resource value: 0x7f0b00a4
 			public const int page_number = 2131427492;
@@ -3860,14 +5686,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b003b
 			public const int pin = 2131427387;
 			
-			// aapt resource value: 0x7f0b00df
-			public const int portpref = 2131427551;
+			// aapt resource value: 0x7f0b00e0
+			public const int portpref = 2131427552;
 			
 			// aapt resource value: 0x7f0b0099
 			public const int posted = 2131427481;
 			
-			// aapt resource value: 0x7f0b00d7
-			public const int preview = 2131427543;
+			// aapt resource value: 0x7f0b00d8
+			public const int preview = 2131427544;
 			
 			// aapt resource value: 0x7f0b009a
 			public const int previews = 2131427482;
@@ -3899,17 +5725,17 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0038
 			public const int right = 2131427384;
 			
-			// aapt resource value: 0x7f0b00c5
-			public const int right_icon = 2131427525;
+			// aapt resource value: 0x7f0b00c6
+			public const int right_icon = 2131427526;
 			
-			// aapt resource value: 0x7f0b00c2
-			public const int right_side = 2131427522;
+			// aapt resource value: 0x7f0b00c3
+			public const int right_side = 2131427523;
 			
-			// aapt resource value: 0x7f0b00d8
-			public const int rvp_fragment_container = 2131427544;
+			// aapt resource value: 0x7f0b00d9
+			public const int rvp_fragment_container = 2131427545;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int safeCoordinatorLayout1 = 2131427502;
+			// aapt resource value: 0x7f0b00af
+			public const int safeCoordinatorLayout1 = 2131427503;
 			
 			// aapt resource value: 0x7f0b0014
 			public const int screen = 2131427348;
@@ -3932,8 +5758,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0043
 			public const int scrollable = 2131427395;
 			
-			// aapt resource value: 0x7f0b00e4
-			public const int search = 2131427556;
+			// aapt resource value: 0x7f0b00e5
+			public const int search = 2131427557;
 			
 			// aapt resource value: 0x7f0b006d
 			public const int search_badge = 2131427437;
@@ -3965,17 +5791,17 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0076
 			public const int search_voice_btn = 2131427446;
 			
-			// aapt resource value: 0x7f0b00d4
-			public const int seekbar = 2131427540;
-			
 			// aapt resource value: 0x7f0b00d5
-			public const int seekbar_value = 2131427541;
+			public const int seekbar = 2131427541;
+			
+			// aapt resource value: 0x7f0b00d6
+			public const int seekbar_value = 2131427542;
 			
 			// aapt resource value: 0x7f0b0077
 			public const int select_dialog_listview = 2131427447;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int setpage = 2131427536;
+			// aapt resource value: 0x7f0b00d1
+			public const int setpage = 2131427537;
 			
 			// aapt resource value: 0x7f0b0061
 			public const int shortcut = 2131427425;
@@ -4007,8 +5833,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0051
 			public const int spacer = 2131427409;
 			
-			// aapt resource value: 0x7f0b00d2
-			public const int spinner = 2131427538;
+			// aapt resource value: 0x7f0b00d3
+			public const int spinner = 2131427539;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int split_action_bar = 2131427336;
@@ -4025,8 +5851,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0039
 			public const int start = 2131427385;
 			
-			// aapt resource value: 0x7f0b00bd
-			public const int status_bar_latest_event_content = 2131427517;
+			// aapt resource value: 0x7f0b00be
+			public const int status_bar_latest_event_content = 2131427518;
 			
 			// aapt resource value: 0x7f0b0063
 			public const int submenuarrow = 2131427427;
@@ -4034,8 +5860,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0074
 			public const int submit_area = 2131427444;
 			
-			// aapt resource value: 0x7f0b00d6
-			public const int switchWidget = 2131427542;
+			// aapt resource value: 0x7f0b00d7
+			public const int switchWidget = 2131427543;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int tabMode = 2131427354;
@@ -4043,14 +5869,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b009c
 			public const int tags = 2131427484;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int text = 2131427532;
+			// aapt resource value: 0x7f0b00cd
+			public const int text = 2131427533;
 			
-			// aapt resource value: 0x7f0b00ca
-			public const int text2 = 2131427530;
+			// aapt resource value: 0x7f0b00cb
+			public const int text2 = 2131427531;
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int textInputLayout1 = 2131427535;
+			// aapt resource value: 0x7f0b00d0
+			public const int textInputLayout1 = 2131427536;
 			
 			// aapt resource value: 0x7f0b0057
 			public const int textSpacerNoButtons = 2131427415;
@@ -4058,8 +5884,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0056
 			public const int textSpacerNoTitle = 2131427414;
 			
-			// aapt resource value: 0x7f0b00dc
-			public const int textView1 = 2131427548;
+			// aapt resource value: 0x7f0b00dd
+			public const int textView1 = 2131427549;
 			
 			// aapt resource value: 0x7f0b00a0
 			public const int textViewholder = 2131427488;
@@ -4076,14 +5902,14 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b000d
 			public const int textinput_error = 2131427341;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int textitem = 2131427500;
+			// aapt resource value: 0x7f0b00ad
+			public const int textitem = 2131427501;
 			
 			// aapt resource value: 0x7f0b0090
 			public const int thumb = 2131427472;
 			
-			// aapt resource value: 0x7f0b00c3
-			public const int time = 2131427523;
+			// aapt resource value: 0x7f0b00c4
+			public const int time = 2131427524;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int title = 2131427407;
@@ -4118,8 +5944,8 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b0021
 			public const int useLogo = 2131427361;
 			
-			// aapt resource value: 0x7f0b00db
-			public const int value = 2131427547;
+			// aapt resource value: 0x7f0b00dc
+			public const int value = 2131427548;
 			
 			// aapt resource value: 0x7f0b0079
 			public const int valueLabel = 2131427449;
@@ -4127,11 +5953,11 @@ namespace HappyPandaXDroid
 			// aapt resource value: 0x7f0b000e
 			public const int view_offset_helper = 2131427342;
 			
-			// aapt resource value: 0x7f0b00e2
-			public const int visible = 2131427554;
+			// aapt resource value: 0x7f0b00e3
+			public const int visible = 2131427555;
 			
-			// aapt resource value: 0x7f0b00e0
-			public const int webclientportpref = 2131427552;
+			// aapt resource value: 0x7f0b00e1
+			public const int webclientportpref = 2131427553;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int withText = 2131427370;

@@ -518,7 +518,7 @@ namespace HappyPandaXDroid.Custom_Views
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                ListViewHolder vh = holder as ListViewHolder;
+                GalleryCardHolder vh = holder as GalleryCardHolder;
                 vh.gcard.Gallery = mdata[position];
                 try
                 {
@@ -540,16 +540,16 @@ namespace HappyPandaXDroid.Custom_Views
                 /*View itemview = Android.Views.LayoutInflater.From(parent.Context)
                     .Inflate(Resource.Layout.galleryCard, parent, false);*/
                 View itemview = new Custom_Views.GalleryCard(mcontext);
-                ListViewHolder vh = new ListViewHolder(itemview);
+                GalleryCardHolder vh = new GalleryCardHolder(itemview);
                 return vh;
             }
         }
 
-        public class ListViewHolder : RecyclerView.ViewHolder
+        public class GalleryCardHolder : RecyclerView.ViewHolder
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
             public Custom_Views.GalleryCard gcard;
-            public ListViewHolder(View itemView) : base(itemView)
+            public GalleryCardHolder(View itemView) : base(itemView)
             {
                 gcard = (Custom_Views.GalleryCard)itemView;
                 // gcard.Click += (s, e) => clicklistener(base.AdapterPosition);
