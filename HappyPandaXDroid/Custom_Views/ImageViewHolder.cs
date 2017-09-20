@@ -111,9 +111,10 @@ namespace HappyPandaXDroid.Custom_Views
                     {
                         try
                         {
+                            var options = ((GalleryViewer)Context).options;
                             Glide.With(this.Context)
                             .Load(page_path)
-                            .Override(Target.SizeOriginal, Target.SizeOriginal)
+                            .Apply(options)
                             .Into(img)
                             ;
                             OnLoadEnd();

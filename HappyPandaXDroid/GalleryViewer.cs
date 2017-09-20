@@ -25,6 +25,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Java.Lang;
 using Emmaus.Widget;
+using Com.Bumptech.Glide.Request;
 using Com.Bumptech.Glide.Request.Target;
 using NLog;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
@@ -40,6 +41,7 @@ namespace HappyPandaXDroid
         public RecyclerViewPager galleryPager;
         bool overlayVisible = true;
         public  ImageAdapter adapter;
+        public RequestOptions options;
         FrameLayout lay;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         /*List<string> ImageList =
@@ -62,7 +64,9 @@ namespace HappyPandaXDroid
             logger.Info("Initializing Gallery Viewer");
             //InitPageGen();
             activityID = ThreadHandler.Thread.IdGen.Next();
-            
+
+            options = new RequestOptions()
+                .Override(Target.SizeOriginal, Target.SizeOriginal);
             toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             lay = FindViewById<FrameLayout>(Resource.Id.frame);
@@ -194,7 +198,7 @@ namespace HappyPandaXDroid
                 this.context = context;
             }
 
-            public void setExtraLayoutSpace(int extraLayoutSpace)
+            public void SetExtraLayoutSpace(int extraLayoutSpace)
             {
                 this.extraLayoutSpace = extraLayoutSpace;
             }

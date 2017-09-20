@@ -78,8 +78,8 @@
     <Reference Include="FloatingActionButton-Xamarin, Version=1.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FAB.XamarinAndroid.1.6.4.0\lib\MonoAndroid50\FloatingActionButton-Xamarin.dll</HintPath>
     </Reference>
-    <Reference Include="Glide, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glide.Xamarin.3.8.0\lib\Glide.dll</HintPath>
+    <Reference Include="Glide, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glide.Xamarin.4.1.1\lib\MonoAndroid10\Glide.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
@@ -865,6 +865,10 @@
     <AndroidResource Include="Resources\drawable\loading2.gif" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\external\EasyRecyclerView\EasyRecyclerView.csproj">
+      <Project>{5132e080-85ea-40fb-b339-6b7ad746513c}</Project>
+      <Name>EasyRecyclerView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\external\RecyclerViewPager-Xamarin\RecyclerViewPager.csproj">
       <Project>{e0e86419-629c-4d1c-b108-8bd9c313c42d}</Project>
       <Name>RecyclerViewPager</Name>

@@ -19,6 +19,8 @@ using Android.Support.V7.View;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
+using EasyRecyclerView;
+using EasyRecyclerView.Addons;
 using NLog;
 
 namespace HappyPandaXDroid.Custom_Views
@@ -28,7 +30,7 @@ namespace HappyPandaXDroid.Custom_Views
         View ContentView;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public Custom_Views.PageSelector mpageSelector;
-        RecyclerView mRecyclerView;
+        EasyRecyclerView.EasyRecyclerView mRecyclerView;
         bool IsRefreshing = false;
         public string activityName;
         public int activityId;
@@ -40,7 +42,7 @@ namespace HappyPandaXDroid.Custom_Views
         FrameLayout mErrorFrame;
         ImageView mErrorImage;
         TextView mErrorText;
-        ListViewAdapter adapter;
+        GalleryCardAdapter adapter;
         bool IsLoading = false;
         int page = 0;
         public int CurrentPage
@@ -88,9 +90,9 @@ namespace HappyPandaXDroid.Custom_Views
         {
             logger.Info("Initializing HPContent");
             ContentView = Inflate(Context, Resource.Layout.HPContent, this);
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
-            adapter = new ListViewAdapter(this.Context);
-
+            mRecyclerView = FindViewById<EasyRecyclerView.EasyRecyclerView>(Resource.Id.recyclerView);
+            adapter = new GalleryCardAdapter(this.Context);
+            mRecyclerView.SetOnItemClickListener(new RecyclerViewClickListener());
             mRefreshLayout = FindViewById<RefreshLayout.RefreshLayout>(Resource.Id.refresh_layout);
             mProgressView = FindViewById<ProgressView.MaterialProgressBar>(Resource.Id.progress_view);
             mProgressView.Visibility = ViewStates.Gone;
@@ -143,17 +145,17 @@ namespace HappyPandaXDroid.Custom_Views
             public AutoFitGridLayout(Context context, int columnWidth) : base(context,1)
             {
                 /* Initially set spanCount to 1, will be changed automatically later. */
-                setColumnWidth(checkedColumnWidth(context, columnWidth));
+                setColumnWidth(CheckedColumnWidth(context, columnWidth));
             }
 
             public AutoFitGridLayout(Context context, int columnWidth, int orientation, bool reverseLayout) : base (context, 1, orientation, reverseLayout)
             {
                 /* Initially set spanCount to 1, will be changed automatically later. */
 
-                setColumnWidth(checkedColumnWidth(context, columnWidth));
+                setColumnWidth(CheckedColumnWidth(context, columnWidth));
             }
 
-            private int checkedColumnWidth(Context context, int columnWidth)
+            private int CheckedColumnWidth(Context context, int columnWidth)
             {
                 if (columnWidth <= 0)
                 {
@@ -202,7 +204,7 @@ namespace HappyPandaXDroid.Custom_Views
         public void InitLibrary()
         {
             
-            ThreadHandler.Thread thread = ThreadHandler.CreateThread(() =>
+            Task.Run(() =>
              {
                  while (!initialized)
                  {
@@ -234,9 +236,7 @@ namespace HappyPandaXDroid.Custom_Views
                          SetError(true);
                      });
                  }
-             }, activityId, activityName);
-            ThreadHandler.StartThread(thread);
-            ThreadHandler.Schedule(thread);
+             });
         }
 
         private void MErrorFrame_Click(object sender, EventArgs e)
@@ -249,9 +249,9 @@ namespace HappyPandaXDroid.Custom_Views
         {
 
             SetBottomLoading(true);
-            ThreadHandler.Thread thread = ThreadHandler.CreateThread(NextPage, activityId, activityName);
-            ThreadHandler.StartThread(thread);
-            ThreadHandler.Schedule(thread);
+            ThreadStart load = new ThreadStart(NextPage);
+            Thread thread = new Thread(load);
+            thread.Start();
         }
 
         private void MRefreshLayout_OnHeaderRefresh(object sender, EventArgs e)
@@ -280,9 +280,9 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 logger.Info("Swipe Footer Refreshing");
                 content.SetBottomLoading(true);
-                ThreadHandler.Thread thread = ThreadHandler.CreateThread(content.NextPage,content.activityId,content.activityName);
-                ThreadHandler.StartThread(thread);
-                ThreadHandler.Schedule(thread);
+                ThreadStart load = new ThreadStart(content.NextPage);
+                Thread thread = new Thread(load);
+                thread.Start();
 
             }
 
@@ -315,7 +315,7 @@ namespace HappyPandaXDroid.Custom_Views
         public async void Refresh()
         {
             SetMainLoading(true);
-            ThreadHandler.Thread thread = ThreadHandler.CreateThread(async () =>
+            Task.Run(async () =>
             {
                 logger.Info("Refreshing HPContent");
                 var h = new Handler(Looper.MainLooper);
@@ -341,9 +341,7 @@ namespace HappyPandaXDroid.Custom_Views
 
                 });
                 logger.Info("HPContent Refresh Successful");
-            }, activityId, activityName);
-            ThreadHandler.StartThread(thread);
-            ThreadHandler.Schedule(thread);
+            });
         }
 
         public void SetBottomLoading(bool state)
@@ -377,6 +375,24 @@ namespace HappyPandaXDroid.Custom_Views
             
 
         }
+
+
+        public class RecyclerViewClickListener : EasyRecyclerView.EasyRecyclerView.IOnItemClickListener
+        {
+            public void OnItemClick(EasyRecyclerView.EasyRecyclerView parent, RecyclerView.ViewHolder holder)
+            {
+                var vh = holder as GalleryCardHolder;
+                if (vh != null)
+                {
+                    Intent intent = new Intent(parent.Context, typeof(GalleryActivity));
+                    string gallerystring = Core.JSON.Serializer.simpleSerializer.Serialize(vh.gallery);
+                    intent.PutExtra("gallery", gallerystring);
+                    parent.Context.StartActivity(intent);
+                }
+
+            }
+        }
+
 
         public void SetMainLoading(bool state)
         {
@@ -487,7 +503,7 @@ namespace HappyPandaXDroid.Custom_Views
         }
 
         
-        public class ListViewAdapter : RecyclerView.Adapter
+        public class GalleryCardAdapter : EasyAdapter
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
             public EventHandler<int> ItemClick;
@@ -500,7 +516,7 @@ namespace HappyPandaXDroid.Custom_Views
 
             public List<Core.Gallery.GalleryItem> mdata = Core.Gallery.CurrentList;
             Android.Content.Context mcontext;
-            public ListViewAdapter(Context context)
+            public GalleryCardAdapter(Context context)
             {
                 mcontext = context;
             }
@@ -520,6 +536,7 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 GalleryCardHolder vh = holder as GalleryCardHolder;
                 vh.gcard.Gallery = mdata[position];
+                vh.gallery = vh.gcard.Gallery;
                 try
                 {
                     vh.gcard.Refresh();
@@ -532,15 +549,12 @@ namespace HappyPandaXDroid.Custom_Views
                 //vh.gcard.SetOnClickListener(new GalleryCardClickListener());
             }
 
-
-
-
-            public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+            
+            public override RecyclerView.ViewHolder OnCreateViewHolder2(ViewGroup parent, int viewType)
             {
-                /*View itemview = Android.Views.LayoutInflater.From(parent.Context)
-                    .Inflate(Resource.Layout.galleryCard, parent, false);*/
                 View itemview = new Custom_Views.GalleryCard(mcontext);
                 GalleryCardHolder vh = new GalleryCardHolder(itemview);
+                vh.IsRecyclable = false;
                 return vh;
             }
         }
@@ -549,25 +563,14 @@ namespace HappyPandaXDroid.Custom_Views
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
             public Custom_Views.GalleryCard gcard;
+
+            public Core.Gallery.GalleryItem gallery;
             public GalleryCardHolder(View itemView) : base(itemView)
             {
                 gcard = (Custom_Views.GalleryCard)itemView;
-                // gcard.Click += (s, e) => clicklistener(base.AdapterPosition);
-                gcard.SetOnClickListener(new GalleryCardClickListener());
             }
 
-            class GalleryCardClickListener : Java.Lang.Object, View.IOnClickListener
-            {
-                Custom_Views.GalleryCard card;
-                public void OnClick(View v)
-                {
-                    card = (Custom_Views.GalleryCard)v;
-                    Intent intent = new Intent(card.Context, typeof(GalleryActivity));
-                    string gallerystring = Core.JSON.Serializer.simpleSerializer.Serialize(card.Gallery);
-                    intent.PutExtra("gallery", gallerystring);
-                    card.Context.StartActivity(intent);
-                }
-            }
+            
 
 
         }
