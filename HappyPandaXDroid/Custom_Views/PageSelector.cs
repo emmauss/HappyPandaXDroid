@@ -17,6 +17,7 @@ namespace HappyPandaXDroid.Custom_Views
     public class PageSelector : DialogFragment
     {
         public int PageCount = 0;
+        public int PageSelected = 0;
         public EditText PageInput;
         public Android.Support.Design.Widget.TextInputLayout FloatingTextLayout;
         MainActivity mactivity;
@@ -56,9 +57,8 @@ namespace HappyPandaXDroid.Custom_Views
                 switch ((DialogButtonType)which)
                 {
                     case DialogButtonType.Positive:
-                        int pagecount = 0;
-                        if (int.TryParse(pg.PageInput.Text, out pagecount))
-                            if (pagecount > 0) 
+                        if (int.TryParse(pg.PageInput.Text, out pg.PageSelected))
+                            if (pg.PageSelected > 0 && pg.PageSelected !=pg.mactivity.ContentView.CurrentPage+1 ) 
                             listener.OnDialogPositiveClick(pg);
                         break;
                     case DialogButtonType.Negative:
@@ -72,6 +72,7 @@ namespace HappyPandaXDroid.Custom_Views
         {
             void OnDialogPositiveClick(DialogFragment dialog);
             void OnDialogNegativeClick(DialogFragment dialog);
+
         }
 
         public NoticeDialogListener mDialogListener;

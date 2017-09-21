@@ -60,7 +60,10 @@ namespace HappyPandaXDroid
             });
             CreateFolders();
             //init logger
-            if (Core.App.Settings.Logging_Enabled)
+
+            try
+            {
+                if (Core.App.Settings.Logging_Enabled)
             {
                 var config = new LoggingConfiguration();
                 NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
@@ -74,8 +77,6 @@ namespace HappyPandaXDroid
                 LogManager.Configuration.AddRuleForAllLevels(target);
                 
             }
-            try
-            {
                 LogManager.ReconfigExistingLoggers();
             }catch(System.Exception ex)
             {

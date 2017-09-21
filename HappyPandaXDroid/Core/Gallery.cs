@@ -293,9 +293,9 @@ namespace HappyPandaXDroid.Core
                 return path;
 
             }
-            catch (System.Net.Sockets.SocketException ex)
+            catch (System.Net.Sockets.SocketException sex)
             {
-                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1}", page.id, size);
+                logger.Error(sex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1}", page.id, size);
                 return "fail: server not found or connection failed error";
             }
             catch (Exception ex)
@@ -351,7 +351,7 @@ namespace HappyPandaXDroid.Core
         /// jump to a page in the current library
         /// </summary>
         /// <param name="page">zero based page number</param>        
-        public void JumpToPage(int page, string search_query)
+        public static int JumpToPage(int page, string search_query)
         {
             List<Tuple<string, string>> main = new List<Tuple<string, string>>();
             List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
@@ -369,6 +369,7 @@ namespace HappyPandaXDroid.Core
             if (data.LastIndexOf("]") != data.Length - 1)
                 data = data.Remove(data.LastIndexOf("]") + 1);
             CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+            return CurrentList.Count;
         }
 
         public static int NextPage(int page, string search_query)

@@ -117,7 +117,7 @@ namespace HappyPandaXDroid.Custom_Views
             mRecyclerView.SetLayoutManager(mLayoutManager);
             SetMainLoading(true);
             mpageSelector = new Custom_Views.PageSelector();
-            dialogeventlistener = new DialogEventListener();
+            dialogeventlistener = new DialogEventListener(this);
             initialized = true;
             logger.Info("HPContent Initialized");
         }
@@ -322,11 +322,15 @@ namespace HappyPandaXDroid.Custom_Views
 
         public async void Refresh()
         {
-            SetMainLoading(true);
+            var h = new Handler(Looper.MainLooper);
+            h.Post(() =>
+            {
+                SetMainLoading(true);
+            });
             Task.Run(async () =>
             {
                 logger.Info("Refreshing HPContent");
-                var h = new Handler(Looper.MainLooper);
+               
                 bool success = await Core.Gallery.SearchGallery(Current_Query);
                 if (!success)
                 {
@@ -381,6 +385,52 @@ namespace HappyPandaXDroid.Custom_Views
             }
             
 
+        }
+
+        public void JumpTo(int page)
+        {
+
+            if (page == CurrentPage + 1)
+                return;
+            logger.Info("Loading  Page " + page);
+            GetTotalCount();
+            var h = new Handler(Looper.MainLooper);
+            h.Post(() =>
+            {
+                SetMainLoading(true);
+            });
+            if (page >= (count / 25))
+            {
+                h.Post(() =>
+                {
+                    Toast to = Toast.MakeText(this.Context, "Page outside library", ToastLength.Short);
+                    to.SetGravity(GravityFlags.Bottom, 0, 10);
+
+                    to.Show();
+                    SetBottomLoading(false);
+                    mRefreshLayout.HeaderRefreshing = false;
+                    mRefreshLayout.FooterRefreshing = false;
+                });
+                return;
+            }
+            int newitems = Core.Gallery.JumpToPage(page-1, Current_Query);
+            if (newitems > 0)
+            {
+                h.Post(() =>
+                {
+                    adapter.ResetList() ;
+
+                });
+                lastindex = Core.Gallery.CurrentList.Count - 1;
+                GetTotalCount();
+                CurrentPage = page-1;
+
+            }
+            h.Post(() =>
+            {
+                SetMainLoading(false);
+            });
+            logger.Info("Loading Next Page Successful");
         }
 
 
@@ -500,6 +550,11 @@ namespace HappyPandaXDroid.Custom_Views
 
         public class DialogEventListener : Custom_Views.PageSelector.NoticeDialogListener
         {
+            HPContent parent;
+            public DialogEventListener(HPContent parent)
+            {
+                this.parent = parent;
+            }
             public void OnDialogNegativeClick(DialogFragment dialog)
             {
                 //close dialog
@@ -507,7 +562,13 @@ namespace HappyPandaXDroid.Custom_Views
 
             public void OnDialogPositiveClick(DialogFragment dialog)
             {
-                //jump to page
+                var dl = dialog as Custom_Views.PageSelector;
+                if (dl != null)
+                {
+                    ThreadStart thrds = new ThreadStart(() => { parent.JumpTo(dl.PageSelected); });
+                    Thread thread = new Thread(thrds);
+                    thread.Start();
+                }
             }
         }
 
