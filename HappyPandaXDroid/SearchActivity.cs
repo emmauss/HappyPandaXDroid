@@ -99,6 +99,26 @@ namespace HappyPandaXDroid
             logger.Fatal(e.Exception, "Fatal Exception Thrown : " + e.Exception.Message);
         }
 
+
+        public override void OnBackPressed()
+        {
+           
+                if (navDrawer.IsDrawerOpen(GravityCompat.Start))
+                {
+                    navDrawer.CloseDrawer(GravityCompat.Start);
+                    return;
+                }
+                if (fam.IsOpened)
+                {
+                    fam.Close(true);
+                    return;
+                }
+            base.OnBackPressed();
+            
+
+        }
+
+
         public override bool OnGenericMotionEvent(MotionEvent e)
         {
             /*if(e.Source == InputSourceType.Touchscreen)
