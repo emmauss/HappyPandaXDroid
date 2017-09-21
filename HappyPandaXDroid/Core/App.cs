@@ -829,10 +829,11 @@ namespace HappyPandaXDroid.Core
 
             public static void Close()
             {
+                RunScheduler = false;
                 CleanUp();
                 AbortThreads();
                 ThreadPool.Clear();
-                RunScheduler = false;
+                
             }
         }
 

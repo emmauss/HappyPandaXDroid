@@ -143,10 +143,20 @@ namespace HappyPandaXDroid
             if (backPressed)
             {
                 toast.Cancel();
-                OnDestroy();
+               Finish();
             }
             else
             {
+                if (navDrawer.IsDrawerOpen(GravityCompat.Start))
+                {
+                    navDrawer.CloseDrawer(GravityCompat.Start);
+                    return;
+                }
+                if (fam.IsOpened)
+                {
+                    fam.Close(true);
+                    return;
+                }
                 backTimer = new CountDown(1000, 10, this);
                 backTimer.Start();
                 
@@ -266,15 +276,12 @@ namespace HappyPandaXDroid
 
         protected override void OnDestroy()
         {
-            if (IsDestroyed)
-            {
-                return;
-            }
+            base.OnDestroy();
+            backTimer.Dispose();
             ContentView.Dispose();
             ContentView = null;
             Core.App.Threading.Close();
-            Android.Support.V4.App.ActivityCompat.FinishAffinity(this);
-            //base.OnDestroy();
+            
             
            
             
