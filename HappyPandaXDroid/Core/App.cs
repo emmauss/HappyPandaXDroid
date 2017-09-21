@@ -325,6 +325,7 @@ namespace HappyPandaXDroid.Core
                                 break;
 
                         }
+                        if(!Directory.Exists(dir))
                         Directory.CreateDirectory(dir);
                         var profiledata = JSON.Serializer.simpleSerializer.Deserialize<Gallery.Profile>(data);
                         filename = dir + name + ".jpg";
@@ -342,9 +343,9 @@ namespace HappyPandaXDroid.Core
                     }
                     else return "fail";
                 }
-                catch (ThreadAbortException ex)
+                catch (ThreadAbortException tex)
                 {
-                    logger.Error(ex, "\n Exception Caught In App.Server.GetCommandValue.");
+                    logger.Error(tex, "\n Exception Caught In App.Server.GetCommandValue.");
                     return "fail";
                 }
                 catch (Exception ex)
