@@ -7,4 +7,5 @@
 	url = https://github.com/emmauss/RefreshLayout-Xamarin.git
 
 [submodule "external/EasyRecyclerView"]
-	path = external/EasyRecyclerView	url = https://github.com/emmauss/EasyRecyclerView.git
+	path = external/EasyRecyclerView	
+	url = https://github.com/emmauss/EasyRecyclerView.git
