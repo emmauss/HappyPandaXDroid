@@ -62,16 +62,16 @@ namespace HappyPandaXDroid
             //init logger
             if (Core.App.Settings.Logging_Enabled)
             {
+                var config = new LoggingConfiguration();
                 NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
                 string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
                     + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
                 target.FileName = logfile;
-                target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
-                LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
-                var config = LogManager.Configuration;
+                target.FileNameKind = NLog.Targets.FilePathKind.Unknown;
+                //LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
                 LogManager.Configuration.AddTarget(target);
 
-                LogManager.Configuration.AddRuleForAllLevels(target, "*");
+                LogManager.Configuration.AddRuleForAllLevels(target);
                 
             }
             try

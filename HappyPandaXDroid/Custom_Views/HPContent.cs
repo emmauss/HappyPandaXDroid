@@ -264,8 +264,12 @@ namespace HappyPandaXDroid.Custom_Views
                 await Task.Delay(10);
                 Refresh();
                 IsRefreshing = false;
-                mRefreshLayout.HeaderRefreshing = false;
-                mRefreshLayout.FooterRefreshing = false;
+                var h = new Handler(Looper.MainLooper);
+                h.Post(() =>
+                {
+                    mRefreshLayout.HeaderRefreshing = false;
+                    mRefreshLayout.FooterRefreshing = false;
+                });
             });
         }
 
@@ -296,8 +300,12 @@ namespace HappyPandaXDroid.Custom_Views
                         await Task.Delay(10);
                         content.Refresh();
                         content.IsRefreshing = false;
-                        content.mRefreshLayout.HeaderRefreshing = false;
-                        content.mRefreshLayout.FooterRefreshing = false;
+                        var h = new Handler(Looper.MainLooper);
+                        h.Post(() =>
+                        {
+                            content.mRefreshLayout.HeaderRefreshing = false;
+                            content.mRefreshLayout.FooterRefreshing = false;
+                        });
                     });
             }
         }
@@ -337,9 +345,8 @@ namespace HappyPandaXDroid.Custom_Views
                     SetMainLoading(false);
                     if (Core.Gallery.CurrentList.Count > 0)
                         mRecyclerView.ScrollToPosition(0);
-                    GetTotalCount();
-
                 });
+                GetTotalCount();
                 logger.Info("HPContent Refresh Successful");
             });
         }
@@ -439,10 +446,11 @@ namespace HappyPandaXDroid.Custom_Views
                 h.Post(() =>
                 {
                     adapter.NotifyItemRangeInserted(lastindex, newitems);
-                    lastindex = Core.Gallery.CurrentList.Count - 1;
-                    GetTotalCount();
-                    CurrentPage++;
+                    
                 });
+                lastindex = Core.Gallery.CurrentList.Count - 1;
+                GetTotalCount();
+                CurrentPage++;
 
             }
             h.Post(() =>
@@ -475,10 +483,11 @@ namespace HappyPandaXDroid.Custom_Views
                 h.Post(() =>
                 {
                     adapter.NotifyItemRangeInserted(0, newitems);
-                    lastindex = Core.Gallery.CurrentList.Count - 1;
-                    GetTotalCount();
-                    CurrentPage--;
+                    
                 });
+                lastindex = Core.Gallery.CurrentList.Count - 1;
+                GetTotalCount();
+                CurrentPage--;
             }
             h.Post(() =>
             {

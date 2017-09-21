@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecyclerViewPager", "extern
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefreshLayout", "external\RefreshLayout-Xamarin\RefreshLayout.csproj", "{432DC086-415C-41DB-88F3-A4995F0038E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRecyclerView", "EasyRecyclerView\EasyRecyclerView.csproj", "{5132E080-85EA-40FB-B339-6B7AD746513C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRecyclerView", "external\EasyRecyclerView\EasyRecyclerView.csproj", "{5132E080-85EA-40FB-B339-6B7AD746513C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
