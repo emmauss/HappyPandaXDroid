@@ -1,31 +1,23 @@
 ﻿using Android.App;
-using Android.OS;
 using Android.Content;
-using Android.Support.V7.App;
+using Android.Content.Res;
+using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Util;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
+using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
-using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
-using System.IO;
-using System.Threading;
-using System.Xml;
-using Android.Support.V7.View;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
-using ProgressView = XamarinBindings.MaterialProgressBar;
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
-using Java.Lang;
+using Android.Support.V7.App;
+using Android.Util;
+using Android.Views;
+using Android.Widget;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NLog.Config;
 using NLog;
-using Android.Content.Res;
+using NLog.Config;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace HappyPandaXDroid
 {
@@ -61,27 +53,8 @@ namespace HappyPandaXDroid
             CreateFolders();
             //init logger
 
-            try
-            {
-                if (Core.App.Settings.Logging_Enabled)
-            {
-                var config = new LoggingConfiguration();
-                NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
-                string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
-                    + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
-                target.FileName = logfile;
-                target.FileNameKind = NLog.Targets.FilePathKind.Unknown;
-                //LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
-                LogManager.Configuration.AddTarget(target);
-
-                LogManager.Configuration.AddRuleForAllLevels(target);
-                
-            }
-                LogManager.ReconfigExistingLoggers();
-            }catch(System.Exception ex)
-            {
-
-            }
+            InitLogging();
+            
             logger.Info("Main Actitvity Created");
             
             toast = Toast.MakeText(this, "Press Back again to exit", ToastLength.Short);
@@ -117,6 +90,33 @@ namespace HappyPandaXDroid
             File.Create(Core.App.Settings.basePath + ".nomedia");
 
         }
+
+        public static void InitLogging()
+        {
+            try
+            {
+                if (Core.App.Settings.Logging_Enabled)
+                {
+                    LogManager.Configuration = new LoggingConfiguration();
+                    NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
+                    string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
+                        + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
+                    target.FileName = logfile;
+                    target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
+                    LogManager.Configuration.AddTarget(target);
+
+                    LogManager.Configuration.AddRuleForAllLevels(target);
+                    LogManager.ReconfigExistingLoggers();
+
+                }
+                
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+        }
+
         public class CountDown : CountDownTimer
         {
             MainActivity activity;
