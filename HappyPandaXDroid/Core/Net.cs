@@ -166,7 +166,7 @@ namespace HappyPandaXDroid.Core
 
         public  static string SendPost(string payload)
         {
-            logger.Info("Sending Request.\n Request : \n {0} \n", payload);
+            logger.Info("Sending Request");
             string response = "fail";
             Client listener = GetActiveConnection();
             try
@@ -203,7 +203,7 @@ namespace HappyPandaXDroid.Core
                             break;
                         Array.Clear(res, 0, res.Length);
                     }
-                    logger.Info("Response from server: \n {0}", response);
+                    logger.Info("received Response from server");
                 }
 
             }
