@@ -193,25 +193,23 @@ namespace HappyPandaXDroid
                         switch (check.Checked)
                         {
                             case true:
-                                NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
-                                if (!Directory.Exists(Core.App.Settings.Log))
-                                {
-                                    Directory.CreateDirectory(Core.App.Settings.Log);
-                                }
-                                string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
-                                    + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
-                                target.FileName = logfile;
-                                target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
-                                LogManager.Configuration = new XmlLoggingConfiguration("assets/NLog.config");
-                                LogManager.Configuration.AddTarget(target);
-
-                                LogManager.Configuration.AddRuleForAllLevels(target, "*");
-
                                 try
                                 {
+                                    if (!Directory.Exists(Core.App.Settings.Log))
+                                    {
+                                        Directory.CreateDirectory(Core.App.Settings.Log);
+                                    }
+                                    LogManager.Configuration = new LoggingConfiguration();
+                                    NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
+                                    string logfile = Core.App.Settings.Log + DateTime.Now.ToShortDateString().Replace("/", "-") + " - "
+                                        + DateTime.Now.ToShortTimeString().Replace(":", ".") + " - log.txt";
+                                    target.FileName = logfile;
+                                    target.FileNameKind = NLog.Targets.FilePathKind.Absolute;
+                                    LogManager.Configuration.AddTarget(target);
+
+                                    LogManager.Configuration.AddRuleForAllLevels(target);
                                     LogManager.ReconfigExistingLoggers();
-                                }
-                                catch (System.Exception ex)
+                                }catch(Exception ex)
                                 {
 
                                 }
