@@ -73,7 +73,6 @@ namespace HappyPandaXDroid.Custom_Views
                 Refresh();
             }
         }
-        DrawerLayout navDrawer;
         public DialogEventListener dialogeventlistener;
         public HPContent(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -158,14 +157,14 @@ namespace HappyPandaXDroid.Custom_Views
             public AutoFitGridLayout(Context context, int columnWidth) : base(context,1)
             {
                 /* Initially set spanCount to 1, will be changed automatically later. */
-                setColumnWidth(CheckedColumnWidth(context, columnWidth));
+                SetColumnWidth(CheckedColumnWidth(context, columnWidth));
             }
 
             public AutoFitGridLayout(Context context, int columnWidth, int orientation, bool reverseLayout) : base (context, 1, orientation, reverseLayout)
             {
                 /* Initially set spanCount to 1, will be changed automatically later. */
 
-                setColumnWidth(CheckedColumnWidth(context, columnWidth));
+                SetColumnWidth(CheckedColumnWidth(context, columnWidth));
             }
 
             private int CheckedColumnWidth(Context context, int columnWidth)
@@ -181,7 +180,7 @@ namespace HappyPandaXDroid.Custom_Views
                 return columnWidth;
             }
 
-            public void setColumnWidth(int newColumnWidth)
+            public void SetColumnWidth(int newColumnWidth)
             {
                 if (newColumnWidth > 0 && newColumnWidth != mColumnWidth)
                 {
@@ -489,8 +488,7 @@ namespace HappyPandaXDroid.Custom_Views
         {
             public void OnItemClick(EasyRecyclerView.EasyRecyclerView parent, RecyclerView.ViewHolder holder)
             {
-                var vh = holder as GalleryCardHolder;
-                if (vh != null)
+                if (holder is GalleryCardHolder vh)
                 {
                     Intent intent = new Intent(parent.Context, typeof(GalleryActivity));
                     string gallerystring = Core.JSON.Serializer.simpleSerializer.Serialize(vh.gallery);
@@ -647,7 +645,7 @@ namespace HappyPandaXDroid.Custom_Views
         }
 
 
-        public class DialogEventListener : Custom_Views.PageSelector.NoticeDialogListener
+        public class DialogEventListener : Custom_Views.PageSelector.INoticeDialogListener
         {
             HPContent parent;
             public DialogEventListener(HPContent parent)
@@ -662,8 +660,7 @@ namespace HappyPandaXDroid.Custom_Views
             public void OnDialogPositiveClick(DialogFragment dialog)
             {
 
-                var dl = dialog as Custom_Views.PageSelector;
-                if (dl != null)
+                if (dialog is Custom_Views.PageSelector dl)
                 {
                     ThreadStart thrds = new ThreadStart(() => { parent.JumpTo(dl.PageSelected); });
                     Thread thread = new Thread(thrds);
@@ -747,8 +744,7 @@ namespace HappyPandaXDroid.Custom_Views
 
             void OnClick(int position)
             {
-                if (ItemClick != null)
-                    ItemClick(this, position);
+                ItemClick?.Invoke(this, position);
             }
 
             public List<Core.Gallery.GalleryItem> mdata = Core.Gallery.CurrentList;
@@ -792,8 +788,10 @@ namespace HappyPandaXDroid.Custom_Views
             public override RecyclerView.ViewHolder OnCreateViewHolder2(ViewGroup parent, int viewType)
             {
                 View itemview = new Custom_Views.GalleryCard(mcontext);
-                GalleryCardHolder vh = new GalleryCardHolder(itemview);
-                vh.IsRecyclable = false;
+                GalleryCardHolder vh = new GalleryCardHolder(itemview)
+                {
+                    IsRecyclable = false
+                };
                 return vh;
             }
         }
@@ -812,102 +810,7 @@ namespace HappyPandaXDroid.Custom_Views
             
 
 
-        }
-        /*public class ScrollChangeListener : Java.Lang.Object, View.IOnScrollChangeListener
-        {
-            Clans.Fab.FloatingActionMenu fam;
-            public ScrollChangeListener(Clans.Fab.FloatingActionMenu fam)
-            {
-                this.fam = fam;
-            }
-            public void OnScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY)
-            {
-                
-
-                if (oldScrollY > scrollY + 10)
-                {
-                    fam.Visibility = ViewStates.Invisible;
-                }
-                else if (oldScrollY < scrollY - 10)
-                {
-                    fam.Visibility = ViewStates.Visible;
-                }
-            }
-        }
-
-        /*public class ScrollListener : RecyclerView.OnScrollListener
-        {
-            private int toolbarOffset = 0;
-            private int toolbarHeight;
-            private Toolbar toolbar;
-            public HPContent mactivity;
-
-            /*public ScrollListener(HPContent context, Toolbar toolbar)
-            {
-                mactivity = context;
-                this.toolbar = toolbar;
-                int[] actionbar_att = new int[] { Resource.Attribute.actionBarSize };
-                Android.Content.Res.TypedArray a = context.Context.ObtainStyledAttributes(actionbar_att);
-                toolbarHeight = (int)a.GetDimension(0, 0) + 10;
-                a.Recycle();
-            }
-
-            public override void OnScrollStateChanged(RecyclerView recyclerView, int newState)
-            {
-                base.OnScrollStateChanged(recyclerView, newState);
-            }
-
-            public override void OnScrolled(RecyclerView recyclerView, int dx, int dy)
-            {
-                base.OnScrolled(recyclerView, dx, dy);
-
-            }
-
-            async Task<bool> HasReachedBottom()
-            {
-                RecyclerView view = mactivity.mRecyclerView;
-                var mLayoutManager = view.GetLayoutManager();
-                int totalItemCount = mLayoutManager.ItemCount;
-                int visibleCount = mLayoutManager.ChildCount;
-                var layoutmanager = (GridLayoutManager)mLayoutManager;
-                int lastVisibleItem = layoutmanager.FindLastVisibleItemPosition();
-                int firstVisibleItem = layoutmanager.FindFirstVisibleItemPosition();
-
-                /*if (!mactivity.IsLoading && (totalItemCount - visibleCount) <= firstVisibleItem)
-                {
-                    if (!view.CanScrollVertically(1))
-                        // End has been reached
-                        // Do something
-                        /* mactivity.SetBottomLoading(true);
-                         ThreadStart load = new ThreadStart(mactivity.NextPage);
-                         Thread thread = new Thread(load);
-                         thread.Start();*/
-                /*Toast.MakeText(mactivity, "You have reached to the bottom!", ToastLength.Short).Show();
-            return true;
-        }*
-
-                return false;
-            }
-
-            private void ClipToolbarOffset()
-            {
-                if (toolbarOffset > toolbarHeight)
-                {
-                    toolbarOffset = toolbarHeight;
-                }
-                else if (toolbarOffset < 0)
-                {
-                    toolbarOffset = 0;
-                }
-            }
-
-
-
-            public void OnMoved(int distance)
-            {
-                toolbar.TranslationY = -distance;
-            }
-        }*/
+        }       
 
 
     }

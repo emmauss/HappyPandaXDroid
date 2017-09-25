@@ -143,8 +143,10 @@ namespace HappyPandaXDroid.Core
             }
             if(tcp == null)
             {
-                tcp = new Client();
-                tcp.InUse = true;
+                tcp = new Client
+                {
+                    InUse = true
+                };
             }
             tcp.InUse = true;
             return tcp;

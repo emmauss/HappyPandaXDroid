@@ -126,14 +126,14 @@ namespace HappyPandaXDroid
                 filename = itemView.FindViewById<TextView>(Resource.Id.file_picker_text);
                 fileimage = itemView.FindViewById<ImageView>(Resource.Id.file_picker_image);
                 
-                touchListener listen = new touchListener();
+                TouchListener listen = new TouchListener();
                 //itemView.Click += (s, e) => clicklistener(base.AdapterPosition);
                 itemView.SetOnTouchListener(listen);
                 itemView.Click += (s, e) => clicklistener(base.AdapterPosition);
                 this.itemView = itemView;
             }
 
-            public class touchListener : Java.Lang.Object,View.IOnTouchListener
+            public class TouchListener : Java.Lang.Object,View.IOnTouchListener
             {
                
                 public bool OnTouch(View v, MotionEvent e)
@@ -161,9 +161,11 @@ namespace HappyPandaXDroid
         public void RefreshList()
         {
             filelist.Clear();
-            FileItem up = new FileItem();
-            up.Filename = "...";
-            up.Type = "UP";
+            FileItem up = new FileItem
+            {
+                Filename = "...",
+                Type = "UP"
+            };
             try
             {
                 up.Path = Directory.GetParent(current_path).FullName;
@@ -175,19 +177,23 @@ namespace HappyPandaXDroid
             var directories = Directory.EnumerateDirectories(current_path, "*", SearchOption.TopDirectoryOnly);
             foreach (string dir in directories)
             {
-                FileItem dirItem = new FileItem();
-                dirItem.Filename = dir.Substring(dir.LastIndexOf("/") + 1);
-                dirItem.Type = "folder";
-                dirItem.Path = dir;
+                FileItem dirItem = new FileItem
+                {
+                    Filename = dir.Substring(dir.LastIndexOf("/") + 1),
+                    Type = "folder",
+                    Path = dir
+                };
                 filelist.Add(dirItem);
             }
             var files = Directory.EnumerateFiles(current_path, "*", SearchOption.TopDirectoryOnly);
             foreach (string file in files)
             {
-                FileItem fileItem = new FileItem();
-                fileItem.Filename = file.Substring(file.LastIndexOf("/") + 1);
-                fileItem.Type = "file";
-                fileItem.Path = file;
+                FileItem fileItem = new FileItem
+                {
+                    Filename = file.Substring(file.LastIndexOf("/") + 1),
+                    Type = "file",
+                    Path = file
+                };
                 filelist.Add(fileItem);
             }
             toolbar.Title = current_path;
@@ -238,8 +244,7 @@ namespace HappyPandaXDroid
 
             void OnClick(int position)
             {
-                if (ItemClick != null)
-                    ItemClick(this, position);
+                ItemClick?.Invoke(this, position);
             }
 
             

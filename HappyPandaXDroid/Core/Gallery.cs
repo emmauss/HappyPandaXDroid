@@ -426,7 +426,6 @@ namespace HappyPandaXDroid.Core
 
         public static async Task<int> GetCount(string query)
         {
-            int count = 0;
 
             List<Tuple<string, string>> main = new List<Tuple<string, string>>();
             List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
@@ -442,7 +441,7 @@ namespace HappyPandaXDroid.Core
             string countstring = Net.SendPost(response);
             string countdata = JSON.API.GetData(countstring, 2);
             countdata = countdata.Substring(countdata.IndexOf(":") + 1, countdata.IndexOf("}") - countdata.IndexOf(":") - 1);
-            int.TryParse(countdata, out count);
+            int.TryParse(countdata, out int count);
             return count;
         }
 

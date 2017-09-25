@@ -129,25 +129,25 @@ namespace HappyPandaXDroid
             private void SetSummary(Preference pref)
             {
                 if (pref is EditTextPreference) {
-                    updateSummary((EditTextPreference)pref);
+                    UpdateSummary((EditTextPreference)pref);
                 } else if (pref is ListPreference) {
-                    updateSummary((ListPreference)pref);
+                    UpdateSummary((ListPreference)pref);
                 } else if (pref is MultiSelectListPreference) {
-                    updateSummary((MultiSelectListPreference)pref);
+                    UpdateSummary((MultiSelectListPreference)pref);
                 }
             }
 
-            private void updateSummary(MultiSelectListPreference pref)
+            private void UpdateSummary(MultiSelectListPreference pref)
             {
                 //pref.setSummary(Arrays.toString(pref.getValues().toArray()));
             }
 
-            private void updateSummary(ListPreference pref)
+            private void UpdateSummary(ListPreference pref)
             {
                 pref.Summary=pref.Value;
             }
 
-            private void updateSummary(EditTextPreference preference)
+            private void UpdateSummary(EditTextPreference preference)
             {
                 preference.Summary = preference.Text;
             }
@@ -167,10 +167,8 @@ namespace HappyPandaXDroid
             {
                 Preference pref = FindPreference(key);
                 logger.Info("Change Preference : {0}", key);
-                if (pref is EditTextPreference)
+                if (pref is EditTextPreference editp)
                 {
-
-                    EditTextPreference editp = (EditTextPreference)pref;
                     var edit = sharedPreferences.Edit();
                     edit.PutString(key, editp.Text);
                     editp.Summary = editp.Text;
@@ -180,14 +178,13 @@ namespace HappyPandaXDroid
                         Core.App.Settings.Refresh = true;
                     }
                 }
-                else if (pref is TwoStatePreference)
+                else if (pref is TwoStatePreference check)
                 {
-                    var check = (TwoStatePreference)pref;
                     var edit = sharedPreferences.Edit();
                     edit.PutBoolean(key, check.Checked);
-                    
+
                     edit.Commit();
-                    
+
                     if (key == "enable_debugging")
                     {
                         switch (check.Checked)
@@ -209,7 +206,8 @@ namespace HappyPandaXDroid
 
                                     LogManager.Configuration.AddRuleForAllLevels(target);
                                     LogManager.ReconfigExistingLoggers();
-                                }catch(Exception ex)
+                                }
+                                catch (Exception ex)
                                 {
 
                                 }
@@ -220,11 +218,10 @@ namespace HappyPandaXDroid
                         }
                     }
                 }
-                else if (pref is ListPreference)
+                else if (pref is ListPreference listp)
                 {
-                    ListPreference listp = (ListPreference)pref;
                     var edit = sharedPreferences.Edit();
-                    edit.PutString(key,listp.Entry);
+                    edit.PutString(key, listp.Entry);
                     listp.Summary = listp.Entry;
                     edit.Commit();
                 }

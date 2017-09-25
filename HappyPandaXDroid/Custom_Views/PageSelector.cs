@@ -44,10 +44,10 @@ namespace HappyPandaXDroid.Custom_Views
 
         public class ClickListener : Java.Lang.Object, IDialogInterfaceOnClickListener
         {
-            NoticeDialogListener listener;
+            INoticeDialogListener listener;
             private static Logger logger = LogManager.GetCurrentClassLogger();
             PageSelector pg;
-            public ClickListener(NoticeDialogListener listener,PageSelector pg)
+            public ClickListener(INoticeDialogListener listener,PageSelector pg)
             {
                 this.pg = pg;
                 this.listener = listener;
@@ -68,14 +68,14 @@ namespace HappyPandaXDroid.Custom_Views
             }
         }
 
-        public interface NoticeDialogListener
+        public interface INoticeDialogListener
         {
             void OnDialogPositiveClick(DialogFragment dialog);
             void OnDialogNegativeClick(DialogFragment dialog);
 
         }
 
-        public NoticeDialogListener mDialogListener;
+        public INoticeDialogListener mDialogListener;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

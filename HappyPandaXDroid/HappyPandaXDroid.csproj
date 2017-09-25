@@ -173,7 +173,6 @@
     <Compile Include="Custom_Views\PageSelector.cs" />
     <Compile Include="Custom_Views\RoundSideRectDrawable.cs" />
     <Compile Include="Custom_Views\SafeCoordinatorLayout.cs" />
-    <Compile Include="FileBrowser.cs" />
     <Compile Include="GalleryActivity.cs" />
     <Compile Include="GalleryViewer.cs" />
     <Compile Include="Helpers\Settings.cs" />

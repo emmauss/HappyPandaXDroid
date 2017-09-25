@@ -242,7 +242,7 @@ namespace HappyPandaXDroid
             
         }
 
-        public async void toggleOverlay()
+        public async void ToggleOverlay()
         {
             RunOnUiThread(() =>
             {
@@ -330,7 +330,7 @@ namespace HappyPandaXDroid
                 switch (e.Action)
                 {
                     case MotionEventActions.Up:
-                        mparent.toggleOverlay();
+                        mparent.ToggleOverlay();
                         break;
                 }
                 return false;
@@ -371,7 +371,6 @@ namespace HappyPandaXDroid
                 //vh.IsRecyclable = false;
                 var h = new Handler(Looper.MainLooper);
                 var activity = (GalleryViewer)context;
-                int tries = 0;
 
                 ThreadHandler.Thread thread = ThreadHandler.CreateThread(() =>
                 {
@@ -392,7 +391,7 @@ namespace HappyPandaXDroid
                     if (activity.touch_count == 2)
                     {
                         activity.touch_count = 0;
-                        activity.toggleOverlay();
+                        activity.ToggleOverlay();
 
                     }
                     else if (activity.touch_count > 2)
@@ -402,7 +401,7 @@ namespace HappyPandaXDroid
                 });
             }
 
-            public int indexOf(Core.Gallery.Page item)
+            public int IndexOf(Core.Gallery.Page item)
             {
                 return PageList.IndexOf(item);
             }
@@ -424,7 +423,7 @@ namespace HappyPandaXDroid
                 {
                     if ( ionclick!= null)
                     {
-                        ionclick.onItemClick(v,position,holder);
+                        ionclick.OnItemClick(v,position,holder);
                     }
                 }
             }
@@ -491,7 +490,7 @@ namespace HappyPandaXDroid
             
 
             public interface IOnRecyclerViewItemClickListener {
-                void onItemClick(View view, int position,RecyclerView.ViewHolder viewHolder);
+                void OnItemClick(View view, int position,RecyclerView.ViewHolder viewHolder);
             }
 
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -535,7 +534,7 @@ namespace HappyPandaXDroid
                 Remove(position);
             }
 
-            public IOnRecyclerViewItemClickListener getOnItemClickListener()
+            public IOnRecyclerViewItemClickListener GetOnItemClickListener()
             {
                 return mOnItemClickListener;
             }

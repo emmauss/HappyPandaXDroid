@@ -417,7 +417,6 @@ namespace HappyPandaXDroid.Core
 
             public int GetRelatedCount(int item_id, string related_type = "Page")
             {
-                int count = 0;
                 logger.Info("Get Related Count. itemId={0}, related_type = {1},", item_id, related_type);
                 List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                 List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
@@ -433,7 +432,7 @@ namespace HappyPandaXDroid.Core
                 string countstring = Net.SendPost(response);
                 string countdata = JSON.API.GetData(countstring, 2);
                 countdata = countdata.Substring(countdata.IndexOf(":") + 1, countdata.IndexOf("}") - countdata.IndexOf(":") - 1);
-                int.TryParse(countdata, out count);
+                int.TryParse(countdata, out int count);
                 return count;
             }
 

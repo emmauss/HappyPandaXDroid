@@ -231,8 +231,8 @@ namespace HappyPandaXDroid
 
             public override void OnNestedScroll(CoordinatorLayout coordinatorLayout, Java.Lang.Object child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed)
             {
-                if(child is Clans.Fab.FloatingActionMenu){
-                    var c = (Clans.Fab.FloatingActionMenu)child;
+                if (child is Clans.Fab.FloatingActionMenu c)
+                {
                     base.OnNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
                     if (dyConsumed > 0)
                     {
@@ -388,7 +388,7 @@ namespace HappyPandaXDroid
             return base.OnOptionsItemSelected(item);
         } 
 
-        public void switchtotest()
+        public void Switchtotest()
         {
             Android.Content.Intent intent = new Android.Content.Intent(this, typeof(test));
             StartActivity(intent);

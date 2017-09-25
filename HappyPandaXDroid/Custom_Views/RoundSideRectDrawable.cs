@@ -45,8 +45,10 @@ namespace HappyPandaXDroid.Custom_Views
 
         public RoundSideRectDrawable(int color)
         {
-            mPaint = new Paint(PaintFlags.AntiAlias | PaintFlags.Dither);
-            mPaint.Color = new Color(color);
+            mPaint = new Paint(PaintFlags.AntiAlias | PaintFlags.Dither)
+            {
+                Color = new Color(color)
+            };
             mPath = new Path();
             mTempRectF = new RectF();
         }

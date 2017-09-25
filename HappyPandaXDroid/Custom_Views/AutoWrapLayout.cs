@@ -48,7 +48,7 @@ namespace HappyPandaXDroid.Custom_Views
             BOTTOM = 2
         };
 
-        readonly int nativeInt;
+        
 
 
         public AutoWrapLayout(Context context) :
@@ -95,12 +95,12 @@ namespace HappyPandaXDroid.Custom_Views
             }
         }
 
-        public Alignment getAlignment()
+        public Alignment GetAlignment()
         {
             return mAlignment;
         }
 
-        private void adjustBaseLine(int lineHeight, int startIndex, int endIndex)
+        private void AdjustBaseLine(int lineHeight, int startIndex, int endIndex)
         {
             if (mAlignment == Alignment.TOP)
                 return;
@@ -185,7 +185,7 @@ namespace HappyPandaXDroid.Custom_Views
                 { // Go to next row
                     lineEndIndex = index;
                     // Adjust child position base on baseline
-                    adjustBaseLine(maxBottom - lastMaxBottom, lineStartIndex, lineEndIndex);
+                    AdjustBaseLine(maxBottom - lastMaxBottom, lineStartIndex, lineEndIndex);
 
                     // If child can't show in parent begin this line
                     if (maxBottom >= maxBottomBound)
@@ -223,16 +223,18 @@ namespace HappyPandaXDroid.Custom_Views
                     maxRightNoPadding = rightBound;
                 if (bottomBound > maxBottom)
                     maxBottom = bottomBound;
-                Rect rect = new Rect();
-                rect.Left = left;
-                rect.Top = top;
-                rect.Right = right;
-                rect.Bottom = bottom;
+                Rect rect = new Rect
+                {
+                    Left = left,
+                    Top = top,
+                    Right = right,
+                    Bottom = bottom
+                };
                 rectList.Add(rect);
             }
 
             // Handle last line baseline
-            adjustBaseLine(maxBottom - lastMaxBottom, lineStartIndex, rectList.Count);
+            AdjustBaseLine(maxBottom - lastMaxBottom, lineStartIndex, rectList.Count);
 
             int measuredWidth;
             int measuredHeight;
