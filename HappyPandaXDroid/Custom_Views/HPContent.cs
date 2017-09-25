@@ -775,7 +775,10 @@ namespace HappyPandaXDroid.Custom_Views
                 vh.gallery = vh.gcard.Gallery;
                 try
                 {
-                    vh.gcard.Refresh();
+                    Task.Run(() =>
+                    {
+                        vh.gcard.Refresh();
+                    });
                 }
                 catch (Exception ex)
                 {

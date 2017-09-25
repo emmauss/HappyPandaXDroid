@@ -140,14 +140,12 @@ namespace HappyPandaXDroid.Custom_Views
 
         public void OnLoadEnd()
         {
-            var h = new Handler(Looper.MainLooper);
 
             Loaded = true;
-            h.Post(() =>
-            {
+            
                 mProgressView.Visibility = ViewStates.Gone;
                 img.Visibility = ViewStates.Visible;
-            });
+            
         }
 
         bool IsCached()

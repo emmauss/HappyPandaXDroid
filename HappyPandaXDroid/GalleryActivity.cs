@@ -63,6 +63,13 @@ namespace HappyPandaXDroid
                 {
                     try
                     {
+                        if(path.Contains("fail"))
+                        {
+                            Glide.With(this)
+                            .Load(Resource.Drawable.image_failed)
+                            .Into(ThumbView);
+                        }
+                        else
                         Glide.With(this)
                             .Load(path)
                             .Into(ThumbView);
@@ -419,11 +426,22 @@ namespace HappyPandaXDroid
                                 {
                                     continue;
                                 }
-
+                            h.Post(() =>
+                            {
+                                Glide.With(preview.Context)
+                                .Load(Resource.Drawable.image_failed)
+                                .Into(img);
+                            });
                                 return false;
 
                             }
-                            return false;
+                        h.Post(() =>
+                        {
+                            Glide.With(preview.Context)
+                            .Load(Resource.Drawable.image_failed)
+                            .Into(img);
+                        });
+                        return false;
                         }
                         else
                         {

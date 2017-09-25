@@ -149,16 +149,12 @@ namespace HappyPandaXDroid.Custom_Views
             });
             if (!IsCached)
             {
-                await Task.Run(async () =>
-               {
+               
                    thumb_path = await Core.Gallery.GetImage(gallery, false);
-               });
+               
             }
-            await Task.Run(async () =>
-            {
-                await Task.Delay(10);
                 LoadThumb();
-            });
+           
             h.Post(() =>
             {
                 Label.Visibility = ViewStates.Gone;
