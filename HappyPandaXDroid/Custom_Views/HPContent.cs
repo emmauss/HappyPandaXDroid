@@ -404,14 +404,38 @@ namespace HappyPandaXDroid.Custom_Views
 
         }
 
+        int GetCachedBookmark(int page)
+        {
+            int mark = -1;
+            var bookmark = Bookmarks.BookMarks.Find((x) => x.Page == page);
+            if (bookmark != null)
+            {
+                mark = Core.Gallery.CurrentList.FindIndex((x) => x == bookmark.Mark);
+            }
+            return mark;
+        }
+
         public void JumpTo(int page)
         {
 
             if (page == CurrentPage + 1)
                 return;
-            logger.Info("Loading  Page " + page);
-            GetTotalCount();
             var h = new Handler(Looper.MainLooper);
+            logger.Info("Loading  Page " + page);
+            {
+                int cachedPos = GetCachedBookmark(page-1);
+                if (cachedPos != -1)
+                {
+                    h.Post(() =>
+                    {
+                        mRecyclerView.SmoothScrollToPosition(cachedPos);
+                    });
+                    return;
+                }
+            }
+
+            GetTotalCount();
+            
             h.Post(() =>
             {
                 SetMainLoading(true);
@@ -637,6 +661,7 @@ namespace HappyPandaXDroid.Custom_Views
 
             public void OnDialogPositiveClick(DialogFragment dialog)
             {
+
                 var dl = dialog as Custom_Views.PageSelector;
                 if (dl != null)
                 {
@@ -673,7 +698,7 @@ namespace HappyPandaXDroid.Custom_Views
                 else
                     content.mRefreshLayout.Enabled = true;
                 if(!content.IsLoading)
-                if (!recyclerView.CanScrollVertically(-1))
+                if (!recyclerView.CanScrollVertically(-1) && content.CurrentPage!=0)
                 {
                     content.SetBottomLoading(true);
                     ThreadStart load = new ThreadStart(content.PreviousPage);
