@@ -547,10 +547,11 @@ namespace HappyPandaXDroid.Custom_Views
                     adapter.NotifyItemRangeInserted(lastindex+1, newitems);
                     
                 });
+                listener.AddBookmark(lastindex + 1);
                 lastindex = Core.Gallery.CurrentList.Count - 1;
                 GetTotalCount();
                 CurrentPage++;
-                listener.AddBookmark(lastindex + 1);
+                
 
             }
             h.Post(() =>
