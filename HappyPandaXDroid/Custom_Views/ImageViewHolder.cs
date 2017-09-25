@@ -89,7 +89,7 @@ namespace HappyPandaXDroid.Custom_Views
                             if (page_path.Contains("misc"))
                             {
                                 tries++;
-                                if (tries < 4)
+                                if (tries < 3)
                                 {
                                     continue;
                                 }

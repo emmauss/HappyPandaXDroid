@@ -343,14 +343,9 @@ namespace HappyPandaXDroid.Core
                     }
                     else return "fail";
                 }
-                catch (ThreadAbortException tex)
-                {
-                    logger.Error(tex, "\n Exception Caught In App.Server.GetCommandValue.");
-                    return "fail";
-                }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, "\n Exception Caught In App.Server.GetCommandValue.");
+                    logger.Error(ex, "\n Exception Caught In App.Server.GetCommandValue. Message : " + ex.Message);
                     return "fail";
                 }
             }

@@ -87,15 +87,14 @@ namespace HappyPandaXDroid
             mJumpFab.SetOnClickListener(fabclick);
             mRefreshFab.SetOnClickListener(fabclick);
             
+            if(!File.Exists(Core.App.Settings.basePath + ".nomedia"))
             File.Create(Core.App.Settings.basePath + ".nomedia");
 
         }
 
         public static void InitLogging()
         {
-            try
-            {
-                if (Core.App.Settings.Logging_Enabled)
+              if (Core.App.Settings.Logging_Enabled)
                 {
                     LogManager.Configuration = new LoggingConfiguration();
                     NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");
@@ -109,12 +108,7 @@ namespace HappyPandaXDroid
                     LogManager.ReconfigExistingLoggers();
 
                 }
-                
-            }
-            catch (System.Exception ex)
-            {
-
-            }
+           
         }
 
 
@@ -188,13 +182,13 @@ namespace HappyPandaXDroid
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (System.Exception)e.ExceptionObject;
-            logger.Fatal(ex, ex.Message);
+            logger.Fatal(ex, "Fatal Exception Thrown : " + ex.Message + System.Environment.NewLine + ex.StackTrace);
         }
 
         //ui thread unhandled exception handler
         private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
         {
-            logger.Fatal(e.Exception, "Fatal Exception Thrown : "+ e.Exception.Message );
+            logger.Fatal(e.Exception, "Fatal Exception Thrown : "+ e.Exception.Message + System.Environment.NewLine + e.Exception.StackTrace);
         }
 
         public override bool OnGenericMotionEvent(MotionEvent e)

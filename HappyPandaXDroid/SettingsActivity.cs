@@ -190,8 +190,6 @@ namespace HappyPandaXDroid
                         switch (check.Checked)
                         {
                             case true:
-                                try
-                                {
                                     if (!Directory.Exists(Core.App.Settings.Log))
                                     {
                                         Directory.CreateDirectory(Core.App.Settings.Log);
@@ -206,11 +204,7 @@ namespace HappyPandaXDroid
 
                                     LogManager.Configuration.AddRuleForAllLevels(target);
                                     LogManager.ReconfigExistingLoggers();
-                                }
-                                catch (Exception ex)
-                                {
-
-                                }
+                                
                                 break;
                             case false:
                                 LogManager.Configuration = null;
