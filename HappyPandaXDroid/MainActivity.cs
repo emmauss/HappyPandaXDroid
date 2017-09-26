@@ -21,7 +21,9 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace HappyPandaXDroid
 {
-    [Activity(Label = "HPXDroid", MainLauncher = true, Icon = "@drawable/icon", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
+    [Activity(Label = "HPXDroid", MainLauncher = true, Icon = "@drawable/icon",
+        ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation 
+        | Android.Content.PM.ConfigChanges.ScreenSize,LaunchMode =Android.Content.PM.LaunchMode.SingleInstance)]
     public class MainActivity : AppCompatActivity , Android.Support.V7.Widget.SearchView.IOnQueryTextListener
     {
         
