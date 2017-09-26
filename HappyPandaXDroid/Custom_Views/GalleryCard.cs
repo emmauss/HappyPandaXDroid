@@ -110,6 +110,9 @@ namespace HappyPandaXDroid.Custom_Views
             Label = FindViewById<TextView>(Resource.Id.textViewholder2);
             Label.Text = string.Empty;
             img = FindViewById<ImageView>(Resource.Id.imageView);
+            
+                Label.Visibility = ViewStates.Gone;
+            
             //t.Text = "hey";
             Clickable = true;
             /*this.Click += GalleryCard_Click;
@@ -119,12 +122,17 @@ namespace HappyPandaXDroid.Custom_Views
 
         public async void Refresh()
         {
-            var h = new Handler(Looper.MainLooper);
+            if (gallery == null)
+            {
+
+            }
+                var h = new Handler(Looper.MainLooper);
             if (tries > 2)
             {
                 tries = 0;
                 h.Post(() =>
                 {
+                    Name.Text = Gallery.titles[0].name;
                     img.SetImageResource(Resource.Drawable.image_failed);
                 });
                     return;
@@ -147,18 +155,18 @@ namespace HappyPandaXDroid.Custom_Views
                         return;
                 }
             });
-            if (!IsCached)
+            await Task.Run(async () =>
             {
-               
-                   thumb_path = await Core.Gallery.GetImage(gallery, false);
-               
-            }
+                if (!IsCached)
+                {
+
+                    thumb_path = await Core.Gallery.GetImage(gallery, false);
+
+                }
+            });
                 LoadThumb();
            
-            h.Post(() =>
-            {
-                Label.Visibility = ViewStates.Gone;
-            });
+           
 
             logger.Info("Refresh {0} Successful", Gallery.id);
         }
@@ -200,6 +208,8 @@ namespace HappyPandaXDroid.Custom_Views
         {
             get
             {
+                
+
                 int item_id = gallery.id;
                 try
                 {
