@@ -328,7 +328,6 @@ namespace HappyPandaXDroid.Core
                         if(!Directory.Exists(dir))
                         Directory.CreateDirectory(dir);
                         var profiledata = JSON.Serializer.SimpleSerializer.Deserialize<Gallery.Profile>(data);
-
                         filename = dir + name + ".jpg";
                         string url = profiledata.data;
                         url = "http://" + App.Settings.Server_IP + ":"+ App.Settings.WebClient_Port + url;
@@ -346,7 +345,8 @@ namespace HappyPandaXDroid.Core
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, "\n Exception Caught In App.Server.GetCommandValue. Message : " + ex.Message);
+                    logger.Error(ex, "\n Exception Caught In App.Server.GetCommandValue. Message : " + ex.Message 
+                        + System.Environment.NewLine + ex.StackTrace);
                     return "fail";
                 }
             }
@@ -358,13 +358,15 @@ namespace HappyPandaXDroid.Core
                 string command = CreateCommand("get_command_state", command_id);
                 string response = Net.SendPost(command);
                 string state = string.Empty;
-                if (GetError(response) == "none")
+                string error = GetError(response);
+                if (error == "none")
                 {
                     state = JSON.API.GetData(response, 2);
+                    logger.Info("Get Command State Successful. commandId={0}, state={1}", command_id, state);
                     return state;
-
                 }
-                else return (GetError(response));
+                logger.Info("Get Command State Successful. commandId={0}, \n error={1}", command_id, error);
+                return (error);
 
             }
 

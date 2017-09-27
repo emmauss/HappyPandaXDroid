@@ -208,14 +208,15 @@ namespace HappyPandaXDroid.Core
                 string path = App.Server.GetCommandValue(command_id, gallery.id, name, "thumb", return_url);
                 return path;
             }
-            catch (System.Net.Sockets.SocketException ex)
+            catch (System.Net.Sockets.SocketException sex)
             {
-                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Gallery, itemId = {0}, size = {1}",gallery.id,size);
+                logger.Error(sex, "\n Exception Caught In Gallery.GetImage.Message {0}\n {1}",sex.Message,sex.StackTrace);
                 return "fail: server not found or connection failed error";
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Gallery, itemId = {0}, size = {1}", gallery.id, size);
+                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Gallery, itemId = {0}, size = {1},\n Message = {2}"
+                     + System.Environment.NewLine + ex.StackTrace , gallery.id, size,ex.Message);
                 return "fail: server error";
             }
         }
@@ -295,14 +296,14 @@ namespace HappyPandaXDroid.Core
             }
             catch (System.Net.Sockets.SocketException sex)
             {
-                logger.Error(sex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1}", page.id, size);
+                logger.Error(sex, "\n Exception Caught In Gallery.GetImage.Message {0}\n {1}", sex.Message, sex.StackTrace);
                 return "fail: server not found or connection failed error";
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1}", page.id, size);
-
-                return "fail: misc server error";
+                logger.Error(ex, "\n Exception Caught In Gallery.GetImage. type = Page, itemId = {0}, size = {1},\n Message = {2}"
+                     + System.Environment.NewLine + ex.StackTrace, page.id, size, ex.Message);
+                return "fail: server error";
             }
         }
 

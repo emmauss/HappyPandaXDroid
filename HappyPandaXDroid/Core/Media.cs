@@ -47,7 +47,7 @@ namespace HappyPandaXDroid.Core
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, "\n Exception Caught In Media.IsCached. Message : " + ex.Message);
+                    logger.Error(ex, "\n Exception Caught In Media.IsCached. Message : " + ex.Message + System.Environment.NewLine + ex.StackTrace);
 
                     return false;
                 }

@@ -220,7 +220,8 @@ namespace HappyPandaXDroid.Custom_Views
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached. Message : " + ex.Message);
+                    logger.Error(ex, "\n Exception Caught In GalleryCard.IsCached. Message : " + ex.Message 
+                        + System.Environment.NewLine + ex.StackTrace);
 
                     return false;
                 }
