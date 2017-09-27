@@ -790,10 +790,7 @@ namespace HappyPandaXDroid.Custom_Views
             public override RecyclerView.ViewHolder OnCreateViewHolder2(ViewGroup parent, int viewType)
             {
                 View itemview = new Custom_Views.GalleryCard(mcontext);
-                GalleryCardHolder vh = new GalleryCardHolder(itemview)
-                {
-                    IsRecyclable = false
-                };
+                GalleryCardHolder vh = new GalleryCardHolder(itemview);
                 return vh;
             }
         }

@@ -50,7 +50,16 @@ namespace HappyPandaXDroid
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Task.Run(() => {
-                JsonConvert.DeserializeObject("{}");
+                string ds = @"{ 'name' : 'test',
+'session' : 'ed352d0aae5b4b11a0e9f64778270087',
+'data' : [
+{
+    'fname' : 'library_view',
+'limit' : 25
+}
+]
+}";
+                JsonConvert.DeserializeObject(ds);
             });
             CreateFolders();
             //init logger

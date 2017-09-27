@@ -186,6 +186,7 @@ namespace HappyPandaXDroid.Custom_Views
                              .Load(thumb_path)
                              .Into(img);
                             loaded = true;
+                            tries = 0;
                         }
                         catch (Exception ex)
                         {
