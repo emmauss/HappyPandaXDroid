@@ -33,6 +33,7 @@ namespace HappyPandaXDroid
         RecyclerView grid_layout;
         ProgressView.MaterialProgressBar mProgressView;
         LinearLayout MainView;
+        TextView GalleryStatus;
         PreviewAdapter adapter;
         ScrollView scrollview;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -47,7 +48,7 @@ namespace HappyPandaXDroid
             SetContentView(Resource.Layout.Gallery_Details_Layout);
             string data = Intent.GetStringExtra("gallery");
             InitializeViews();
-            gallery = Core.JSON.Serializer.simpleSerializer.Deserialize<Core.Gallery.GalleryItem>(data);
+            gallery = Core.JSON.Serializer.SimpleSerializer.Deserialize<Core.Gallery.GalleryItem>(data);
             logger.Info("Initializing Gallery Detail. GalleryId ={0}", gallery.id);
             
             activityId = ThreadHandler.Thread.IdGen.Next();
@@ -65,6 +66,7 @@ namespace HappyPandaXDroid
                     {
                         if(path.Contains("fail"))
                         {
+                            GalleryStatus.Text = "Gallery Not Found";
                             Glide.With(this)
                             .Load(Resource.Drawable.image_failed)
                             .Into(ThumbView);
@@ -123,7 +125,7 @@ namespace HappyPandaXDroid
             TagLayout = FindViewById<LinearLayout>(Resource.Id.tags);
             InfoLayout = FindViewById<LinearLayout>(Resource.Id.info);
             ActionCard = FindViewById<CardView>(Resource.Id.action_card);
-
+            GalleryStatus = FindViewById<TextView>(Resource.Id.status);
             ThumbView = FindViewById<ImageView>(Resource.Id.thumb);
 
             ActionCard.Clickable = true;
@@ -142,7 +144,7 @@ namespace HappyPandaXDroid
                 return;
 
             Intent intent = new Android.Content.Intent(this, typeof(GalleryViewer));
-            intent.PutExtra("page", Core.JSON.Serializer.simpleSerializer.Serialize(pagelist));
+            intent.PutExtra("page", Core.JSON.Serializer.SimpleSerializer.Serialize(pagelist));
             StartActivity(intent);
 
         }

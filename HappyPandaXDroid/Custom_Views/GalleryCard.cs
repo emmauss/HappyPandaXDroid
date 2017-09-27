@@ -243,7 +243,7 @@ namespace HappyPandaXDroid.Custom_Views
         private void GalleryCard_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(Context, typeof(GalleryActivity));
-            string gallerystring = Core.JSON.Serializer.simpleSerializer.Serialize(gallery);
+            string gallerystring = Core.JSON.Serializer.SimpleSerializer.Serialize(gallery);
             intent.PutExtra("gallery", gallerystring);
             Context.StartActivity(intent);
         }

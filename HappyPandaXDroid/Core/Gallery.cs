@@ -158,7 +158,7 @@ namespace HappyPandaXDroid.Core
             string data = JSON.API.GetData(countstring, 2);
             if (data.LastIndexOf("]") != data.Length - 1)
                 data = data.Remove(data.LastIndexOf("]") + 1);
-            CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+            CurrentList = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
             List<int> g_ids = new List<int>();
             foreach (var gal in CurrentList)
             {
@@ -324,7 +324,7 @@ namespace HappyPandaXDroid.Core
                 string data = JSON.API.GetData(countstring, 2);
                 if (data.LastIndexOf("]") != data.Length - 1)
                     data = data.Remove(data.LastIndexOf("]") + 1);
-                CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+                CurrentList = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
                 if (CurrentList.Count > 0)
                 {
                     List<int> g_ids = new List<int>();
@@ -368,7 +368,7 @@ namespace HappyPandaXDroid.Core
             string data = JSON.API.GetData(countstring, 2);
             if (data.LastIndexOf("]") != data.Length - 1)
                 data = data.Remove(data.LastIndexOf("]") + 1);
-            CurrentList = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+            CurrentList = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
             return CurrentList.Count;
         }
 
@@ -389,7 +389,7 @@ namespace HappyPandaXDroid.Core
             string data = JSON.API.GetData(countstring, 2);
             if (data.LastIndexOf("]") != data.Length - 1)
                 data = data.Remove(data.LastIndexOf("]") + 1);
-            var newpagelist = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+            var newpagelist = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
             int itemaddedcount = newpagelist.Count;
             if (itemaddedcount < 1)
                 return 0;
@@ -414,7 +414,7 @@ namespace HappyPandaXDroid.Core
             string data = JSON.API.GetData(countstring, 2);
             if (data.LastIndexOf("]") != data.Length - 1)
                 data = data.Remove(data.LastIndexOf("]") + 1);
-            var newpagelist = JSON.Serializer.simpleSerializer.DeserializeToList<GalleryItem>(data);
+            var newpagelist = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
             int itemaddedcount = newpagelist.Count;
             if (itemaddedcount < 1)
                 return 0;
@@ -461,15 +461,17 @@ namespace HappyPandaXDroid.Core
             string data = App.Server.ParseItem(responsestring);
 
 
-            return JSON.Serializer.simpleSerializer.Deserialize<TagList>(data);
+            return JSON.Serializer.SimpleSerializer.Deserialize<TagList>(data);
         }
 
         public async static Task<string> GetThumb(GalleryItem gallery)
         {
-
+            int tries = 0;
             string thumb_path = string.Empty;
             while (true)
             {
+                if (tries > 3)
+                    break;
                 if (IsCached())
                 {
 
@@ -484,6 +486,7 @@ namespace HappyPandaXDroid.Core
 
                     gallery = Core.App.Server.GetItem<Core.Gallery.GalleryItem>(gallery.id, "Gallery");
                 }
+                tries++;
             }
 
 

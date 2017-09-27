@@ -78,7 +78,7 @@ namespace HappyPandaXDroid.Core
                         Array.Clear(res, 0, res.Length);
                     }
                     payload = payload.Replace("<EOF>", "");
-                    App.Server.info = JSON.Serializer.simpleSerializer.Deserialize<App.Server.ServerInfo>(payload);
+                    App.Server.info = JSON.Serializer.SimpleSerializer.Deserialize<App.Server.ServerInfo>(payload);
                     List<Tuple<string, string>> main = new List<Tuple<string, string>>();
                     JSON.API.PushKey(ref main, "name", "test");
                     JSON.API.PushKey(ref main, "session", "");
@@ -111,7 +111,7 @@ namespace HappyPandaXDroid.Core
                         logger.Info("Handshake Successful");
                         payload = payload.Replace("<EOF>", "");
                         Dictionary<string, string> reply =
-                            JSON.Serializer.simpleSerializer.Deserialize<Dictionary<string, string>>(payload);
+                            JSON.Serializer.SimpleSerializer.Deserialize<Dictionary<string, string>>(payload);
                         success = reply.TryGetValue("session", out session_id);
                     }
                     cli.initialise = true;

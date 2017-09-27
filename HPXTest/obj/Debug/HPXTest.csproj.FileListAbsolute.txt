@@ -14,3 +14,5 @@ C:\HappyPandaXDroid\HPXTest\obj\Debug\res\values\strings.xml
 C:\HappyPandaXDroid\HPXTest\obj\Debug\R.cs.flag
 C:\HappyPandaXDroid\HPXTest\obj\Debug\uploadflags.txt
 C:\HappyPandaXDroid\HPXTest\obj\Debug\HPXTest.csprojResolveAssemblyReference.cache
+C:\HappyPandaXDroid\HPXTest\bin\Debug\HPXTest.dll.mdb
+C:\HappyPandaXDroid\HPXTest\obj\Debug\android\assets\HPXTest.dll.mdb

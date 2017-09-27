@@ -327,7 +327,8 @@ namespace HappyPandaXDroid.Core
                         }
                         if(!Directory.Exists(dir))
                         Directory.CreateDirectory(dir);
-                        var profiledata = JSON.Serializer.simpleSerializer.Deserialize<Gallery.Profile>(data);
+                        var profiledata = JSON.Serializer.SimpleSerializer.Deserialize<Gallery.Profile>(data);
+
                         filename = dir + name + ".jpg";
                         string url = profiledata.data;
                         url = "http://" + App.Settings.Server_IP + ":"+ App.Settings.WebClient_Port + url;
@@ -382,7 +383,7 @@ namespace HappyPandaXDroid.Core
                 response = JSON.API.ParseToString(main);
                 string responsestring = Net.SendPost(response);
                 string data = ParseItem(responsestring);
-                return JSON.Serializer.simpleSerializer.Deserialize<T>(data);
+                return JSON.Serializer.SimpleSerializer.Deserialize<T>(data);
 
 
             }
@@ -406,7 +407,7 @@ namespace HappyPandaXDroid.Core
                 response = JSON.API.GetData(response, 2);
                 if (response.Contains("\"fname\""))
                     response = response.Substring(0, response.LastIndexOf(","));
-                var list = JSON.Serializer.simpleSerializer.DeserializeToList<T>(response);
+                var list = JSON.Serializer.SimpleSerializer.DeserializeToList<T>(response);
                 return list;
             }
 

@@ -20,7 +20,7 @@ namespace HappyPandaXDroid.Core
         public  class Serializer
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
-            public static Serializer simpleSerializer = new Serializer();
+            public static Serializer SimpleSerializer = new Serializer();
             public string Serialize<T>( T obj )
             {
                 return JsonConvert.SerializeObject(obj, obj.GetType(), null);
