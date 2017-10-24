@@ -56,6 +56,7 @@ namespace HappyPandaXDroid
 
 
             ParseMeta();
+            this.Window.SetType(WindowManagerTypes.KeyguardDialog);
             string path = string.Empty ;
             Task.Run(async () =>
             {
@@ -140,7 +141,10 @@ namespace HappyPandaXDroid
         private void ActionCard_Click(object sender, EventArgs e)
         {
             List<int> pages_ids = new List<int>();
-            if (pagelist.Count < 1)
+
+            if (pagelist == null)
+                return;
+            if ( pagelist==null & pagelist.Count < 1)
                 return;
 
             Intent intent = new Android.Content.Intent(this, typeof(GalleryViewer));
@@ -322,19 +326,18 @@ namespace HappyPandaXDroid
             var activity = (GalleryActivity)mcontext;
             var cts = new CancellationTokenSource();
 
-            var thread = ThreadHandler.CreateThread( async () =>
-           {
-               try
-               {
-                    await vh.LoadPreview(page);
-               }
-               catch(Exception ex)
-               {
-                   logger.Error(ex, "\n Exception Caught In GalleryActivity.PreviewAdaptor.OnBindViewHolder.");
-               }
+            Task.Run(async () =>
+          {
+              try
+              {
+                  await vh.LoadPreview(page);
+              }
+              catch (Exception ex)
+              {
+                  logger.Error(ex, "\n Exception Caught In GalleryActivity.PreviewAdaptor.OnBindViewHolder.");
+              }
 
-           }, activity.activityId,"GalleryActivity");
-            ThreadHandler.Schedule(thread);
+          });
             
             vh.txt.Text = mdata[position].number.ToString();
         }
@@ -401,6 +404,17 @@ namespace HappyPandaXDroid
             {
 
                 var h = new Handler(Looper.MainLooper);
+                bool exists = await Core.Gallery.IsSourceExist("page", page.id);
+                if (!exists)
+                {
+                    h.Post(() =>
+                    {
+                        Glide.With(preview.Context)
+                                .Load(Resource.Drawable.image_failed)
+                                .Into(img);
+                    });
+                    return false;
+                }
                 h.Post(() =>
                 {
                 try
@@ -418,7 +432,19 @@ namespace HappyPandaXDroid
                 });
                     while (!IsCached)
                     {
-                        page.thumb_url = await Core.Gallery.GetImage(page, false,"medium",true);
+                    exists = await Core.Gallery.IsSourceExist("page", page.id);
+                    if (!exists)
+                    {
+                        h.Post(() =>
+                        {
+                            Glide.With(preview.Context)
+                                    .Load(Resource.Drawable.image_failed)
+                                    .Into(img);
+                        });
+                        return false;
+                    }
+
+                    page.thumb_url = await Core.Gallery.GetImage(page, false,"medium",true);
                         if (page.thumb_url.Contains("fail"))
                         {
                             if (page.thumb_url.Contains("misc"))

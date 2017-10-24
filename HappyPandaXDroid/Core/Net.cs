@@ -24,6 +24,7 @@ namespace HappyPandaXDroid.Core
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public static string session_id = string.Empty;
+        public static bool Connected = false;
 
         static List<Client> ClientList = new List<Client>();
 
@@ -47,7 +48,8 @@ namespace HappyPandaXDroid.Core
             {
                 logger.Info("Connecting to server ...");
                 cli = new Client();
-                return cli.client.Connected;
+                Connected = cli.client.Connected;
+                return Connected;
             }catch(SocketException ex)
             {
                 logger.Error(ex, "\n Exception Caught In Net.Connect.");

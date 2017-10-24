@@ -15,14 +15,14 @@ public class TestSuiteActivity_TestData
 	}
 
 
-	public TestSuiteActivity_TestData () throws java.lang.Throwable
+	public TestSuiteActivity_TestData ()
 	{
 		super ();
 		if (getClass () == TestSuiteActivity_TestData.class)
 			mono.android.TypeManager.Activate ("Xamarin.Android.NUnitLite.TestSuiteActivity+TestData, Xamarin.Android.NUnitLite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", "", this, new java.lang.Object[] {  });
 	}
 
-	public TestSuiteActivity_TestData (java.lang.String p0, java.lang.String p1, java.lang.String p2, java.lang.String p3, java.lang.String p4, java.lang.String p5, java.lang.String p6) throws java.lang.Throwable
+	public TestSuiteActivity_TestData (java.lang.String p0, java.lang.String p1, java.lang.String p2, java.lang.String p3, java.lang.String p4, java.lang.String p5, java.lang.String p6)
 	{
 		super ();
 		if (getClass () == TestSuiteActivity_TestData.class)

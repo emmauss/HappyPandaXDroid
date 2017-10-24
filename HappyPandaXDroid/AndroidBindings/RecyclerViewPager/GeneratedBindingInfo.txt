@@ -1,6 +1,0 @@
-Binding for:
-com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar
-
-Dependencies:
-
-lib-v1.1.2.aar,    Path=C:\Users\Emmanuel Hansen\.gradle\caches\modules-2\files-2.1\com.github.lsjwzh.RecyclerViewPager\lib\v1.1.2\3ea1a7ad94989199d2e71f392fc039d7acbb0e8b\lib-v1.1.2.aar

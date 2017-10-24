@@ -45,6 +45,9 @@ namespace HappyPandaXDroid
         
         protected override void OnCreate(Bundle bundle)
         {
+            Task.Run(()=> {
+                Core.Net.Connect();
+                });
             base.OnCreate(bundle);
             //set unhandled exception handler
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
@@ -72,12 +75,10 @@ namespace HappyPandaXDroid
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            ThreadHandler.InitScheduler();
             activityId = ThreadHandler.Thread.IdGen.Next();
             toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Library";
-            
             ContentView = FindViewById<Custom_Views.HPContent>(Resource.Id.content_view);
             ContentView.activityId = activityId;
             ContentView.activityName = "MainActivity";
@@ -105,7 +106,8 @@ namespace HappyPandaXDroid
 
         public static void InitLogging()
         {
-              if (Core.App.Settings.Logging_Enabled)
+            
+            if (Core.App.Settings.Logging_Enabled)
                 {
                     LogManager.Configuration = new LoggingConfiguration();
                     NLog.Targets.FileTarget target = new NLog.Targets.FileTarget("log");

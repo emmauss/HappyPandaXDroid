@@ -277,6 +277,7 @@ namespace HappyPandaXDroid.Core
                 string response = JSON.API.ParseToString(funct);
                 JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
                 response = JSON.API.ParseToString(main);
+                
                 return response;
             }
 
@@ -822,7 +823,7 @@ namespace HappyPandaXDroid.Core
                 ThreadPool = new List<Thread>();
                 ThreadStart thrds = new ThreadStart(SchedulerTask);
                 System.Threading.Thread thread = new System.Threading.Thread(thrds);
-                thread.Start();
+                //thread.Start();
             }
 
             public static void Close()

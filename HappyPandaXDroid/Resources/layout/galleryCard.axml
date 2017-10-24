@@ -33,7 +33,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#333333"
-                    android:text="placeholder"
                     android:maxLines = "2"
                     android:minLines = "1"
                     android:id="@+id/textViewholder"

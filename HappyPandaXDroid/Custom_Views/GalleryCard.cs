@@ -45,6 +45,7 @@ namespace HappyPandaXDroid.Custom_Views
             get
             {
                 return gallery;
+                
             }
             set
             {
@@ -127,6 +128,21 @@ namespace HappyPandaXDroid.Custom_Views
 
             }
                 var h = new Handler(Looper.MainLooper);
+            h.Post(() =>
+            {
+                img.SetImageDrawable(null);
+            });
+            bool exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);
+            if (!exists)
+            {
+                h.Post(() =>
+                {
+                    Name.Text = Gallery.titles[0].name;
+                    img.SetImageResource(Resource.Drawable.image_failed);
+                });
+                return;
+            }
+
             if (tries > 2)
             {
                 tries = 0;
@@ -171,13 +187,14 @@ namespace HappyPandaXDroid.Custom_Views
             logger.Info("Refresh {0} Successful", Gallery.id);
         }
 
-        public void LoadThumb()
+        public async  void LoadThumb()
         {
+            var h = new Handler(Looper.MainLooper);
             if (IsCached)
             {
                 try
                 {
-                    var h = new Handler(Looper.MainLooper);
+                    
                     h.Post(() =>
                     {
                         try
@@ -202,7 +219,23 @@ namespace HappyPandaXDroid.Custom_Views
                 }
 
             }
-            else Refresh();
+
+            else {
+                bool exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);
+                if (!exists)
+                {
+                    h.Post(() =>
+                    {
+                        Glide.With(this.Context)
+                                .Load(Resource.Drawable.image_failed)
+                                .Into(img);
+                    });
+                    return;
+                }
+
+                Refresh();
+
+            }
         }
 
         bool IsCached

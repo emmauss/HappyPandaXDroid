@@ -34,6 +34,7 @@ namespace HappyPandaXDroid.Core
                 try
                 {
                     bool check = File.Exists(filepath);
+                    /*if(check)
                     using (var bit = BitmapFactory.DecodeFile(filepath, new BitmapFactory.Options()))
                     {
                         if (bit == null)
@@ -42,7 +43,7 @@ namespace HappyPandaXDroid.Core
                             return false;
                         }
 
-                    }
+                    }*/
                     return check;
                 }
                 catch (Exception ex)

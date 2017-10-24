@@ -213,33 +213,50 @@ namespace HappyPandaXDroid.Custom_Views
         }
 
 
-        public void InitLibrary()
+        public  void InitLibrary()
         {
-            
-            Task.Run(() =>
+            int tries= 0;
+            Task.Run(async () =>
              {
-                 while (!initialized)
+                 while (tries <5 && !Core.Net.Connected)
                  {
-                     Thread.Sleep(100);
+                     tries++;
+                    await Task.Delay(2000);
                  }
-                 if (Core.Net.Connect())
+                 if (tries >= 5 && !Core.Net.Connected)
                  {
                      {
-                         logger.Info("Getting Library");
-                         GetLib();
                          var h = new Handler(Looper.MainLooper);
                          h.Post(() =>
                          {
                              SetMainLoading(false);
-                             adapter.ResetList();
-                             lastindex = Core.Gallery.CurrentList.Count - 1;
-                             SetMainLoading(false);
-
+                             SetError(true);
                          });
-                         GetTotalCount();
-                         Bookmarks.ResetList();
-                         listener.AddBookmark(0);
+                         return;
+                     }
+                 }
+                 tries = 0;
+                 if (Core.Net.Connected)
+                 {
+                     if (Core.Net.session_id != string.Empty && Core.Net.session_id != null)
+                     {
+                         {
+                             logger.Info("Getting Library");
+                             GetLib();
+                             var h = new Handler(Looper.MainLooper);
+                             h.Post(() =>
+                             {
+                                 SetMainLoading(false);
+                                 adapter.ResetList();
+                                 lastindex = Core.Gallery.CurrentList.Count - 1;
+                                 SetMainLoading(false);
 
+                             });
+                             GetTotalCount();
+                             Bookmarks.ResetList();
+                             listener.AddBookmark(0);
+
+                         }
                      }
                  }
                  else

@@ -17,7 +17,7 @@ public class TestSuiteActivity
 	}
 
 
-	public TestSuiteActivity () throws java.lang.Throwable
+	public TestSuiteActivity ()
 	{
 		super ();
 		if (getClass () == TestSuiteActivity.class)

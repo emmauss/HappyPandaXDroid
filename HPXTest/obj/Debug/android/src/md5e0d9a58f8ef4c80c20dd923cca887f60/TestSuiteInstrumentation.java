@@ -16,7 +16,7 @@ public abstract class TestSuiteInstrumentation
 	}
 
 
-	public TestSuiteInstrumentation () throws java.lang.Throwable
+	public TestSuiteInstrumentation ()
 	{
 		super ();
 	}

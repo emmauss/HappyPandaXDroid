@@ -16,7 +16,7 @@ public class TestSuiteActivity_TestDataAdapter
 	}
 
 
-	public TestSuiteActivity_TestDataAdapter (android.content.Context p0, java.util.List p1, int p2, java.lang.String[] p3, int[] p4) throws java.lang.Throwable
+	public TestSuiteActivity_TestDataAdapter (android.content.Context p0, java.util.List p1, int p2, java.lang.String[] p3, int[] p4)
 	{
 		super (p0, p1, p2, p3, p4);
 		if (getClass () == TestSuiteActivity_TestDataAdapter.class)

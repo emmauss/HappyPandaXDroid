@@ -17,7 +17,7 @@ public class OptionsActivity
 	}
 
 
-	public OptionsActivity () throws java.lang.Throwable
+	public OptionsActivity ()
 	{
 		super ();
 		if (getClass () == OptionsActivity.class)

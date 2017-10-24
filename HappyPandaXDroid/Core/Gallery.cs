@@ -142,6 +142,28 @@ namespace HappyPandaXDroid.Core
             public string name;
         }
 
+        public static async Task<bool> IsSourceExist(string type, int id)
+        {
+            List<Tuple<string, string>> main = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> funct = new List<Tuple<string, string>>();
+            JSON.API.PushKey(ref main, "name", "test");
+            JSON.API.PushKey(ref main, "session", Net.session_id);
+            JSON.API.PushKey(ref funct, "fname", "source_exists");
+            JSON.API.PushKey(ref funct, "item_type", type);
+            JSON.API.PushKey(ref funct, "item_id","<int>" + id);
+            string response = JSON.API.ParseToString(funct);
+            JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
+            response = JSON.API.ParseToString(main);
+            string reply = Net.SendPost(response);
+            string exist = reply.Substring(reply.IndexOf("exists"));
+            bool exists = false;
+            if (exist.Contains("true"))
+            {
+                exists = true;
+            }
+            return exists;
+        }
+
 
         public static void GetLibrary()
         {

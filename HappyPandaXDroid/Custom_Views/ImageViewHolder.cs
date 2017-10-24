@@ -12,9 +12,10 @@ using Java.Lang;
 using Android.Views;
 using Android.Widget;
 using ProgressView = XamarinBindings.MaterialProgressBar;
-using PhotoView = Com.Github.Chrisbanes.Photoview;
+using Com.Davemorrissey.Labs.Subscaleview;
 using NLog;
 using Com.Bumptech.Glide;
+using Android.Graphics;
 using Com.Bumptech.Glide.Request.Target;
 
 using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
@@ -24,7 +25,7 @@ namespace HappyPandaXDroid.Custom_Views
     public class ImageViewHolder : LinearLayout
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        public PhotoView.PhotoView  img;
+        public SubsamplingScaleImageView  img;
         ProgressView.MaterialProgressBar mProgressView;
         string page_path;
         Core.Gallery.Page Page { set; get; }
@@ -51,37 +52,58 @@ namespace HappyPandaXDroid.Custom_Views
         private void Initialize()
         {
             view = Inflate(this.Context, Resource.Layout.ImageLayout, this);
-            img = FindViewById<PhotoView.PhotoView>(Resource.Id.image);
+            img = FindViewById<SubsamplingScaleImageView>(Resource.Id.image);
             mProgressView = FindViewById<ProgressView.MaterialProgressBar>(Resource.Id.progress_view);
             mProgressView.Visibility = ViewStates.Invisible;
             img.Visibility = ViewStates.Visible;
         }
 
-        public void OnLoadStart(Core.Gallery.Page page)
+        public async void OnLoadStart(Core.Gallery.Page page)
         {
-            if (!Loaded)
-            {
-                
+                            
                 this.Page = page;
                 var h = new Handler(Looper.MainLooper);
+                bool exists = await Core.Gallery.IsSourceExist("page", page.id);
+                if (!exists)
+                {
+                    h.Post(() =>
+                    {
+                        Glide.With(this.Context)
+                                .Load(Resource.Drawable.image_failed)
+                                .Into(img);
+                    });
+                    return;
+                }
                 h.Post(() =>
                 {
                     mProgressView.Visibility = ViewStates.Visible;
                     img.Visibility = ViewStates.Invisible;
                 });
                 Load();
-            }
+            
             
         }
 
         async void Load()
         {
-            
-                try
+            var h = new Handler(Looper.MainLooper);
+            try
                 {
                     while (!IsCached())
                     {
-                        page_path = await Core.Gallery.GetImage(Page, false, "original", false);
+                    
+                    bool exists = await Core.Gallery.IsSourceExist("page", Page.id);
+                    if (!exists)
+                    {
+                        h.Post(() =>
+                        {
+                            Glide.With(this.Context)
+                                    .Load(Resource.Drawable.image_failed)
+                                    .Into(img);
+                        });
+                        return;
+                    }
+                    page_path = await Core.Gallery.GetImage(Page, false, "original", false);
 
                         if (page_path.Contains("fail"))
                         {
@@ -105,29 +127,27 @@ namespace HappyPandaXDroid.Custom_Views
                         }
                     }
 
-
-                var h = new Handler(Looper.MainLooper);
+                    
                 h.Post(() =>
                     {
                         try
                         {
-                            var options = ((GalleryViewer)Context).options;
-                            Glide.With(this.Context)
-                            .Load(page_path)
-                            .Apply(options)
-                            .Into(img)
-                            ;
+                            img.SetImage(ImageSource.InvokeUri(page_path));
                             OnLoadEnd();
                         }
-                        catch (IllegalArgumentException ex)
+                        catch (IllegalArgumentException iex)
                         {
-                            if (ex.Message.Contains("destroyed"))
+                            if (iex.Message.Contains("destroyed"))
                                 return;
+                        }
+                        catch(System.Exception ex)
+                        {
+
                         }
 
                     });
                     tries=0;
-
+                
                     
                 }
                 catch (System.Exception ex)

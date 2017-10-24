@@ -174,7 +174,7 @@ namespace HappyPandaXDroid
 
         public class ExtraLayoutManager : LinearLayoutManager
         {
-            private static readonly int DEFAULT_EXTRA_LAYOUT_SPACE = 600;
+            private static readonly int DEFAULT_EXTRA_LAYOUT_SPACE = 800;
             private int extraLayoutSpace = -1;
             private Context context;
             
@@ -277,10 +277,71 @@ namespace HappyPandaXDroid
             if (pos > 0)
                 galleryPager.SmoothScrollToPosition(pos - 1);
         }
-        
-        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+
+        /*1public override bool DispatchKeyEvent(KeyEvent e)
+        {
+           
+                int pos = galleryPager.CurrentPosition;
+                var keyCode = e.KeyCode;
+                if(e.Action == KeyEventActions.Up)
+                switch (keyCode)
+                {
+                    case Keycode.VolumeUp:
+                        if (e.Action == KeyEventActions.Up)
+                        {
+                            PreviousPage();
+                        }
+                        return true;
+                    case Keycode.DpadLeft:
+                        if (e.Action == KeyEventActions.Up)
+                        {
+                            PreviousPage();
+                        }
+                        return true;
+                    //break;
+                    case Keycode.VolumeDown:
+                        if (e.Action == KeyEventActions.Up)
+                        {
+                            NextPage();
+                        }
+                        return true;
+                    case Keycode.DpadRight:
+                        if (e.Action == KeyEventActions.Up)
+                        {
+                            NextPage();
+                        }
+                        return true;
+                        //break;
+                }
+            return base.DispatchKeyEvent(e);
+        }*/
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
         {
             if (e.Action == KeyEventActions.Down)
+            {
+                int pos = galleryPager.CurrentPosition;
+                switch (keyCode)
+                {
+                    case Keycode.VolumeUp:
+                        return true;
+                    case Keycode.DpadLeft:
+                        return true;
+                    //break;
+                    case Keycode.VolumeDown:
+                        return true;
+                    case Keycode.DpadRight:
+                        return true;
+                        //break;
+                }
+            }
+            return false;
+        }
+
+        public override bool OnKeyUp(Keycode keyCode, KeyEvent e)
+        {
+           
+            if (e.Action == KeyEventActions.Up)
             {
                 int pos = galleryPager.CurrentPosition;
                 switch (keyCode)
@@ -301,7 +362,7 @@ namespace HappyPandaXDroid
                         //break;
                 }
             }
-            return base.OnKeyDown(keyCode, e);
+            return false;
         }
 
 
@@ -368,17 +429,14 @@ namespace HappyPandaXDroid
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
                 ImageViewHolder vh = holder as ImageViewHolder;
-                //vh.IsRecyclable = false;
                 var h = new Handler(Looper.MainLooper);
                 var activity = (GalleryViewer)context;
 
-                ThreadHandler.Thread thread = ThreadHandler.CreateThread(() =>
+               Task.Run(() =>
                 {
-                    if (!vh.imageView.Loaded)
+                    
                         vh.imageView.OnLoadStart(PageList[position]);
-                }, activity.activityID, "GalleryViewer");
-                ThreadHandler.StartThread(thread);
-                ThreadHandler.Schedule(thread);
+                });
             }
 
             private void ItemView_Touch(object sender, View.TouchEventArgs e)
