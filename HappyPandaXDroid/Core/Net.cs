@@ -25,8 +25,7 @@ namespace HappyPandaXDroid.Core
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public static string session_id = string.Empty;
         public static bool Connected = false;
-
-        static List<Client> ClientList = new List<Client>();
+        
 
         public class Client
         {
@@ -37,26 +36,40 @@ namespace HappyPandaXDroid.Core
             {
                 client = new TcpClient(App.Settings.Server_IP, int.Parse(App.Settings.Server_Port));
                 string response = Connect(this);
-                ClientList.Add(this);
             }
         }
 
         public static bool Connect()
         {
-            Client cli = null;
+            
             try
             {
+                if(client!=null)
+                if (client.client.Connected)
+                {
+                    return true;
+                }
+                client = null;
                 logger.Info("Connecting to server ...");
-                cli = new Client();
-                Connected = cli.client.Connected;
+                client = new Client();
+                Connected = client.client.Connected;
                 return Connected;
-            }catch(SocketException ex)
+            }catch(SocketException sex)
             {
-                logger.Error(ex, "\n Exception Caught In Net.Connect.");
+                logger.Error(sex, "\n Exception Caught In Net.Connect.");
+                client.client.Client.Disconnect(false);
+                client.client.Dispose();
+                client = null;
                 return false;
 
             }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
+
+        static Client client;
 
         static string Connect(Client cli)
         {
@@ -122,7 +135,9 @@ namespace HappyPandaXDroid.Core
                 catch (SocketException ex)
                 {
                     logger.Error(ex, "\n Exception Caught In Net.Connect.");
-
+                    client.client.Client.Disconnect(false);
+                    client.client.Dispose();
+                    client = null;
                     return "fail";
                 }
             }
@@ -132,94 +147,60 @@ namespace HappyPandaXDroid.Core
 
         static Client GetActiveConnection()
         {
-            Client tcp = null;
-            CleanClients();
-            foreach(var c in ClientList)
+            if (client == null)
             {
-                if (!c.InUse & c.client.Connected)
-                {
-                    c.InUse = true;
-                    tcp = c;
-                    break;
-                }
+                client = new Client();
             }
-            if(tcp == null)
-            {
-                tcp = new Client
-                {
-                    InUse = true
-                };
-            }
-            tcp.InUse = true;
-            return tcp;
-        }
 
-        static void CleanClients()
-        {
-            var removelist = new List<Client>();
-            foreach(var c in ClientList)
-            {
-                if (!c.client.Connected)
-                    removelist.Add(c);
-            }
-            foreach(var v in removelist)
-            {
-                ClientList.Remove(v);
-            }
+            return client;                
+            
         }
+        public static object locker = new object();
 
         public  static string SendPost(string payload)
         {
             logger.Info("Sending Request.\n Request : \n {0} \n", payload);
             string response = "fail";
-            Client listener = GetActiveConnection();
-            try
+            lock (locker)
             {
-                if (session_id == null || session_id == string.Empty)
-                    Connect();
-                if (session_id!= null && session_id!=string.Empty)
+                Client listener = GetActiveConnection();
+                listener.client.GetStream().ReadTimeout = 30000;
+                listener.client.GetStream().WriteTimeout = 30000;
+                try
                 {
-                    var stream = listener.client.GetStream();
-                    byte[] req = Encoding.UTF8.GetBytes(payload + "<EOF>");
-                    byte[] res = new byte[1024*10];
-                    if (!listener.initialise)
+                    if (session_id == null || session_id == string.Empty || client==null | !client.client.Connected)
+                        Connect();
+                    if (session_id != null && session_id != string.Empty && client!=null & client.client.Connected)
                     {
-                        listener.initialise = true;
+                        var stream = listener.client.GetStream();
+                        byte[] req = Encoding.UTF8.GetBytes(payload + "<EOF>");
+                        byte[] res = new byte[1024 * 10];
+                        stream.Write(req, 0, req.Length);
+                        Array.Clear(res, 0, res.Length);
+                        response = string.Empty;
                         while (true)
                         {
                             stream.Read(res, 0, res.Length);
-                            payload = Encoding.UTF8.GetString(res).TrimEnd('\0');
-                            response += payload;
+                            string reply = Encoding.UTF8.GetString(res).TrimEnd('\0');
+                            response += reply;
                             if (response.Contains("<EOF>"))
                                 break;
                             Array.Clear(res, 0, res.Length);
                         }
+                        logger.Info("Received response from server");
                     }
-                    stream.Write(req, 0, req.Length);
-                    Array.Clear(res, 0, res.Length);
-                    response = string.Empty;
-                    while (true)
-                    {
-                        stream.Read(res, 0, res.Length);
-                        string reply= Encoding.UTF8.GetString(res).TrimEnd('\0');
-                        response += reply;
-                        if (response.Contains("<EOF>"))
-                            break;
-                        Array.Clear(res, 0, res.Length);
-                    }
-                    logger.Info("Received response from server");
+
                 }
+                catch (System.Exception ex)
+                {
+                    client.client.Client.Disconnect(false);
+                    client.client.Dispose();
+                    client = null;
+                    logger.Error(ex, "\n Exception Caught In Net.SendPost.");
 
+                }
+                
             }
-            catch(System.Exception ex)
-            {
-                listener.initialise = true;
-                listener.InUse = false;
-                logger.Error(ex, "\n Exception Caught In Net.SendPost.");
-
-            }
-            listener.initialise = true;
-            listener.InUse = false;
             return response;
         }
         

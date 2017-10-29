@@ -14,6 +14,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using NLog;
+using Newtonsoft.Json;
 
 
 namespace HappyPandaXDroid.Core
@@ -100,6 +101,7 @@ namespace HappyPandaXDroid.Core
         }
         public class Profile
         {
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public int id;
             public int timestamp;
             public string ext;
@@ -177,6 +179,26 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
             string countstring = Net.SendPost(response);
+            countstring = countstring.Remove(countstring.LastIndexOf("<EOF>"));
+            var obj = JSON.Serializer.SimpleSerializer.Deserialize<JSON.ServerObject>(countstring);
+            var array = obj.data as Newtonsoft.Json.Linq.JArray;
+            List<GalleryItem> list = new List<GalleryItem>();
+            try
+            {
+                if (array != null & array.Count > 0)
+                {
+                    var data = array[0].ToObject<JSON.DataObject>();
+                    var rdata = data.data as Newtonsoft.Json.Linq.JArray;
+                    
+                    list = rdata.ToObject<List<GalleryItem>>();
+                }
+            }catch(Exception ex)
+            {
+
+            }
+            CurrentList = list;
+
+            /*
             string data = JSON.API.GetData(countstring, 2);
             if (data.LastIndexOf("]") != data.Length - 1)
                 data = data.Remove(data.LastIndexOf("]") + 1);
@@ -186,7 +208,7 @@ namespace HappyPandaXDroid.Core
             {
                 g_ids.Add(gal.id);
             }
-            int[] gids = g_ids.ToArray();
+            int[] gids = g_ids.ToArray();*/
 
             //InitiateImageGeneration(gids, "gallery","medium");
         }
@@ -344,10 +366,31 @@ namespace HappyPandaXDroid.Core
                 JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
                 response = JSON.API.ParseToString(main);
                 string countstring = Net.SendPost(response);
+                countstring = countstring.Remove(countstring.LastIndexOf("<EOF>"));
+                var obj = JSON.Serializer.SimpleSerializer.Deserialize<JSON.ServerObject>(countstring);
+                var array = obj.data as Newtonsoft.Json.Linq.JArray;
+                List<GalleryItem> list = new List<GalleryItem>();
+                try
+                {
+                    if (array != null & array.Count > 0)
+                    {
+                        var data = array[0].ToObject<JSON.DataObject>();
+                        var rdata = data.data as Newtonsoft.Json.Linq.JArray;
+
+                        list = rdata.ToObject<List<GalleryItem>>();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                CurrentList = list;
+
+                /*
                 string data = JSON.API.GetData(countstring, 2);
                 if (data.LastIndexOf("]") != data.Length - 1)
                     data = data.Remove(data.LastIndexOf("]") + 1);
-                CurrentList = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
+                CurrentList = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);*/
                 if (CurrentList.Count > 0)
                 {
                     List<int> g_ids = new List<int>();
@@ -388,10 +431,25 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
             string countstring = Net.SendPost(response);
-            string data = JSON.API.GetData(countstring, 2);
-            if (data.LastIndexOf("]") != data.Length - 1)
-                data = data.Remove(data.LastIndexOf("]") + 1);
-            CurrentList = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
+            countstring = countstring.Remove(countstring.LastIndexOf("<EOF>"));
+            var obj = JSON.Serializer.SimpleSerializer.Deserialize<JSON.ServerObject>(countstring);
+            var array = obj.data as Newtonsoft.Json.Linq.JArray;
+            List<GalleryItem> list = new List<GalleryItem>();
+            try
+            {
+                if (array != null & array.Count > 0)
+                {
+                    var data = array[0].ToObject<JSON.DataObject>();
+                    var rdata = data.data as Newtonsoft.Json.Linq.JArray;
+
+                    list = rdata.ToObject<List<GalleryItem>>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            CurrentList = list;
             return CurrentList.Count;
         }
 
@@ -409,15 +467,26 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
             string countstring = Net.SendPost(response);
-            string data = JSON.API.GetData(countstring, 2);
-            if (data.LastIndexOf("]") != data.Length - 1)
-                data = data.Remove(data.LastIndexOf("]") + 1);
-            var newpagelist = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
-            int itemaddedcount = newpagelist.Count;
-            if (itemaddedcount < 1)
-                return 0;
-            CurrentList.AddRange(newpagelist);
-            return itemaddedcount;
+            countstring = countstring.Remove(countstring.LastIndexOf("<EOF>"));
+            var obj = JSON.Serializer.SimpleSerializer.Deserialize<JSON.ServerObject>(countstring);
+            var array = obj.data as Newtonsoft.Json.Linq.JArray;
+            List<GalleryItem> list = new List<GalleryItem>();
+            try
+            {
+                if (array != null & array.Count > 0)
+                {
+                    var data = array[0].ToObject<JSON.DataObject>();
+                    var rdata = data.data as Newtonsoft.Json.Linq.JArray;
+
+                    list = rdata.ToObject<List<GalleryItem>>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            CurrentList.AddRange(list);
+            return list.Count;
         }
 
         public static int PreviousPage(int page, string search_query)
@@ -434,17 +503,28 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
             string countstring = Net.SendPost(response);
-            string data = JSON.API.GetData(countstring, 2);
-            if (data.LastIndexOf("]") != data.Length - 1)
-                data = data.Remove(data.LastIndexOf("]") + 1);
-            var newpagelist = JSON.Serializer.SimpleSerializer.DeserializeToList<GalleryItem>(data);
-            int itemaddedcount = newpagelist.Count;
-            if (itemaddedcount < 1)
-                return 0;
-            newpagelist.AddRange(CurrentList);
+            countstring = countstring.Remove(countstring.LastIndexOf("<EOF>"));
+            var obj = JSON.Serializer.SimpleSerializer.Deserialize<JSON.ServerObject>(countstring);
+            var array = obj.data as Newtonsoft.Json.Linq.JArray;
+            List<GalleryItem> list = new List<GalleryItem>();
+            try
+            {
+                if (array != null & array.Count > 0)
+                {
+                    var data = array[0].ToObject<JSON.DataObject>();
+                    var rdata = data.data as Newtonsoft.Json.Linq.JArray;
+
+                    list = rdata.ToObject<List<GalleryItem>>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            list.AddRange(CurrentList);
             CurrentList.Clear();
-            CurrentList.AddRange(newpagelist);
-            return itemaddedcount;
+            CurrentList.AddRange(list);
+            return list.Count;
         }
 
         public static async Task<int> GetCount(string query)
@@ -481,10 +561,17 @@ namespace HappyPandaXDroid.Core
             JSON.API.PushKey(ref main, "data", "[\n" + response + "\n]");
             response = JSON.API.ParseToString(main);
             string responsestring = Net.SendPost(response);
-            string data = App.Server.ParseItem(responsestring);
-
-
-            return JSON.Serializer.SimpleSerializer.Deserialize<TagList>(data);
+            responsestring = responsestring.Remove(responsestring.LastIndexOf("<EOF>"));
+            var obj = JSON.Serializer.SimpleSerializer.Deserialize<JSON.ServerObject>(responsestring);
+            var array = obj.data as Newtonsoft.Json.Linq.JArray;
+            var taglist = new TagList();
+            if (array != null)
+            {
+                var data = array[0].ToObject<JSON.DataObject>();
+                var sett = data.data as Newtonsoft.Json.Linq.JObject;
+                taglist = sett.ToObject<TagList>();
+            }
+            return taglist;
         }
 
         public async static Task<string> GetThumb(GalleryItem gallery)

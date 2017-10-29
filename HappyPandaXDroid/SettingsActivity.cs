@@ -1,27 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Android.Preferences;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Support.V7.App;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
-using Android.Widget;
-using Android.Support.V4.Widget;
-using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
-using Android.Support.V7.View;
-using Plugin.Settings;
-using System.IO;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
-using NLog.Config;
-
 using NLog;
+using NLog.Config;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace HappyPandaXDroid
 {
@@ -34,10 +22,12 @@ namespace HappyPandaXDroid
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.settings);
+            
             Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             var newFragment = new SettingsFragments();
+            newFragment.SetParent(this);
             var ft = FragmentManager.BeginTransaction();
             ft.Add(Resource.Id.fragment_container, newFragment);
             ft.Commit();
@@ -65,8 +55,14 @@ namespace HappyPandaXDroid
             private static Logger logger = LogManager.GetCurrentClassLogger();
             //Core.App.Settings set = new Core.App.Settings();
             ISharedPreferences sharedPreferences;
+            
             ISharedPreferencesOnSharedPreferenceChangeListener listener;
-            Preference pref;
+            Preference pref, server;
+
+            AppCompatActivity parent;
+
+            
+
             public override void OnCreate(Bundle savedInstanceState)
             {
                 base.OnCreate(savedInstanceState);
@@ -78,6 +74,10 @@ namespace HappyPandaXDroid
                 {
                     SetSummary(PreferenceScreen.GetPreference(i));
                 }
+                server = FindPreference("server_section");
+                
+                
+
                 sharedPreferences.RegisterOnSharedPreferenceChangeListener(this);
                 cachedialog = (Custom_Views.OptionDialogPreference)FindPreference("cachedialog");
                 Task.Run(() =>
@@ -91,11 +91,31 @@ namespace HappyPandaXDroid
                     });
                 });
                 cachedialog.OnPositiveClick += Cachedialog_OnPositiveClick;
-               
-                
-                //cachedialog.Dialog.DismissEvent += Dialog_DismissEvent;
-                //listener = new changelistener(this);
+                server.OnPreferenceClickListener = new Clistener();
 
+            }
+
+            public void SetParent(AppCompatActivity app)
+            {
+                parent = app;
+            }
+
+            private void Server_PreferenceClick(object sender, Preference.PreferenceClickEventArgs e)
+            {
+                Android.Content.Intent intent = new Intent(parent, typeof(ServerSettingsActivity));
+
+                parent.StartActivity(intent);
+            }
+
+            public class Clistener : Java.Lang.Object, Preference.IOnPreferenceClickListener
+            {
+                public bool OnPreferenceClick(Preference preference)
+                {
+                    Android.Content.Intent intent = new Intent(preference.Context, typeof(ServerSettingsActivity));
+
+                     preference.Context.StartActivity(intent);
+                    return true;
+                }
             }
 
             private async void Cachedialog_OnPositiveClick(object sender, EventArgs e)
@@ -116,10 +136,12 @@ namespace HappyPandaXDroid
             {
 
                 base.OnResume();
-                for(int i = 0; i < PreferenceScreen.PreferenceCount; i++)
+                sharedPreferences = PreferenceScreen.SharedPreferences;
+                for (int i = 0; i < PreferenceScreen.PreferenceCount; i++)
                 {
                     SetSummary(PreferenceScreen.GetPreference(i));
                 }
+                server.PreferenceClick += Server_PreferenceClick;
                 sharedPreferences.RegisterOnSharedPreferenceChangeListener(this);
 
             }
@@ -153,6 +175,7 @@ namespace HappyPandaXDroid
             }
             public override void OnPause()
             {
+                sharedPreferences = PreferenceScreen.SharedPreferences;
                 sharedPreferences.UnregisterOnSharedPreferenceChangeListener(this);
                 base.OnPause();
             }
@@ -173,10 +196,6 @@ namespace HappyPandaXDroid
                     edit.PutString(key, editp.Text);
                     editp.Summary = editp.Text;
                     edit.Commit();
-                    if (key == "server_ip" || key == "server_port" || key == "webclient_port")
-                    {
-                        Core.App.Settings.Refresh = true;
-                    }
                 }
                 else if (pref is TwoStatePreference check)
                 {

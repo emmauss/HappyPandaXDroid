@@ -11,15 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/frameLayout1">
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="160dp"
-            android:layout_gravity="center"
-            android:id="@+id/progress_view" />
         <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:id="@+id/image" />
     </FrameLayout>
 </LinearLayout>

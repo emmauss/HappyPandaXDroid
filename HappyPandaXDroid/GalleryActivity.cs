@@ -16,7 +16,6 @@ using Android.Support.V7.View;
 using Com.Bumptech.Glide;
 using Com.Bumptech.Glide.Request;
 using ProgressView = XamarinBindings.MaterialProgressBar;
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using NLog;
 
 namespace HappyPandaXDroid
@@ -51,7 +50,6 @@ namespace HappyPandaXDroid
             gallery = Core.JSON.Serializer.SimpleSerializer.Deserialize<Core.Gallery.GalleryItem>(data);
             logger.Info("Initializing Gallery Detail. GalleryId ={0}", gallery.id);
             
-            activityId = ThreadHandler.Thread.IdGen.Next();
 
 
 
@@ -98,13 +96,11 @@ namespace HappyPandaXDroid
         protected override void OnDestroy()
         {
             IsRunning = false;
-            ThreadHandler.AbortActivityThreads(activityId,"GalleryActivity");
             base.OnDestroy();
         }
 
         protected override void OnResume()
         {
-            ThreadHandler.ElevateActivityPriority(activityId);
             base.OnResume();
         }
 

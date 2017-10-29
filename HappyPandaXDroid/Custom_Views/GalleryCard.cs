@@ -123,6 +123,7 @@ namespace HappyPandaXDroid.Custom_Views
 
         public async void Refresh()
         {
+            bool exists = false;
             if (gallery == null)
             {
 
@@ -132,7 +133,10 @@ namespace HappyPandaXDroid.Custom_Views
             {
                 img.SetImageDrawable(null);
             });
-            bool exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);
+            await Task.Run( async () =>
+            {
+                exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);
+            });
             if (!exists)
             {
                 h.Post(() =>
@@ -221,7 +225,11 @@ namespace HappyPandaXDroid.Custom_Views
             }
 
             else {
-                bool exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);
+                bool exists = false;
+                await Task.Run(async () =>
+                {
+                    exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);
+                });
                 if (!exists)
                 {
                     h.Post(() =>
@@ -243,7 +251,7 @@ namespace HappyPandaXDroid.Custom_Views
             get
             {
                 
-
+                
                 int item_id = gallery.id;
                 try
                 {

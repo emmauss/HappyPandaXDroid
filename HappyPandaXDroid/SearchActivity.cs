@@ -19,7 +19,6 @@ using System.Xml;
 using Android.Support.V7.View;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using Java.Lang;
 using NLog.Config;
 using NLog;
@@ -39,6 +38,8 @@ namespace HappyPandaXDroid
         DrawerLayout navDrawer;
         public bool SwitchedToSettings = false;
         Clans.Fab.FloatingActionMenu fam;
+
+        AppBarLayout appBarLayout;
         public int activityId;
         public string activityName;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -62,10 +63,11 @@ namespace HappyPandaXDroid
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = data;
             ContentView = FindViewById<Custom_Views.HPContent>(Resource.Id.content_view);
-            activityId = ThreadHandler.Thread.IdGen.Next();
             activityName = "SearchActivity " + activityId;
             ContentView.activityId = activityId;
             ContentView.activityName = activityName;
+            appBarLayout = FindViewById<AppBarLayout>(Resource.Id.appbar);
+            appBarLayout.Drag += AppBarLayout_Drag;
 
             var navView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navView.NavigationItemSelected += NavView_NavigationItemSelected;
@@ -84,6 +86,11 @@ namespace HappyPandaXDroid
             mRefreshFab.SetOnClickListener(fabclick);
             ContentView.Current_Query = data;
 
+        }
+
+        private void AppBarLayout_Drag(object sender, View.DragEventArgs e)
+        {
+            e.Handled = true;
         }
 
         //bg thread unhandled exception handler
@@ -283,8 +290,8 @@ namespace HappyPandaXDroid
         public bool OnQueryTextSubmit(string query)
         {
             var view = CurrentFocus;
-            if (view != null)
-                view.ClearFocus();
+            if (ContentView != null)
+                ContentView.RequestFocus();
             logger.Info("Search query submit , query ={0}", query);
             ContentView.Current_Query = query;
             return true;

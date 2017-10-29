@@ -164,6 +164,7 @@
     <Compile Include="GalleryViewer.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="SearchActivity.cs" />
+    <Compile Include="ServerSettingsActivity.cs" />
     <Compile Include="SettingsActivity.cs" />
     <Compile Include="Core\App.cs" />
     <Compile Include="Core\Gallery.cs" />
@@ -179,6 +180,13 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\arrays.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\xml\server_settings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\refresh.png" />
+    <AndroidResource Include="Resources\menu\viewer_menu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="GettingStarted.Xamarin" />
@@ -247,6 +255,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PhotoViewHolder.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\server_settings.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -28,7 +28,6 @@ using Emmaus.Widget;
 using Com.Bumptech.Glide.Request;
 using Com.Bumptech.Glide.Request.Target;
 using NLog;
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 
 namespace HappyPandaXDroid
 {
@@ -49,9 +48,11 @@ namespace HappyPandaXDroid
         List<Core.Gallery.Page> PageList =
             new List<Core.Gallery.Page>();
         SeekBar seekbar;
+        UICountdown countDown;
+
+        Custom_Views.ImageViewHolder imageView;
         bool doubl_click = false;
         public int activityID;
-        int touch_count = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -63,7 +64,6 @@ namespace HappyPandaXDroid
                 PageList = Core.JSON.Serializer.SimpleSerializer.Deserialize<List<Core.Gallery.Page>>(data);
             logger.Info("Initializing Gallery Viewer");
             //InitPageGen();
-            activityID = ThreadHandler.Thread.IdGen.Next();
 
             options = new RequestOptions()
                 .Override(Target.SizeOriginal, Target.SizeOriginal);
@@ -73,9 +73,11 @@ namespace HappyPandaXDroid
             galleryPager = FindViewById<RecyclerViewPager>(Resource.Id.galleryViewPager);
             var layout = new ExtraLayoutManager(this, LinearLayoutManager.Horizontal, false);    
             galleryPager.SetLayoutManager(layout);
+
             adapter = new ImageAdapter(PageList,this);
             galleryPager.SetAdapter(new RecyclerViewPagerAdapter(galleryPager, adapter));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            countDown = new UICountdown(2000, 10, this);
 
             seekbar = FindViewById<SeekBar>(Resource.Id.progress_seekbar);
             seekbar.Max = PageList.Count;
@@ -95,15 +97,27 @@ namespace HappyPandaXDroid
 
         protected override void OnResume()
         {
-            ThreadHandler.ElevateActivityPriority(activityID);
             base.OnResume();
         }
 
         protected override void OnDestroy()
         {
             logger.Info("Closing Gallery Viewer");
-            ThreadHandler.AbortActivityThreads(activityID,"GalleryViewer");
             base.OnDestroy();
+        }
+
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            {
+                ToggleOverlay(true);
+            }
+            return base.OnTouchEvent(e);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.viewer_menu, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
 
         public override bool DispatchTouchEvent(MotionEvent ev)
@@ -242,11 +256,11 @@ namespace HappyPandaXDroid
             
         }
 
-        public async void ToggleOverlay()
+        public async void ToggleOverlay(bool toggle)
         {
             RunOnUiThread(() =>
             {
-                if (overlayVisible)
+                if (!toggle)
                 {
                     overlayVisible = false;
                     toolbar.Visibility = ViewStates.Gone;
@@ -257,6 +271,8 @@ namespace HappyPandaXDroid
                     overlayVisible = true;
                     toolbar.Visibility = ViewStates.Visible;
                     seekbar.Visibility = ViewStates.Visible;
+                    countDown.Start();
+                    
                 }
             });
 
@@ -359,11 +375,35 @@ namespace HappyPandaXDroid
                     case Keycode.DpadRight:
                         NextPage();
                         return true;
-                        //break;
+                    //break;
+                    case Keycode.Back:
+                        base.OnBackPressed();
+                        return true;
+                            
                 }
             }
             return false;
         }
+
+        public class UICountdown : CountDownTimer
+        {
+            GalleryViewer viewer;
+            public UICountdown(long ms,long interval, GalleryViewer viewer):base(ms,interval)
+            {
+                this.viewer = viewer;
+            }
+
+            public override void OnFinish()
+            {
+                viewer.ToggleOverlay(false);
+            }
+
+            public override void OnTick(long millisUntilFinished)
+            {
+                
+            }
+        }
+
 
 
 
@@ -374,29 +414,25 @@ namespace HappyPandaXDroid
                 case Android.Resource.Id.Home:
                     OnBackPressed();
                     return true;
+                case Resource.Id.refresh:
+                    {
+                        var lay = (LinearLayoutManager)galleryPager.GetLayoutManager();
+                        int pos = lay.FindFirstCompletelyVisibleItemPosition();
+                        if(pos!=null & pos > -1)
+                        {
+                            var holder = (ImageViewHolder)galleryPager.FindViewHolderForLayoutPosition(pos);
+                            holder.imageView.Loaded = false;
+                            holder.imageView.Refresh();
+                        }
+                    }
+                    return true;
+                    break;
                 default:
                     return base.OnOptionsItemSelected(item);
             }
         }
 
-        public class OnTouchListener : Java.Lang.Object,View.IOnTouchListener
-        {
-            GalleryViewer mparent;
-            public OnTouchListener(GalleryViewer g)
-            {
-                mparent = g;
-            }
-            public bool OnTouch(View v, MotionEvent e)
-            {
-                switch (e.Action)
-                {
-                    case MotionEventActions.Up:
-                        mparent.ToggleOverlay();
-                        break;
-                }
-                return false;
-            }
-        }
+        
 
         public  class ImageAdapter : RecyclerView.Adapter , IOnItemChangedListener
         {
@@ -439,26 +475,7 @@ namespace HappyPandaXDroid
                 });
             }
 
-            private void ItemView_Touch(object sender, View.TouchEventArgs e)
-            {
-                var activity = (GalleryViewer)context;
-                activity.touch_count++;
-                Task.Run(async () =>
-                {
-                    await Task.Delay(500);
-                    if (activity.touch_count == 2)
-                    {
-                        activity.touch_count = 0;
-                        activity.ToggleOverlay();
-
-                    }
-                    else if (activity.touch_count > 2)
-                    {
-                        activity.touch_count = 0;
-                    }
-                });
-            }
-
+            
             public int IndexOf(Core.Gallery.Page item)
             {
                 return PageList.IndexOf(item);

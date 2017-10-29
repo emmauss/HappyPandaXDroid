@@ -18,15 +18,12 @@ using Com.Bumptech.Glide;
 using Android.Graphics;
 using Com.Bumptech.Glide.Request.Target;
 
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
-
 namespace HappyPandaXDroid.Custom_Views
 {
     public class ImageViewHolder : LinearLayout
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         public SubsamplingScaleImageView  img;
-        ProgressView.MaterialProgressBar mProgressView;
         string page_path;
         Core.Gallery.Page Page { set; get; }
         public bool Loaded = false;
@@ -53,9 +50,15 @@ namespace HappyPandaXDroid.Custom_Views
         {
             view = Inflate(this.Context, Resource.Layout.ImageLayout, this);
             img = FindViewById<SubsamplingScaleImageView>(Resource.Id.image);
-            mProgressView = FindViewById<ProgressView.MaterialProgressBar>(Resource.Id.progress_view);
-            mProgressView.Visibility = ViewStates.Invisible;
             img.Visibility = ViewStates.Visible;
+        }
+
+        public void Refresh()
+        {
+            if (Page != null)
+            {
+                OnLoadStart(Page);
+            }
         }
 
         public async void OnLoadStart(Core.Gallery.Page page)
@@ -74,11 +77,6 @@ namespace HappyPandaXDroid.Custom_Views
                     });
                     return;
                 }
-                h.Post(() =>
-                {
-                    mProgressView.Visibility = ViewStates.Visible;
-                    img.Visibility = ViewStates.Invisible;
-                });
                 Load();
             
             
@@ -132,7 +130,9 @@ namespace HappyPandaXDroid.Custom_Views
                     {
                         try
                         {
+                            
                             img.SetImage(ImageSource.InvokeUri(page_path));
+
                             OnLoadEnd();
                         }
                         catch (IllegalArgumentException iex)
@@ -163,7 +163,6 @@ namespace HappyPandaXDroid.Custom_Views
 
             Loaded = true;
             
-                mProgressView.Visibility = ViewStates.Gone;
                 img.Visibility = ViewStates.Visible;
             
         }

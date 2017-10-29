@@ -16,14 +16,13 @@ using NLog.Config;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace HappyPandaXDroid
 {
     [Activity(Label = "HPXDroid", MainLauncher = true, Icon = "@drawable/icon",
         ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation 
-        | Android.Content.PM.ConfigChanges.ScreenSize,LaunchMode =Android.Content.PM.LaunchMode.SingleInstance)]
+        | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class MainActivity : AppCompatActivity , Android.Support.V7.Widget.SearchView.IOnQueryTextListener
     {
         
@@ -35,6 +34,7 @@ namespace HappyPandaXDroid
         DrawerLayout navDrawer;
         public bool SwitchedToSettings = false;
         CountDown backTimer;
+        AppBarLayout appBarLayout;
         Toast toast;
         public int activityId;
         Clans.Fab.FloatingActionMenu fam;
@@ -75,8 +75,9 @@ namespace HappyPandaXDroid
             Android.Support.V7.App.AppCompatDelegate.CompatVectorFromResourcesEnabled = true;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            activityId = ThreadHandler.Thread.IdGen.Next();
             toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            appBarLayout = FindViewById<AppBarLayout>(Resource.Id.appbar);
+            AppBarLayout.Behavior behavior = new AppBarLayout.Behavior();
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Library";
             ContentView = FindViewById<Custom_Views.HPContent>(Resource.Id.content_view);
@@ -101,8 +102,18 @@ namespace HappyPandaXDroid
             
             if(!File.Exists(Core.App.Settings.basePath + ".nomedia"))
             File.Create(Core.App.Settings.basePath + ".nomedia");
-
+            
         }
+
+
+        public class DragListener : Java.Lang.Object, View.IOnDragListener
+        {
+            public bool OnDrag(View v, DragEvent e)
+            {
+                return false;
+            }
+        }
+
 
         public static void InitLogging()
         {
@@ -290,7 +301,6 @@ namespace HappyPandaXDroid
             backTimer.Dispose();
             ContentView.Dispose();
             ContentView = null;
-            Core.App.Threading.Close();
             
             
            
@@ -371,8 +381,8 @@ namespace HappyPandaXDroid
         public bool OnQueryTextSubmit(string query)
         {
             var view = CurrentFocus;
-            if (view != null)
-                view.ClearFocus();
+            if (ContentView != null)
+                ContentView.RequestFocus();
             logger.Info("Search query submit , query ={0}", query);
             ContentView.Current_Query = query;
             return true;

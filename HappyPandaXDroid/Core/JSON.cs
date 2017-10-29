@@ -17,6 +17,21 @@ namespace HappyPandaXDroid.Core
 {
     class JSON
     {
+
+        public class ServerObject
+        {
+            public string session;
+            public string name;
+            public object data;
+        }
+
+        public class DataObject
+        {
+            public string fname;
+            public object data;
+            public App.Server.ErrorObject error;
+        }
+
         public  class Serializer
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -30,8 +45,15 @@ namespace HappyPandaXDroid.Core
 
             public T Deserialize<T>(string serialized_string)
             {
-                
-                return (T)JsonConvert.DeserializeObject<T>(serialized_string);
+                object json = null;
+                try
+                {
+                    json = JsonConvert.DeserializeObject<T>(serialized_string);
+                }catch(Exception ex)
+                {
+                    
+                }
+                return (T)json;
             }
 
             public List<T> DeserializeToList<T>(string serialized_string)
@@ -100,15 +122,22 @@ namespace HappyPandaXDroid.Core
             {
                 //recursive get data segment
                 string data = jsonstring;
+                int startindex = 0,length = 0;
                 string temp = data;
-                for (int i = 0; i<level; i++)
+                try
                 {
-                    
-                    int startindex = temp.IndexOf("data");
-                    temp = temp.Substring(startindex);
-                    startindex = temp.IndexOf(':')+1;
-                    int length = temp.LastIndexOf("}") - (startindex);
-                    temp = temp.Substring(startindex, length);
+                    for (int i = 0; i < level; i++)
+                    {
+
+                        startindex = temp.IndexOf("data");
+                        temp = temp.Substring(startindex);
+                        startindex = temp.IndexOf(':') + 1;
+                        length = temp.LastIndexOf("}") - (startindex);
+                        temp = temp.Substring(startindex, length);
+                    }
+                }catch(Exception ex)
+                {
+
                 }
                 return temp;
                 

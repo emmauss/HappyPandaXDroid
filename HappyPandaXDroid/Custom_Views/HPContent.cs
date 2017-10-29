@@ -18,7 +18,6 @@ using System.Threading;
 using Android.Support.V7.View;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ProgressView = XamarinBindings.MaterialProgressBar;
-using ThreadHandler = HappyPandaXDroid.Core.App.Threading;
 using EasyRecyclerView;
 using EasyRecyclerView.Addons;
 using NLog;
@@ -36,6 +35,7 @@ namespace HappyPandaXDroid.Custom_Views
         public int activityId;
         PageCheckListener listener;
         bool initialized = false;
+
         ProgressView.MaterialProgressBar mProgressView;
         public int count = 0, lastindex = 0;
         RefreshLayout.RefreshLayout mRefreshLayout;
@@ -45,7 +45,21 @@ namespace HappyPandaXDroid.Custom_Views
         BookMarkList Bookmarks = new BookMarkList();
         TextView mErrorText;
         GalleryCardAdapter adapter;
-        bool IsLoading = false;
+        CountDown countDown;
+        
+        bool isLoading = false;
+        bool IsLoading {
+            get { return isLoading; }
+            set
+            {
+                if (value == false)
+                    Task.Run(() => {
+                        countDown.Start();
+                                });
+                else
+                    isLoading = value;
+            }
+        }
         int page = 0;
         public int CurrentPage
         {
@@ -89,6 +103,7 @@ namespace HappyPandaXDroid.Custom_Views
         int columns = 0;
         private void Initialize()
         {
+            countDown = new CountDown(2000, 10,IsLoading);
             listener = new PageCheckListener(this);
             logger.Info("Initializing HPContent");
             ContentView = Inflate(Context, Resource.Layout.HPContent, this);
@@ -106,6 +121,7 @@ namespace HappyPandaXDroid.Custom_Views
             mErrorText.Text = "Error";
             mErrorImage.Click += MErrorFrame_Click;
             SetBottomLoading(false);
+            
 
             mRecyclerView.AddOnScrollListener(listener);
            
@@ -221,7 +237,7 @@ namespace HappyPandaXDroid.Custom_Views
                  while (tries <5 && !Core.Net.Connected)
                  {
                      tries++;
-                    await Task.Delay(2000);
+                    await Task.Delay(5000);
                  }
                  if (tries >= 5 && !Core.Net.Connected)
                  {
@@ -331,13 +347,14 @@ namespace HappyPandaXDroid.Custom_Views
                         content.IsRefreshing = true;
                         await Task.Delay(10);
                         content.Refresh();
-                        content.IsRefreshing = false;
+                        
                         var h = new Handler(Looper.MainLooper);
                         h.Post(() =>
                         {
                             content.mRefreshLayout.HeaderRefreshing = false;
                             content.mRefreshLayout.FooterRefreshing = false;
                         });
+                        content.IsRefreshing = false;
                     });
             }
         }
@@ -434,6 +451,7 @@ namespace HappyPandaXDroid.Custom_Views
         public void JumpTo(int page)
         {
 
+            IsLoading = true;
             if (page == CurrentPage + 1)
                 return;
             var h = new Handler(Looper.MainLooper);
@@ -446,7 +464,9 @@ namespace HappyPandaXDroid.Custom_Views
                     {
                         mRecyclerView.SmoothScrollToPosition(cachedPos);
                     });
+                    IsLoading = false;
                     return;
+
                 }
             }
 
@@ -469,6 +489,7 @@ namespace HappyPandaXDroid.Custom_Views
                     mRefreshLayout.HeaderRefreshing = false;
                     mRefreshLayout.FooterRefreshing = false;
                 });
+                IsLoading = false;
                 return;
             }
             int newitems = Core.Gallery.JumpToPage(page-1, Current_Query);
@@ -498,6 +519,7 @@ namespace HappyPandaXDroid.Custom_Views
                 SetMainLoading(false);
             });
             logger.Info("Loading Next Page Successful");
+            IsLoading = false;
         }
 
 
@@ -536,6 +558,26 @@ namespace HappyPandaXDroid.Custom_Views
                     break;
             }
         }
+
+        public class CountDown : CountDownTimer
+        {
+            bool isLoading;
+            public CountDown(long ms, long interval, bool isLoading) : base(ms, interval)
+            {
+                this.isLoading = isLoading;
+            }
+            
+            public override void OnFinish()
+            {
+                isLoading = false;
+            }
+
+            public override void OnTick(long millisUntilFinished)
+            {
+                
+            }
+        }
+
 
         public void NextPage()
         {
