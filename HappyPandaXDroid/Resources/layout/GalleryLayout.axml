@@ -15,6 +15,7 @@
         <Emmaus.Widget.RecyclerViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:id="@+id/galleryViewPager"
             android:background="#ff000000"
             package:rvp_triggerOffset="0.1"

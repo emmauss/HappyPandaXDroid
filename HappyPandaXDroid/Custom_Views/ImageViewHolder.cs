@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Java.Lang;
+using System.Drawing;
+using OpenTK.Graphics;
 using Android.Views;
 using Android.Widget;
 using ProgressView = XamarinBindings.MaterialProgressBar;
@@ -126,14 +128,18 @@ namespace HappyPandaXDroid.Custom_Views
                     }
 
                     
-                h.Post(() =>
+                h.Post(async () =>
                     {
                         try
                         {
+                            bool isLandscape = false;
+                           await  Task.Run( async() =>
+                            {
+                            });
                             
                             img.SetImage(ImageSource.InvokeUri(page_path));
 
-                            OnLoadEnd();
+                            
                         }
                         catch (IllegalArgumentException iex)
                         {
@@ -144,6 +150,7 @@ namespace HappyPandaXDroid.Custom_Views
                         {
 
                         }
+                        OnLoadEnd();
 
                     });
                     tries=0;
