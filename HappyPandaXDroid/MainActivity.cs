@@ -290,6 +290,7 @@ namespace HappyPandaXDroid
                         //main.Refresh();
                         break;
                 }
+                main.fam.Close(true);
             }
         }
 
@@ -368,10 +369,6 @@ namespace HappyPandaXDroid
 
         }
 
-        
-        
-
-
             public bool OnQueryTextChange(string newText)
             {
                 //throw new NotImplementedException();
@@ -380,12 +377,14 @@ namespace HappyPandaXDroid
 
         public bool OnQueryTextSubmit(string query)
         {
-            var view = CurrentFocus;
-            if (ContentView != null)
-                ContentView.RequestFocus();
-            logger.Info("Search query submit , query ={0}", query);
-            ContentView.Current_Query = query;
-            return true;
+            if (query != string.Empty)
+            {
+                SupportActionBar.InvalidateOptionsMenu();
+                SupportActionBar.Title = query;
+                logger.Info("Search query submit , query ={0}", query);
+                ContentView.Current_Query = query;
+            }
+            return false;
         }
 
         Android.Support.V7.Widget.SearchView searchView;
