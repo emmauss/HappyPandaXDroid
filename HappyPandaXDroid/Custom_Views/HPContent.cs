@@ -581,8 +581,8 @@ namespace HappyPandaXDroid.Custom_Views
 
         public void NextPage()
         {
+            isLoading = true;
             logger.Info("Loading Next Page");
-            GetTotalCount();
             var h = new Handler(Looper.MainLooper);
             if ((CurrentPage + 1) >= (count / 25))
             {
@@ -595,6 +595,7 @@ namespace HappyPandaXDroid.Custom_Views
                     SetBottomLoading(false);
                     mRefreshLayout.HeaderRefreshing = false;
                     mRefreshLayout.FooterRefreshing = false;
+                    isLoading = false;
                 });
                 return;
             }
@@ -606,10 +607,10 @@ namespace HappyPandaXDroid.Custom_Views
                     adapter.NotifyItemRangeInserted(lastindex+1, newitems);
                     
                 });
+                CurrentPage++;
                 listener.AddBookmark(lastindex + 1);
                 lastindex = Core.Gallery.CurrentList.Count - 1;
-                GetTotalCount();
-                CurrentPage++;
+                
                 
 
             }
@@ -620,10 +621,12 @@ namespace HappyPandaXDroid.Custom_Views
                 SetBottomLoading(false);
             });
             logger.Info("Loading Next Page Successful");
+            isLoading = false;
         }
 
         public void PreviousPage()
         {
+            isLoading = true;
             logger.Info("Loading Previous Page");
             var h = new Handler(Looper.MainLooper);
             if (CurrentPage <= 0)
@@ -637,6 +640,7 @@ namespace HappyPandaXDroid.Custom_Views
             if (mRefreshLayout.IsFooterRefreshing() || mRefreshLayout.IsHeaderRefreshing())
             {
                 logger.Info("Refresh Operation already in progress");
+
                 return;
             }
             
@@ -664,6 +668,7 @@ namespace HappyPandaXDroid.Custom_Views
             });
             SetBottomLoading(false);
             logger.Info("Loading Previous Page Successful");
+            isLoading = false;
         }
 
         public class BookMarkList
