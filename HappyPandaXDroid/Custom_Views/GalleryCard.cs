@@ -121,6 +121,13 @@ namespace HappyPandaXDroid.Custom_Views
             this.Touch += GalleryCard_Touch;*/
         }
 
+        public void Clear()
+        {
+            text.Text = string.Empty;
+            text2.Text = string.Empty;
+            img.SetImageDrawable(null);
+        }
+
         public async void Refresh()
         {
             bool exists = false;
@@ -129,10 +136,6 @@ namespace HappyPandaXDroid.Custom_Views
 
             }
                 var h = new Handler(Looper.MainLooper);
-            h.Post(() =>
-            {
-                img.SetImageDrawable(null);
-            });
             await Task.Run( async () =>
             {
                 exists = await Core.Gallery.IsSourceExist("gallery", Gallery.id);

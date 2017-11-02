@@ -130,7 +130,7 @@ namespace HappyPandaXDroid.Custom_Views
                 columns = 2;
             else
                 columns = 1;
-            mLayoutManager = new GridLayoutManager(this.Context,columns);
+            mLayoutManager = new ExtraLayoutManager(this.Context, columns, GridLayoutManager.Vertical, false);
            
            
             mRecyclerView.SetAdapter(adapter);
@@ -148,7 +148,49 @@ namespace HappyPandaXDroid.Custom_Views
 
 
 
-        
+        public class ExtraLayoutManager : GridLayoutManager
+        {
+            private static readonly int DEFAULT_EXTRA_LAYOUT_SPACE = 800;
+            private int extraLayoutSpace = -1;
+            private Context context;
+
+
+            public ExtraLayoutManager(Context context,int columns) : base(context,columns)
+            {
+                this.context = context;
+            }
+
+            public ExtraLayoutManager(Context context, int columns ,int extraLayoutSpace) : base(context,columns)
+            {
+                this.context = context;
+                this.extraLayoutSpace = extraLayoutSpace;
+            }
+
+
+
+            public ExtraLayoutManager(Context context, int columns ,int orientation, bool reverseLayout)
+                : base(context, columns,orientation, reverseLayout)
+            {
+                this.context = context;
+            }
+
+            public void SetExtraLayoutSpace(int extraLayoutSpace)
+            {
+                this.extraLayoutSpace = extraLayoutSpace;
+            }
+
+            protected override int GetExtraLayoutSpace(RecyclerView.State state)
+            {
+                if (extraLayoutSpace > 0)
+                {
+                    return extraLayoutSpace;
+                }
+                else
+                    return DEFAULT_EXTRA_LAYOUT_SPACE;
+            }
+        }
+
+
 
         public void OrientationChanged(Android.Content.Res.Orientation orientation)
         {
@@ -530,7 +572,7 @@ namespace HappyPandaXDroid.Custom_Views
                 if (holder is GalleryCardHolder vh)
                 {
                     Intent intent = new Intent(parent.Context, typeof(GalleryActivity));
-                    string gallerystring = Core.JSON.Serializer.SimpleSerializer.Serialize(vh.gallery);
+                    string gallerystring = Core.JSON.Serializer.SimpleSerializer.Serialize(vh.gcard.Gallery);
                     intent.PutExtra("gallery", gallerystring);
                     parent.Context.StartActivity(intent);
                 }
@@ -835,12 +877,9 @@ namespace HappyPandaXDroid.Custom_Views
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
                 GalleryCardHolder vh = holder as GalleryCardHolder;
-                vh.gcard.Gallery = mdata[position];
-                vh.gallery = vh.gcard.Gallery;
                 try
                 {
-                        vh.gcard.Refresh();
-                    
+                    vh.Bind(mdata[position]);
                 }
                 catch (Exception ex)
                 {
@@ -863,14 +902,18 @@ namespace HappyPandaXDroid.Custom_Views
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
             public Custom_Views.GalleryCard gcard;
-
-            public Core.Gallery.GalleryItem gallery;
+            
             public GalleryCardHolder(View itemView) : base(itemView)
             {
                 gcard = (Custom_Views.GalleryCard)itemView;
             }
 
-            
+            public void Bind(Core.Gallery.GalleryItem item)
+            {
+                gcard.Gallery = item;
+                gcard.Clear();
+                gcard.Refresh();
+            }
 
 
         }       
